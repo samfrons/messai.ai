@@ -1,0 +1,18 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "bundler",
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@messai/core/domain": ["libs/core/domain/src/index.ts"],
+      "@messai/ui/components": ["libs/ui/components/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "**/dist", "**/build", "**/.next"]
+}
