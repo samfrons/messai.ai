@@ -282,10 +282,15 @@ Technology Stack
 - Build System: Nx Monorepo
 - Package Manager: pnpm 8.15.0 with workspace protocol
 
-**⚠️ CRITICAL: AI agents MUST read the
-[Project Structure documentation](/docs/ai-context/project-structure.md) before
-attempting any task to understand the complete technology stack, file tree and
-project organization.**
+**⚠️ CRITICAL: AI agents MUST read the following documentation before working on
+specific features:**
+
+- [Project Structure documentation](/docs/ai-context/project-structure.md) -
+  Complete tech stack and file organization
+- [Lab Development Guide](/docs/ai-context/lab-development-guide.md) - Essential
+  context for 3D lab features
+- [Development Status](/docs/development-status.md) - Current implementation
+  progress and known issues
 
 [Project Name] follows a [describe architecture pattern]. For the complete tech
 stack and file tree structure, see
