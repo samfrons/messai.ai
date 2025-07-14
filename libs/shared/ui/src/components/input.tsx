@@ -1,4 +1,4 @@
-import { forwardRef, type InputHTMLAttributes } from 'react';
+import React, { forwardRef, type InputHTMLAttributes } from 'react';
 import { cn, type Size, focusRing, transition } from '../utils';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -57,15 +57,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
     const hasError = error || !!errorMessage;
 
     return (
       <div className="w-full">
-        {label && (
-          <label htmlFor={inputId} className="block text-sm font-medium text-gray-700 mb-1">
+        {label && id && (
+          <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
             {label}
           </label>
+        )}
+        {label && !id && (
+          <div className="block text-sm font-medium text-gray-700 mb-1">{label}</div>
         )}
 
         <div className="relative">
@@ -77,7 +79,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
           <input
             ref={ref}
-            id={inputId}
+            id={id}
             disabled={disabled}
             className={cn(
               // Base styles
@@ -98,8 +100,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               // States
               {
                 'border-gray-300 bg-white text-gray-900': !hasError && !disabled,
-                'border-red-300 bg-red-50 text-red-900 placeholder-red-400': hasError,
-                'border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed': disabled,
+                'border-red-300 text-red-900 placeholder-red-300': hasError && !disabled,
+                'bg-gray-50 text-gray-500 cursor-not-allowed': disabled,
               },
 
               className

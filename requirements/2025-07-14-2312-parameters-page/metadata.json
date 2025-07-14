@@ -1,0 +1,18 @@
+{
+  "id": "parameters-page",
+  "started": "2025-07-14T23:12:00Z",
+  "lastUpdated": "2025-07-14T23:22:00Z",
+  "status": "active",
+  "phase": "complete",
+  "progress": {
+    "discovery": { "answered": 5, "total": 5 },
+    "detail": { "answered": 5, "total": 5 }
+  },
+  "contextFiles": [
+    "apps/web/src/data/prediction-constants.ts",
+    "apps/web/src/types/predictions.ts",
+    "apps/web/src/app/predictions/page.tsx",
+    "prisma/schema.prisma"
+  ],
+  "relatedFeatures": ["predictions", "research"]
+}

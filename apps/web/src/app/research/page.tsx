@@ -121,8 +121,7 @@ export default function ResearchPage() {
       <div className="border-b border-gray-200 pb-4">
         <h1 className="text-3xl font-bold text-gray-900">Research Intelligence</h1>
         <p className="text-gray-600 mt-2">
-          AI-enhanced analysis of {allMockPapers.length.toLocaleString()}+ research papers with
-          semantic search and knowledge graphs
+          AI-enhanced analysis of research papers with semantic search and knowledge graphs
         </p>
       </div>
 

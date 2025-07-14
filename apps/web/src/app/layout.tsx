@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     { label: 'Dashboard', href: '/' },
     { label: 'Research', href: '/research' },
     { label: 'Laboratory', href: '/lab' },
+    { label: 'Parameters', href: '/parameters' },
     { label: 'Predictions', href: '/predictions' },
   ];
 

@@ -123,7 +123,7 @@ Model Configuration
 Experiment Tracking
 
 - Track experiments from initial setup through completion
-- Record time-series measurements (voltage, current, pH, temperature)
+- Record time-series measurements
 - Compare actual results with AI predictions
 - Generate publication-ready reports and visualizations
 - Collaborate with team members on shared experiments
@@ -602,3 +602,7 @@ Run the appropriate commands based on what was modified:
 
 - Ensure all type checks pass before considering the task complete
 - If type errors are found, fix them before marking the task as done
+
+## Research Library Instructions
+
+- Do not generate mock data or papers for the resarch library

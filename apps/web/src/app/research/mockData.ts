@@ -565,9 +565,9 @@ export const generateAdditionalMockPapers = (count: number): ResearchPaper[] => 
 };
 
 /**
- * Complete mock dataset combining featured papers and generated papers
+ * Complete mock dataset - using only static mock papers to avoid hydration issues
  */
-export const allMockPapers = [...mockResearchPapers, ...generateAdditionalMockPapers(100)];
+export const allMockPapers = [...mockResearchPapers];
 
 /**
  * Helper function to simulate search functionality
