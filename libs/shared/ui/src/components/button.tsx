@@ -1,5 +1,5 @@
 import { forwardRef, type ButtonHTMLAttributes } from 'react';
-import { cn, type Size, focusRing, transition } from '../utils';
+import { cn, type Size } from '../utils';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -7,9 +7,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   size?: Size;
   /**
-   * Button color variant
+   * Button style variant - minimalist approach
    */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  variant?: 'primary' | 'secondary' | 'ghost';
   /**
    * Whether the button should take full width
    */
@@ -30,16 +30,14 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const buttonVariants = {
   variant: {
-    primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
-    secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 active:bg-secondary-800',
-    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 active:bg-gray-100',
-    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 active:bg-gray-200',
-    danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
+    primary: 'border border-black bg-black text-cream hover:bg-cream hover:text-black',
+    secondary: 'border border-black bg-cream text-black hover:bg-black hover:text-cream',
+    ghost: 'border-none bg-transparent text-black hover:opacity-60',
   },
   size: {
-    sm: 'h-8 px-3 text-sm',
-    base: 'h-10 px-4 text-base',
-    lg: 'h-12 px-6 text-lg',
+    sm: 'h-9 px-4 text-sm',
+    base: 'h-11 px-6 text-sm',
+    lg: 'h-12 px-8 text-base',
   },
 };
 
@@ -47,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       size = 'base',
-      variant = 'primary',
+      variant = 'secondary',
       fullWidth = false,
       loading = false,
       disabled,
@@ -66,22 +64,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={isDisabled}
         className={cn(
-          // Base styles
-          'inline-flex items-center justify-center gap-2 rounded-md font-medium',
-          'border border-transparent',
-          transition,
-          focusRing,
+          // Base styles - minimalist approach
+          'inline-flex items-center justify-center gap-2',
+          'font-normal tracking-wide',
+          'transition-all duration-300 ease-out',
+          'focus:outline-none focus-visible:ring-1 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-cream',
 
           // Size variants
           buttonVariants.size[size],
 
-          // Color variants
+          // Style variants
           buttonVariants.variant[variant],
 
           // States
           {
             'w-full': fullWidth,
-            'opacity-50 cursor-not-allowed': isDisabled,
+            'opacity-40 cursor-not-allowed': isDisabled,
             'cursor-pointer': !isDisabled,
           },
 
@@ -102,7 +100,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               cy="12"
               r="10"
               stroke="currentColor"
-              strokeWidth="4"
+              strokeWidth="3"
             />
             <path
               className="opacity-75"
@@ -111,9 +109,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </svg>
         )}
-        {!loading && icon && icon}
-        {children}
-        {!loading && iconAfter && iconAfter}
+        {!loading && icon && <span className="flex-shrink-0">{icon}</span>}
+        {children && <span>{children}</span>}
+        {!loading && iconAfter && <span className="flex-shrink-0">{iconAfter}</span>}
       </button>
     );
   }

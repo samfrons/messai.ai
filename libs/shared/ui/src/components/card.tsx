@@ -7,9 +7,9 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
    */
   padding?: 'sm' | 'base' | 'lg' | 'none';
   /**
-   * Whether the card should have a shadow
+   * Whether the card should have a shadow - minimalist approach uses none
    */
-  shadow?: 'none' | 'sm' | 'base' | 'md' | 'lg';
+  shadow?: boolean;
   /**
    * Whether the card should have a border
    */
@@ -23,16 +23,9 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 const cardVariants = {
   padding: {
     none: '',
-    sm: 'p-4',
-    base: 'p-6',
-    lg: 'p-8',
-  },
-  shadow: {
-    none: '',
-    sm: 'shadow-sm',
-    base: 'shadow',
-    md: 'shadow-md',
-    lg: 'shadow-lg',
+    sm: 'p-6',
+    base: 'p-8',
+    lg: 'p-10',
   },
 };
 
@@ -40,7 +33,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
   (
     {
       padding = 'base',
-      shadow = 'base',
+      shadow = false,
       border = true,
       interactive = false,
       className,
@@ -53,23 +46,26 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          // Base styles
-          'rounded-lg bg-white',
+          // Base styles - minimalist approach
+          'bg-white',
 
           // Padding variants
           cardVariants.padding[padding],
 
-          // Shadow variants
-          cardVariants.shadow[shadow],
-
-          // Border
+          // Border - thin and subtle
           {
             'border border-gray-200': border,
           },
 
-          // Interactive states
+          // Shadow - minimal or none
           {
-            'transition-shadow duration-200 hover:shadow-md cursor-pointer': interactive,
+            'shadow-sm': shadow,
+          },
+
+          // Interactive states - subtle
+          {
+            'transition-all duration-300 hover:border-gray-300': interactive && border,
+            'cursor-pointer': interactive,
           },
 
           className
@@ -98,7 +94,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
       <div
         ref={ref}
         className={cn(
-          'px-6 py-4',
+          'px-8 py-6',
           {
             'border-b border-gray-200': border,
           },
@@ -119,7 +115,7 @@ export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <div ref={ref} className={cn('px-6 py-4', className)} {...props}>
+      <div ref={ref} className={cn('px-8 py-6', className)} {...props}>
         {children}
       </div>
     );
@@ -141,7 +137,7 @@ export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
       <div
         ref={ref}
         className={cn(
-          'px-6 py-4',
+          'px-8 py-6',
           {
             'border-t border-gray-200': border,
           },

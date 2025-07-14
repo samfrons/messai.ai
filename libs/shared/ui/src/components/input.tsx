@@ -1,5 +1,5 @@
 import React, { forwardRef, type InputHTMLAttributes } from 'react';
-import { cn, type Size, focusRing, transition } from '../utils';
+import { cn, type Size } from '../utils';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
@@ -34,9 +34,9 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 
 const inputVariants = {
   size: {
-    sm: 'h-8 px-3 text-sm',
-    base: 'h-10 px-3 text-base',
-    lg: 'h-12 px-4 text-lg',
+    sm: 'h-9 text-sm',
+    base: 'h-11 text-sm',
+    lg: 'h-12 text-base',
   },
 };
 
@@ -61,19 +61,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className="w-full">
-        {label && id && (
-          <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+        {label && (
+          <label htmlFor={id} className="block text-sm font-normal text-black mb-2">
             {label}
           </label>
-        )}
-        {label && !id && (
-          <div className="block text-sm font-medium text-gray-700 mb-1">{label}</div>
         )}
 
         <div className="relative">
           {icon && (
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <span className="text-gray-400 sm:text-sm">{icon}</span>
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <span className="text-gray-500 text-sm">{icon}</span>
             </div>
           )}
 
@@ -82,11 +79,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             disabled={disabled}
             className={cn(
-              // Base styles
-              'block w-full rounded-md border shadow-sm',
-              'placeholder-gray-400',
-              transition,
-              focusRing,
+              // Base styles - minimalist approach
+              'block w-full bg-transparent',
+              'border-b border-gray-300',
+              'px-0 py-3',
+              'placeholder-gray-500',
+              'transition-colors duration-300',
+              'focus:outline-none focus:border-black',
 
               // Size variants
               inputVariants.size[size],
@@ -99,9 +98,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
               // States
               {
-                'border-gray-300 bg-white text-gray-900': !hasError && !disabled,
-                'border-red-300 text-red-900 placeholder-red-300': hasError && !disabled,
-                'bg-gray-50 text-gray-500 cursor-not-allowed': disabled,
+                'text-black': !hasError && !disabled,
+                'border-red-500 text-red-900 placeholder-red-400': hasError && !disabled,
+                'text-gray-400 cursor-not-allowed opacity-50': disabled,
               },
 
               className
@@ -110,14 +109,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
 
           {iconAfter && (
-            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-              <span className="text-gray-400 sm:text-sm">{iconAfter}</span>
+            <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+              <span className="text-gray-500 text-sm">{iconAfter}</span>
             </div>
           )}
         </div>
 
         {(helperText || errorMessage) && (
-          <p className={cn('mt-1 text-sm', hasError ? 'text-red-600' : 'text-gray-500')}>
+          <p className={cn('mt-2 text-sm', hasError ? 'text-red-500' : 'text-gray-500')}>
             {errorMessage || helperText}
           </p>
         )}

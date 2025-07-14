@@ -34,7 +34,7 @@ module.exports = {
         },
       },
 
-      // Typography - minimalist monospace approach
+      // Typography - CETEP-inspired serif and monospace combination
       fontFamily: {
         sans: [
           'DM Mono',
@@ -54,7 +54,8 @@ module.exports = {
           'Consolas',
           'monospace',
         ],
-        display: ['DM Mono', 'ui-monospace', 'monospace'],
+        serif: ['Crimson Text', 'Dino', 'Georgia', 'Times New Roman', 'serif'],
+        display: ['Crimson Text', 'Dino', 'Georgia', 'serif'],
       },
 
       fontSize: {

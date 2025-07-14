@@ -12,6 +12,7 @@ export * from './components/input';
 export * from './components/card';
 export * from './components/badge';
 export * from './components/modal';
+export * from './components/accordion';
 
 // Research components
 export * from './components/paper-card';

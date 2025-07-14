@@ -33,84 +33,72 @@ export default function Layout({
   sidebar,
 }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo and Brand */}
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                {/* MESSAI Logo Icon */}
-                <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <h1 className="text-xl font-bold text-gray-900">
-                  MESSAI<span className="text-primary-600">.AI</span>
+    <div className="min-h-screen bg-cream text-black">
+      {/* Minimalist Header */}
+      <header className="border-b border-gray-200">
+        <div className="container-grid">
+          <div className="grid-12 py-6">
+            {/* Logo - Left aligned */}
+            <div className="col-span-3 flex items-center">
+              <a href="/" className="inline-flex items-center group">
+                <h1 className="text-xl font-serif font-light tracking-tight">
+                  MESSAI<span className="opacity-60">.AI</span>
                 </h1>
-              </div>
+              </a>
+            </div>
 
-              {/* Primary Navigation */}
-              {navigation.length > 0 && (
-                <nav className="hidden md:flex space-x-8 ml-8">
+            {/* Navigation - Center */}
+            {navigation.length > 0 && (
+              <nav className="col-span-6 flex items-center justify-center">
+                <div className="flex items-center gap-8">
                   {navigation.map((item) => (
                     <a
                       key={item.href}
                       href={item.href}
-                      className={cn(
-                        'text-sm font-medium transition-colors duration-200',
-                        item.active
-                          ? 'text-primary-600 border-b-2 border-primary-600'
-                          : 'text-gray-600 hover:text-gray-900'
-                      )}
+                      className={cn('nav-link text-sm', item.active && 'active')}
                     >
                       {item.label}
                     </a>
                   ))}
-                </nav>
-              )}
-            </div>
+                </div>
+              </nav>
+            )}
 
-            {/* User Menu */}
-            <div className="flex items-center">
-              {userMenu || (
-                <div className="text-sm text-gray-500">Scientific Research Platform</div>
-              )}
+            {/* User Menu - Right aligned */}
+            <div className="col-span-3 flex items-center justify-end">
+              {userMenu || <span className="text-sm opacity-60">Research Platform</span>}
             </div>
           </div>
         </div>
       </header>
 
+      {/* Main Layout */}
       <div className="flex">
-        {/* Sidebar */}
+        {/* Sidebar - Minimalist style */}
         {showSidebar && (
-          <aside className="w-64 bg-white border-r border-gray-200 min-h-[calc(100vh-4rem)]">
-            <div className="p-4">{sidebar}</div>
+          <aside className="w-64 bg-white border-r border-gray-200 min-h-[calc(100vh-73px)]">
+            <div className="p-6">{sidebar}</div>
           </aside>
         )}
 
         {/* Main Content */}
-        <main
-          className={cn(
-            'flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8',
-            showSidebar && 'max-w-none'
-          )}
-        >
-          {children}
+        <main className={cn('flex-1', !showSidebar && 'w-full')}>
+          <div className={cn('container-grid py-12', showSidebar && 'max-w-none')}>{children}</div>
         </main>
       </div>
+
+      {/* Minimalist Footer */}
+      <footer className="border-t border-gray-200 mt-24">
+        <div className="container-grid py-8">
+          <div className="grid-12">
+            <div className="col-span-12 text-center">
+              <p className="text-sm opacity-60">
+                © {new Date().getFullYear()} MESSAI.AI — Advancing Electrochemical Research
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

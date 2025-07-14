@@ -118,7 +118,7 @@ export const PaperCard = forwardRef<HTMLDivElement, PaperCardProps>(
         <div className="space-y-2">
           {/* Title and AI Enhancement Indicator */}
           <div className="flex items-start gap-3">
-            <h3 className="text-lg font-semibold text-gray-900 leading-tight flex-1">
+            <h3 className="text-lg font-serif font-normal text-black leading-tight flex-1">
               {paper.title}
             </h3>
             {paper.aiEnhanced && (

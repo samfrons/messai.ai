@@ -117,19 +117,30 @@ function Scene({
   viewScale: string;
   visualizationMode: 'static' | 'biofilm' | 'flow';
 }) {
-  // Calculate scale based on view level
-  const getScaleForView = (viewScale: string) => {
+  // Calculate scale based on view level and model type
+  const getScaleForView = (viewScale: string, model: string) => {
+    // Base scale adjustments for different models to fit properly
+    const modelBaseScale = {
+      microfluidic: 1.2,
+      stacked: 0.9,
+      benchtop: 0.8,
+      industrial: 0.7,
+    };
+
+    const baseScale = modelBaseScale[model as keyof typeof modelBaseScale] || 1;
+
+    // Apply view scale multiplier
     switch (viewScale) {
       case 'molecular':
-        return 0.5;
+        return baseScale * 0.6;
       case 'industrial':
-        return 2;
+        return baseScale * 1.5;
       default:
-        return 1; // system
+        return baseScale; // system
     }
   };
 
-  const scale = getScaleForView(viewScale);
+  const scale = getScaleForView(viewScale, selectedModel);
   const showAnimation = visualizationMode !== 'static';
 
   return (
@@ -145,16 +156,19 @@ function Scene({
       <directionalLight position={[-10, 10, -5]} intensity={0.5} />
       <pointLight position={[0, 10, 0]} intensity={0.3} />
 
-      {/* Grid helper for reference */}
+      {/* Grid helper for reference - more subtle */}
       <Grid
-        args={[20, 20]}
+        args={[50, 50]}
         cellSize={1}
-        cellThickness={0.5}
+        cellThickness={0.2}
+        cellColor="#e0e0e0"
         sectionSize={5}
-        sectionThickness={1}
+        sectionThickness={0.3}
+        sectionColor="#cccccc"
         fadeDistance={30}
         fadeStrength={1}
         infiniteGrid
+        position={[0, -0.01, 0]}
       />
 
       {/* MESS Model */}
@@ -165,18 +179,17 @@ function Scene({
         visualizationMode={visualizationMode}
       />
 
-      {/* Camera controls */}
+      {/* Camera controls - adjusted for better framing */}
       <OrbitControls
         enablePan={true}
         enableZoom={true}
         enableRotate={true}
-        minDistance={2}
-        maxDistance={20}
+        minDistance={5}
+        maxDistance={40}
+        maxPolarAngle={Math.PI * 0.85}
+        target={[0, 0, 0]}
         makeDefault
       />
-
-      {/* Camera setup */}
-      <PerspectiveCamera makeDefault position={[5, 5, 5]} fov={50} />
     </>
   );
 }
@@ -237,16 +250,28 @@ export default function MESSViewer3D({
   }
 
   return (
-    <div className={`relative bg-gray-50 rounded-lg overflow-hidden ${className}`}>
-      {/* Canvas container */}
-      <div className="w-full h-full min-h-[400px]">
+    <div className={`relative bg-gray-50 ${className}`}>
+      {/* Canvas container - removed rounded corners and adjusted sizing */}
+      <div className="w-full h-full min-h-[600px] relative">
         <Canvas
           shadows
           dpr={[1, 2]}
-          gl={{ antialias: true, alpha: false }}
-          onCreated={({ gl }) => {
+          gl={{
+            antialias: true,
+            alpha: false,
+            preserveDrawingBuffer: true,
+          }}
+          camera={{
+            position: [10, 8, 10],
+            fov: 40,
+            near: 0.1,
+            far: 100,
+          }}
+          onCreated={({ gl, camera }) => {
             gl.toneMapping = THREE.ACESFilmicToneMapping;
             gl.toneMappingExposure = 1;
+            // Ensure camera captures full scene
+            camera.updateProjectionMatrix();
           }}
         >
           <Suspense fallback={null}>

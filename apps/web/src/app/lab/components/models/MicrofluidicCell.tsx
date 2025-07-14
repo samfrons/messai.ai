@@ -37,9 +37,9 @@ export default function MicrofluidicCell({
   });
 
   return (
-    <group ref={groupRef} scale={scale}>
-      {/* Base microscope slide */}
-      <mesh position={[0, -0.1, 0]}>
+    <group ref={groupRef} scale={scale} position={[0, 0, 0]}>
+      {/* Base microscope slide - centered */}
+      <mesh position={[0, 0, 0]}>
         <boxGeometry args={[4, 0.1, 1.5]} />
         <meshStandardMaterial
           color="#e3f2fd"
