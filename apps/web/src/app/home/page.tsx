@@ -22,16 +22,16 @@ export default function HomePage() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
-        { id: 'stats', offset: 0.2 },
-        { id: 'features', offset: 0.3 },
-        { id: 'researchers', offset: 0.4 },
-        { id: 'students', offset: 0.5 },
-        { id: 'engineers', offset: 0.6 },
-        { id: 'process', offset: 0.7 },
-        { id: 'cta', offset: 0.8 },
+        'stats',
+        'features',
+        'researchers',
+        'students',
+        'engineers',
+        'process',
+        'cta',
       ];
 
-      sections.forEach(({ id, offset }) => {
+      sections.forEach((id) => {
         const element = document.getElementById(id);
         if (element) {
           const rect = element.getBoundingClientRect();

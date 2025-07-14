@@ -57,7 +57,7 @@ function createParameter(
   category: ParameterCategory,
   subcategory: string,
   subcategoryCode: string,
-  originalCategory: string
+  _originalCategory: string
 ): Parameter {
   const baseParameter: Parameter = {
     id: `param-${id}`,
@@ -211,7 +211,7 @@ function generateMicrobeProperties(name: string, subcategoryCode: string): Recor
 /**
  * Generate substrate-specific properties
  */
-function generateSubstrateProperties(name: string, subcategoryCode: string): Record<string, any> {
+function generateSubstrateProperties(_name: string, subcategoryCode: string): Record<string, any> {
   const baseProps = {
     concentration: 10, // g/L
     cod: 1000, // mg/L
@@ -258,7 +258,7 @@ function generateMembraneProperties(name: string, subcategoryCode: string): Reco
 /**
  * Generate system configuration properties
  */
-function generateSystemProperties(name: string, subcategoryCode: string): Record<string, any> {
+function generateSystemProperties(_name: string, subcategoryCode: string): Record<string, any> {
   const baseProps = {
     volume: 100, // mL
     area: 50, // cm²
@@ -284,32 +284,32 @@ function generateOperatingProperties(name: string, subcategoryCode: string): Rec
 
   if (subcategoryCode === 'operating_temperature') {
     if (name.includes('Psychrophilic')) {
-      baseProps.temperature = 10;
-      baseProps.temperatureRange = [0, 20];
+      baseProps['temperature'] = 10;
+      baseProps['temperatureRange'] = [0, 20];
     } else if (name.includes('Mesophilic')) {
-      baseProps.temperature = 30;
-      baseProps.temperatureRange = [20, 40];
+      baseProps['temperature'] = 30;
+      baseProps['temperatureRange'] = [20, 40];
     } else if (name.includes('Thermophilic')) {
-      baseProps.temperature = 50;
-      baseProps.temperatureRange = [40, 60];
+      baseProps['temperature'] = 50;
+      baseProps['temperatureRange'] = [40, 60];
     }
   } else if (subcategoryCode === 'operating_ph') {
     if (name.includes('Acidic')) {
-      baseProps.ph = 4;
-      baseProps.phRange = [3, 5];
+      baseProps['ph'] = 4;
+      baseProps['phRange'] = [3, 5];
     } else if (name.includes('Neutral')) {
-      baseProps.ph = 7;
-      baseProps.phRange = [6.5, 7.5];
+      baseProps['ph'] = 7;
+      baseProps['phRange'] = [6.5, 7.5];
     } else if (name.includes('Alkaline')) {
-      baseProps.ph = 10;
-      baseProps.phRange = [9, 11];
+      baseProps['ph'] = 10;
+      baseProps['phRange'] = [9, 11];
     }
   } else if (subcategoryCode === 'operating_flow') {
-    baseProps.flowRate = name.includes('Batch') ? 0 : 10; // mL/min
-    baseProps.flowMode = name;
+    baseProps['flowRate'] = name.includes('Batch') ? 0 : 10; // mL/min
+    baseProps['flowMode'] = name;
   } else if (subcategoryCode === 'operating_electrical') {
-    baseProps.mode = name;
-    baseProps.resistance = name.includes('Fixed Resistance') ? 1000 : null; // Ω
+    baseProps['mode'] = name;
+    baseProps['resistance'] = name.includes('Fixed Resistance') ? 1000 : null; // Ω
   }
 
   return baseProps;

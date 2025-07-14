@@ -47,6 +47,9 @@ export function Accordion({
   );
 }
 
+// Accordion Item Context
+const AccordionItemContext = React.createContext<{ value: string } | null>(null);
+
 // Accordion Item Component
 export interface AccordionItemProps {
   children: ReactNode;
@@ -56,9 +59,11 @@ export interface AccordionItemProps {
 
 export function AccordionItem({ children, value, className }: AccordionItemProps) {
   return (
-    <div className={cn('border-b border-gray-200 last:border-b-0', className)} data-state={value}>
-      {children}
-    </div>
+    <AccordionItemContext.Provider value={{ value }}>
+      <div className={cn('border-b border-gray-200 last:border-b-0', className)} data-state={value}>
+        {children}
+      </div>
+    </AccordionItemContext.Provider>
   );
 }
 
@@ -72,7 +77,7 @@ export function AccordionTrigger({ children, className }: AccordionTriggerProps)
   const context = useContext(AccordionContext);
   if (!context) throw new Error('AccordionTrigger must be used within Accordion');
 
-  const item = (React.useContext(AccordionItemContext) as any)?.value;
+  const item = React.useContext(AccordionItemContext)?.value;
   if (!item) throw new Error('AccordionTrigger must be used within AccordionItem');
 
   const isOpen = context.openItems.includes(item);
@@ -111,13 +116,11 @@ export interface AccordionContentProps {
   className?: string;
 }
 
-const AccordionItemContext = React.createContext<{ value: string } | null>(null);
-
 export function AccordionContent({ children, className }: AccordionContentProps) {
   const context = useContext(AccordionContext);
   if (!context) throw new Error('AccordionContent must be used within Accordion');
 
-  const item = (React.useContext(AccordionItemContext) as any)?.value;
+  const item = React.useContext(AccordionItemContext)?.value;
   if (!item) throw new Error('AccordionContent must be used within AccordionItem');
 
   const isOpen = context.openItems.includes(item);
@@ -130,13 +133,3 @@ export function AccordionContent({ children, className }: AccordionContentProps)
     </div>
   );
 }
-
-// Fix: Wrap AccordionItem children with context
-const OriginalAccordionItem = AccordionItem;
-AccordionItem = ({ value, children, ...props }: AccordionItemProps) => {
-  return (
-    <OriginalAccordionItem value={value} {...props}>
-      <AccordionItemContext.Provider value={{ value }}>{children}</AccordionItemContext.Provider>
-    </OriginalAccordionItem>
-  );
-};

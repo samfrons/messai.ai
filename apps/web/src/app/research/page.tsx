@@ -13,7 +13,7 @@ import {
   type PaperData,
 } from '@messai/ui';
 import { useResearchSearch } from './hooks/useResearchSearch';
-import { allMockPapers, getRecentPapers, getTopCitedPapers } from './mockData';
+import { getRecentPapers, getTopCitedPapers } from './mockData';
 import type { ResearchPaper, SortOption } from './types';
 
 /**

@@ -9,7 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button style variant - minimalist approach
    */
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger';
   /**
    * Whether the button should take full width
    */
@@ -33,6 +33,8 @@ const buttonVariants = {
     primary: 'border border-black bg-black text-cream hover:bg-cream hover:text-black',
     secondary: 'border border-black bg-cream text-black hover:bg-black hover:text-cream',
     ghost: 'border-none bg-transparent text-black hover:opacity-60',
+    outline: 'border border-gray-300 bg-transparent text-black hover:border-black hover:bg-gray-50',
+    danger: 'border border-red-600 bg-red-600 text-white hover:bg-red-700 hover:border-red-700',
   },
   size: {
     sm: 'h-9 px-4 text-sm',

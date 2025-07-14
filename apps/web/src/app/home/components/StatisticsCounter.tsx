@@ -38,6 +38,7 @@ export default function StatisticsCounter({
 
       return () => clearInterval(timer);
     }
+    return undefined;
   }, [isVisible, value, hasAnimated]);
 
   return (
