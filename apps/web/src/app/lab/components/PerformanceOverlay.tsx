@@ -188,7 +188,10 @@ export default function PerformanceOverlay({
         <div className="flex justify-between items-center mt-1">
           <span className="text-xs text-gray-400">$/kWh:</span>
           <span className="font-mono text-sm text-gray-300">
-            ${(metrics.cost / (metrics.powerOutput * 1000) || 0).toFixed(2)}
+            $
+            {metrics.powerOutput > 0
+              ? (metrics.cost / (metrics.powerOutput * 1000)).toFixed(2)
+              : '0.00'}
           </span>
         </div>
       </div>

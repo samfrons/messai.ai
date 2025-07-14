@@ -13,6 +13,11 @@ import {
 import MESSViewer3D from './components/MESSViewer3D';
 import ParameterControl, { sliderStyles } from './components/ParameterControl';
 
+// Helper function for class names
+function cn(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
 // Parameter state interface
 interface ModelParameters {
   // Geometry & Structure
@@ -530,9 +535,4 @@ export default function LabPage() {
       </div>
     </>
   );
-}
-
-// Helper function for class names
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(' ');
 }

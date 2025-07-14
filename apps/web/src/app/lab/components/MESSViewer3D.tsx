@@ -9,6 +9,7 @@ import MicrofluidicCell from './models/MicrofluidicCell';
 import StackedFuelCell from './models/StackedFuelCell';
 import BenchtopReactor from './models/BenchtopReactor';
 import PerformanceOverlay from './PerformanceOverlay';
+import ErrorBoundary from './ErrorBoundary';
 
 // Types for 3D viewer props
 interface MESSViewer3DProps {
@@ -250,49 +251,51 @@ export default function MESSViewer3D({
   }
 
   return (
-    <div className={`relative bg-gray-50 ${className}`}>
-      {/* Canvas container - removed rounded corners and adjusted sizing */}
-      <div className="w-full h-full min-h-[600px] relative">
-        <Canvas
-          shadows
-          dpr={[1, 2]}
-          gl={{
-            antialias: true,
-            alpha: false,
-            preserveDrawingBuffer: true,
-          }}
-          camera={{
-            position: [10, 8, 10],
-            fov: 40,
-            near: 0.1,
-            far: 100,
-          }}
-          onCreated={({ gl, camera }) => {
-            gl.toneMapping = THREE.ACESFilmicToneMapping;
-            gl.toneMappingExposure = 1;
-            // Ensure camera captures full scene
-            camera.updateProjectionMatrix();
-          }}
-        >
-          <Suspense fallback={null}>
-            <Scene
-              selectedModel={selectedModel}
-              viewScale={viewScale}
-              visualizationMode={visualizationMode}
-            />
-          </Suspense>
-        </Canvas>
+    <ErrorBoundary>
+      <div className={`relative bg-gray-50 ${className}`}>
+        {/* Canvas container - removed rounded corners and adjusted sizing */}
+        <div className="w-full h-full min-h-[600px] relative">
+          <Canvas
+            shadows
+            dpr={[1, 2]}
+            gl={{
+              antialias: true,
+              alpha: false,
+              preserveDrawingBuffer: true,
+            }}
+            camera={{
+              position: [10, 8, 10],
+              fov: 40,
+              near: 0.1,
+              far: 100,
+            }}
+            onCreated={({ gl, camera }) => {
+              gl.toneMapping = THREE.ACESFilmicToneMapping;
+              gl.toneMappingExposure = 1;
+              // Ensure camera captures full scene
+              camera.updateProjectionMatrix();
+            }}
+          >
+            <Suspense fallback={null}>
+              <Scene
+                selectedModel={selectedModel}
+                viewScale={viewScale}
+                visualizationMode={visualizationMode}
+              />
+            </Suspense>
+          </Canvas>
+        </div>
+
+        {/* Performance Analytics Overlay */}
+        <PerformanceOverlay
+          selectedModel={selectedModel}
+          viewScale={viewScale}
+          visualizationMode={visualizationMode}
+        />
+
+        {/* Loading overlay */}
+        <Suspense fallback={<LoadingFallback />} />
       </div>
-
-      {/* Performance Analytics Overlay */}
-      <PerformanceOverlay
-        selectedModel={selectedModel}
-        viewScale={viewScale}
-        visualizationMode={visualizationMode}
-      />
-
-      {/* Loading overlay */}
-      <Suspense fallback={<LoadingFallback />} />
-    </div>
+    </ErrorBoundary>
   );
 }
