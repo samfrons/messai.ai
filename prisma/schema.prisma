@@ -1,0 +1,336 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== USER & AUTH ====================
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  name            String?
+  image           String?
+  emailVerified   DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // Relations
+  accounts        Account[]
+  sessions        Session[]
+  papers          Paper[]
+  predictions     Prediction[]
+  experiments     Experiment[]
+  savedModels     SavedModel[]
+  
+  @@map("users")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// ==================== RESEARCH PAPERS ====================
+model Paper {
+  id              String      @id @default(cuid())
+  title           String
+  abstract        String      @db.Text
+  authors         String[]    
+  journal         String?
+  year            Int
+  doi             String?     @unique
+  pmid            String?     @unique
+  arxivId         String?     @unique
+  url             String?
+  pdfUrl          String?
+  
+  // AI-extracted data
+  summary         String?     @db.Text
+  keyFindings     Json?       // Array of key findings
+  performanceData Json?       // Extracted performance metrics
+  methodology     Json?       // Experimental setup details
+  materials       Json?       // Materials used
+  
+  // Metadata
+  qualityScore    Float?      @default(0)
+  citationCount   Int         @default(0)
+  verified        Boolean     @default(false)
+  processingStatus String     @default("pending") // pending, processing, completed, failed
+  
+  // User interaction
+  uploadedById    String?
+  uploadedBy      User?       @relation(fields: [uploadedById], references: [id])
+  
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  // Relations
+  citations       Citation[]  @relation("CitingPaper")
+  citedBy         Citation[]  @relation("CitedPaper")
+  predictions     Prediction[]
+  experiments     Experiment[]
+  tags            Tag[]
+  
+  @@index([year])
+  @@index([qualityScore])
+  @@index([processingStatus])
+  @@map("papers")
+}
+
+model Citation {
+  id            String   @id @default(cuid())
+  citingPaperId String
+  citedPaperId  String
+  
+  citingPaper   Paper    @relation("CitingPaper", fields: [citingPaperId], references: [id], onDelete: Cascade)
+  citedPaper    Paper    @relation("CitedPaper", fields: [citedPaperId], references: [id], onDelete: Cascade)
+  
+  @@unique([citingPaperId, citedPaperId])
+  @@map("citations")
+}
+
+model Tag {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  papers  Paper[]
+  
+  @@map("tags")
+}
+
+// ==================== PREDICTIONS ====================
+model Prediction {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // System configuration
+  systemType      String    // MFC, MEC, MDC, etc.
+  configuration   Json      // Complete system configuration
+  
+  // Prediction results
+  powerOutput     Float?
+  currentDensity  Float?
+  voltage         Float?
+  efficiency      Float?
+  coulombicEff    Float?
+  
+  // Optimization results
+  optimizedParams Json?
+  improvements    Json?
+  
+  // Metadata
+  modelVersion    String    @default("v1.0")
+  confidence      Float?    // Prediction confidence score
+  computeTime     Float?    // Computation time in ms
+  
+  // References
+  paperId         String?
+  paper           Paper?    @relation(fields: [paperId], references: [id])
+  
+  createdAt       DateTime  @default(now())
+  
+  @@index([userId, createdAt])
+  @@map("predictions")
+}
+
+// ==================== 3D MODELS ====================
+model SavedModel {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name            String
+  description     String?
+  modelType       String    // microfluidic, stacked, benchtop, industrial
+  configuration   Json      // 3D model configuration
+  thumbnail       String?   // Base64 or URL
+  
+  isPublic        Boolean   @default(false)
+  views           Int       @default(0)
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@index([userId])
+  @@index([isPublic])
+  @@map("saved_models")
+}
+
+// ==================== EXPERIMENTS ====================
+model Experiment {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name            String
+  description     String?   @db.Text
+  hypothesis      String?   @db.Text
+  
+  // Configuration
+  systemType      String
+  configuration   Json      // Complete experimental setup
+  
+  // Status
+  status          String    @default("draft") // draft, running, completed, failed
+  startedAt       DateTime?
+  completedAt     DateTime?
+  
+  // Data
+  measurements    Measurement[]
+  notes           Note[]
+  
+  // References
+  paperId         String?
+  paper           Paper?    @relation(fields: [paperId], references: [id])
+  
+  // Sharing
+  isPublic        Boolean   @default(false)
+  collaborators   ExperimentCollaborator[]
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@index([userId, status])
+  @@map("experiments")
+}
+
+model Measurement {
+  id              String    @id @default(cuid())
+  experimentId    String
+  experiment      Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  
+  timestamp       DateTime  @default(now())
+  
+  // Electrical measurements
+  voltage         Float?
+  current         Float?
+  power           Float?
+  
+  // Environmental measurements
+  temperature     Float?
+  ph              Float?
+  dissolvedOxygen Float?
+  
+  // Custom measurements
+  customData      Json?
+  
+  @@index([experimentId, timestamp])
+  @@map("measurements")
+}
+
+model Note {
+  id              String    @id @default(cuid())
+  experimentId    String
+  experiment      Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  
+  content         String    @db.Text
+  attachments     Json?     // Array of attachment URLs
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@map("notes")
+}
+
+model ExperimentCollaborator {
+  id              String    @id @default(cuid())
+  experimentId    String
+  experiment      Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  
+  email           String
+  role            String    @default("viewer") // viewer, editor, admin
+  
+  invitedAt       DateTime  @default(now())
+  acceptedAt      DateTime?
+  
+  @@unique([experimentId, email])
+  @@map("experiment_collaborators")
+}
+
+// ==================== MATERIALS DATABASE ====================
+model Material {
+  id              String    @id @default(cuid())
+  name            String    @unique
+  category        String    // electrode, membrane, substrate, microbe
+  type            String    // anode, cathode, separator, etc.
+  
+  // Properties
+  properties      Json      // Conductivity, surface area, cost, etc.
+  compatibility   Json?     // Compatible materials/microbes
+  
+  // Metadata
+  source          String?   // Literature reference
+  verified        Boolean   @default(false)
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@index([category, type])
+  @@map("materials")
+}
+
+// ==================== KNOWLEDGE GRAPH ====================
+model KnowledgeNode {
+  id              String    @id @default(cuid())
+  label           String
+  type            String    // concept, method, material, organism, etc.
+  description     String?   @db.Text
+  properties      Json?
+  
+  // Relations
+  outgoingEdges   KnowledgeEdge[] @relation("SourceNode")
+  incomingEdges   KnowledgeEdge[] @relation("TargetNode")
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@index([type])
+  @@map("knowledge_nodes")
+}
+
+model KnowledgeEdge {
+  id              String    @id @default(cuid())
+  sourceId        String
+  targetId        String
+  relationshipType String   // uses, produces, inhibits, enhances, etc.
+  weight          Float     @default(1.0)
+  properties      Json?
+  
+  source          KnowledgeNode @relation("SourceNode", fields: [sourceId], references: [id], onDelete: Cascade)
+  target          KnowledgeNode @relation("TargetNode", fields: [targetId], references: [id], onDelete: Cascade)
+  
+  @@unique([sourceId, targetId, relationshipType])
+  @@map("knowledge_edges")
+}

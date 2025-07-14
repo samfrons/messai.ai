@@ -1,25 +1,12 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "strict": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": false,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "**/dist", "**/build", "**/.next"]
+  "extends": "./tsconfig.base.json",
+  "references": [
+    { "path": "./apps/web" },
+    { "path": "./apps/web-e2e" },
+    { "path": "./libs/shared/ui" },
+    { "path": "./libs/shared/testing" }
+  ],
+  "files": [],
+  "include": [],
+  "exclude": ["node_modules", "tmp", "dist", "build", ".next"]
 }

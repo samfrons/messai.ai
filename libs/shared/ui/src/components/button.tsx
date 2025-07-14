@@ -1,0 +1,122 @@
+import { forwardRef, type ButtonHTMLAttributes } from 'react';
+import { cn, type Size, focusRing, transition } from '../utils';
+
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Button size variant
+   */
+  size?: Size;
+  /**
+   * Button color variant
+   */
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  /**
+   * Whether the button should take full width
+   */
+  fullWidth?: boolean;
+  /**
+   * Loading state
+   */
+  loading?: boolean;
+  /**
+   * Icon to display before text
+   */
+  icon?: React.ReactNode;
+  /**
+   * Icon to display after text
+   */
+  iconAfter?: React.ReactNode;
+}
+
+const buttonVariants = {
+  variant: {
+    primary: 'bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800',
+    secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 active:bg-secondary-800',
+    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 active:bg-gray-100',
+    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 active:bg-gray-200',
+    danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
+  },
+  size: {
+    sm: 'h-8 px-3 text-sm',
+    base: 'h-10 px-4 text-base',
+    lg: 'h-12 px-6 text-lg',
+  },
+};
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      size = 'base',
+      variant = 'primary',
+      fullWidth = false,
+      loading = false,
+      disabled,
+      icon,
+      iconAfter,
+      children,
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const isDisabled = disabled || loading;
+
+    return (
+      <button
+        ref={ref}
+        disabled={isDisabled}
+        className={cn(
+          // Base styles
+          'inline-flex items-center justify-center gap-2 rounded-md font-medium',
+          'border border-transparent',
+          transition,
+          focusRing,
+
+          // Size variants
+          buttonVariants.size[size],
+
+          // Color variants
+          buttonVariants.variant[variant],
+
+          // States
+          {
+            'w-full': fullWidth,
+            'opacity-50 cursor-not-allowed': isDisabled,
+            'cursor-pointer': !isDisabled,
+          },
+
+          className
+        )}
+        {...props}
+      >
+        {loading && (
+          <svg
+            className="h-4 w-4 animate-spin"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            />
+          </svg>
+        )}
+        {!loading && icon && icon}
+        {children}
+        {!loading && iconAfter && iconAfter}
+      </button>
+    );
+  }
+);
+
+Button.displayName = 'Button';

@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/shared/*/src/**/*.ts",
+    "../../libs/shared/*/src/**/*.tsx",
+    "../../libs/feature/*/src/**/*.ts",
+    "../../libs/feature/*/src/**/*.tsx",
+    "../../libs/data-access/*/src/**/*.ts",
+    "../../libs/data-access/*/src/**/*.tsx"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "../../libs/**/src/**/*.spec.ts",
+    "../../libs/**/src/**/*.test.ts"
+  ]
+}

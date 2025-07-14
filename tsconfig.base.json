@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": ["es2022", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "verbatimModuleSyntax": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "target": "es2022",
+    "customConditions": ["development"],
+    "baseUrl": ".",
+    "paths": {
+      "@messai/ui": ["libs/shared/ui/src/index.ts"],
+      "@messai/core": ["libs/shared/core/src/index.ts"],
+      "@messai/utils": ["libs/shared/utils/src/index.ts"],
+      "@messai/testing": ["libs/shared/testing/src/index.ts"],
+      "@messai/research": ["libs/feature/research/src/index.ts"],
+      "@messai/laboratory": ["libs/feature/laboratory/src/index.ts"],
+      "@messai/predictions": ["libs/feature/predictions/src/index.ts"],
+      "@messai/api": ["libs/data-access/api/src/index.ts"]
+    }
+  }
+}
