@@ -2,7 +2,7 @@
 
 import React, { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, PerspectiveCamera, Grid } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Grid } from '@react-three/drei';
 import * as THREE from 'three';
 import { Badge } from '@messai/ui';
 import MicrofluidicCell from './models/MicrofluidicCell';
@@ -134,11 +134,16 @@ function Scene({
 
   return (
     <>
-      {/* Environment and lighting */}
-      <Environment preset="studio" />
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <pointLight position={[-10, -10, -5]} intensity={0.5} />
+      {/* Lighting setup without external HDR dependency */}
+      <ambientLight intensity={0.6} />
+      <directionalLight
+        position={[10, 10, 5]}
+        intensity={1}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+      />
+      <directionalLight position={[-10, 10, -5]} intensity={0.5} />
+      <pointLight position={[0, 10, 0]} intensity={0.3} />
 
       {/* Grid helper for reference */}
       <Grid
