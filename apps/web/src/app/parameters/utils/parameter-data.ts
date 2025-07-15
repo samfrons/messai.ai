@@ -3,9 +3,8 @@ import type {
   ParameterCategory,
   ParameterFilter,
   ParameterSearchResults,
-  DisplayCategory,
 } from '../../../types/parameters';
-import { getParameterCategory, getParameterCategories } from './parameter-categories';
+import { getParameterCategories as getParameterCategoriesMapping } from './parameter-categories';
 
 // Import the unified parameter data
 let unifiedData: any = null;
@@ -79,7 +78,7 @@ export async function getSystemParameters(): Promise<Parameter[]> {
         const transformedParam = transformUnifiedParameter(param, category, subcategory);
 
         // Add display category using our new categorization logic
-        const { primary } = getParameterCategories(param, category.id);
+        const { primary } = getParameterCategoriesMapping(param, category.id);
         transformedParam.displayCategory = primary;
 
         parameters.push(transformedParam);
@@ -130,10 +129,10 @@ export async function searchParameters(
     );
   }
 
-  // Apply category filter - check both original category and display category
+  // Apply category filter - use display category for UI filtering
   if (filters.category) {
     filteredParameters = filteredParameters.filter(
-      (param) => param.category === filters.category || param.displayCategory === filters.category
+      (param) => param.displayCategory === filters.category
     );
   }
 
@@ -274,6 +273,194 @@ function extractNumericProperty(param: any, propertyName: string, fallback: numb
     return typeof param[propertyName] === 'number' ? param[propertyName] : fallback;
   }
   return fallback;
+}
+
+/**
+ * Enhanced parameter validation function
+ */
+export function validateParameterValue(parameter: any, value: any): boolean {
+  if (!parameter || value === null || value === undefined) return false;
+
+  switch (parameter.type) {
+    case 'number':
+      const numValue = Number(value);
+      if (isNaN(numValue)) return false;
+      if (parameter.range?.min !== undefined && numValue < parameter.range.min) return false;
+      if (parameter.range?.max !== undefined && numValue > parameter.range.max) return false;
+      return true;
+    case 'select':
+      return parameter.options ? parameter.options.includes(value) : false;
+    case 'boolean':
+      return typeof value === 'boolean';
+    case 'string':
+      return typeof value === 'string' && value.length > 0;
+    case 'array':
+      return Array.isArray(value);
+    case 'object':
+      return typeof value === 'object' && value !== null;
+    default:
+      return false;
+  }
+}
+
+/**
+ * Enhanced parameter search function
+ */
+export function searchParametersAdvanced(
+  parameters: Parameter[],
+  query: string,
+  options: {
+    includeDescription?: boolean;
+    includeUnit?: boolean;
+    includeCategory?: boolean;
+    includeSubcategory?: boolean;
+    caseSensitive?: boolean;
+  } = {}
+): Parameter[] {
+  const {
+    includeDescription = true,
+    includeUnit = true,
+    includeCategory = true,
+    includeSubcategory = true,
+    caseSensitive = false,
+  } = options;
+
+  const searchQuery = caseSensitive ? query : query.toLowerCase();
+
+  return parameters.filter((param) => {
+    const paramName = caseSensitive ? param.name : param.name.toLowerCase();
+    const paramDescription = caseSensitive
+      ? param.description || ''
+      : (param.description || '').toLowerCase();
+    const paramUnit = caseSensitive ? param.unit || '' : (param.unit || '').toLowerCase();
+    const paramCategory = caseSensitive ? param.category : param.category.toLowerCase();
+    const paramSubcategory = caseSensitive
+      ? param.subcategory || ''
+      : (param.subcategory || '').toLowerCase();
+
+    return (
+      paramName.includes(searchQuery) ||
+      (includeDescription && paramDescription.includes(searchQuery)) ||
+      (includeUnit && paramUnit.includes(searchQuery)) ||
+      (includeCategory && paramCategory.includes(searchQuery)) ||
+      (includeSubcategory && paramSubcategory.includes(searchQuery))
+    );
+  });
+}
+
+/**
+ * Get parameter statistics for the dashboard
+ */
+export function getParameterStatistics(parameters: Parameter[]) {
+  const stats = {
+    total: parameters.length,
+    withUnits: parameters.filter((p) => p.unit && p.unit !== '').length,
+    withRanges: parameters.filter(
+      (p) => p.range && (p.range.min !== undefined || p.range.max !== undefined)
+    ).length,
+    withDefaults: parameters.filter((p) => p.default !== undefined).length,
+    withTypicalRanges: parameters.filter((p) => p.typicalRange).length,
+    byCategory: {} as Record<string, number>,
+    byType: {} as Record<string, number>,
+    bySubcategory: {} as Record<string, number>,
+  };
+
+  // Count by category
+  parameters.forEach((param) => {
+    const category = param.displayCategory || param.category;
+    stats.byCategory[category] = (stats.byCategory[category] || 0) + 1;
+  });
+
+  // Count by type
+  parameters.forEach((param) => {
+    if (param.type) {
+      stats.byType[param.type] = (stats.byType[param.type] || 0) + 1;
+    }
+  });
+
+  // Count by subcategory
+  parameters.forEach((param) => {
+    if (param.subcategory) {
+      stats.bySubcategory[param.subcategory] = (stats.bySubcategory[param.subcategory] || 0) + 1;
+    }
+  });
+
+  return stats;
+}
+
+/**
+ * Export parameters in various formats
+ */
+export function exportParametersAsJSON(parameters: Parameter[]): string {
+  return JSON.stringify(parameters, null, 2);
+}
+
+export function exportParametersAsCSV(parameters: Parameter[]): string {
+  const headers = [
+    'ID',
+    'Name',
+    'Category',
+    'Display Category',
+    'Subcategory',
+    'Description',
+    'Unit',
+    'Type',
+    'Min',
+    'Max',
+    'Default',
+    'Typical Min',
+    'Typical Max',
+  ];
+
+  const rows = parameters.map((param) => [
+    param.id,
+    param.name,
+    param.category,
+    param.displayCategory || '',
+    param.subcategory || '',
+    param.description || '',
+    param.unit || '',
+    param.type || '',
+    param.range?.min?.toString() || '',
+    param.range?.max?.toString() || '',
+    param.default?.toString() || '',
+    param.typicalRange?.min?.toString() || '',
+    param.typicalRange?.max?.toString() || '',
+  ]);
+
+  return [headers, ...rows]
+    .map((row) => row.map((cell) => `"${cell.toString().replace(/"/g, '""')}"`).join(','))
+    .join('\n');
+}
+
+/**
+ * Get parameter recommendations based on category and current selection
+ */
+export function getRelatedParameterRecommendations(
+  parameter: Parameter,
+  allParameters: Parameter[],
+  limit: number = 5
+): Parameter[] {
+  const related = allParameters.filter(
+    (p) =>
+      p.id !== parameter.id &&
+      (p.category === parameter.category ||
+        p.subcategory === parameter.subcategory ||
+        p.displayCategory === parameter.displayCategory)
+  );
+
+  // Sort by relevance (same subcategory first, then category, then display category)
+  related.sort((a, b) => {
+    if (a.subcategory === parameter.subcategory && b.subcategory !== parameter.subcategory)
+      return -1;
+    if (b.subcategory === parameter.subcategory && a.subcategory !== parameter.subcategory)
+      return 1;
+    if (a.category === parameter.category && b.category !== parameter.category) return -1;
+    if (b.category === parameter.category && a.category !== parameter.category) return 1;
+    return 0;
+  });
+
+  return related.slice(0, limit);
 }
 
 /**

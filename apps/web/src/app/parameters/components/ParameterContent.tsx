@@ -52,7 +52,7 @@ export default function ParameterContent({ content }: ParameterContentProps) {
   const subsectionsByParent = content.reduce<Record<string, ParameterSection[]>>((acc, section) => {
     if (section.parent) {
       if (!acc[section.parent]) acc[section.parent] = [];
-      acc[section.parent].push(section);
+      acc[section.parent]?.push(section);
     }
     return acc;
   }, {});
@@ -73,20 +73,27 @@ export default function ParameterContent({ content }: ParameterContentProps) {
             )}
 
             {/* Subsections */}
-            {subsectionsByParent[section.title] &&
-              subsectionsByParent[section.title].length > 0 && (
-                <div className="mt-6 space-y-4">
-                  {subsectionsByParent[section.title]!.map((subsection, subIndex) => (
-                    <div key={subIndex}>
-                      <h3 className="text-lg font-medium text-gray-800 mb-2">{subsection.title}</h3>
-                      <div
-                        className="prose prose-sm max-w-none text-gray-600"
-                        dangerouslySetInnerHTML={{ __html: renderMarkdown(subsection.content) }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
+            {(() => {
+              const subsections = subsectionsByParent[section.title];
+              return (
+                subsections &&
+                subsections.length > 0 && (
+                  <div className="mt-6 space-y-4">
+                    {subsections.map((subsection, subIndex) => (
+                      <div key={subIndex}>
+                        <h3 className="text-lg font-medium text-gray-800 mb-2">
+                          {subsection.title}
+                        </h3>
+                        <div
+                          className="prose prose-sm max-w-none text-gray-600"
+                          dangerouslySetInnerHTML={{ __html: renderMarkdown(subsection.content) }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )
+              );
+            })()}
           </div>
         </Card>
       ))}

@@ -3,10 +3,8 @@ import { getParameterCategories, getSystemParameters } from '../utils/parameter-
 import { getAvailableCategories } from '../utils/parameter-categories';
 import type {
   ParameterFilter,
-  ParameterCategory,
   ParameterType,
   ParameterCategoryData,
-  DisplayCategory,
 } from '../../../types/parameters';
 
 export function useParameterFilters(
@@ -34,21 +32,15 @@ export function useParameterFilters(
     loadData();
   }, []);
 
-  // Get category options with counts
+  // Get category options with counts using new display categories
   const categoryOptions = useMemo(() => {
-    const categoryCounts = new Map<ParameterCategory, number>();
+    if (allParameters.length === 0) return [];
 
-    allParameters.forEach((param) => {
-      categoryCounts.set(param.category, (categoryCounts.get(param.category) || 0) + 1);
-    });
-
-    return Array.from(categoryCounts.entries()).map(([value, count]) => ({
-      value,
-      label: value
-        .split('_')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' '),
-      count,
+    return getAvailableCategories(allParameters).map((category) => ({
+      value: category.key,
+      label: category.label,
+      count: category.count,
+      description: category.description,
     }));
   }, [allParameters]);
 
@@ -79,7 +71,9 @@ export function useParameterFilters(
     const typeCounts = new Map<ParameterType, number>();
 
     allParameters
-      .filter((param) => param.category === filters.category)
+      .filter(
+        (param) => param.category === filters.category || param.displayCategory === filters.category
+      )
       .forEach((param) => {
         if (param.type) {
           typeCounts.set(param.type, (typeCounts.get(param.type) || 0) + 1);
@@ -102,7 +96,9 @@ export function useParameterFilters(
     // Filter parameters based on current filters
     let params = [...allParameters];
     if (filters.category) {
-      params = params.filter((p) => p.category === filters.category);
+      params = params.filter(
+        (p) => p.category === filters.category || p.displayCategory === filters.category
+      );
     }
     if (filters.type) {
       params = params.filter((p) => p.type === filters.type);

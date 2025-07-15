@@ -13,7 +13,7 @@ export default function References({ references }: ReferencesProps) {
 
     // Extract journal if present (text in italics or after period)
     const journalMatch = ref.text.match(/[._]([^.]+)[,.]?\s*\d+\(/);
-    const journal = journalMatch ? journalMatch[1].trim() : null;
+    const journal = journalMatch ? journalMatch[1]?.trim() : null;
 
     return (
       <li className="flex items-start space-x-2">

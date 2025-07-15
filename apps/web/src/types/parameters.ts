@@ -200,7 +200,7 @@ export interface CompatibilityScore {
 // Enhanced filter interface with unified schema support
 export interface ParameterFilter {
   query?: string;
-  category?: ParameterCategory | null;
+  category?: DisplayCategory | null;
   subcategory?: string | null;
   subcategoryId?: string | null;
   type?: ParameterType | null;

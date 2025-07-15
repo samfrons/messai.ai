@@ -2,16 +2,21 @@ import { useState } from 'react';
 import { Card, Button } from '@messai/ui';
 import type {
   ParameterFilter,
-  ParameterCategory,
   ParameterType,
   ElectrodeType,
   ParameterCategoryData,
+  DisplayCategory,
 } from '../../../types/parameters';
 
 interface ParameterFiltersProps {
   filters: ParameterFilter;
   onFilterChange: (filters: ParameterFilter) => void;
-  categoryOptions: Array<{ value: ParameterCategory; label: string; count: number }>;
+  categoryOptions: Array<{
+    value: DisplayCategory;
+    label: string;
+    count: number;
+    description?: string;
+  }>;
   subcategoryOptions: Array<{
     value: string;
     label: string;
@@ -140,7 +145,7 @@ export default function ParameterFilters({
         <div>
           <h4 className="text-sm font-medium text-gray-900 mb-3">
             Subcategory
-            {filters.category === 'electrode' && (
+            {filters.category === 'materials' && (
               <span className="text-xs text-gray-500 ml-1">(Anodes & Cathodes)</span>
             )}
           </h4>

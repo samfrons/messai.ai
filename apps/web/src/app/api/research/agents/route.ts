@@ -1,63 +1,29 @@
-import { NextRequest, NextResponse } from 'next/server';
-import {
-  ResearchOrchestrator,
-  AgentFactory,
-  AgentTask,
-  AgentCapability,
-} from '@messai/feature-research-agents';
+import { NextResponse } from 'next/server';
+// TODO: Re-enable when research agents module is available
+// import {
+//   ResearchOrchestrator,
+//   AgentFactory,
+//   AgentTask,
+//   AgentCapability,
+// } from '@messai/feature-research-agents';
 
 // Initialize orchestrator and agents
-const orchestrator = new ResearchOrchestrator();
+// const orchestrator = new ResearchOrchestrator();
 
 // Register all agents
-const agents = AgentFactory.createAllAgents();
-agents.forEach((agent) => orchestrator.registerAgent(agent));
+// const agents = AgentFactory.createAllAgents();
+// agents.forEach((agent) => orchestrator.registerAgent(agent));
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const operation = searchParams.get('operation');
-
-    if (operation === 'status') {
-      const agentStatuses = orchestrator.getAgentStatuses();
-
-      return NextResponse.json({
-        data: {
-          agents: agentStatuses,
-          totalAgents: agentStatuses.length,
-          activeAgents: agentStatuses.filter((a) => a.status === 'running').length,
-        },
-        error: null,
-      });
-    }
-
-    if (operation === 'capabilities') {
-      const capabilities = agents.map((agent) => ({
-        agentId: agent.id,
-        name: agent.name,
-        capabilities: agent.capabilities,
-        status: agent.getStatus(),
-        metrics: agent.getMetrics(),
-      }));
-
-      return NextResponse.json({
-        data: capabilities,
-        error: null,
-      });
-    }
-
-    // Default: return agent list
-    const agentList = agents.map((agent) => ({
-      id: agent.id,
-      name: agent.name,
-      description: agent.description,
-      capabilities: agent.capabilities,
-      version: agent.version,
-      status: agent.getStatus(),
-    }));
-
+    // TODO: Re-enable when research agents module is available
     return NextResponse.json({
-      data: agentList,
+      data: {
+        agents: [],
+        totalAgents: 0,
+        activeAgents: 0,
+        message: 'Research agents module not available',
+      },
       error: null,
     });
   } catch (error) {
@@ -75,50 +41,21 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
-    const body = await request.json();
-    const { taskType, input, priority = 'medium', metadata } = body;
-
-    if (!taskType || !input) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Missing required fields: taskType, input',
-            code: 'VALIDATION_ERROR',
-          },
+    // TODO: Re-enable when research agents module is available
+    return NextResponse.json(
+      {
+        data: {
+          message: 'Research agents module not available',
         },
-        { status: 400 }
-      );
-    }
-
-    // Create agent task
-    const task: AgentTask = {
-      id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      type: taskType as AgentCapability,
-      priority,
-      input,
-      metadata: {
-        ...metadata,
-        createdAt: new Date(),
-      },
-    };
-
-    // Execute task through orchestrator
-    const result = await orchestrator.executeTask(task);
-
-    return NextResponse.json({
-      data: {
-        task: {
-          id: task.id,
-          type: task.type,
-          priority: task.priority,
+        error: {
+          message: 'Research agents functionality is currently disabled',
+          code: 'MODULE_UNAVAILABLE',
         },
-        result,
       },
-      error: null,
-    });
+      { status: 503 }
+    );
   } catch (error) {
     console.error('Research agent task execution error:', error);
     return NextResponse.json(

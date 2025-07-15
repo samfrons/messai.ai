@@ -1,4 +1,6 @@
 import type { ParameterDetail, ParameterCategory } from '../../../types/parameters';
+import { getParameterCategory } from './parameter-categories';
+import { getRelatedParameterRecommendations, getSystemParameters } from './parameter-data';
 
 // Cache for parameter details
 const detailCache = new Map<string, ParameterDetail>();
@@ -80,6 +82,7 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
       id: parameter.id,
       name: parameter.name,
       category: mapCategoryId(categoryData.id) as ParameterCategory,
+      displayCategory: getParameterCategory(parameter, categoryData.id),
       categoryName: categoryData.name,
       subcategory: subcategoryData.name,
       subcategoryId: subcategoryData.id,
@@ -119,8 +122,34 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
       }
     }
 
-    // Add related parameters
-    detail.relatedParameters = getRelatedParameters(id, categoryData.id, subcategoryData.id);
+    // Add related parameters using the enhanced recommendation system
+    const allParameters = await getSystemParameters();
+    // Create a basic Parameter object for the recommendation system
+    const parameterForRecommendation = {
+      id: detail.id,
+      name: detail.name,
+      category: detail.category,
+      displayCategory: detail.displayCategory || 'materials',
+      subcategory: detail.subcategory,
+      description: detail.description,
+      properties: detail.properties || {},
+      isSystem: detail.isSystem,
+      unit: detail.unit,
+      range: detail.range,
+      default: detail.default,
+      typicalRange: detail.typicalRange,
+      validationRules: detail.validationRules?.map((r) => r.message || '') || [],
+    } as any;
+    const relatedParams = getRelatedParameterRecommendations(
+      parameterForRecommendation,
+      allParameters,
+      5
+    );
+    detail.relatedParameters = relatedParams.map((p) => ({
+      id: p.id,
+      name: p.name,
+      category: p.displayCategory || p.category,
+    }));
 
     // Cache the result
     detailCache.set(id, detail);
@@ -256,11 +285,11 @@ function extractPerformanceMetrics(content: string): any {
   for (const pattern of metricPatterns) {
     const match = content.match(pattern);
     if (match) {
-      const key = pattern.source.split('[')[0].trim();
+      const key = pattern.source?.split('[')[0]?.trim() || 'unknown';
       metrics[key.toLowerCase().replace(/\s+/g, '_')] = {
-        min: parseFloat(match[1]),
-        max: match[2] ? parseFloat(match[2]) : parseFloat(match[1]),
-        unit: match[3] || match[2],
+        min: parseFloat(match[1] || '0'),
+        max: match[2] ? parseFloat(match[2]) : parseFloat(match[1] || '0'),
+        unit: match[3] || match[2] || '',
       };
     }
   }
@@ -311,11 +340,11 @@ function extractCostAnalysis(content: string): any {
   let match;
 
   while ((match = costPattern.exec(content)) !== null) {
-    const key = match[1].toLowerCase().replace(/[^a-z0-9]/g, '_');
+    const key = (match[1] || 'cost').toLowerCase().replace(/[^a-z0-9]/g, '_');
     costs[key] = {
-      min: parseFloat(match[2]),
-      max: match[3] ? parseFloat(match[3]) : parseFloat(match[2]),
-      unit: match[4].trim(),
+      min: parseFloat(match[2] || '0'),
+      max: match[3] ? parseFloat(match[3]) : parseFloat(match[2] || '0'),
+      unit: (match[4] || '').trim(),
     };
   }
 
@@ -327,8 +356,8 @@ function extractCostAnalysis(content: string): any {
  */
 function extractLimitations(content: string): any {
   const limitations = {
-    performance: [],
-    practical: [],
+    performance: [] as string[],
+    practical: [] as string[],
   };
 
   const lines = content.split('\n');

@@ -1,5 +1,6 @@
 import { Badge } from '@messai/ui';
 import type { ParameterDetail } from '../../../types/parameters';
+import { PARAMETER_CATEGORIES } from '../utils/parameter-categories';
 
 interface ParameterDetailHeaderProps {
   parameter: ParameterDetail;
@@ -15,6 +16,9 @@ export default function ParameterDetailHeader({ parameter }: ParameterDetailHead
 
           {/* Category Badges */}
           <div className="flex flex-wrap gap-2 mt-4">
+            {parameter.displayCategory && (
+              <Badge variant="primary">{PARAMETER_CATEGORIES[parameter.displayCategory]}</Badge>
+            )}
             <Badge variant="secondary">{parameter.categoryName || parameter.category}</Badge>
             {parameter.subcategory && <Badge variant="outline">{parameter.subcategory}</Badge>}
             {parameter.electrodeType && (

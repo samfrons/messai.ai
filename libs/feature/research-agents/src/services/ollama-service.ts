@@ -1,7 +1,14 @@
 /**
  * Ollama Integration Service
  * Handles communication with Ollama for AI-powered paper analysis
+ * Enhanced with multi-model support and template management
  */
+
+import { EnhancedOllamaClient } from './enhanced-ollama-client';
+import { NuExtractService } from './model-services/nuextract-service';
+import { Phi35Service } from './model-services/phi35-service';
+import { ValidationService } from './model-services/validation-service';
+import { ExtractionTemplateManager } from './extraction-templates';
 
 export interface OllamaConfig {
   baseUrl: string;
@@ -67,6 +74,11 @@ export interface PaperAnalysisResult {
 export class OllamaService {
   private config: OllamaConfig;
   private isAvailable: boolean = false;
+  private enhancedClient: EnhancedOllamaClient;
+  private nuExtractService: NuExtractService;
+  private phi35Service: Phi35Service;
+  private validationService: ValidationService;
+  private templateManager: ExtractionTemplateManager;
 
   constructor(config: Partial<OllamaConfig> = {}) {
     this.config = {
@@ -75,13 +87,21 @@ export class OllamaService {
       timeout: config.timeout || 30000,
       maxRetries: config.maxRetries || 3,
     };
+
+    // Initialize enhanced services
+    this.enhancedClient = new EnhancedOllamaClient();
+    this.nuExtractService = new NuExtractService(this.enhancedClient);
+    this.phi35Service = new Phi35Service(this.enhancedClient);
+    this.validationService = new ValidationService(this.enhancedClient);
+    this.templateManager = new ExtractionTemplateManager();
   }
 
   async initialize(): Promise<void> {
     try {
       await this.checkAvailability();
+      await this.enhancedClient.initialize();
       this.isAvailable = true;
-      console.log('Ollama service initialized successfully');
+      console.log('Enhanced Ollama service initialized successfully');
     } catch (error) {
       console.warn('Ollama service not available, falling back to mock responses');
       this.isAvailable = false;
@@ -562,5 +582,187 @@ export class OllamaService {
 
   public getConfig(): OllamaConfig {
     return { ...this.config };
+  }
+
+  // Enhanced Service Access Methods
+  /**
+   * Get NuExtract service for structured data extraction
+   */
+  getNuExtractService(): NuExtractService {
+    return this.nuExtractService;
+  }
+
+  /**
+   * Get Phi3.5 service for AI insights
+   */
+  getPhi35Service(): Phi35Service {
+    return this.phi35Service;
+  }
+
+  /**
+   * Get validation service for multi-model validation
+   */
+  getValidationService(): ValidationService {
+    return this.validationService;
+  }
+
+  /**
+   * Get template manager for extraction templates
+   */
+  getTemplateManager(): ExtractionTemplateManager {
+    return this.templateManager;
+  }
+
+  /**
+   * Get enhanced client for direct access
+   */
+  getEnhancedClient(): EnhancedOllamaClient {
+    return this.enhancedClient;
+  }
+
+  // Enhanced Methods
+  /**
+   * Extract structured data from text using NuExtract
+   */
+  async extractStructuredData(
+    text: string,
+    templateId: string,
+    options?: {
+      temperature?: number;
+      validateOutput?: boolean;
+    }
+  ) {
+    return this.nuExtractService.extractWithTemplate(templateId, text, options);
+  }
+
+  /**
+   * Extract multiple data types from text
+   */
+  async extractMultipleDataTypes(
+    text: string,
+    templateIds: string[],
+    options?: {
+      parallel?: boolean;
+      failFast?: boolean;
+    }
+  ) {
+    return this.nuExtractService.extractMultiple(text, templateIds, options);
+  }
+
+  /**
+   * Generate AI insights using Phi3.5
+   */
+  async generateAIInsights(text: string, analysisType: string = 'paper_insights') {
+    return this.phi35Service.generateInsights(text, analysisType);
+  }
+
+  /**
+   * Analyze trends in research papers
+   */
+  async analyzeTrends(papers: string[]) {
+    return this.phi35Service.analyzeTrends(papers);
+  }
+
+  /**
+   * Identify research gaps
+   */
+  async identifyResearchGaps(literatureContent: string) {
+    return this.phi35Service.identifyGaps(literatureContent);
+  }
+
+  /**
+   * Validate paper authenticity
+   */
+  async validatePaperAuthenticity(content: string) {
+    return this.validationService.validateAuthenticity(content);
+  }
+
+  /**
+   * Cross-validate using multiple models
+   */
+  async crossValidate(
+    templateId: string,
+    content: string,
+    options?: {
+      models?: string[];
+      consensusThreshold?: number;
+      weightedVoting?: boolean;
+    }
+  ) {
+    return this.validationService.crossValidate(templateId, content, options);
+  }
+
+  /**
+   * Comprehensive validation suite
+   */
+  async comprehensiveValidation(
+    content: string,
+    options?: {
+      skipPlagiarism?: boolean;
+      strictMode?: boolean;
+    }
+  ) {
+    return this.validationService.comprehensiveValidation(content, options);
+  }
+
+  /**
+   * Get system health status
+   */
+  async getSystemHealth() {
+    return this.enhancedClient.getSystemStatus();
+  }
+
+  /**
+   * Get available models
+   */
+  getAvailableModels() {
+    return this.enhancedClient.getAvailableModels();
+  }
+
+  /**
+   * Get available extraction templates
+   */
+  getAvailableTemplates() {
+    return this.templateManager.getAllTemplates();
+  }
+
+  /**
+   * Get templates by category
+   */
+  getTemplatesByCategory(category: string) {
+    return this.templateManager.getTemplatesByCategory(category);
+  }
+
+  // Legacy compatibility methods (enhanced)
+  async assessPaperQuality(
+    title: string,
+    abstract: string,
+    authors: string
+  ): Promise<{
+    score: number;
+    factors: Array<{
+      factor: string;
+      score: number;
+      reasoning: string;
+    }>;
+  }> {
+    const content = `Title: ${title}\nAuthors: ${authors}\nAbstract: ${abstract}`;
+
+    try {
+      const result = await this.phi35Service.assessQuality(content);
+      return {
+        score: result.overallScore,
+        factors: Object.entries(result.dimensions).map(([factor, score]) => ({
+          factor,
+          score,
+          reasoning:
+            result.strengths.find((s) => s.toLowerCase().includes(factor)) ||
+            `${factor} assessment: ${score}/100`,
+        })),
+      };
+    } catch (error) {
+      console.error('Quality assessment failed, using fallback:', error);
+      return this.getMockQualityAssessment();
+    }
   }
 }

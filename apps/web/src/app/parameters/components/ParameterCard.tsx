@@ -7,7 +7,7 @@ interface ParameterCardProps {
   onSelect?: () => void;
 }
 
-export default function ParameterCard({ parameter, onSelect }: ParameterCardProps) {
+export default function ParameterCard({ parameter }: ParameterCardProps) {
   // Format category for display
   const formatCategory = (category: string) => {
     return category

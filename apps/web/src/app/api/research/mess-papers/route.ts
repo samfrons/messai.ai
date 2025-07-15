@@ -6,11 +6,11 @@ import { prisma } from '../../../../lib/db';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { action, options } = body;
+    const { action } = body;
 
     if (action === 'process') {
       // Process MESS papers
-      const result = await processMESSPapers(options);
+      const result = await processMESSPapers();
       return NextResponse.json({
         data: result,
         error: null,
@@ -99,7 +99,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-async function processMESSPapers(options: any = {}) {
+async function processMESSPapers() {
   // Mock processing results - in real implementation, use actual processor
   const mockPapers = [
     {
@@ -222,7 +222,7 @@ async function processMESSPapers(options: any = {}) {
       // Check if paper already exists
       const existingPaper = await prisma.paper.findFirst({
         where: {
-          OR: [{ title: paper.title }, { doi: paper.doi }],
+          OR: [{ title: paper.title }, ...(paper.doi ? [{ doi: paper.doi }] : [])],
         },
       });
 
@@ -239,7 +239,7 @@ async function processMESSPapers(options: any = {}) {
           abstract: paper.abstract,
           year: paper.year,
           journal: paper.journal,
-          doi: paper.doi,
+          doi: paper.doi || null,
 
           // AI-extracted data
           summary: paper.abstract.substring(0, 500),
@@ -371,8 +371,8 @@ async function listMESSPapers() {
     tags: paper.tags.map((tag) => tag.name),
     citationCount: paper._count.citations + paper._count.citedBy,
     summary: paper.summary,
-    keyFindings: paper.keyFindings ? JSON.parse(paper.keyFindings) : [],
-    performanceData: paper.performanceData ? JSON.parse(paper.performanceData) : {},
+    keyFindings: paper.keyFindings ? JSON.parse(paper.keyFindings as string) : [],
+    performanceData: paper.performanceData ? JSON.parse(paper.performanceData as string) : {},
     processingStatus: paper.processingStatus,
     verified: paper.verified,
     createdAt: paper.createdAt,
