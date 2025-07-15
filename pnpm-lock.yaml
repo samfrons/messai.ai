@@ -195,6 +195,9 @@ importers:
       '@messai/ui':
         specifier: workspace:*
         version: link:../../libs/shared/ui
+      '@prisma/client':
+        specifier: ^6.11.1
+        version: 6.11.1(prisma@6.11.1)(typescript@5.8.3)
       '@react-three/drei':
         specifier: ^10.5.0
         version: 10.5.0(@react-three/fiber@9.2.0)(@types/react@19.0.0)(@types/three@0.178.1)(react-dom@19.0.0)(react@19.0.0)(three@0.178.0)
@@ -219,6 +222,10 @@ importers:
       three:
         specifier: ^0.178.0
         version: 0.178.0
+    devDependencies:
+      prisma:
+        specifier: ^6.11.1
+        version: 6.11.1(typescript@5.8.3)
 
   apps/web-e2e: {}
 

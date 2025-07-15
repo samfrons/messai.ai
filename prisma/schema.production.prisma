@@ -1,12 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Production Prisma schema for PostgreSQL
+// This file is used for Vercel deployments
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -37,12 +37,12 @@ model Account {
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?
-  access_token       String?
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?
+  id_token           String?  @db.Text
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -65,8 +65,8 @@ model Session {
 model Paper {
   id              String      @id @default(cuid())
   title           String
-  abstract        String
-  authors         String    
+  abstract        String      @db.Text
+  authors         String[]    
   journal         String?
   year            Int
   doi             String?     @unique
@@ -76,7 +76,7 @@ model Paper {
   pdfUrl          String?
   
   // AI-extracted data
-  summary         String?
+  summary         String?     @db.Text
   keyFindings     Json?       // Array of key findings
   performanceData Json?       // Extracted performance metrics
   methodology     Json?       // Experimental setup details
@@ -194,8 +194,8 @@ model Experiment {
   user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   name            String
-  description     String?
-  hypothesis      String?
+  description     String?   @db.Text
+  hypothesis      String?   @db.Text
   
   // Configuration
   systemType      String
@@ -254,7 +254,7 @@ model Note {
   experimentId    String
   experiment      Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
   
-  content         String
+  content         String    @db.Text
   attachments     Json?     // Array of attachment URLs
   
   createdAt       DateTime  @default(now())
@@ -305,7 +305,7 @@ model KnowledgeNode {
   id              String    @id @default(cuid())
   label           String
   type            String    // concept, method, material, organism, etc.
-  description     String?
+  description     String?   @db.Text
   properties      Json?
   
   // Relations

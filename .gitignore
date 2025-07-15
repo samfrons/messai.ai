@@ -61,4 +61,13 @@ logs
 # Temporary files
 tmp
 temp
+
+# Database files
+*.db
+*.db-journal
+dev.db
 /generated/prisma
+
+# Environment files with secrets
+.env.production
+.env.staging
