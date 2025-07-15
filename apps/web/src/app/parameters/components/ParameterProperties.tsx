@@ -74,19 +74,21 @@ export default function ParameterProperties({ parameter }: ParameterPropertiesPr
           )}
 
           {/* Validation Rules */}
-          {parameter.validationRules && parameter.validationRules.length > 0 && (
-            <div className="pt-2 mt-2 border-t border-gray-200">
-              <div className="text-sm font-medium text-gray-700 mb-2">Validation Rules</div>
-              <ul className="space-y-1 text-sm text-gray-600">
-                {parameter.validationRules.map((rule, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-gray-400 mr-2">•</span>
-                    <span>{typeof rule === 'string' ? rule : (rule as any).message}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {parameter.validationRules &&
+            Array.isArray(parameter.validationRules) &&
+            parameter.validationRules.length > 0 && (
+              <div className="pt-2 mt-2 border-t border-gray-200">
+                <div className="text-sm font-medium text-gray-700 mb-2">Validation Rules</div>
+                <ul className="space-y-1 text-sm text-gray-600">
+                  {parameter.validationRules.map((rule, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-gray-400 mr-2">•</span>
+                      <span>{typeof rule === 'string' ? rule : (rule as any).message}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
         </div>
       </div>
     </Card>

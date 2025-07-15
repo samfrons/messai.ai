@@ -1,4 +1,26 @@
-import type { ParameterDetail, ParameterCategory } from '../../../types/parameters';
+import type {
+  ParameterDetail,
+  ParameterCategory,
+  Definition,
+  TypicalValues,
+  MeasurementMethod,
+  AffectingFactors,
+  PerformanceImpact,
+  CompatibleSystems,
+  Limitations,
+  ValidationRules as ValidationRulesType,
+  Reference,
+  CompositionStructure,
+  ElectrochemicalProperties,
+  AlternativeSystem,
+  SpeciesConsideration,
+  TransferMechanism,
+  MolecularBiology,
+  Formula,
+  ApplicationNote,
+  CostAnalysis,
+  PreparationMethod,
+} from '../../../types/parameters';
 import { getParameterCategory } from './parameter-categories';
 import { getRelatedParameterRecommendations, getSystemParameters } from './parameter-data';
 
@@ -60,9 +82,9 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
     let categoryData: any = null;
     let subcategoryData: any = null;
 
-    for (const category of unifiedData.categories) {
-      for (const subcategory of category.subcategories) {
-        const found = subcategory.parameters.find((p: any) => p.id === id);
+    for (const category of unifiedData.categories || []) {
+      for (const subcategory of category.subcategories || []) {
+        const found = subcategory.parameters?.find((p: any) => p.id === id);
         if (found) {
           parameter = found;
           categoryData = category;
@@ -79,23 +101,23 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
 
     // Build the detail object
     const detail: ParameterDetail = {
-      id: parameter.id,
-      name: parameter.name,
-      category: mapCategoryId(categoryData.id) as ParameterCategory,
-      displayCategory: getParameterCategory(parameter, categoryData.id),
-      categoryName: categoryData.name,
-      subcategory: subcategoryData.name,
-      subcategoryId: subcategoryData.id,
-      description: parameter.description,
+      id: parameter.id || '',
+      name: parameter.name || '',
+      category: mapCategoryId(categoryData?.id || '') as ParameterCategory,
+      displayCategory: getParameterCategory(parameter, categoryData?.id || ''),
+      categoryName: categoryData?.name || '',
+      subcategory: subcategoryData?.name || '',
+      subcategoryId: subcategoryData?.id || '',
+      description: parameter.description || '',
       unit: parameter.unit || '-',
-      type: parameter.type,
+      type: parameter.type || 'string',
       range: parameter.range,
       default: parameter.default,
-      properties: extractProperties(parameter, categoryData.id),
-      validationRules: extractValidationRules(parameter),
+      properties: extractProperties(parameter, categoryData?.id || ''),
+      validationRules: extractValidationRules(parameter) as any,
       typicalRange: parameter.typical_range,
       compatibility: parameter.compatibility,
-      electrodeType: subcategoryData.electrodeType,
+      electrodeType: subcategoryData?.electrodeType,
       isSystem: true,
       source: 'MESSAI Unified Parameter Library',
     };
@@ -114,8 +136,39 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
           detail.detailReferences = parsedContent.references;
           detail.performanceMetrics = parsedContent.performanceMetrics;
           detail.preparationMethods = parsedContent.preparationMethods;
-          detail.costAnalysis = parsedContent.costAnalysis;
-          detail.limitations = parsedContent.limitations;
+          if (parsedContent.costAnalysis) detail.costAnalysis = parsedContent.costAnalysis;
+          if (parsedContent.limitations) detail.limitations = parsedContent.limitations;
+
+          // Add new detail sections
+          if (parsedContent.definition) detail.definition = parsedContent.definition;
+          if (parsedContent.typicalValues) detail.typicalValues = parsedContent.typicalValues;
+          if (parsedContent.measurementMethods)
+            detail.measurementMethods = parsedContent.measurementMethods;
+          if (parsedContent.affectingFactors)
+            detail.affectingFactors = parsedContent.affectingFactors;
+          if (parsedContent.performanceImpact)
+            detail.performanceImpact = parsedContent.performanceImpact;
+          if (parsedContent.compatibleSystems)
+            detail.compatibleSystems = parsedContent.compatibleSystems;
+          if (parsedContent.validationRulesSection)
+            detail.detailValidationRules = parsedContent.validationRulesSection;
+
+          // Category-specific sections
+          if (parsedContent.compositionStructure)
+            detail.compositionStructure = parsedContent.compositionStructure;
+          if (parsedContent.electrochemicalProperties)
+            detail.electrochemicalProperties = parsedContent.electrochemicalProperties;
+          if (parsedContent.alternativeSystems)
+            detail.alternativeSystems = parsedContent.alternativeSystems;
+          if (parsedContent.speciesConsiderations)
+            detail.speciesConsiderations = parsedContent.speciesConsiderations;
+          if (parsedContent.transferMechanisms)
+            detail.transferMechanisms = parsedContent.transferMechanisms;
+          if (parsedContent.molecularBiology)
+            detail.molecularBiology = parsedContent.molecularBiology;
+          if (parsedContent.formula) detail.formula = parsedContent.formula;
+          if (parsedContent.applicationNotes)
+            detail.applicationNotes = parsedContent.applicationNotes;
         }
       } catch (error) {
         console.warn(`Failed to load markdown for ${id}:`, error);
@@ -138,10 +191,9 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
       range: detail.range,
       default: detail.default,
       typicalRange: detail.typicalRange,
-      validationRules:
-        detail.validationRules?.map((r) =>
-          typeof r === 'string' ? r : (r as any).message || ''
-        ) || [],
+      validationRules: Array.isArray(detail.validationRules)
+        ? detail.validationRules.map((r) => (typeof r === 'string' ? r : (r as any).message || ''))
+        : [],
     } as any;
     const relatedParams = getRelatedParameterRecommendations(
       parameterForRecommendation,
@@ -169,18 +221,52 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
  */
 function parseMarkdownContent(markdown: string): {
   sections: any[];
-  references: any[];
+  references: Reference[];
   performanceMetrics: any;
-  preparationMethods: any[];
-  costAnalysis: any;
-  limitations: any;
+  preparationMethods: PreparationMethod[];
+  costAnalysis: CostAnalysis | null;
+  limitations: Limitations | null;
+  definition: Definition | null;
+  typicalValues: TypicalValues | null;
+  measurementMethods: MeasurementMethod[];
+  affectingFactors: AffectingFactors | null;
+  performanceImpact: PerformanceImpact | null;
+  compatibleSystems: CompatibleSystems | null;
+  validationRulesSection: ValidationRulesType | null;
+  compositionStructure: CompositionStructure | null;
+  electrochemicalProperties: ElectrochemicalProperties | null;
+  alternativeSystems: AlternativeSystem[];
+  speciesConsiderations: SpeciesConsideration[];
+  transferMechanisms: TransferMechanism[];
+  molecularBiology: MolecularBiology | null;
+  formula: Formula | null;
+  applicationNotes: ApplicationNote[];
 } {
   const sections: any[] = [];
-  const references: any[] = [];
+  const references: Reference[] = [];
   let performanceMetrics: any = null;
-  const preparationMethods: any[] = [];
-  let costAnalysis: any = null;
-  let limitations: any = null;
+  const preparationMethods: PreparationMethod[] = [];
+  let costAnalysis: CostAnalysis | null = null;
+  let limitations: Limitations | null = null;
+
+  // New detail sections
+  let definition: Definition | null = null;
+  let typicalValues: TypicalValues | null = null;
+  const measurementMethods: MeasurementMethod[] = [];
+  let affectingFactors: AffectingFactors | null = null;
+  let performanceImpact: PerformanceImpact | null = null;
+  let compatibleSystems: CompatibleSystems | null = null;
+  let validationRulesSection: ValidationRulesType | null = null;
+
+  // Category-specific sections
+  let compositionStructure: CompositionStructure | null = null;
+  let electrochemicalProperties: ElectrochemicalProperties | null = null;
+  const alternativeSystems: AlternativeSystem[] = [];
+  const speciesConsiderations: SpeciesConsideration[] = [];
+  const transferMechanisms: TransferMechanism[] = [];
+  let molecularBiology: MolecularBiology | null = null;
+  let formula: Formula | null = null;
+  const applicationNotes: ApplicationNote[] = [];
 
   // Split markdown into sections by headers
   const lines = markdown.split('\n');
@@ -192,7 +278,7 @@ function parseMarkdownContent(markdown: string): {
     const h2Match = line.match(/^## (.+)$/);
     const h3Match = line.match(/^### (.+)$/);
 
-    if (h2Match) {
+    if (h2Match && h2Match[1]) {
       // Save previous section
       if (currentSection) {
         currentSection.content = currentContent.join('\n').trim();
@@ -212,7 +298,7 @@ function parseMarkdownContent(markdown: string): {
         // Parse references section separately
         currentSection = null;
       }
-    } else if (h3Match && currentSection) {
+    } else if (h3Match && h3Match[1] && currentSection) {
       // Add subsection
       if (currentContent.length > 0) {
         currentSection.content = currentContent.join('\n').trim();
@@ -233,7 +319,7 @@ function parseMarkdownContent(markdown: string): {
     // Extract references
     if (line) {
       const refMatch = line.match(/^\d+\.\s+(.+)$/);
-      if (refMatch && currentSection === null) {
+      if (refMatch && refMatch[1] && currentSection === null) {
         references.push({ text: refMatch[1] });
       }
     }
@@ -247,17 +333,50 @@ function parseMarkdownContent(markdown: string): {
 
   // Extract specific data from sections
   for (const section of sections) {
-    if (
-      section.title === 'Electrochemical Properties' ||
-      section.title === 'Performance Characteristics'
-    ) {
+    const title = section.title.toLowerCase();
+
+    // Core sections
+    if (title === 'definition') {
+      definition = extractDefinition(section.content);
+    } else if (title === 'typical values') {
+      typicalValues = extractTypicalValues(section.content);
+    } else if (title === 'measurement methods') {
+      measurementMethods.push(...extractMeasurementMethods(section.content));
+    } else if (title === 'affecting factors') {
+      affectingFactors = extractAffectingFactors(section.content);
+    } else if (title === 'performance impact' || title === 'performance characteristics') {
+      performanceImpact = extractPerformanceImpact(section.content);
       performanceMetrics = extractPerformanceMetrics(section.content);
-    } else if (section.title === 'Preparation Methods') {
-      preparationMethods.push(...extractPreparationMethods(section.content));
-    } else if (section.title === 'Cost Analysis') {
-      costAnalysis = extractCostAnalysis(section.content);
-    } else if (section.title === 'Limitations') {
+    } else if (title === 'compatible systems') {
+      compatibleSystems = extractCompatibleSystems(section.content);
+    } else if (title === 'validation rules') {
+      validationRulesSection = extractValidationRulesSection(section.content);
+    } else if (title === 'limitations') {
       limitations = extractLimitations(section.content);
+    } else if (title === 'preparation methods') {
+      preparationMethods.push(...extractPreparationMethods(section.content));
+    } else if (title === 'cost analysis') {
+      costAnalysis = extractCostAnalysis(section.content);
+    }
+
+    // Category-specific sections
+    else if (title === 'composition & structure' || title === 'composition and structure') {
+      compositionStructure = extractCompositionStructure(section.content);
+    } else if (title === 'electrochemical properties') {
+      electrochemicalProperties = extractElectrochemicalProperties(section.content);
+      performanceMetrics = extractPerformanceMetrics(section.content);
+    } else if (title === 'alternative catalyst systems' || title === 'alternative systems') {
+      alternativeSystems.push(...extractAlternativeSystems(section.content));
+    } else if (title === 'species considerations') {
+      speciesConsiderations.push(...extractSpeciesConsiderations(section.content));
+    } else if (title === 'transfer mechanisms' || title === 'transfer mechanism distribution') {
+      transferMechanisms.push(...extractTransferMechanisms(section.content));
+    } else if (title === 'molecular biology') {
+      molecularBiology = extractMolecularBiology(section.content);
+    } else if (title === 'formula') {
+      formula = extractFormula(section.content);
+    } else if (title === 'application notes') {
+      applicationNotes.push(...extractApplicationNotes(section.content));
     }
   }
 
@@ -268,6 +387,21 @@ function parseMarkdownContent(markdown: string): {
     preparationMethods,
     costAnalysis,
     limitations,
+    definition,
+    typicalValues,
+    measurementMethods,
+    affectingFactors,
+    performanceImpact,
+    compatibleSystems,
+    validationRulesSection,
+    compositionStructure,
+    electrochemicalProperties,
+    alternativeSystems,
+    speciesConsiderations,
+    transferMechanisms,
+    molecularBiology,
+    formula,
+    applicationNotes,
   };
 }
 
@@ -287,7 +421,7 @@ function extractPerformanceMetrics(content: string): any {
 
   for (const pattern of metricPatterns) {
     const match = content.match(pattern);
-    if (match) {
+    if (match && match[1]) {
       const key = pattern.source?.split('[')[0]?.trim() || 'unknown';
       metrics[key.toLowerCase().replace(/\s+/g, '_')] = {
         min: parseFloat(match[1] || '0'),
@@ -343,12 +477,14 @@ function extractCostAnalysis(content: string): any {
   let match;
 
   while ((match = costPattern.exec(content)) !== null) {
-    const key = (match[1] || 'cost').toLowerCase().replace(/[^a-z0-9]/g, '_');
-    costs[key] = {
-      min: parseFloat(match[2] || '0'),
-      max: match[3] ? parseFloat(match[3]) : parseFloat(match[2] || '0'),
-      unit: (match[4] || '').trim(),
-    };
+    if (match && match[1] && match[2]) {
+      const key = (match[1] || 'cost').toLowerCase().replace(/[^a-z0-9]/g, '_');
+      costs[key] = {
+        min: parseFloat(match[2] || '0'),
+        max: match[3] ? parseFloat(match[3]) : parseFloat(match[2] || '0'),
+        unit: (match[4] || '').trim(),
+      };
+    }
   }
 
   return Object.keys(costs).length > 0 ? costs : null;
@@ -412,13 +548,13 @@ function mapCategoryId(categoryId: string): ParameterCategory {
 function extractProperties(parameter: any, _categoryId: string): Record<string, any> {
   const properties: Record<string, any> = {};
 
-  if (parameter.unit) properties['unit'] = parameter.unit;
-  if (parameter.range) {
+  if (parameter?.unit) properties['unit'] = parameter.unit;
+  if (parameter?.range) {
     properties['min'] = parameter.range.min;
     properties['max'] = parameter.range.max;
   }
-  if (parameter.default !== undefined) properties['default'] = parameter.default;
-  if (parameter.typical_range) {
+  if (parameter?.default !== undefined) properties['default'] = parameter.default;
+  if (parameter?.typical_range) {
     properties['typicalMin'] = parameter.typical_range.min;
     properties['typicalMax'] = parameter.typical_range.max;
   }
@@ -432,7 +568,7 @@ function extractProperties(parameter: any, _categoryId: string): Record<string, 
 function extractValidationRules(parameter: any): any[] {
   const rules = [];
 
-  if (parameter.range) {
+  if (parameter?.range) {
     rules.push({
       type: 'range',
       min: parameter.range.min,
@@ -441,7 +577,7 @@ function extractValidationRules(parameter: any): any[] {
     });
   }
 
-  if (parameter.validation_rule) {
+  if (parameter?.validation_rule) {
     rules.push({
       type: 'custom',
       rule: parameter.validation_rule,
@@ -450,4 +586,518 @@ function extractValidationRules(parameter: any): any[] {
   }
 
   return rules;
+}
+
+/**
+ * Extract definition from content
+ */
+function extractDefinition(content: string): Definition | null {
+  if (!content) return null;
+
+  const lines = content.split('\n');
+  const text = lines[0] || '';
+
+  // Look for formula pattern
+  const formulaMatch = content.match(/\*\*Formula:\*\*\s*(.+)/);
+  const formula = formulaMatch && formulaMatch[1] ? formulaMatch[1] : undefined;
+
+  // Look for variable definitions
+  const variables: Definition['variables'] = [];
+  const varPattern = /^-?\s*([A-Za-z]+)\s*=\s*(.+?)\s*\(([^)]+)\)/gm;
+  let match;
+  while ((match = varPattern.exec(content)) !== null) {
+    if (match[1] && match[2] && match[3]) {
+      variables.push({
+        symbol: match[1],
+        description: match[2],
+        unit: match[3],
+      });
+    }
+  }
+
+  return {
+    text,
+    ...(formula && { formula }),
+    ...(variables.length > 0 && { variables }),
+  };
+}
+
+/**
+ * Extract typical values from content
+ */
+function extractTypicalValues(content: string): TypicalValues | null {
+  if (!content) return null;
+
+  const typicalValues: TypicalValues = {};
+
+  // Extract range
+  const rangeMatch = content.match(/Range:\s*([0-9\-\.]+)\s*-\s*([0-9\-\.]+)/);
+  if (rangeMatch && rangeMatch[1] && rangeMatch[2]) {
+    typicalValues.range = {
+      min: parseFloat(rangeMatch[1]),
+      max: parseFloat(rangeMatch[2]),
+    };
+  }
+
+  // Extract typical value
+  const typicalMatch = content.match(/Typical:\s*([0-9\-\.]+)/);
+  if (typicalMatch && typicalMatch[1]) {
+    typicalValues.typical = parseFloat(typicalMatch[1]);
+  }
+
+  // Extract outlier threshold
+  const outlierMatch = content.match(/Outlier\s*[Tt]hreshold:\s*>?\s*([0-9\-\.]+)/);
+  if (outlierMatch && outlierMatch[1]) {
+    typicalValues.outlierThreshold = parseFloat(outlierMatch[1]);
+  }
+
+  // Extract performance categories
+  const categories: TypicalValues['categories'] = [];
+  const categoryPattern = /\*\*([^*]+)\*\*:\s*([0-9\-\.]+\s*-\s*[0-9\-\.]+[^(]*)\s*\(([^)]+)\)/g;
+  let catMatch;
+  while ((catMatch = categoryPattern.exec(content)) !== null) {
+    if (catMatch && catMatch[1] && catMatch[2] && catMatch[3]) {
+      categories.push({
+        name: catMatch[1],
+        range: catMatch[2].trim(),
+        description: catMatch[3],
+      });
+    }
+  }
+  if (categories.length > 0) {
+    typicalValues.categories = categories;
+  }
+
+  return Object.keys(typicalValues).length > 0 ? typicalValues : null;
+}
+
+/**
+ * Extract measurement methods from content
+ */
+function extractMeasurementMethods(content: string): MeasurementMethod[] {
+  const methods: MeasurementMethod[] = [];
+  const lines = content.split('\n');
+
+  let currentMethod: Partial<MeasurementMethod> | null = null;
+  let currentType = '';
+
+  for (const line of lines) {
+    // Check for method type headers
+    const typeMatch = line.match(/^### (.+)$/);
+    if (typeMatch && typeMatch[1]) {
+      currentType = typeMatch[1];
+      continue;
+    }
+
+    // Check for method names
+    const methodMatch = line.match(/^-?\s*\*\*(.+?)\*\*:\s*(.+)$/);
+    if (methodMatch && methodMatch[1] && methodMatch[2]) {
+      if (currentMethod && currentMethod.name) {
+        methods.push(currentMethod as MeasurementMethod);
+      }
+      currentMethod = {
+        name: methodMatch[1],
+        description: methodMatch[2],
+        ...(currentType && { type: currentType }),
+      };
+    }
+  }
+
+  if (currentMethod && currentMethod.name) {
+    methods.push(currentMethod as MeasurementMethod);
+  }
+
+  return methods;
+}
+
+/**
+ * Extract affecting factors from content
+ */
+function extractAffectingFactors(content: string): AffectingFactors | null {
+  const factors: AffectingFactors = {
+    primary: [],
+    secondary: [],
+  };
+
+  const lines = content.split('\n');
+  let currentSection = '';
+
+  for (const line of lines) {
+    if (line.includes('Primary Factors')) {
+      currentSection = 'primary';
+    } else if (line.includes('Secondary Factors')) {
+      currentSection = 'secondary';
+    } else if (line.match(/^-?\s*\*\*(.+?)\*\*:\s*(.+)$/)) {
+      const match = line.match(/^-?\s*\*\*(.+?)\*\*:\s*(.+)$/);
+      if (match && match[1] && match[2] && currentSection) {
+        const factor = {
+          name: match[1],
+          description: match[2],
+        };
+
+        if (currentSection === 'primary') {
+          factors.primary.push(factor);
+        } else if (currentSection === 'secondary') {
+          factors.secondary!.push(factor);
+        }
+      }
+    }
+  }
+
+  return factors.primary.length > 0 ? factors : null;
+}
+
+/**
+ * Extract performance impact from content
+ */
+function extractPerformanceImpact(content: string): PerformanceImpact | null {
+  const impact: PerformanceImpact = {};
+
+  // Extract metrics
+  const metricsPattern = /\*\*(.+?)\*\*:\s*(.+?)(?:\n|$)/g;
+  const metrics: PerformanceImpact['metrics'] = [];
+  let match;
+  while ((match = metricsPattern.exec(content)) !== null) {
+    if (match && match[1] && match[2]) {
+      metrics.push({
+        name: match[1],
+        impact: match[2],
+      });
+    }
+  }
+  if (metrics.length > 0) {
+    impact.metrics = metrics;
+  }
+
+  // Look for stability mentions
+  const stabilityMatch = content.match(/[Ss]tability[:\s]+(.+?)(?:\n|$)/);
+  if (stabilityMatch && stabilityMatch[1]) {
+    impact.stability = stabilityMatch[1];
+  }
+
+  return Object.keys(impact).length > 0 ? impact : null;
+}
+
+/**
+ * Extract compatible systems from content
+ */
+function extractCompatibleSystems(content: string): CompatibleSystems | null {
+  const systems: CompatibleSystems = {};
+
+  // Extract operating conditions
+  const conditionsPattern = /\*\*(.+?)\*\*:\s*([0-9\-\.]+\s*-\s*[0-9\-\.]+[^(]*)/g;
+  const conditions: CompatibleSystems['operatingConditions'] = [];
+  let match;
+  while ((match = conditionsPattern.exec(content)) !== null) {
+    if (match && match[1] && match[2]) {
+      conditions.push({
+        parameter: match[1],
+        range: match[2].trim(),
+      });
+    }
+  }
+  if (conditions.length > 0) {
+    systems.operatingConditions = conditions;
+  }
+
+  // Extract applications
+  const appPattern = /\*\*(.+?)\*\*:\s*([^*\n]+)/g;
+  const applications: CompatibleSystems['applications'] = [];
+  while ((match = appPattern.exec(content)) !== null) {
+    if (
+      match &&
+      match[1] &&
+      match[2] &&
+      !match[1].includes('Range') &&
+      !match[1].includes('Temperature')
+    ) {
+      applications.push({
+        name: match[1],
+        description: match[2].trim(),
+      });
+    }
+  }
+  if (applications.length > 0) {
+    systems.applications = applications;
+  }
+
+  return Object.keys(systems).length > 0 ? systems : null;
+}
+
+/**
+ * Extract validation rules section from content
+ */
+function extractValidationRulesSection(content: string): ValidationRulesType | null {
+  const rules: ValidationRulesType = {};
+
+  // Extract parameter validation rules
+  const paramPattern = /^-?\s*(.+?):\s*(.+)$/gm;
+  const parameters: ValidationRulesType['parameters'] = [];
+  let match;
+  while ((match = paramPattern.exec(content)) !== null) {
+    if (match && match[1] && match[2]) {
+      parameters.push({
+        name: match[1],
+        rule: match[2],
+      });
+    }
+  }
+  if (parameters.length > 0) {
+    rules.parameters = parameters;
+  }
+
+  return Object.keys(rules).length > 0 ? rules : null;
+}
+
+/**
+ * Extract composition structure from content
+ */
+function extractCompositionStructure(content: string): CompositionStructure | null {
+  const structure: CompositionStructure = {};
+
+  // Extract chemical formula
+  const formulaMatch = content.match(/Chemical formula:\s*(.+)/i);
+  if (formulaMatch && formulaMatch[1]) {
+    structure.chemicalFormula = formulaMatch[1];
+  }
+
+  // Extract physical properties
+  const properties: CompositionStructure['physicalProperties'] = [];
+  const propPattern = /\*\*(.+?)\*\*:\s*([0-9\-\.]+)\s*([A-Za-z\/²³]+)?/g;
+  let match;
+  while ((match = propPattern.exec(content)) !== null) {
+    if (match && match[1] && match[2]) {
+      properties.push({
+        property: match[1],
+        value: match[2],
+        ...(match[3] && { unit: match[3] }),
+      });
+    }
+  }
+  if (properties.length > 0) {
+    structure.physicalProperties = properties;
+  }
+
+  return Object.keys(structure).length > 0 ? structure : null;
+}
+
+/**
+ * Extract electrochemical properties from content
+ */
+function extractElectrochemicalProperties(content: string): ElectrochemicalProperties | null {
+  const props: ElectrochemicalProperties = {};
+
+  // Extract standard properties
+  const properties: ElectrochemicalProperties['properties'] = [];
+  const propPattern = /\*\*(.+?)\*\*:\s*([0-9\-\.]+\s*-?\s*[0-9\-\.]*\s*[A-Za-z\/³²]*)/g;
+  let match;
+  while ((match = propPattern.exec(content)) !== null) {
+    if (match && match[1] && match[2]) {
+      properties.push({
+        name: match[1],
+        value: match[2].trim(),
+      });
+    }
+  }
+  if (properties.length > 0) {
+    props.properties = properties;
+  }
+
+  return Object.keys(props).length > 0 ? props : null;
+}
+
+/**
+ * Extract alternative systems from content
+ */
+function extractAlternativeSystems(content: string): AlternativeSystem[] {
+  const systems: AlternativeSystem[] = [];
+  const lines = content.split('\n');
+
+  let currentSystem: Partial<AlternativeSystem> | null = null;
+
+  for (const line of lines) {
+    const systemMatch = line.match(/^\d+\.\s*\*\*(.+?)\*\*:?$/);
+    if (systemMatch && systemMatch[1]) {
+      if (currentSystem && currentSystem.name) {
+        systems.push(currentSystem as AlternativeSystem);
+      }
+      currentSystem = {
+        name: systemMatch[1],
+        materials: [],
+      };
+    } else if (currentSystem && line.includes('-') && !line.includes('**')) {
+      const material = line.replace(/^-\s*/, '').trim();
+      if (material) {
+        currentSystem.materials!.push(material);
+      }
+    }
+  }
+
+  if (currentSystem && currentSystem.name) {
+    systems.push(currentSystem as AlternativeSystem);
+  }
+
+  return systems;
+}
+
+/**
+ * Extract species considerations from content
+ */
+function extractSpeciesConsiderations(content: string): SpeciesConsideration[] {
+  const species: SpeciesConsideration[] = [];
+  const sections = content.split(/### /);
+
+  for (const section of sections) {
+    if (section.trim()) {
+      const lines = section.split('\n');
+      const speciesName = lines[0]?.trim();
+      if (speciesName && !speciesName.includes('Species')) {
+        const consideration: SpeciesConsideration = {
+          species: speciesName,
+          characteristics: [],
+        };
+
+        // Extract mechanism
+        const mechanismMatch = section.match(/Mechanism:\s*(.+)/);
+        if (mechanismMatch && mechanismMatch[1]) {
+          consideration.mechanism = mechanismMatch[1];
+        }
+
+        // Extract efficiency
+        const efficiencyMatch = section.match(/Efficiency:\s*(.+)/);
+        if (efficiencyMatch && efficiencyMatch[1]) {
+          consideration.efficiency = efficiencyMatch[1];
+        }
+
+        // Extract proteins
+        const proteinMatch = section.match(/Proteins:\s*(.+)/);
+        if (proteinMatch && proteinMatch[1]) {
+          consideration.proteins = proteinMatch[1].split(',').map((p) => p.trim());
+        }
+
+        species.push(consideration);
+      }
+    }
+  }
+
+  return species;
+}
+
+/**
+ * Extract transfer mechanisms from content
+ */
+function extractTransferMechanisms(content: string): TransferMechanism[] {
+  const mechanisms: TransferMechanism[] = [];
+  const lines = content.split('\n');
+
+  for (const line of lines) {
+    const mechMatch = line.match(/\*\*(.+?)\*\*:\s*([0-9\-]+%)\s*(.+)/);
+    if (mechMatch && mechMatch[1] && mechMatch[2] && mechMatch[3]) {
+      mechanisms.push({
+        type: mechMatch[1],
+        efficiency: mechMatch[2],
+        description: mechMatch[3],
+      });
+    }
+  }
+
+  return mechanisms;
+}
+
+/**
+ * Extract molecular biology from content
+ */
+function extractMolecularBiology(content: string): MolecularBiology | null {
+  const biology: MolecularBiology = {};
+
+  // Extract gene expression
+  const geneMatch = content.match(/Gene expression:\s*(.+)/i);
+  if (geneMatch && geneMatch[1]) {
+    biology.geneExpression = geneMatch[1].split(',').map((g) => g.trim());
+  }
+
+  // Extract proteins
+  const proteinSection = content.match(/Proteins?:\s*([\s\S]+?)(?=\n\n|\n[A-Z]|$)/);
+  if (proteinSection && proteinSection[1]) {
+    const proteins: MolecularBiology['proteins'] = [];
+    const proteinLines = proteinSection[1].split('\n');
+    for (const line of proteinLines) {
+      const match = line.match(/(.+?):\s*(.+)/);
+      if (match && match[1] && match[2]) {
+        proteins.push({
+          name: match[1].trim(),
+          function: match[2].trim(),
+        });
+      }
+    }
+    if (proteins.length > 0) {
+      biology.proteins = proteins;
+    }
+  }
+
+  return Object.keys(biology).length > 0 ? biology : null;
+}
+
+/**
+ * Extract formula from content
+ */
+function extractFormula(content: string): Formula | null {
+  const formulaMatch = content.match(/(.+?)\s*=\s*(.+)/);
+  if (!formulaMatch || !formulaMatch[0]) return null;
+
+  const formula: Formula = {
+    equation: formulaMatch[0],
+    variables: [],
+  };
+
+  // Extract variable definitions
+  const varPattern = /^-?\s*([A-Za-z]+)\s*=\s*(.+?)\s*\(([^)]+)\)/gm;
+  let match;
+  while ((match = varPattern.exec(content)) !== null) {
+    if (match && match[1] && match[2] && match[3]) {
+      formula.variables.push({
+        symbol: match[1],
+        description: match[2],
+        unit: match[3],
+      });
+    }
+  }
+
+  return formula.variables.length > 0 ? formula : null;
+}
+
+/**
+ * Extract application notes from content
+ */
+function extractApplicationNotes(content: string): ApplicationNote[] {
+  const notes: ApplicationNote[] = [];
+  const sections = content.split(/### /);
+
+  for (const section of sections) {
+    if (section.includes('Systems')) {
+      const lines = section.split('\n');
+      const scaleMatch = lines[0]?.match(/(.+?)\s+Systems/);
+      if (scaleMatch && scaleMatch[1]) {
+        const note: ApplicationNote = {
+          scale: scaleMatch[1],
+        };
+
+        // Extract typical range
+        const rangeMatch = section.match(/Typical range:\s*(.+)/);
+        if (rangeMatch && rangeMatch[1]) {
+          note.typicalRange = rangeMatch[1];
+        }
+
+        // Extract targets
+        const targetMatch = section.match(/Target:\s*(.+)/);
+        if (targetMatch && targetMatch[1]) {
+          note.targets = [targetMatch[1]];
+        }
+
+        notes.push(note);
+      }
+    }
+  }
+
+  return notes;
 }

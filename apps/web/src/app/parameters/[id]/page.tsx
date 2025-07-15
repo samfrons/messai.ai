@@ -11,8 +11,30 @@ import ParameterProperties from '../components/ParameterProperties';
 import ParameterContent from '../components/ParameterContent';
 import CompatibilityMatrix from '../components/CompatibilityMatrix';
 import PerformanceMetrics from '../components/PerformanceMetrics';
-import References from '../components/References';
 import RelatedParameters from '../components/RelatedParameters';
+
+// Import all detail section components
+import {
+  DefinitionSection,
+  TypicalValuesSection,
+  MeasurementMethodsSection,
+  AffectingFactorsSection,
+  PerformanceImpactSection,
+  CompatibleSystemsSection,
+  LimitationsSection,
+  ValidationRulesSection,
+  ReferencesSection,
+  CostAnalysisSection,
+  CompositionStructureSection,
+  ElectrochemicalPropertiesSection,
+  AlternativeSystemsSection,
+  PreparationMethodsSection,
+  SpeciesConsiderationsSection,
+  TransferMechanismsSection,
+  MolecularBiologySection,
+  FormulaSection,
+  ApplicationNotesSection,
+} from '../../../components/parameters/detail-sections';
 
 export default function ParameterDetailPage() {
   const params = useParams();
@@ -108,20 +130,96 @@ export default function ParameterDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Main Content */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Properties Card */}
+          {/* Core Detail Sections */}
+          {parameter.definition && <DefinitionSection definition={parameter.definition} />}
+
+          {parameter.formula && <FormulaSection formula={parameter.formula} />}
+
+          {parameter.typicalValues && (
+            <TypicalValuesSection
+              typicalValues={parameter.typicalValues}
+              unit={parameter.unit || ''}
+            />
+          )}
+
+          {/* Properties Card - Keep for basic properties */}
           <ParameterProperties parameter={parameter} />
 
-          {/* Performance Metrics (if applicable) */}
+          {/* Category-Specific Sections */}
+          {parameter.compositionStructure && (
+            <CompositionStructureSection composition={parameter.compositionStructure} />
+          )}
+
+          {parameter.electrochemicalProperties && (
+            <ElectrochemicalPropertiesSection properties={parameter.electrochemicalProperties} />
+          )}
+
+          {/* Measurement & Methods */}
+          {parameter.measurementMethods && parameter.measurementMethods.length > 0 && (
+            <MeasurementMethodsSection methods={parameter.measurementMethods} />
+          )}
+
+          {parameter.preparationMethods && parameter.preparationMethods.length > 0 && (
+            <PreparationMethodsSection methods={parameter.preparationMethods} />
+          )}
+
+          {/* Performance & Impact */}
+          {parameter.performanceImpact && (
+            <PerformanceImpactSection impact={parameter.performanceImpact} />
+          )}
+
           {parameter.performanceMetrics && (
             <PerformanceMetrics metrics={parameter.performanceMetrics} />
           )}
 
-          {/* Markdown Content Sections */}
+          {/* Factors & Systems */}
+          {parameter.affectingFactors && (
+            <AffectingFactorsSection factors={parameter.affectingFactors} />
+          )}
+
+          {parameter.compatibleSystems && (
+            <CompatibleSystemsSection systems={parameter.compatibleSystems} />
+          )}
+
+          {/* Biological Sections */}
+          {parameter.speciesConsiderations && parameter.speciesConsiderations.length > 0 && (
+            <SpeciesConsiderationsSection species={parameter.speciesConsiderations} />
+          )}
+
+          {parameter.transferMechanisms && parameter.transferMechanisms.length > 0 && (
+            <TransferMechanismsSection mechanisms={parameter.transferMechanisms} />
+          )}
+
+          {parameter.molecularBiology && (
+            <MolecularBiologySection biology={parameter.molecularBiology} />
+          )}
+
+          {/* Alternative Systems */}
+          {parameter.alternativeSystems && parameter.alternativeSystems.length > 0 && (
+            <AlternativeSystemsSection systems={parameter.alternativeSystems} />
+          )}
+
+          {/* Validation & Limitations */}
+          {parameter.limitations && <LimitationsSection limitations={parameter.limitations} />}
+
+          {parameter.detailValidationRules && (
+            <ValidationRulesSection rules={parameter.detailValidationRules} />
+          )}
+
+          {/* Cost Analysis */}
+          {parameter.costAnalysis && <CostAnalysisSection analysis={parameter.costAnalysis} />}
+
+          {/* Application Notes */}
+          {parameter.applicationNotes && parameter.applicationNotes.length > 0 && (
+            <ApplicationNotesSection notes={parameter.applicationNotes} />
+          )}
+
+          {/* Legacy Markdown Content Sections */}
           {parameter.content && <ParameterContent content={parameter.content} />}
 
           {/* References */}
           {parameter.detailReferences && parameter.detailReferences.length > 0 && (
-            <References references={parameter.detailReferences} />
+            <ReferencesSection references={parameter.detailReferences} />
           )}
         </div>
 

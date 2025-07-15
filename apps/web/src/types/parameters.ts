@@ -361,25 +361,232 @@ export interface ParameterDetail extends Parameter {
   subcategoryId?: string;
   electrodeType?: ElectrodeType;
   content?: ParameterSection[];
-  detailReferences?: Reference[];
-  performanceMetrics?: PerformanceMetric;
-  preparationMethods?: PreparationMethod[];
-  costAnalysis?: CostAnalysis;
+  // Core detail sections (all parameters)
+  definition?: Definition;
+  typicalValues?: TypicalValues;
+  measurementMethods?: MeasurementMethod[];
+  affectingFactors?: AffectingFactors;
+  performanceImpact?: PerformanceImpact;
+  compatibleSystems?: CompatibleSystems;
   limitations?: Limitations;
+  detailValidationRules?: ValidationRules;
+  detailReferences?: Reference[];
+  performanceMetrics?: any; // Legacy property for backward compatibility
+  // Category-specific sections
+  compositionStructure?: CompositionStructure; // Materials
+  electrochemicalProperties?: ElectrochemicalProperties; // Materials
+  preparationMethods?: PreparationMethod[];
+  alternativeSystems?: AlternativeSystem[]; // Materials
+  costAnalysis?: CostAnalysis;
+  speciesConsiderations?: SpeciesConsideration[]; // Biological
+  transferMechanisms?: TransferMechanism[]; // Biological
+  molecularBiology?: MolecularBiology; // Biological
+  formula?: Formula; // Electrical
   relatedParameters?: RelatedParameter[];
+  applicationNotes?: ApplicationNote[]; // Electrical
 }
 
+// Core section interfaces
+export interface Definition {
+  text: string;
+  formula?: string;
+  variables?: Array<{
+    symbol: string;
+    description: string;
+    unit?: string;
+  }>;
+}
+
+export interface TypicalValues {
+  range?: ParameterRange;
+  typical?: number | string;
+  outlierThreshold?: number;
+  categories?: Array<{
+    name: string;
+    range: string;
+    description?: string;
+  }>;
+  distribution?: Array<{
+    type: string;
+    percentage: string;
+    description?: string;
+  }>;
+}
+
+export interface MeasurementMethod {
+  name: string;
+  type?: string;
+  description: string;
+  equipment?: string[];
+  conditions?: string;
+  accuracy?: string;
+}
+
+export interface AffectingFactors {
+  primary: Factor[];
+  secondary?: Factor[];
+}
+
+export interface Factor {
+  name: string;
+  description: string;
+  impact?: string;
+  optimalRange?: string;
+}
+
+export interface PerformanceImpact {
+  metrics?: Array<{
+    name: string;
+    impact: string;
+    correlation?: string;
+  }>;
+  efficiency?: Array<{
+    type: string;
+    range: string;
+    conditions?: string;
+  }>;
+  stability?: string;
+}
+
+export interface CompatibleSystems {
+  operatingConditions?: Array<{
+    parameter: string;
+    range: string;
+    optimal?: string;
+  }>;
+  applications?: Array<{
+    name: string;
+    description?: string;
+    suitability?: string;
+  }>;
+  environments?: string[];
+}
+
+export interface Limitations {
+  performance?: string[];
+  practical?: string[];
+  safety?: string[];
+  environmental?: string[];
+}
+
+export interface ValidationRules {
+  parameters?: Array<{
+    name: string;
+    rule: string;
+    reason?: string;
+  }>;
+  qualityControl?: Array<{
+    test: string;
+    method: string;
+    criteria?: string;
+  }>;
+  standards?: string[];
+}
+
+// Materials-specific interfaces
+export interface CompositionStructure {
+  chemicalFormula?: string;
+  structure?: string;
+  physicalProperties?: Array<{
+    property: string;
+    value: string;
+    unit?: string;
+  }>;
+  morphology?: string;
+}
+
+export interface ElectrochemicalProperties {
+  properties?: Array<{
+    name: string;
+    value: string;
+    conditions?: string;
+  }>;
+  advancedProperties?: Array<{
+    name: string;
+    value: string;
+    significance?: string;
+  }>;
+}
+
+export interface AlternativeSystem {
+  name: string;
+  type?: string;
+  materials?: string[];
+  advantages?: string[];
+  limitations?: string[];
+}
+
+// Biological-specific interfaces
+export interface SpeciesConsideration {
+  species: string;
+  mechanism?: string;
+  efficiency?: string;
+  characteristics?: Array<{
+    property: string;
+    value: string;
+  }>;
+  proteins?: string[];
+}
+
+export interface TransferMechanism {
+  type: string;
+  description: string;
+  efficiency?: string;
+  species?: string[];
+}
+
+export interface MolecularBiology {
+  geneExpression?: string[];
+  proteins?: Array<{
+    name: string;
+    function: string;
+  }>;
+  pathways?: string[];
+}
+
+// Electrical-specific interfaces
+export interface Formula {
+  equation: string;
+  variables: Array<{
+    symbol: string;
+    description: string;
+    unit: string;
+  }>;
+  derivation?: string;
+}
+
+export interface ApplicationNote {
+  scale: string;
+  typicalRange?: string;
+  considerations?: string[];
+  targets?: string[];
+}
+
+// Enhanced existing interfaces
 export interface ParameterSection {
   title: string;
   level: number;
   content: string;
   parent?: string;
+  type?: string; // To identify section type for rendering
 }
 
 export interface Reference {
   text: string;
   doi?: string;
   url?: string;
+  year?: number;
+  authors?: string[];
+  category?: string; // e.g., "Key Literature", "Recent Advances"
+}
+
+export interface PreparationMethod {
+  name: string;
+  type?: string;
+  steps: string[];
+  conditions?: string;
+  equipment?: string[];
+  safety?: string[];
 }
 
 export interface PerformanceMetric {
@@ -390,27 +597,23 @@ export interface PerformanceMetric {
   };
 }
 
-export interface PreparationMethod {
-  name: string;
-  steps: string[];
-  conditions?: string;
-}
-
 export interface CostAnalysis {
-  [key: string]: {
-    min: number;
-    max: number;
-    unit: string;
-  };
-}
-
-export interface Limitations {
-  performance: string[];
-  practical: string[];
+  summary?: string;
+  breakdown?: Array<{
+    item: string;
+    cost: string;
+    unit?: string;
+    notes?: string;
+  }>;
+  factors?: string[];
+  economicAdvantages?: string[];
+  futureProjections?: string[];
 }
 
 export interface RelatedParameter {
   id: string;
   name: string;
   category?: string;
+  relationship?: string; // e.g., "direct", "inverse", "dependent"
+  description?: string;
 }
