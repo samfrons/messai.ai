@@ -20,6 +20,7 @@ export default function ParametersPage() {
     results,
     hasActiveFilters,
     totalResults,
+    error,
     setQuery,
     setFilters,
     setPage,
@@ -224,6 +225,7 @@ export default function ParametersPage() {
           <ParameterList
             parameters={results}
             isLoading={isLoading}
+            error={error}
             onParameterSelect={(param) => console.log('Selected:', param)}
           />
 

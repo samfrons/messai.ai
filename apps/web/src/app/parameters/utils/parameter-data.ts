@@ -14,23 +14,50 @@ let unifiedData: any = null;
 async function loadUnifiedData() {
   if (!unifiedData) {
     try {
-      console.log('Fetching unified parameter data...');
+      console.log(
+        '🔄 Fetching unified parameter data from /parameters/MESS_PARAMETERS_UNIFIED.json...'
+      );
       const response = await fetch('/parameters/MESS_PARAMETERS_UNIFIED.json');
+
+      console.log('📡 Fetch response:', {
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        url: response.url,
+        headers: Object.fromEntries(response.headers.entries()),
+      });
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
       }
-      unifiedData = await response.json();
-      console.log('Loaded unified data:', {
+
+      const responseText = await response.text();
+      console.log('📄 Response text length:', responseText.length);
+
+      unifiedData = JSON.parse(responseText);
+      console.log('✅ Successfully loaded unified data:', {
         totalParams: unifiedData.metadata?.totalParameters,
         categories: unifiedData.categories?.length,
+        metadata: unifiedData.metadata,
       });
+
+      if (!unifiedData.categories || unifiedData.categories.length === 0) {
+        console.warn('⚠️ No categories found in loaded data!');
+      }
     } catch (error) {
-      console.error('Failed to load unified parameter data:', error);
+      console.error('❌ Failed to load unified parameter data:', error);
+      console.error('Error details:', {
+        name: error instanceof Error ? error.name : 'Unknown',
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      });
+
       // Fallback to empty structure
       unifiedData = {
         metadata: { totalParameters: 0, majorCategories: 0, subcategories: 0 },
         categories: [],
       };
+      console.log('🔄 Using fallback empty data structure');
     }
   }
   return unifiedData;

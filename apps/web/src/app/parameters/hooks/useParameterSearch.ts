@@ -12,23 +12,40 @@ export function useParameterSearch() {
   const [results, setResults] = useState<Parameter[]>([]);
   const [totalResults, setTotalResults] = useState(0);
   const [facets, setFacets] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Perform search when query or filters change
   useEffect(() => {
     const performSearch = async () => {
       setIsLoading(true);
+      setError(null); // Clear previous errors
+
       try {
+        console.log('🔍 Starting parameter search with:', { query, filters, page, pageSize });
+
         const searchFilters = {
           ...filters,
           ...(query && { query }),
         };
 
         const searchResults = await searchParameters(searchFilters, page, pageSize);
+
+        console.log('📊 Search results:', {
+          parametersFound: searchResults.parameters.length,
+          total: searchResults.total,
+          hasFacets: !!searchResults.facets,
+        });
+
         setResults(searchResults.parameters);
         setTotalResults(searchResults.total);
         setFacets(searchResults.facets);
+
+        if (searchResults.total === 0 && !query && Object.keys(filters).length === 0) {
+          setError('No default parameters could be loaded. Check console for data loading errors.');
+        }
       } catch (error) {
-        console.error('Error searching parameters:', error);
+        console.error('❌ Error searching parameters:', error);
+        setError(error instanceof Error ? error.message : 'Failed to load parameters');
         setResults([]);
         setTotalResults(0);
         setFacets(null);
@@ -71,6 +88,7 @@ export function useParameterSearch() {
     hasActiveFilters,
     totalResults,
     facets,
+    error,
     setQuery,
     setFilters,
     setSortBy,
