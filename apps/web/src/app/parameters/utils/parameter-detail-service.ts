@@ -27,6 +27,69 @@ import { getRelatedParameterRecommendations, getSystemParameters } from './param
 // Cache for parameter details
 const detailCache = new Map<string, ParameterDetail>();
 
+/**
+ * Check if a parameter is a categorical variable (should be filtered out)
+ */
+function isCategoricalVariable(unifiedParam: any): boolean {
+  // Filter out categorical variables that are selections rather than measurable parameters
+  const categoricalPatterns = [
+    'species',
+    'strain',
+    'organism',
+    'microbe',
+    'bacteria',
+    'material_type',
+    'membrane_type',
+    'electrode_type',
+    'system_type',
+    'configuration',
+    'method',
+    'technique',
+    'source',
+    'origin',
+    'brand',
+    'model',
+    'vendor',
+    'supplier',
+    'manufacturer',
+    'selection',
+    'choice',
+    'option',
+  ];
+
+  const paramName = unifiedParam.name?.toLowerCase() || '';
+  const paramId = unifiedParam.id?.toLowerCase() || '';
+
+  // Check if it's a select type (categorical)
+  if (unifiedParam.type === 'select') {
+    return true;
+  }
+
+  // Check if it's a string type without unit (likely categorical)
+  if (unifiedParam.type === 'string' && !unifiedParam.unit) {
+    return true;
+  }
+
+  // Specific biological categorical variables to exclude
+  const biologicalCategoricalIds = [
+    'microbial_species',
+    'dominant_species',
+    'species_selection',
+    'organism_type',
+    'bacterial_strain',
+    'microbe_selection',
+  ];
+
+  if (biologicalCategoricalIds.includes(paramId)) {
+    return true;
+  }
+
+  // Check for categorical patterns in name or ID
+  return categoricalPatterns.some(
+    (pattern) => paramName.includes(pattern) || paramId.includes(pattern)
+  );
+}
+
 // Mapping of parameter IDs to markdown file paths
 // Based on actual files in /parameters/parameters-v1/ directory
 const MARKDOWN_MAPPINGS: Record<string, string> = {
@@ -70,21 +133,34 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
 
   try {
     // Load unified parameter data
-    const response = await fetch('/parameters/MESS_PARAMETERS_UNIFIED.json');
+    const response = await fetch('/parameters/MESS_PARAMETERS_UNIFIED_FINAL.json');
     if (!response.ok) {
       throw new Error(`Failed to load unified parameters: ${response.status}`);
     }
 
     const unifiedData = await response.json();
 
+    // Validate data structure
+    if (!unifiedData || !unifiedData.categories || !Array.isArray(unifiedData.categories)) {
+      throw new Error('Invalid unified data structure: missing categories');
+    }
+
     // Find the parameter in the unified data
     let parameter: any = null;
     let categoryData: any = null;
     let subcategoryData: any = null;
 
-    for (const category of unifiedData.categories || []) {
-      for (const subcategory of category.subcategories || []) {
-        const found = subcategory.parameters?.find((p: any) => p.id === id);
+    for (const category of unifiedData.categories) {
+      if (!category.subcategories || !Array.isArray(category.subcategories)) {
+        continue;
+      }
+
+      for (const subcategory of category.subcategories) {
+        if (!subcategory.parameters || !Array.isArray(subcategory.parameters)) {
+          continue;
+        }
+
+        const found = subcategory.parameters.find((p: any) => p.id === id);
         if (found) {
           parameter = found;
           categoryData = category;
@@ -96,6 +172,21 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
     }
 
     if (!parameter) {
+      console.log(`Parameter not found: ${id}`);
+      return null;
+    }
+
+    // Validate parameter structure
+    if (!parameter.name || !parameter.id) {
+      console.log(`Invalid parameter structure for ${id}: missing name or id`);
+      return null;
+    }
+
+    // Check if this is a categorical variable - if so, don't show it as a parameter
+    if (isCategoricalVariable(parameter)) {
+      console.log(
+        `Filtering out categorical variable in detail view: ${parameter.name} (${parameter.id})`
+      );
       return null;
     }
 

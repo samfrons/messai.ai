@@ -36,13 +36,23 @@ async function loadUnifiedData() {
       console.log('📄 Response text length:', responseText.length);
 
       unifiedData = JSON.parse(responseText);
+
+      // Validate data structure
+      if (!unifiedData || typeof unifiedData !== 'object') {
+        throw new Error('Invalid JSON structure: data is not an object');
+      }
+
+      if (!unifiedData.categories || !Array.isArray(unifiedData.categories)) {
+        throw new Error('Invalid data structure: missing or invalid categories array');
+      }
+
       console.log('✅ Successfully loaded unified data:', {
         totalParams: unifiedData.metadata?.totalParameters,
         categories: unifiedData.categories?.length,
         metadata: unifiedData.metadata,
       });
 
-      if (!unifiedData.categories || unifiedData.categories.length === 0) {
+      if (unifiedData.categories.length === 0) {
         console.warn('⚠️ No categories found in loaded data!');
       }
     } catch (error) {
@@ -73,15 +83,41 @@ export async function getSystemParameters(): Promise<Parameter[]> {
 
   // Process each category in the unified data
   data.categories.forEach((category: any) => {
+    if (!category.subcategories || !Array.isArray(category.subcategories)) {
+      console.warn(`Category ${category.id} has no subcategories or invalid subcategories`);
+      return;
+    }
+
     category.subcategories.forEach((subcategory: any) => {
+      if (!subcategory.parameters || !Array.isArray(subcategory.parameters)) {
+        console.warn(`Subcategory ${subcategory.id} has no parameters or invalid parameters`);
+        return;
+      }
+
       subcategory.parameters.forEach((param: any) => {
-        const transformedParam = transformUnifiedParameter(param, category, subcategory);
+        // Validate parameter structure
+        if (!param.id || !param.name) {
+          console.warn(`Parameter missing id or name:`, param);
+          return;
+        }
 
-        // Add display category using our new categorization logic
-        const { primary } = categorizeParameter(param, category.id);
-        transformedParam.displayCategory = primary;
+        // Skip categorical variables - we only want measurable parameters
+        if (isCategoricalVariable(param)) {
+          console.log(`Filtering out categorical variable: ${param.name} (${param.id})`);
+          return;
+        }
 
-        parameters.push(transformedParam);
+        try {
+          const transformedParam = transformUnifiedParameter(param, category, subcategory);
+
+          // Add display category using our new categorization logic
+          const { primary } = categorizeParameter(param, category.id);
+          transformedParam.displayCategory = primary;
+
+          parameters.push(transformedParam);
+        } catch (error) {
+          console.error(`Error transforming parameter ${param.id}:`, error);
+        }
       });
     });
   });
@@ -170,6 +206,69 @@ export async function searchParameters(
     pageSize,
     facets: generateFacets(allParameters),
   };
+}
+
+/**
+ * Check if a parameter is a categorical variable (should be filtered out)
+ */
+function isCategoricalVariable(unifiedParam: any): boolean {
+  // Filter out categorical variables that are selections rather than measurable parameters
+  const categoricalPatterns = [
+    'species',
+    'strain',
+    'organism',
+    'microbe',
+    'bacteria',
+    'material_type',
+    'membrane_type',
+    'electrode_type',
+    'system_type',
+    'configuration',
+    'method',
+    'technique',
+    'source',
+    'origin',
+    'brand',
+    'model',
+    'vendor',
+    'supplier',
+    'manufacturer',
+    'selection',
+    'choice',
+    'option',
+  ];
+
+  const paramName = unifiedParam.name?.toLowerCase() || '';
+  const paramId = unifiedParam.id?.toLowerCase() || '';
+
+  // Check if it's a select type (categorical)
+  if (unifiedParam.type === 'select') {
+    return true;
+  }
+
+  // Check if it's a string type without unit (likely categorical)
+  if (unifiedParam.type === 'string' && !unifiedParam.unit) {
+    return true;
+  }
+
+  // Specific biological categorical variables to exclude
+  const biologicalCategoricalIds = [
+    'microbial_species',
+    'dominant_species',
+    'species_selection',
+    'organism_type',
+    'bacterial_strain',
+    'microbe_selection',
+  ];
+
+  if (biologicalCategoricalIds.includes(paramId)) {
+    return true;
+  }
+
+  // Check for categorical patterns in name or ID
+  return categoricalPatterns.some(
+    (pattern) => paramName.includes(pattern) || paramId.includes(pattern)
+  );
 }
 
 /**
