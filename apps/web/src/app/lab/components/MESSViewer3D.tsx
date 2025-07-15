@@ -190,10 +190,10 @@ function Scene({
         args={[100, 100]}
         cellSize={1}
         cellThickness={1.2}
-        cellColor="rgba(55, 65, 81, 0.7)"
+        cellColor="#4a5568"
         sectionSize={10}
         sectionThickness={2.5}
-        sectionColor="rgba(31, 41, 55, 0.7)"
+        sectionColor="#1e3a8a"
         fadeDistance={50}
         fadeStrength={0.5}
         infiniteGrid
@@ -205,10 +205,10 @@ function Scene({
         args={[100, 100]}
         cellSize={1}
         cellThickness={0.8}
-        cellColor="rgba(75, 85, 99, 0.7)"
+        cellColor="#5a6578"
         sectionSize={10}
         sectionThickness={1.8}
-        sectionColor="rgba(55, 65, 81, 0.7)"
+        sectionColor="#1e40af"
         fadeDistance={40}
         fadeStrength={0.4}
         infiniteGrid
@@ -221,10 +221,10 @@ function Scene({
         args={[100, 100]}
         cellSize={1}
         cellThickness={0.8}
-        cellColor="rgba(75, 85, 99, 0.7)"
+        cellColor="#5a6578"
         sectionSize={10}
         sectionThickness={1.8}
-        sectionColor="rgba(55, 65, 81, 0.7)"
+        sectionColor="#1e40af"
         fadeDistance={40}
         fadeStrength={0.4}
         infiniteGrid
