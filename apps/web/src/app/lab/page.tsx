@@ -63,7 +63,7 @@ const initialParameters: ModelParameters = {
   chamberHeight: 30,
   electrodeSpacing: 10,
   membraneThickness: 0.5,
-  numberOfChambers: 1,
+  numberOfChambers: 5,
 
   // Materials
   anodeMaterial: 'carbon-cloth',

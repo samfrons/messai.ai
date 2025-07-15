@@ -29,6 +29,12 @@ export default function StackedFuelCell({
   visualizationMode = 'static',
   parameters = {},
 }: StackedFuelCellProps) {
+  console.log('StackedFuelCell component rendered with:', {
+    scale,
+    showAnimation,
+    visualizationMode,
+    parameters,
+  });
   const groupRef = useRef<THREE.Group>(null);
   const stackRefs = useRef<(THREE.Mesh | null)[]>([]);
 
@@ -118,7 +124,7 @@ export default function StackedFuelCell({
   });
 
   return (
-    <group ref={groupRef} scale={scale}>
+    <group ref={groupRef} scale={scale} position={[0, 0, 0]}>
       {/* Base platform - dynamic dimensions */}
       <mesh position={[0, -0.2, 0]}>
         <boxGeometry args={[stackConfig.length * 1.2, 0.1, stackConfig.width * 1.25]} />
@@ -143,7 +149,7 @@ export default function StackedFuelCell({
               <meshStandardMaterial
                 color={isAnode ? materialColors.anodeColor : materialColors.cathodeColor}
                 transparent
-                opacity={0.8 * environmentalEffects.tempIntensity}
+                opacity={0.8}
                 metalness={0.3}
                 roughness={0.4}
               />
@@ -180,11 +186,7 @@ export default function StackedFuelCell({
                   stackConfig.width * 0.92,
                 ]}
               />
-              <meshStandardMaterial
-                color="#ffffff"
-                transparent
-                opacity={0.7 * environmentalEffects.tempIntensity}
-              />
+              <meshStandardMaterial color="#ffffff" transparent opacity={0.7} />
             </mesh>
 
             {/* Flow visualizations */}
@@ -235,7 +237,7 @@ export default function StackedFuelCell({
                 <meshStandardMaterial
                   color={environmentalEffects.biofilmColor}
                   transparent
-                  opacity={0.6 * environmentalEffects.tempIntensity}
+                  opacity={0.6}
                   emissive={environmentalEffects.biofilmColor}
                   emissiveIntensity={0.2}
                 />

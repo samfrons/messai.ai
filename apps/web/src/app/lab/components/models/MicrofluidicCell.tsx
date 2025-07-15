@@ -130,7 +130,7 @@ export default function MicrofluidicCell({
         <meshStandardMaterial
           color="#e3f2fd"
           transparent
-          opacity={0.8 * environmentalEffects.tempIntensity}
+          opacity={0.8}
           roughness={0.1}
           metalness={0.1}
         />
@@ -191,11 +191,7 @@ export default function MicrofluidicCell({
             dimensions.width * 0.67,
           ]}
         />
-        <meshStandardMaterial
-          color={materialColors.membraneColor}
-          transparent
-          opacity={0.5 * environmentalEffects.tempIntensity}
-        />
+        <meshStandardMaterial color={materialColors.membraneColor} transparent opacity={0.5} />
       </mesh>
 
       {/* Biofilm visualization (only in biofilm mode) - dynamic positioning and color */}
@@ -226,11 +222,7 @@ export default function MicrofluidicCell({
               ]}
             >
               <sphereGeometry args={[0.02, 8, 6]} />
-              <meshStandardMaterial
-                color="#01579b"
-                transparent
-                opacity={0.8 * environmentalEffects.tempIntensity}
-              />
+              <meshStandardMaterial color="#01579b" transparent opacity={0.8} />
             </mesh>
           ))}
         </>

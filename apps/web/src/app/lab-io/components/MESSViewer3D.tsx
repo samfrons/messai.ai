@@ -185,19 +185,51 @@ function Scene({
       <pointLight position={[0, 10, 0]} intensity={0.5} />
       <pointLight position={[5, 5, 5]} intensity={0.3} />
 
-      {/* Grid helper for reference - more subtle */}
+      {/* Grid helper for reference - enhanced perspective */}
       <Grid
-        args={[50, 50]}
+        args={[100, 100]}
         cellSize={1}
-        cellThickness={0.2}
-        cellColor="#e0e0e0"
-        sectionSize={5}
-        sectionThickness={0.3}
-        sectionColor="#cccccc"
-        fadeDistance={30}
-        fadeStrength={1}
+        cellThickness={1.2}
+        cellColor="rgba(55, 65, 81, 0.7)"
+        sectionSize={10}
+        sectionThickness={2.5}
+        sectionColor="rgba(31, 41, 55, 0.7)"
+        fadeDistance={50}
+        fadeStrength={0.5}
         infiniteGrid
         position={[0, -0.01, 0]}
+      />
+
+      {/* Additional grid for Y-axis perspective */}
+      <Grid
+        args={[100, 100]}
+        cellSize={1}
+        cellThickness={0.8}
+        cellColor="rgba(75, 85, 99, 0.7)"
+        sectionSize={10}
+        sectionThickness={1.8}
+        sectionColor="rgba(55, 65, 81, 0.7)"
+        fadeDistance={40}
+        fadeStrength={0.4}
+        infiniteGrid
+        position={[0, 0, 0]}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+
+      {/* Side grid for Z-axis perspective */}
+      <Grid
+        args={[100, 100]}
+        cellSize={1}
+        cellThickness={0.8}
+        cellColor="rgba(75, 85, 99, 0.7)"
+        sectionSize={10}
+        sectionThickness={1.8}
+        sectionColor="rgba(55, 65, 81, 0.7)"
+        fadeDistance={40}
+        fadeStrength={0.4}
+        infiniteGrid
+        position={[0, 0, 0]}
+        rotation={[0, 0, Math.PI / 2]}
       />
 
       {/* MESS Model */}
@@ -328,7 +360,10 @@ export default function MESSViewer3D({
 
   return (
     <ErrorBoundary>
-      <div className={`relative bg-gray-50 ${className}`}>
+      <div
+        className={`relative ${className}`}
+        style={{ backgroundColor: 'rgba(241, 248, 255, 0.7)' }}
+      >
         {/* Enhanced 3D Controls */}
         <Enhanced3DControls
           onViewChange={handleViewChange}
@@ -347,7 +382,7 @@ export default function MESSViewer3D({
             dpr={[1, 2]}
             gl={{
               antialias: true,
-              alpha: false,
+              alpha: true,
               preserveDrawingBuffer: true,
             }}
             camera={{
@@ -359,6 +394,7 @@ export default function MESSViewer3D({
             onCreated={({ gl, camera }) => {
               gl.toneMapping = THREE.ACESFilmicToneMapping;
               gl.toneMappingExposure = 1;
+              gl.setClearColor(0xf1f8ff, 0.7); // Set background to rgba(241,248,255,.7)
               camera.updateProjectionMatrix();
             }}
           >
