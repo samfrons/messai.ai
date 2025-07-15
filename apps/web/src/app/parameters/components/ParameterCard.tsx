@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Badge, Button } from '@messai/ui';
-import type { Parameter } from '../../../types/parameters';
+import type { Parameter, ElectrodeType } from '../../../types/parameters';
 
 interface ParameterCardProps {
   parameter: Parameter;
@@ -14,6 +14,14 @@ export default function ParameterCard({ parameter, onSelect }: ParameterCardProp
       .split('_')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
+  };
+
+  // Get electrode type from subcategory
+  const getElectrodeType = (): ElectrodeType | null => {
+    if (parameter.category !== 'electrode' || !parameter.subcategoryCode) return null;
+    if (parameter.subcategoryCode.includes('anode')) return 'anode';
+    if (parameter.subcategoryCode.includes('cathode')) return 'cathode';
+    return null;
   };
 
   // Get badge variant based on category
@@ -34,6 +42,34 @@ export default function ParameterCard({ parameter, onSelect }: ParameterCardProp
   const getKeyProperties = () => {
     const props = parameter.properties;
     const displayProps: Array<{ label: string; value: string | number; unit?: string }> = [];
+
+    // Show parameter range if available
+    if (parameter.range && parameter.range.min !== undefined && parameter.range.max !== undefined) {
+      displayProps.push({
+        label: 'Range',
+        value: `${parameter.range.min} - ${parameter.range.max}`,
+        ...(parameter.unit && { unit: parameter.unit }),
+      });
+    } else if (parameter.default !== undefined) {
+      displayProps.push({
+        label: 'Default',
+        value: parameter.default,
+        ...(parameter.unit && { unit: parameter.unit }),
+      });
+    }
+
+    // Show typical range if available
+    if (
+      parameter.typicalRange &&
+      parameter.typicalRange.min !== undefined &&
+      parameter.typicalRange.max !== undefined
+    ) {
+      displayProps.push({
+        label: 'Typical Range',
+        value: `${parameter.typicalRange.min} - ${parameter.typicalRange.max}`,
+        ...(parameter.unit && { unit: parameter.unit }),
+      });
+    }
 
     switch (parameter.category) {
       case 'electrode':
@@ -116,9 +152,19 @@ export default function ParameterCard({ parameter, onSelect }: ParameterCardProp
                   {parameter.subcategory}
                 </Badge>
               )}
+              {getElectrodeType() && (
+                <Badge variant={getElectrodeType() === 'anode' ? 'error' : 'primary'} size="sm">
+                  {getElectrodeType()}
+                </Badge>
+              )}
               {parameter.type && (
                 <Badge variant="secondary" size="sm">
                   {parameter.type}
+                </Badge>
+              )}
+              {parameter.unit && (
+                <Badge variant="secondary" size="sm">
+                  {parameter.unit}
                 </Badge>
               )}
               {!parameter.isSystem && (
@@ -128,17 +174,78 @@ export default function ParameterCard({ parameter, onSelect }: ParameterCardProp
               )}
             </div>
           </div>
-          {parameter.compatibility && parameter.compatibility.compatibleWith.length > 0 && (
-            <div className="text-sm text-gray-500">
-              <span className="font-medium">{parameter.compatibility.compatibleWith.length}</span>{' '}
-              compatible
-            </div>
-          )}
+          <div className="text-sm text-gray-500 space-y-1">
+            {parameter.compatibility && parameter.compatibility.compatibleWith.length > 0 && (
+              <div>
+                <span className="font-medium">{parameter.compatibility.compatibleWith.length}</span>{' '}
+                compatible
+              </div>
+            )}
+            {parameter.references && parameter.references.length > 0 && (
+              <div className="text-xs">
+                📚 {parameter.references.length} reference
+                {parameter.references.length > 1 ? 's' : ''}
+              </div>
+            )}
+            {parameter.dependencies && parameter.dependencies.length > 0 && (
+              <div className="text-xs">
+                🔗 {parameter.dependencies.length} dependenc
+                {parameter.dependencies.length > 1 ? 'ies' : 'y'}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Description */}
         {parameter.description && (
           <p className="text-sm text-gray-600 line-clamp-2">{parameter.description}</p>
+        )}
+
+        {/* Validation Rules */}
+        {parameter.validationRules && parameter.validationRules.length > 0 && (
+          <div className="bg-blue-50 border border-blue-200 rounded p-2">
+            <div className="text-xs font-medium text-blue-800 mb-1">Validation Rules:</div>
+            <div className="text-xs text-blue-600">
+              {parameter.validationRules.slice(0, 2).map((rule, index) => (
+                <div key={index}>• {rule}</div>
+              ))}
+              {parameter.validationRules.length > 2 && (
+                <div className="text-blue-500">+{parameter.validationRules.length - 2} more...</div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Compatibility Information */}
+        {parameter.compatibility && (
+          <div className="bg-green-50 border border-green-200 rounded p-2">
+            <div className="text-xs font-medium text-green-800 mb-1">Compatibility:</div>
+            <div className="text-xs text-green-600 space-y-1">
+              {parameter.compatibility.materials &&
+                parameter.compatibility.materials.length > 0 && (
+                  <div>
+                    Materials: {parameter.compatibility.materials.slice(0, 2).join(', ')}
+                    {parameter.compatibility.materials.length > 2 &&
+                      ` +${parameter.compatibility.materials.length - 2} more`}
+                  </div>
+                )}
+              {parameter.compatibility.microbes && parameter.compatibility.microbes.length > 0 && (
+                <div>
+                  Microbes: {parameter.compatibility.microbes.slice(0, 2).join(', ')}
+                  {parameter.compatibility.microbes.length > 2 &&
+                    ` +${parameter.compatibility.microbes.length - 2} more`}
+                </div>
+              )}
+              {parameter.compatibility.systemTypes &&
+                parameter.compatibility.systemTypes.length > 0 && (
+                  <div>
+                    Systems: {parameter.compatibility.systemTypes.slice(0, 2).join(', ')}
+                    {parameter.compatibility.systemTypes.length > 2 &&
+                      ` +${parameter.compatibility.systemTypes.length - 2} more`}
+                  </div>
+                )}
+            </div>
+          </div>
         )}
 
         {/* Key Properties */}
@@ -159,11 +266,20 @@ export default function ParameterCard({ parameter, onSelect }: ParameterCardProp
         {/* Actions */}
         <div className="flex gap-2 pt-2">
           <Button variant="primary" size="sm" className="flex-1">
-            Use in Prediction
+            Use in Model
           </Button>
           <Button variant="outline" size="sm" onClick={onSelect}>
             View Details
           </Button>
+          {parameter.outlierThreshold && (
+            <Button
+              variant="ghost"
+              size="sm"
+              title={`Outlier threshold: ${parameter.outlierThreshold}`}
+            >
+              ⚠️
+            </Button>
+          )}
         </div>
       </div>
     </Card>

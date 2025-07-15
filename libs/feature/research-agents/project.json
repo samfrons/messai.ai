@@ -1,0 +1,33 @@
+{
+  "name": "feature-research-agents",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/feature/research-agents/src",
+  "projectType": "library",
+  "tags": ["scope:feature", "type:lib"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/feature/research-agents",
+        "main": "libs/feature/research-agents/src/index.ts",
+        "tsConfig": "libs/feature/research-agents/tsconfig.lib.json",
+        "assets": ["libs/feature/research-agents/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/feature/research-agents/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/feature/research-agents/jest.config.ts"
+      }
+    }
+  }
+}

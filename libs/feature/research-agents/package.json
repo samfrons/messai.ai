@@ -1,0 +1,14 @@
+{
+  "name": "@messai/feature-research-agents",
+  "version": "0.0.1",
+  "description": "AI-powered research sub-agents for MESSAI platform",
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  }
+}

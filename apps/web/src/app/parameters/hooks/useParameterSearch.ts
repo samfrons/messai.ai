@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
-import { getSystemParameters } from '../utils/parameter-data';
-import type { ParameterFilter, ParameterSortOption } from '../../../types/parameters';
+import { useState, useCallback, useEffect } from 'react';
+import { searchParameters } from '../utils/parameter-data';
+import type { ParameterFilter, ParameterSortOption, Parameter } from '../../../types/parameters';
 
 export function useParameterSearch() {
   const [query, setQuery] = useState('');
@@ -9,113 +9,61 @@ export function useParameterSearch() {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(12);
   const [isLoading, setIsLoading] = useState(false);
+  const [results, setResults] = useState<Parameter[]>([]);
+  const [totalResults, setTotalResults] = useState(0);
+  const [facets, setFacets] = useState<any>(null);
 
-  // Get all system parameters
-  const allParameters = useMemo(() => getSystemParameters(), []);
+  // Perform search when query or filters change
+  useEffect(() => {
+    const performSearch = async () => {
+      setIsLoading(true);
+      try {
+        const searchFilters = {
+          ...filters,
+          ...(query && { query }),
+        };
 
-  // Filter and search parameters
-  const filteredParameters = useMemo(() => {
-    let filtered = [...allParameters];
+        console.log('Searching parameters with filters:', searchFilters);
+        const searchResults = await searchParameters(searchFilters, page, pageSize);
+        console.log('Search results:', {
+          count: searchResults.parameters.length,
+          total: searchResults.total,
+          firstParam: searchResults.parameters[0]?.name,
+        });
+        setResults(searchResults.parameters);
+        setTotalResults(searchResults.total);
+        setFacets(searchResults.facets);
+      } catch (error) {
+        console.error('Error searching parameters:', error);
+        setResults([]);
+        setTotalResults(0);
+        setFacets(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    // Apply text search
-    if (query) {
-      const searchLower = query.toLowerCase();
-      filtered = filtered.filter(
-        (param) =>
-          param.name.toLowerCase().includes(searchLower) ||
-          param.description?.toLowerCase().includes(searchLower) ||
-          param.category.toLowerCase().includes(searchLower) ||
-          param.type?.toLowerCase().includes(searchLower)
-      );
-    }
-
-    // Apply category filter
-    if (filters.category) {
-      filtered = filtered.filter((param) => param.category === filters.category);
-    }
-
-    // Apply subcategory filter
-    if (filters.subcategory) {
-      filtered = filtered.filter((param) => param.subcategory === filters.subcategory);
-    }
-
-    // Apply type filter
-    if (filters.type) {
-      filtered = filtered.filter((param) => param.type === filters.type);
-    }
-
-    // Apply property filters
-    if (filters.properties) {
-      Object.entries(filters.properties).forEach(([property, range]) => {
-        if (range.min !== undefined || range.max !== undefined) {
-          filtered = filtered.filter((param) => {
-            const value = param.properties[property];
-            if (value === undefined) return false;
-            if (range.min !== undefined && value < range.min) return false;
-            if (range.max !== undefined && value > range.max) return false;
-            return true;
-          });
-        }
-      });
-    }
-
-    // Apply source filters
-    if (filters.onlySystem) {
-      filtered = filtered.filter((param) => param.isSystem);
-    }
-    if (filters.onlyCustom) {
-      filtered = filtered.filter((param) => !param.isSystem);
-    }
-
-    // Sort results
-    switch (sortBy) {
-      case 'name':
-        filtered.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case 'category':
-        filtered.sort((a, b) => a.category.localeCompare(b.category));
-        break;
-      case 'recent':
-        // For now, reverse the order to simulate recent first
-        filtered.reverse();
-        break;
-      case 'relevance':
-      default:
-        // Keep original order for relevance (already sorted by search match)
-        break;
-    }
-
-    return filtered;
-  }, [allParameters, query, filters, sortBy]);
-
-  // Paginate results
-  const results = useMemo(() => {
-    const start = (page - 1) * pageSize;
-    const end = start + pageSize;
-    return filteredParameters.slice(start, end);
-  }, [filteredParameters, page, pageSize]);
-
-  const totalResults = filteredParameters.length;
+    performSearch();
+  }, [query, filters, page, pageSize]);
 
   const hasActiveFilters = Boolean(
     filters.category ||
+      filters.subcategory ||
       filters.type ||
+      filters.electrodeType ||
       filters.onlySystem ||
       filters.onlyCustom ||
-      (filters.properties && Object.keys(filters.properties).length > 0)
+      filters.hasValidationRules ||
+      filters.hasTypicalRange ||
+      (filters.properties && Object.keys(filters.properties).length > 0) ||
+      (filters.compatibility &&
+        Object.values(filters.compatibility).some((v) => Array.isArray(v) && v.length > 0))
   );
 
   const clearFilters = useCallback(() => {
     setFilters({});
     setPage(1);
   }, []);
-
-  // Simulate loading state for realistic UX
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 300);
-    return () => clearTimeout(timer);
-  }, [query, filters, page]);
 
   return {
     query,
@@ -128,6 +76,7 @@ export function useParameterSearch() {
     searchHistory: [], // Could implement search history
     hasActiveFilters,
     totalResults,
+    facets,
     setQuery,
     setFilters,
     setSortBy,

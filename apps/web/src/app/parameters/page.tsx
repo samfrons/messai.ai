@@ -8,6 +8,7 @@ import { useParameterSearch } from './hooks/useParameterSearch';
 import { useParameterFilters } from './hooks/useParameterFilters';
 
 export default function ParametersPage() {
+  console.log('🔄 Parameters page loaded with new code!');
   const [showFilters, setShowFilters] = useState(false);
   const [searchInput, setSearchInput] = useState('');
 
@@ -31,6 +32,9 @@ export default function ParametersPage() {
     subcategoryOptions,
     typeOptions,
     propertyRanges,
+    compatibilityOptions,
+    categories,
+    isLoading: filtersLoading,
     updateFilter,
     clearCategoryFilter,
   } = useParameterFilters(filters, setFilters);
@@ -179,9 +183,16 @@ export default function ParametersPage() {
               filters={filters}
               onFilterChange={setFilters}
               categoryOptions={categoryOptions}
-              subcategoryOptions={subcategoryOptions}
+              subcategoryOptions={subcategoryOptions.map((opt) => ({
+                value: opt.value,
+                label: opt.label,
+                count: opt.count,
+                ...(opt.electrodeType && { electrodeType: opt.electrodeType }),
+              }))}
               typeOptions={typeOptions}
               propertyRanges={propertyRanges}
+              compatibilityOptions={compatibilityOptions}
+              categories={categories}
             />
           </div>
         )}

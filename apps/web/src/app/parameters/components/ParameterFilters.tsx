@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button } from '@messai/ui';
-import type { ParameterFilter, ParameterCategory, ParameterType } from '../../../types/parameters';
+import type {
+  ParameterFilter,
+  ParameterCategory,
+  ParameterType,
+  ElectrodeType,
+  ParameterCategoryData,
+} from '../../../types/parameters';
 
 interface ParameterFiltersProps {
   filters: ParameterFilter;
   onFilterChange: (filters: ParameterFilter) => void;
   categoryOptions: Array<{ value: ParameterCategory; label: string; count: number }>;
-  subcategoryOptions: Array<{ value: string; label: string; count: number }>;
+  subcategoryOptions: Array<{
+    value: string;
+    label: string;
+    count: number;
+    electrodeType?: ElectrodeType;
+  }>;
   typeOptions: Array<{ value: ParameterType; label: string; count: number }>;
   propertyRanges: {
     conductivity?: { min: number; max: number };
     cost?: { min: number; max: number };
     temperature?: { min: number; max: number };
     ph?: { min: number; max: number };
+    [key: string]: { min: number; max: number } | undefined;
   };
+  compatibilityOptions?: {
+    materials: Array<{ value: string; count: number }>;
+    microbes: Array<{ value: string; count: number }>;
+    environments: Array<{ value: string; count: number }>;
+    systemTypes: Array<{ value: string; count: number }>;
+  };
+  categories?: ParameterCategoryData[];
 }
 
 export default function ParameterFilters({
@@ -23,9 +42,38 @@ export default function ParameterFilters({
   subcategoryOptions,
   typeOptions,
   propertyRanges,
+  compatibilityOptions,
 }: ParameterFiltersProps) {
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showCompatibility, setShowCompatibility] = useState(false);
   const updateFilter = (key: keyof ParameterFilter, value: any) => {
     onFilterChange({ ...filters, [key]: value });
+  };
+
+  const updateCompatibilityFilter = (category: string, values: string[]) => {
+    const currentCompatibility = filters.compatibility || {};
+    onFilterChange({
+      ...filters,
+      compatibility: {
+        ...currentCompatibility,
+        [category]: values.length > 0 ? values : undefined,
+      },
+    });
+  };
+
+  const toggleCompatibilityValue = (category: string, value: string) => {
+    const currentValues =
+      filters.compatibility?.[category as keyof typeof filters.compatibility] || [];
+    const isSelected = Array.isArray(currentValues) && currentValues.includes(value);
+
+    let newValues: string[];
+    if (isSelected) {
+      newValues = currentValues.filter((v) => v !== value);
+    } else {
+      newValues = Array.isArray(currentValues) ? [...currentValues, value] : [value];
+    }
+
+    updateCompatibilityFilter(category, newValues);
   };
 
   const updatePropertyFilter = (property: string, type: 'min' | 'max', value: string) => {
@@ -90,7 +138,12 @@ export default function ParameterFilters({
       {/* Subcategory Filter - Only show if category is selected */}
       {filters.category && subcategoryOptions.length > 0 && (
         <div>
-          <h4 className="text-sm font-medium text-gray-900 mb-3">Subcategory</h4>
+          <h4 className="text-sm font-medium text-gray-900 mb-3">
+            Subcategory
+            {filters.category === 'electrode' && (
+              <span className="text-xs text-gray-500 ml-1">(Anodes & Cathodes)</span>
+            )}
+          </h4>
           <div className="space-y-2">
             {subcategoryOptions.map((option) => (
               <label key={option.value} className="flex items-center cursor-pointer">
@@ -102,9 +155,22 @@ export default function ParameterFilters({
                   onChange={(e) => updateFilter('subcategory', e.target.value)}
                   className="text-primary-600 focus:ring-primary-500"
                 />
-                <span className="ml-2 text-sm text-gray-700">
+                <span className="ml-2 text-sm text-gray-700 flex items-center gap-2">
                   {option.label}
-                  <span className="text-gray-500 ml-1">({option.count})</span>
+                  {option.electrodeType && (
+                    <span
+                      className={`px-1.5 py-0.5 text-xs rounded ${
+                        option.electrodeType === 'anode'
+                          ? 'bg-red-100 text-red-700'
+                          : option.electrodeType === 'cathode'
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'bg-gray-100 text-gray-700'
+                      }`}
+                    >
+                      {option.electrodeType}
+                    </span>
+                  )}
+                  <span className="text-gray-500">({option.count})</span>
                 </span>
               </label>
             ))}
@@ -272,6 +338,214 @@ export default function ParameterFilters({
           )}
         </div>
       </div>
+
+      {/* Advanced Filters Toggle */}
+      <div>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowAdvanced(!showAdvanced)}
+          className="w-full justify-between"
+        >
+          Advanced Filters
+          <span className={`transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
+        </Button>
+
+        {showAdvanced && (
+          <div className="mt-4 space-y-4">
+            {/* Additional Properties */}
+            {Object.entries(propertyRanges)
+              .filter(([key]) => !['conductivity', 'cost', 'temperature', 'ph'].includes(key))
+              .map(([property, range]) => (
+                <div key={property}>
+                  <label className="text-sm text-gray-700 capitalize">
+                    {property.replace(/([A-Z])/g, ' $1')}
+                  </label>
+                  <div className="flex items-center gap-2 mt-1">
+                    <input
+                      type="number"
+                      placeholder={`${range?.min || 0}`}
+                      value={filters.properties?.[property]?.min || ''}
+                      onChange={(e) => updatePropertyFilter(property, 'min', e.target.value)}
+                      className="w-20 px-2 py-1 text-sm border border-gray-300 rounded"
+                    />
+                    <span className="text-gray-500">to</span>
+                    <input
+                      type="number"
+                      placeholder={`${range?.max || 100}`}
+                      value={filters.properties?.[property]?.max || ''}
+                      onChange={(e) => updatePropertyFilter(property, 'max', e.target.value)}
+                      className="w-20 px-2 py-1 text-sm border border-gray-300 rounded"
+                    />
+                    {filters.properties?.[property] && (
+                      <button
+                        onClick={() => clearPropertyFilter(property)}
+                        className="text-gray-400 hover:text-gray-600"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+            {/* Validation Rules Filter */}
+            <div>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={filters.hasValidationRules === true}
+                  onChange={(e) =>
+                    updateFilter('hasValidationRules', e.target.checked ? true : undefined)
+                  }
+                  className="text-primary-600 focus:ring-primary-500"
+                />
+                <span className="ml-2 text-sm text-gray-700">Has validation rules</span>
+              </label>
+            </div>
+
+            {/* Typical Range Filter */}
+            <div>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={filters.hasTypicalRange === true}
+                  onChange={(e) =>
+                    updateFilter('hasTypicalRange', e.target.checked ? true : undefined)
+                  }
+                  className="text-primary-600 focus:ring-primary-500"
+                />
+                <span className="ml-2 text-sm text-gray-700">Has typical range</span>
+              </label>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Compatibility Matrix Filters */}
+      {compatibilityOptions && (
+        <div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowCompatibility(!showCompatibility)}
+            className="w-full justify-between"
+          >
+            Compatibility Matrix
+            <span className={`transition-transform ${showCompatibility ? 'rotate-180' : ''}`}>
+              ▼
+            </span>
+          </Button>
+
+          {showCompatibility && (
+            <div className="mt-4 space-y-4">
+              {/* Materials */}
+              {compatibilityOptions.materials.length > 0 && (
+                <div>
+                  <h5 className="text-sm font-medium text-gray-900 mb-2">Compatible Materials</h5>
+                  <div className="space-y-1 max-h-32 overflow-y-auto">
+                    {compatibilityOptions.materials.map((material) => (
+                      <label key={material.value} className="flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={
+                            filters.compatibility?.materials?.includes(material.value) || false
+                          }
+                          onChange={() => toggleCompatibilityValue('materials', material.value)}
+                          className="text-primary-600 focus:ring-primary-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">
+                          {material.value}
+                          <span className="text-gray-500 ml-1">({material.count})</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Microbes */}
+              {compatibilityOptions.microbes.length > 0 && (
+                <div>
+                  <h5 className="text-sm font-medium text-gray-900 mb-2">Compatible Microbes</h5>
+                  <div className="space-y-1 max-h-32 overflow-y-auto">
+                    {compatibilityOptions.microbes.map((microbe) => (
+                      <label key={microbe.value} className="flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={
+                            filters.compatibility?.microbes?.includes(microbe.value) || false
+                          }
+                          onChange={() => toggleCompatibilityValue('microbes', microbe.value)}
+                          className="text-primary-600 focus:ring-primary-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">
+                          {microbe.value}
+                          <span className="text-gray-500 ml-1">({microbe.count})</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Environments */}
+              {compatibilityOptions.environments.length > 0 && (
+                <div>
+                  <h5 className="text-sm font-medium text-gray-900 mb-2">
+                    Compatible Environments
+                  </h5>
+                  <div className="space-y-1 max-h-32 overflow-y-auto">
+                    {compatibilityOptions.environments.map((env) => (
+                      <label key={env.value} className="flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={
+                            filters.compatibility?.environments?.includes(env.value) || false
+                          }
+                          onChange={() => toggleCompatibilityValue('environments', env.value)}
+                          className="text-primary-600 focus:ring-primary-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">
+                          {env.value}
+                          <span className="text-gray-500 ml-1">({env.count})</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* System Types */}
+              {compatibilityOptions.systemTypes.length > 0 && (
+                <div>
+                  <h5 className="text-sm font-medium text-gray-900 mb-2">
+                    Compatible System Types
+                  </h5>
+                  <div className="space-y-1 max-h-32 overflow-y-auto">
+                    {compatibilityOptions.systemTypes.map((system) => (
+                      <label key={system.value} className="flex items-center cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={
+                            filters.compatibility?.systemTypes?.includes(system.value) || false
+                          }
+                          onChange={() => toggleCompatibilityValue('systemTypes', system.value)}
+                          className="text-primary-600 focus:ring-primary-500"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">
+                          {system.value}
+                          <span className="text-gray-500 ml-1">({system.count})</span>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Custom vs System Toggle */}
       <div>

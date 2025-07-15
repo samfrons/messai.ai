@@ -1,12 +1,36 @@
-import { useMemo, useCallback } from 'react';
-import { getSystemParameters } from '../utils/parameter-data';
-import type { ParameterFilter, ParameterCategory, ParameterType } from '../../../types/parameters';
+import { useMemo, useCallback, useState, useEffect } from 'react';
+import { getParameterCategories, getSystemParameters } from '../utils/parameter-data';
+import type {
+  ParameterFilter,
+  ParameterCategory,
+  ParameterType,
+  ParameterCategoryData,
+} from '../../../types/parameters';
 
 export function useParameterFilters(
   filters: ParameterFilter,
   setFilters: (filters: ParameterFilter) => void
 ) {
-  const allParameters = useMemo(() => getSystemParameters(), []);
+  const [allParameters, setAllParameters] = useState<any[]>([]);
+  const [categories, setCategories] = useState<ParameterCategoryData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load parameters and categories
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [params, cats] = await Promise.all([getSystemParameters(), getParameterCategories()]);
+        setAllParameters(params);
+        setCategories(cats);
+      } catch (error) {
+        console.error('Error loading parameter data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   // Get category options with counts
   const categoryOptions = useMemo(() => {
@@ -28,27 +52,23 @@ export function useParameterFilters(
 
   // Get subcategory options based on selected category
   const subcategoryOptions = useMemo(() => {
-    if (!filters.category) return [];
+    if (!filters.category || categories.length === 0) return [];
 
-    const subcategoryCounts = new Map<string, number>();
+    const selectedCategory = categories.find(
+      (cat) =>
+        cat.id === filters.category ||
+        cat.name.toLowerCase().replace(/\s+/g, '_') === filters.category
+    );
 
-    allParameters
-      .filter((param) => param.category === filters.category)
-      .forEach((param) => {
-        if (param.subcategory) {
-          subcategoryCounts.set(
-            param.subcategory,
-            (subcategoryCounts.get(param.subcategory) || 0) + 1
-          );
-        }
-      });
+    if (!selectedCategory) return [];
 
-    return Array.from(subcategoryCounts.entries()).map(([value, count]) => ({
-      value,
-      label: value,
-      count,
+    return selectedCategory.subcategories.map((sub) => ({
+      value: sub.name,
+      label: sub.name,
+      count: sub.parameterCount || 0,
+      electrodeType: sub.electrodeType,
     }));
-  }, [allParameters, filters.category]);
+  }, [categories, filters.category]);
 
   // Get type options based on selected category
   const typeOptions = useMemo(() => {
@@ -73,12 +93,9 @@ export function useParameterFilters(
 
   // Get property ranges
   const propertyRanges = useMemo(() => {
-    const ranges: {
-      conductivity?: { min: number; max: number };
-      cost?: { min: number; max: number };
-      temperature?: { min: number; max: number };
-      ph?: { min: number; max: number };
-    } = {};
+    const ranges: Record<string, { min: number; max: number }> = {};
+
+    if (allParameters.length === 0) return ranges;
 
     // Filter parameters based on current filters
     let params = [...allParameters];
@@ -89,12 +106,26 @@ export function useParameterFilters(
       params = params.filter((p) => p.type === filters.type);
     }
 
-    // Calculate ranges for each property
-    const properties = ['conductivity', 'cost', 'temperature', 'ph'] as const;
+    // Calculate ranges for all numeric properties
+    const numericProperties = new Set<string>();
+    params.forEach((param) => {
+      Object.entries(param.properties || {}).forEach(([key, value]) => {
+        if (typeof value === 'number') {
+          numericProperties.add(key);
+        }
+      });
 
-    properties.forEach((prop) => {
+      // Also check unified schema properties
+      if (param.range?.min !== undefined && param.range?.max !== undefined) {
+        if (param.unit) {
+          numericProperties.add('range');
+        }
+      }
+    });
+
+    numericProperties.forEach((prop) => {
       const values = params
-        .map((p) => p.properties[prop])
+        .map((p) => p.properties?.[prop])
         .filter((v) => v !== undefined && typeof v === 'number') as number[];
 
       if (values.length > 0) {
@@ -108,6 +139,40 @@ export function useParameterFilters(
     return ranges;
   }, [allParameters, filters.category, filters.type]);
 
+  // Get compatibility options from all parameters
+  const compatibilityOptions = useMemo(() => {
+    if (allParameters.length === 0) return undefined;
+
+    const materials = new Map<string, number>();
+    const microbes = new Map<string, number>();
+    const environments = new Map<string, number>();
+    const systemTypes = new Map<string, number>();
+
+    allParameters.forEach((param) => {
+      if (param.compatibility) {
+        param.compatibility.materials?.forEach((material: string) => {
+          materials.set(material, (materials.get(material) || 0) + 1);
+        });
+        param.compatibility.microbes?.forEach((microbe: string) => {
+          microbes.set(microbe, (microbes.get(microbe) || 0) + 1);
+        });
+        param.compatibility.environments?.forEach((env: string) => {
+          environments.set(env, (environments.get(env) || 0) + 1);
+        });
+        param.compatibility.systemTypes?.forEach((system: string) => {
+          systemTypes.set(system, (systemTypes.get(system) || 0) + 1);
+        });
+      }
+    });
+
+    return {
+      materials: Array.from(materials.entries()).map(([value, count]) => ({ value, count })),
+      microbes: Array.from(microbes.entries()).map(([value, count]) => ({ value, count })),
+      environments: Array.from(environments.entries()).map(([value, count]) => ({ value, count })),
+      systemTypes: Array.from(systemTypes.entries()).map(([value, count]) => ({ value, count })),
+    };
+  }, [allParameters]);
+
   const updateFilter = useCallback(
     (key: keyof ParameterFilter, value: any) => {
       const newFilters = { ...filters };
@@ -118,9 +183,15 @@ export function useParameterFilters(
         (newFilters as any)[key] = value;
       }
 
-      // Clear type filter if category changes
+      // Clear dependent filters when parent filter changes
       if (key === 'category' && value !== filters.category) {
+        delete newFilters.subcategory;
         delete newFilters.type;
+        delete newFilters.electrodeType;
+      }
+
+      if (key === 'subcategory' && value !== filters.subcategory) {
+        delete newFilters.electrodeType;
       }
 
       setFilters(newFilters);
@@ -131,7 +202,9 @@ export function useParameterFilters(
   const clearCategoryFilter = useCallback(() => {
     const newFilters = { ...filters };
     delete newFilters.category;
-    delete newFilters.type; // Also clear type when clearing category
+    delete newFilters.subcategory;
+    delete newFilters.type;
+    delete newFilters.electrodeType;
     setFilters(newFilters);
   }, [filters, setFilters]);
 
@@ -140,6 +213,9 @@ export function useParameterFilters(
     subcategoryOptions,
     typeOptions,
     propertyRanges,
+    compatibilityOptions,
+    categories,
+    isLoading,
     updateFilter,
     clearCategoryFilter,
   };

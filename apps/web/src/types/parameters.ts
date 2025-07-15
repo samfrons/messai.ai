@@ -3,17 +3,20 @@
  * Extends existing prediction types with full parameter management
  */
 
-// Parameter categories as defined in requirements
+// Parameter categories as defined in the unified schema
 export type ParameterCategory =
   | 'electrode'
   | 'microbe'
   | 'substrate'
   | 'operating_condition'
   | 'system_configuration'
-  | 'membrane'
-  | 'separator'
-  | 'proton_exchange'
-  | 'cation_exchange';
+  | 'membrane';
+
+// Unified parameter data types
+export type UnifiedParameterType = 'number' | 'string' | 'boolean' | 'select' | 'array' | 'object';
+
+// Electrode subcategory types
+export type ElectrodeType = 'anode' | 'cathode' | 'both';
 
 // Parameter types within categories
 export type ParameterType =
@@ -29,7 +32,7 @@ export type ParameterType =
   | 'proton_exchange'
   | 'cation_exchange';
 
-// Base parameter interface
+// Base parameter interface matching unified schema
 export interface Parameter {
   id: string;
   name: string;
@@ -45,6 +48,68 @@ export interface Parameter {
   userId?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  // Unified schema properties
+  unit?: string;
+  range?: ParameterRange;
+  default?: any;
+  typicalRange?: ParameterRange;
+  validationRules?: string[];
+  dependencies?: string[];
+  references?: string[];
+  outlierThreshold?: number;
+}
+
+// Parameter range interface
+export interface ParameterRange {
+  min?: number;
+  max?: number;
+}
+
+// Unified parameter from JSON schema
+export interface UnifiedParameter {
+  id: string;
+  name: string;
+  unit?: string;
+  type: UnifiedParameterType;
+  range?: ParameterRange;
+  options?: string[];
+  default?: any;
+  description: string;
+  dependencies?: string[];
+  references?: string[];
+  validation_rules?: string[];
+  typical_range?: ParameterRange;
+  outlier_threshold?: number;
+  compatibility?: UnifiedCompatibility;
+  properties?: Record<string, any>;
+  pattern?: string;
+}
+
+// Unified compatibility structure
+export interface UnifiedCompatibility {
+  materials?: string[];
+  microbes?: string[];
+  environments?: string[];
+  systemTypes?: string[];
+}
+
+// Category structure from unified data
+export interface ParameterCategoryData {
+  id: string;
+  name: string;
+  icon?: string;
+  description: string;
+  subcategories: SubcategoryData[];
+}
+
+// Subcategory structure
+export interface SubcategoryData {
+  id: string;
+  name: string;
+  description?: string;
+  electrodeType?: ElectrodeType;
+  parameters: UnifiedParameter[];
+  parameterCount?: number;
 }
 
 // Dynamic properties based on category
@@ -93,11 +158,16 @@ export interface ParameterProperties {
   [key: string]: any;
 }
 
-// Compatibility scoring
+// Enhanced compatibility with unified schema support
 export interface CompatibilityData {
   compatibleWith: CompatibilityScore[];
   incompatibleWith: string[]; // Parameter IDs
   notes?: string;
+  // From unified schema
+  materials?: string[];
+  microbes?: string[];
+  environments?: string[];
+  systemTypes?: string[];
 }
 
 export interface CompatibilityScore {
@@ -112,12 +182,14 @@ export interface CompatibilityScore {
   explanation?: string;
 }
 
-// Filter interface for search
+// Enhanced filter interface with unified schema support
 export interface ParameterFilter {
   query?: string;
   category?: ParameterCategory | null;
   subcategory?: string | null;
+  subcategoryId?: string | null;
   type?: ParameterType | null;
+  electrodeType?: ElectrodeType | null;
   properties?: {
     [key: string]: {
       min?: number;
@@ -127,12 +199,18 @@ export interface ParameterFilter {
   compatibility?: {
     compatibleWith?: string[];
     minScore?: number;
+    materials?: string[];
+    microbes?: string[];
+    environments?: string[];
+    systemTypes?: string[];
   };
   onlyCustom?: boolean;
   onlySystem?: boolean;
+  hasValidationRules?: boolean;
+  hasTypicalRange?: boolean;
 }
 
-// Search results
+// Enhanced search results with unified schema facets
 export interface ParameterSearchResults {
   parameters: Parameter[];
   total: number;
@@ -140,9 +218,18 @@ export interface ParameterSearchResults {
   pageSize: number;
   facets?: {
     categories: Array<{ value: string; count: number }>;
+    subcategories: Array<{ value: string; count: number }>;
     types: Array<{ value: string; count: number }>;
+    electrodeTypes: Array<{ value: string; count: number }>;
+    unitsUsed: Array<{ value: string; count: number }>;
     propertyRanges: {
       [key: string]: { min: number; max: number };
+    };
+    compatibilityOptions: {
+      materials: Array<{ value: string; count: number }>;
+      microbes: Array<{ value: string; count: number }>;
+      environments: Array<{ value: string; count: number }>;
+      systemTypes: Array<{ value: string; count: number }>;
     };
   };
 }
@@ -215,14 +302,18 @@ export interface ParameterPreset {
   isDefault?: boolean;
 }
 
-// Sort options
+// Enhanced sort options
 export type ParameterSortOption =
   | 'relevance'
   | 'name'
   | 'category'
+  | 'subcategory'
   | 'recent'
   | 'usage'
-  | 'performance';
+  | 'performance'
+  | 'alphabetical'
+  | 'unit'
+  | 'rangeSize';
 
 // API request/response types
 export interface CreateParameterRequest {
