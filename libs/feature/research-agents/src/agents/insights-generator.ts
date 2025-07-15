@@ -51,7 +51,7 @@ export class InsightsGenerator extends BaseResearchAgent {
     );
   }
 
-  validateInput(input: Record<string, any>): ValidationResult {
+  override validateInput(input: Record<string, any>): ValidationResult {
     const errors: Array<{ field: string; message: string; code: string }> = [];
 
     const insightInput = input as InsightGenerationInput;

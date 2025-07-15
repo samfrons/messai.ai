@@ -18,3 +18,8 @@ export * from './components/accordion';
 export * from './components/paper-card';
 export * from './components/paper-detail-modal';
 export * from './components/search-filters';
+
+// Research Agent components
+export * from './components/agent-status-card';
+export * from './components/research-insights-panel';
+export * from './components/agent-task-runner';

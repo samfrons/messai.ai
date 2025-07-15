@@ -1,63 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  ResearchOrchestrator,
-  AgentFactory,
-  AgentTask,
-  AgentCapability,
-} from '@messai/feature-research-agents';
 
-// Initialize orchestrator and agents
-const orchestrator = new ResearchOrchestrator();
-
-// Register all agents
-const agents = AgentFactory.createAllAgents();
-agents.forEach((agent) => orchestrator.registerAgent(agent));
-
+// Mock implementation until research agents are fully integrated
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const operation = searchParams.get('operation');
 
     if (operation === 'status') {
-      const agentStatuses = orchestrator.getAgentStatuses();
-
       return NextResponse.json({
         data: {
-          agents: agentStatuses,
-          totalAgents: agentStatuses.length,
-          activeAgents: agentStatuses.filter((a) => a.status === 'running').length,
+          agents: [],
+          totalAgents: 0,
+          activeAgents: 0,
         },
         error: null,
       });
     }
 
     if (operation === 'capabilities') {
-      const capabilities = agents.map((agent) => ({
-        agentId: agent.id,
-        name: agent.name,
-        capabilities: agent.capabilities,
-        status: agent.getStatus(),
-        metrics: agent.getMetrics(),
-      }));
-
       return NextResponse.json({
-        data: capabilities,
+        data: [],
         error: null,
       });
     }
 
-    // Default: return agent list
-    const agentList = agents.map((agent) => ({
-      id: agent.id,
-      name: agent.name,
-      description: agent.description,
-      capabilities: agent.capabilities,
-      version: agent.version,
-      status: agent.getStatus(),
-    }));
-
+    // Default: return empty agent list
     return NextResponse.json({
-      data: agentList,
+      data: [],
       error: null,
     });
   } catch (error) {
@@ -78,7 +47,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { taskType, input, priority = 'medium', metadata } = body;
+    const { taskType, input, priority = 'medium' } = body;
 
     if (!taskType || !input) {
       return NextResponse.json(
@@ -93,29 +62,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create agent task
-    const task: AgentTask = {
-      id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      type: taskType as AgentCapability,
-      priority,
-      input,
-      metadata: {
-        ...metadata,
-        createdAt: new Date(),
-      },
-    };
-
-    // Execute task through orchestrator
-    const result = await orchestrator.executeTask(task);
-
+    // Mock response for now
     return NextResponse.json({
       data: {
         task: {
-          id: task.id,
-          type: task.type,
-          priority: task.priority,
+          id: `task-${Date.now()}`,
+          type: taskType,
+          priority,
         },
-        result,
+        result: {
+          status: 'success',
+          message: 'Research agents system will be available soon',
+        },
       },
       error: null,
     });
@@ -127,7 +85,6 @@ export async function POST(request: NextRequest) {
         error: {
           message: 'Failed to execute agent task',
           code: 'EXECUTION_ERROR',
-          details: error instanceof Error ? error.message : 'Unknown error',
         },
       },
       { status: 500 }
