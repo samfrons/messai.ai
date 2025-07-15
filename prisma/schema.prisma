@@ -66,7 +66,7 @@ model Paper {
   id              String      @id @default(cuid())
   title           String
   abstract        String
-  authors         String    
+  authors         Json        // Array of author names (stored as JSON for SQLite compatibility)
   journal         String?
   year            Int
   doi             String?     @unique

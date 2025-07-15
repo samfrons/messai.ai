@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../../lib/db';
+import { normalizeAuthorsForDB, normalizeAuthors } from '../../../../lib/author-utils';
 
 // Mock implementation of MESS papers processing
 // In real implementation, this would use the actual processor
@@ -235,7 +236,7 @@ async function processMESSPapers() {
       const createdPaper = await prisma.paper.create({
         data: {
           title: paper.title,
-          authors: paper.authors,
+          authors: normalizeAuthorsForDB(paper.authors),
           abstract: paper.abstract,
           year: paper.year,
           journal: paper.journal,
@@ -363,7 +364,7 @@ async function listMESSPapers() {
   return papers.map((paper) => ({
     id: paper.id,
     title: paper.title,
-    authors: paper.authors,
+    authors: normalizeAuthors(paper.authors),
     year: paper.year,
     journal: paper.journal,
     doi: paper.doi,

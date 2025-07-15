@@ -61,6 +61,13 @@ jobs:
       - name: Type checking
         run: pnpm type-check
 
+      - name: Schema validation
+        run: pnpm schema:validate
+
+      - name: Production schema type checking
+        run: pnpm type-check:prod
+        # This ensures deployment compatibility by validating against production schema
+
       - name: Run unit tests
         run: pnpm test --coverage --watchAll=false
         env:
