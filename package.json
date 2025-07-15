@@ -35,7 +35,7 @@
     "security:check": "pnpm audit && pnpm outdated",
     "deps:check": "pnpm outdated",
     "deps:update": "pnpm update --interactive --latest",
-    "prepare": "husky install"
+    "prepare": "if [ \"$CI\" != \"true\" ] && [ \"$VERCEL\" != \"1\" ]; then husky install; fi"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
