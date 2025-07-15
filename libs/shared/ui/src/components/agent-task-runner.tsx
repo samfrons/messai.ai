@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import { useState } from 'react';
 import { Card } from './card';
 import { Button } from './button';
 import { Input } from './input';
@@ -231,7 +233,9 @@ export function AgentTaskRunner({ agents, onTaskSubmit, className = '' }: AgentT
                   <div key={field.key}>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       {field.label}
-                      {field.required && <span className="text-red-500 ml-1">*</span>}
+                      {'required' in field && field.required && (
+                        <span className="text-red-500 ml-1">*</span>
+                      )}
                     </label>
                     {renderField(field)}
                   </div>

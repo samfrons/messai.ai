@@ -4,13 +4,8 @@
  */
 
 import { BaseResearchAgent } from '../core/base-agent';
-import type {
-  AgentTask,
-  AgentCapability,
-  ValidationResult,
-  AgentConfiguration,
-} from '../types/agent.types';
-import type { ResearchInsight, TrendAnalysis, ResearchGap } from '../types/research.types';
+import type { AgentTask, ValidationResult, AgentConfiguration } from '../types/agent.types';
+import type { ResearchInsight } from '../types/research.types';
 
 interface InsightGenerationInput {
   analysisScope: 'global' | 'filtered' | 'specific';
@@ -159,7 +154,7 @@ export class InsightsGenerator extends BaseResearchAgent {
     }
   }
 
-  private async generateTrendInsights(input: InsightGenerationInput): Promise<ResearchInsight[]> {
+  private async generateTrendInsights(_input: InsightGenerationInput): Promise<ResearchInsight[]> {
     // In production, this would analyze:
     // 1. Publication patterns over time
     // 2. Performance metric trends
@@ -233,7 +228,7 @@ export class InsightsGenerator extends BaseResearchAgent {
     return trends;
   }
 
-  private async generateGapInsights(input: InsightGenerationInput): Promise<ResearchInsight[]> {
+  private async generateGapInsights(_input: InsightGenerationInput): Promise<ResearchInsight[]> {
     const gaps: ResearchInsight[] = [
       {
         id: 'gap-1',
@@ -297,7 +292,7 @@ export class InsightsGenerator extends BaseResearchAgent {
   }
 
   private async generatePredictionInsights(
-    input: InsightGenerationInput
+    _input: InsightGenerationInput
   ): Promise<ResearchInsight[]> {
     const predictions: ResearchInsight[] = [
       {
@@ -334,7 +329,7 @@ export class InsightsGenerator extends BaseResearchAgent {
   }
 
   private async generateRecommendationInsights(
-    input: InsightGenerationInput
+    _input: InsightGenerationInput
   ): Promise<ResearchInsight[]> {
     const recommendations: ResearchInsight[] = [
       {

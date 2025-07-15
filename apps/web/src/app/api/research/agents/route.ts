@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // Mock implementation until research agents are fully integrated
+// import { ResearchOrchestrator, AgentFactory } from '@messai/feature-research-agents';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);

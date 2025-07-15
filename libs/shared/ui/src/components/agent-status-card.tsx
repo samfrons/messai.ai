@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from './card';
 import { Badge } from './badge';
 
@@ -39,7 +38,6 @@ const statusIcons = {
 };
 
 export function AgentStatusCard({
-  agentId,
   name,
   description,
   capabilities,

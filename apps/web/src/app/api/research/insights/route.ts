@@ -1,72 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ResearchOrchestrator, AgentFactory, AgentTask } from '@messai/feature-research-agents';
 
-// Initialize orchestrator and agents
-const orchestrator = new ResearchOrchestrator();
-const agents = AgentFactory.createAllAgents();
-agents.forEach((agent) => orchestrator.registerAgent(agent));
+// Mock implementation until research agents are fully integrated
+// import { ResearchOrchestrator, AgentFactory, AgentTask } from '@messai/feature-research-agents';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const {
-      analysisScope = 'global',
-      insightTypes = ['trend', 'gap', 'recommendation'],
-      timeframe,
-      filters,
-      priority = 'medium',
-      userId,
-    } = body;
+    await request.json(); // Parse body but don't destructure since we're mocking
 
-    // Create insight generation task
-    const task: AgentTask = {
-      id: `insight-task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      type: 'insight_generation',
-      priority,
-      input: {
-        analysisScope,
-        insightTypes,
-        timeframe,
-        filters,
-        priority: priority === 'critical' ? 'breakthrough' : priority,
-      },
-      metadata: {
-        userId,
-        source: 'api_request',
-        createdAt: new Date(),
-      },
-    };
-
-    // Execute through insights generator
-    const result = await orchestrator.executeTask(task);
-
-    if (result.status === 'error') {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: result.error?.message || 'Failed to generate insights',
-            code: result.error?.code || 'GENERATION_ERROR',
-          },
-        },
-        { status: 500 }
-      );
-    }
-
+    // Mock response for now
     return NextResponse.json({
       data: {
         task: {
-          id: task.id,
-          type: task.type,
-          status: result.status,
+          id: `insight-task-${Date.now()}`,
+          type: 'insight_generation',
+          status: 'success',
         },
-        insights: result.output.insights || [],
-        summary: result.output.summary,
-        confidence: result.output.confidence,
+        insights: [
+          {
+            id: 'insight-1',
+            type: 'trend',
+            title: 'Rising Interest in 2D Material Electrodes',
+            description:
+              'Research on 2D materials for MFC electrodes has increased 340% in the last 3 years.',
+            significance: 'high',
+            confidence: 0.89,
+            actionable: true,
+          },
+        ],
+        summary: 'Generated 1 research insight focusing on emerging 2D material trends.',
+        confidence: 0.89,
         metadata: {
-          generatedAt: result.output.generatedAt,
-          totalPapersAnalyzed: result.output.totalPapersAnalyzed,
-          processingTime: result.metadata.duration,
+          generatedAt: new Date(),
+          totalPapersAnalyzed: 100,
+          processingTime: 1500,
         },
       },
       error: null,

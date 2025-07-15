@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from './card';
 import { Badge } from './badge';
 
@@ -51,7 +50,7 @@ export function ResearchInsightsPanel({
     if (!acc[insight.type]) {
       acc[insight.type] = [];
     }
-    acc[insight.type].push(insight);
+    acc[insight.type]!.push(insight);
     return acc;
   }, {} as Record<string, ResearchInsight[]>);
 

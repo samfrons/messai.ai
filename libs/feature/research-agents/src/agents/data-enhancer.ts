@@ -4,12 +4,7 @@
  */
 
 import { BaseResearchAgent } from '../core/base-agent';
-import type {
-  AgentTask,
-  AgentCapability,
-  ValidationResult,
-  AgentConfiguration,
-} from '../types/agent.types';
+import type { AgentTask, ValidationResult, AgentConfiguration } from '../types/agent.types';
 import type {
   DataEnhancementInput,
   DataEnhancementResult,

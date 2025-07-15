@@ -5,12 +5,7 @@
  */
 
 import { BaseResearchAgent } from '../core/base-agent';
-import type {
-  AgentTask,
-  AgentCapability,
-  ValidationResult,
-  AgentConfiguration,
-} from '../types/agent.types';
+import type { AgentTask, ValidationResult, AgentConfiguration } from '../types/agent.types';
 import type { KnowledgeGraphNode, KnowledgeGraphUpdate } from '../types/research.types';
 
 interface KnowledgeGraphInput {
@@ -153,7 +148,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async expandGraph(input: KnowledgeGraphInput): Promise<KnowledgeGraphResult> {
+  private async expandGraph(_input: KnowledgeGraphInput): Promise<KnowledgeGraphResult> {
     this.log('info', 'Expanding knowledge graph');
 
     // In production, this would:
@@ -305,7 +300,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async calculateCentrality(input: KnowledgeGraphInput): Promise<any> {
+  private async calculateCentrality(_input: KnowledgeGraphInput): Promise<any> {
     // Mock centrality analysis
     return {
       nodes: [],
@@ -334,7 +329,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async performClustering(input: KnowledgeGraphInput): Promise<any> {
+  private async performClustering(_input: KnowledgeGraphInput): Promise<any> {
     // Mock clustering analysis
     return {
       nodes: [],
@@ -370,7 +365,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async findPaths(input: KnowledgeGraphInput): Promise<any> {
+  private async findPaths(_input: KnowledgeGraphInput): Promise<any> {
     // Mock pathfinding analysis
     return {
       nodes: [],
@@ -383,7 +378,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async calculateSimilarity(input: KnowledgeGraphInput): Promise<any> {
+  private async calculateSimilarity(_input: KnowledgeGraphInput): Promise<any> {
     // Mock similarity analysis
     return {
       nodes: [],
@@ -396,7 +391,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async discoverRelationships(input: KnowledgeGraphInput): Promise<KnowledgeGraphResult> {
+  private async discoverRelationships(_input: KnowledgeGraphInput): Promise<KnowledgeGraphResult> {
     this.log('info', 'Discovering new relationships');
 
     // In production, this would use ML models to:
@@ -433,7 +428,7 @@ export class KnowledgeGraphAgent extends BaseResearchAgent {
     };
   }
 
-  private async validateGraph(input: KnowledgeGraphInput): Promise<KnowledgeGraphResult> {
+  private async validateGraph(_input: KnowledgeGraphInput): Promise<KnowledgeGraphResult> {
     this.log('info', 'Validating knowledge graph');
 
     // In production, this would:
