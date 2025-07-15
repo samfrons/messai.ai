@@ -261,10 +261,52 @@ Experiment Tracking
   - Monthly research webinars
   - Annual user conference
 
-- **Key Architecture:** Nx Monorepo [Claude help here]
+- **Key Architecture:** Nx Monorepo with Git Worktrees for parallel development
 - **Development Strategy:** Independent worktrees for each of the core features
   with sub-agents working within same context but on different, coordinated
-  workstreams [Claude help here]
+  workstreams
+
+### Git Worktree Structure
+
+The project uses Git worktrees to enable parallel development:
+
+```
+messai-ai/                    # Main development worktree
+├── .git/                     # Git repository
+├── apps/
+├── docs/
+└── ...
+
+messai-ai-deployment/         # Deployment worktree (../messai-ai-deployment)
+├── .git -> ../messai-ai/.git/worktrees/deployment/
+├── apps/
+├── docs/
+└── ...
+```
+
+**Branch Structure:**
+
+- `main` - Active development branch
+- `deployment` - Stable, deployment-ready branch
+- `feature/*` - Feature development branches
+- `hotfix/*` - Emergency fixes for deployment
+
+**Worktree Commands:**
+
+```bash
+# List all worktrees
+git worktree list
+
+# Switch to deployment worktree
+cd ../messai-ai-deployment
+
+# Update deployment from main
+git merge main
+
+# Deploy after validation
+pnpm schema:validate && pnpm build:prod
+git push origin deployment
+```
 
 ### Parameter System Architecture (CRITICAL FOR AI AGENTS)
 
@@ -302,6 +344,9 @@ function isCategoricalVariable(param: any): boolean {
   // Strings without units are categorical
   if (param.type === 'string' && !param.unit) return true;
 
+  // If parameter has a unit, it's measurable regardless of name patterns
+  if (param.unit) return false;
+
   // Specific biological categorical exclusions
   const biologicalCategoricalIds = [
     'microbial_species',
@@ -327,6 +372,9 @@ function isCategoricalVariable(param: any): boolean {
    (categorical)
 4. **Filter** categorical variables when displaying parameter lists or detail
    pages
+5. **Include** biological measurements with units (e.g.,
+   `bacterial_concentration`, `substrate_concentration`)
+6. **Preserve** any parameter that has a unit, regardless of name patterns
 
 For complete parameter system documentation, see
 [Parameter System Guide](/docs/ai-context/parameter-system-guide.md).
@@ -390,6 +438,25 @@ pnpm type-check
 pnpm clean
 ```
 
+#### Deployment Commands
+
+```bash
+# Schema validation (prevents deployment failures)
+pnpm schema:validate
+
+# Compare development vs production schemas
+pnpm schema:diff
+
+# Type check with production schema
+pnpm type-check:prod
+
+# Build with production configuration
+pnpm build:prod
+
+# Verify lockfile is in sync (matches Vercel's process)
+pnpm install --frozen-lockfile
+```
+
 #### Database Commands
 
 ```bash
@@ -439,6 +506,19 @@ nx run <project>:<target>
 - Be brutally honest about whether an idea is good or bad.
 - Make side effects explicit and minimal.
 - Design database schema to be evolution-friendly (avoid breaking changes).
+
+### Deployment Safety Guidelines
+
+- **Always update lockfile**: Run `pnpm install` after modifying `package.json`
+- **Test with production schema**: Use `pnpm type-check:prod` before deploying
+- **Validate schema compatibility**: Run `pnpm schema:validate` to prevent type
+  mismatches
+- **Use cross-environment utilities**: Leverage utilities like `author-utils.ts`
+  for schema differences
+- **Test frozen lockfile**: Run `pnpm install --frozen-lockfile` to simulate
+  Vercel's process
+- **Never ignore lockfile changes**: Always commit `pnpm-lock.yaml` with
+  dependency updates
 
 ### File Organization & Modularity
 

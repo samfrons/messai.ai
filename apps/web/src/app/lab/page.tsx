@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Card,
   Button,
@@ -235,6 +235,7 @@ export default function LabPage() {
               selectedModel={selectedModel}
               viewScale={viewScale}
               visualizationMode={visualizationMode}
+              parameters={parameters}
             />
           </Card>
         </div>

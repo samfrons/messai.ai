@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -6,16 +6,38 @@ interface BenchtopReactorProps {
   scale?: number;
   showAnimation?: boolean;
   visualizationMode?: 'static' | 'biofilm' | 'flow';
+  parameters?: {
+    chamberLength?: number;
+    chamberWidth?: number;
+    chamberHeight?: number;
+    temperature?: number;
+    ph?: number;
+    flowRate?: number;
+    biofilmThickness?: number;
+    anodeMaterial?: string;
+    cathodeMaterial?: string;
+    mixingSpeed?: number;
+    [key: string]: any;
+  };
 }
 
 export default function BenchtopReactor({
   scale = 1,
   showAnimation = false,
   visualizationMode = 'static',
+  parameters: _parameters = {},
 }: BenchtopReactorProps) {
   const groupRef = useRef<THREE.Group>(null);
   const liquidRef = useRef<THREE.Mesh>(null);
   const bubbleRefs = useRef<THREE.Mesh[]>([]);
+
+  // Calculate dynamic properties based on parameters
+  // Note: These would be used for dynamic visualizations
+  // const temperature = parameters.temperature || 25;
+  // const ph = parameters.ph || 7.0;
+  // const flowRate = parameters.flowRate || 10;
+  // const biofilmThickness = parameters.biofilmThickness || 0.1;
+  // const mixingSpeed = parameters.mixingSpeed || 100;
 
   useFrame((state, delta) => {
     if (groupRef.current && showAnimation) {

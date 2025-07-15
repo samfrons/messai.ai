@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { CostAnalysis } from '@/types/parameters';
+import type { CostAnalysis } from '../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { DollarSign, TrendingDown, TrendingUp } from '../../ui/icons';
 import { Separator } from '../../ui/separator';
@@ -37,7 +36,7 @@ export function CostAnalysisSection({ analysis }: CostAnalysisSectionProps) {
             <div className="space-y-3">
               <h4 className="font-medium">Cost Breakdown</h4>
               <div className="space-y-2">
-                {analysis.breakdown.map((item, index) => (
+                {analysis.breakdown.map((item: any, index: number) => (
                   <div
                     key={index}
                     className="flex items-center justify-between py-2 border-b last:border-0"
@@ -69,7 +68,7 @@ export function CostAnalysisSection({ analysis }: CostAnalysisSectionProps) {
               <div className="space-y-3">
                 <h4 className="font-medium">Key Cost Factors</h4>
                 <ul className="space-y-1 ml-4">
-                  {analysis.factors.map((factor, index) => (
+                  {analysis.factors.map((factor: any, index: number) => (
                     <li key={index} className="text-sm text-muted-foreground">
                       • {factor}
                     </li>
@@ -89,7 +88,7 @@ export function CostAnalysisSection({ analysis }: CostAnalysisSectionProps) {
                   <h4 className="font-medium">Economic Advantages</h4>
                 </div>
                 <ul className="space-y-1 ml-4">
-                  {analysis.economicAdvantages.map((advantage, index) => (
+                  {analysis.economicAdvantages.map((advantage: any, index: number) => (
                     <li key={index} className="text-sm text-muted-foreground">
                       • {advantage}
                     </li>
@@ -109,7 +108,7 @@ export function CostAnalysisSection({ analysis }: CostAnalysisSectionProps) {
                   <h4 className="font-medium">Future Cost Projections</h4>
                 </div>
                 <ul className="space-y-1 ml-4">
-                  {analysis.futureProjections.map((projection, index) => (
+                  {analysis.futureProjections.map((projection: any, index: number) => (
                     <li key={index} className="text-sm text-muted-foreground">
                       • {projection}
                     </li>

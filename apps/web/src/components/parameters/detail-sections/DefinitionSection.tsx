@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { Definition } from '@/types/parameters';
+import type { Definition } from '../../../types/parameters';
 import { Card } from '@messai/ui';
 import { BookOpen } from '../../ui/icons';
 
@@ -31,7 +30,7 @@ export function DefinitionSection({ definition }: DefinitionSectionProps) {
               <div className="space-y-2">
                 <p className="font-medium text-sm">Where:</p>
                 <ul className="space-y-1 ml-4">
-                  {definition.variables.map((variable, index) => (
+                  {definition.variables.map((variable: any, index: number) => (
                     <li key={index} className="text-sm">
                       <span className="font-mono font-medium">{variable.symbol}</span>
                       {' = '}

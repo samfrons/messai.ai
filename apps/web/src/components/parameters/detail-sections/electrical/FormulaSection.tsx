@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { Formula } from '@/types/parameters';
+import type { Formula } from '../../../../types/parameters';
 import { Card } from '@messai/ui';
 import { Calculator, Info } from '../../../ui/icons';
 import { Alert, AlertDescription } from '../../../ui/alert';
@@ -32,7 +31,7 @@ export function FormulaSection({ formula }: FormulaSectionProps) {
           <div className="space-y-3">
             <h4 className="font-medium text-sm">Where:</h4>
             <div className="space-y-2">
-              {formula.variables.map((variable, index) => (
+              {formula.variables.map((variable: any, index: number) => (
                 <div key={index} className="flex items-start gap-3 ml-4">
                   <span className="font-mono font-bold text-primary min-w-[3rem]">
                     {variable.symbol}

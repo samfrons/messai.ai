@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { SpeciesConsideration } from '@/types/parameters';
+import type { SpeciesConsideration } from '../../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Bug, Dna } from '../../../ui/icons';
 import { Separator } from '../../../ui/separator';
@@ -42,14 +41,16 @@ export function SpeciesConsiderationsSection({ species }: SpeciesConsiderationsS
                 <div className="space-y-2">
                   <h5 className="text-sm font-medium text-muted-foreground">Characteristics</h5>
                   <div className="grid gap-2">
-                    {sp.characteristics.map((char, idx) => (
-                      <div key={idx} className="flex items-center justify-between py-1">
-                        <span className="text-sm">{char.property}</span>
-                        <Badge variant="outline" className="font-mono text-xs">
-                          {char.value}
-                        </Badge>
-                      </div>
-                    ))}
+                    {sp.characteristics.map(
+                      (char: { property: string; value: string }, idx: number) => (
+                        <div key={idx} className="flex items-center justify-between py-1">
+                          <span className="text-sm">{char.property}</span>
+                          <Badge variant="outline" className="font-mono text-xs">
+                            {char.value}
+                          </Badge>
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               )}
@@ -61,7 +62,7 @@ export function SpeciesConsiderationsSection({ species }: SpeciesConsiderationsS
                     Key Proteins
                   </h5>
                   <div className="flex flex-wrap gap-2">
-                    {sp.proteins.map((protein, idx) => (
+                    {sp.proteins.map((protein: string, idx: number) => (
                       <Badge key={idx} variant="secondary" className="font-mono">
                         {protein}
                       </Badge>

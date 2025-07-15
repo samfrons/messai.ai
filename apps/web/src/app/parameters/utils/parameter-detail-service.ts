@@ -31,32 +31,6 @@ const detailCache = new Map<string, ParameterDetail>();
  * Check if a parameter is a categorical variable (should be filtered out)
  */
 function isCategoricalVariable(unifiedParam: any): boolean {
-  // Filter out categorical variables that are selections rather than measurable parameters
-  const categoricalPatterns = [
-    'species',
-    'strain',
-    'organism',
-    'microbe',
-    'bacteria',
-    'material_type',
-    'membrane_type',
-    'electrode_type',
-    'system_type',
-    'configuration',
-    'method',
-    'technique',
-    'source',
-    'origin',
-    'brand',
-    'model',
-    'vendor',
-    'supplier',
-    'manufacturer',
-    'selection',
-    'choice',
-    'option',
-  ];
-
   const paramName = unifiedParam.name?.toLowerCase() || '';
   const paramId = unifiedParam.id?.toLowerCase() || '';
 
@@ -70,7 +44,12 @@ function isCategoricalVariable(unifiedParam: any): boolean {
     return true;
   }
 
-  // Specific biological categorical variables to exclude
+  // If parameter has a unit, it's likely measurable regardless of name patterns
+  if (unifiedParam.unit) {
+    return false;
+  }
+
+  // Specific biological categorical variables to exclude (known dropdown selections)
   const biologicalCategoricalIds = [
     'microbial_species',
     'dominant_species',
@@ -83,6 +62,26 @@ function isCategoricalVariable(unifiedParam: any): boolean {
   if (biologicalCategoricalIds.includes(paramId)) {
     return true;
   }
+
+  // Refined categorical patterns - focus on truly categorical selections
+  const categoricalPatterns = [
+    'material_type',
+    'membrane_type',
+    'electrode_type',
+    'system_type',
+    'configuration_type',
+    'method_type',
+    'technique_type',
+    'source_type',
+    'brand_name',
+    'model_name',
+    'vendor_name',
+    'supplier_name',
+    'manufacturer_name',
+    'selection',
+    'choice',
+    'option',
+  ];
 
   // Check for categorical patterns in name or ID
   return categoricalPatterns.some(

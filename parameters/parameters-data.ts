@@ -17,7 +17,7 @@ export interface Parameter {
   name: string;
   description: string;
   unit: string;
-  type: 'number' | 'string' | 'boolean' | 'select' | 'object';
+  type: 'number' | 'string' | 'boolean' | 'select' | 'array' | 'object';
   category: string;
   subcategory: string;
   range?: {

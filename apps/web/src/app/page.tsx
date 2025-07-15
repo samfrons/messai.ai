@@ -176,10 +176,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative">
+      <section className="min-h-[80vh] flex items-center relative">
         <div className="absolute inset-0 bg-gradient-to-b from-cream via-cream to-gray-50 -z-10" />
 
-        <div className="container-grid py-24">
+        <div className="container-grid py-12">
           <div className="grid-12">
             <div className="col-span-12 lg:col-span-6 flex flex-col justify-center space-y-8">
               <div className={`animate-fade ${isVisible.hero ? 'opacity-100' : 'opacity-0'}`}>
@@ -197,21 +197,26 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-center gap-4">
-                <Button size="lg" className="group">
+                <Button
+                  size="lg"
+                  className="group"
+                  iconAfter={
+                    <svg
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  }
+                >
                   Get Started
-                  <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
                 </Button>
                 <a
                   href="/auth/signin"
@@ -452,21 +457,27 @@ export default function HomePage() {
                   isVisible.cta ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
-                <Button size="lg" variant="secondary" className="group">
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="group"
+                  iconAfter={
+                    <svg
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  }
+                >
                   Get Started
-                  <svg
-                    className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
                 </Button>
                 <a href="/docs" className="text-sm opacity-60 hover:opacity-100 transition-opacity">
                   Read the documentation

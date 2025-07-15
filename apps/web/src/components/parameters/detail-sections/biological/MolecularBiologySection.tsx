@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { MolecularBiology } from '@/types/parameters';
+import type { MolecularBiology } from '../../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Dna, GitMerge, Activity } from '../../../ui/icons';
 import { Separator } from '../../../ui/separator';
@@ -31,7 +30,7 @@ export function MolecularBiologySection({ biology }: MolecularBiologySectionProp
                 <h4 className="font-medium">Gene Expression</h4>
               </div>
               <div className="space-y-2">
-                {biology.geneExpression.map((gene, index) => (
+                {biology.geneExpression.map((gene: string, index: number) => (
                   <Badge key={index} variant="outline" className="mr-2">
                     {gene}
                   </Badge>
@@ -47,16 +46,18 @@ export function MolecularBiologySection({ biology }: MolecularBiologySectionProp
               <div className="space-y-3">
                 <h4 className="font-medium">Key Proteins</h4>
                 <div className="space-y-3">
-                  {biology.proteins.map((protein, index) => (
-                    <div key={index} className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="font-mono">
-                          {protein.name}
-                        </Badge>
+                  {biology.proteins.map(
+                    (protein: { name: string; function: string }, index: number) => (
+                      <div key={index} className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Badge variant="secondary" className="font-mono">
+                            {protein.name}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground ml-4">{protein.function}</p>
                       </div>
-                      <p className="text-sm text-muted-foreground ml-4">{protein.function}</p>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </div>
             </>
@@ -73,7 +74,7 @@ export function MolecularBiologySection({ biology }: MolecularBiologySectionProp
                   <h4 className="font-medium">Metabolic Pathways</h4>
                 </div>
                 <ul className="space-y-2 ml-4">
-                  {biology.pathways.map((pathway, index) => (
+                  {biology.pathways.map((pathway: string, index: number) => (
                     <li key={index} className="text-sm text-muted-foreground">
                       • {pathway}
                     </li>

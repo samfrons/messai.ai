@@ -30,6 +30,9 @@ system.
 - `current_density` (A/m²) - electrical current per unit area
 - `biofilm_thickness` (μm) - biological layer thickness
 - `growth_rate` (1/h) - microbial growth rate
+- `bacterial_concentration` (cells/mL) - measurable microbial density
+- `substrate_concentration` (g/L) - measurable substrate density
+- `microbial_community_composition` (%) - measurable community structure
 
 #### Variables
 
@@ -67,32 +70,6 @@ The system implements categorical variable filtering in two key files:
 
 ```typescript
 function isCategoricalVariable(unifiedParam: any): boolean {
-  // Filter out categorical variables that are selections rather than measurable parameters
-  const categoricalPatterns = [
-    'species',
-    'strain',
-    'organism',
-    'microbe',
-    'bacteria',
-    'material_type',
-    'membrane_type',
-    'electrode_type',
-    'system_type',
-    'configuration',
-    'method',
-    'technique',
-    'source',
-    'origin',
-    'brand',
-    'model',
-    'vendor',
-    'supplier',
-    'manufacturer',
-    'selection',
-    'choice',
-    'option',
-  ];
-
   const paramName = unifiedParam.name?.toLowerCase() || '';
   const paramId = unifiedParam.id?.toLowerCase() || '';
 
@@ -106,7 +83,12 @@ function isCategoricalVariable(unifiedParam: any): boolean {
     return true;
   }
 
-  // Specific biological categorical variables to exclude
+  // If parameter has a unit, it's likely measurable regardless of name patterns
+  if (unifiedParam.unit) {
+    return false;
+  }
+
+  // Specific biological categorical variables to exclude (known dropdown selections)
   const biologicalCategoricalIds = [
     'microbial_species',
     'dominant_species',
@@ -119,6 +101,26 @@ function isCategoricalVariable(unifiedParam: any): boolean {
   if (biologicalCategoricalIds.includes(paramId)) {
     return true;
   }
+
+  // Refined categorical patterns - focus on truly categorical selections
+  const categoricalPatterns = [
+    'material_type',
+    'membrane_type',
+    'electrode_type',
+    'system_type',
+    'configuration_type',
+    'method_type',
+    'technique_type',
+    'source_type',
+    'brand_name',
+    'model_name',
+    'vendor_name',
+    'supplier_name',
+    'manufacturer_name',
+    'selection',
+    'choice',
+    'option',
+  ];
 
   // Check for categorical patterns in name or ID
   return categoricalPatterns.some(
@@ -153,12 +155,25 @@ After filtering implementation:
 
 ### Categories Affected
 
-The filtering primarily affects these categories:
+The refined filtering now focuses on truly categorical selections:
 
-- **Biological Parameters**: Species selections removed
-- **Material Parameters**: Material type selections removed
-- **System Configuration**: Setup type selections removed
-- **Operational Parameters**: Method selections removed
+- **Species Selection Variables**: Only dropdown selections like
+  `microbial_species` filtered
+- **Material Type Variables**: Only selection dropdowns like `material_type`
+  filtered
+- **System Configuration Variables**: Only setup type selections filtered
+- **Preserved Measurements**: Parameters with units are always included
+  regardless of name patterns
+
+### Key Refinements Made
+
+1. **Unit-Based Inclusion**: Parameters with units are never filtered out
+2. **Removed Overly Broad Patterns**: No longer filter based on 'species',
+   'bacteria', 'microbe', 'organism' patterns
+3. **Precise Pattern Matching**: Only filter specific categorical patterns like
+   'material_type', 'electrode_type'
+4. **Biological Measurements Preserved**: Parameters like
+   `bacterial_concentration` (cells/mL) now correctly included
 
 ## Usage Guidelines
 

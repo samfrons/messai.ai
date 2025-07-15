@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { TransferMechanism } from '@/types/parameters';
+import type { TransferMechanism } from '../../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { GitBranch, Zap } from '../../../ui/icons';
 import { Progress } from '../../../ui/progress';
@@ -65,7 +64,7 @@ export function TransferMechanismsSection({ mechanisms }: TransferMechanismsSect
                 <div className="space-y-2">
                   <h5 className="text-xs font-medium text-muted-foreground">Common in species:</h5>
                   <div className="flex flex-wrap gap-1">
-                    {mechanism.species.map((sp, idx) => (
+                    {mechanism.species.map((sp: string, idx: number) => (
                       <Badge key={idx} variant="secondary" className="text-xs">
                         {sp}
                       </Badge>

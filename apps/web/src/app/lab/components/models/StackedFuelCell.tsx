@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -6,86 +6,185 @@ interface StackedFuelCellProps {
   scale?: number;
   showAnimation?: boolean;
   visualizationMode?: 'static' | 'biofilm' | 'flow';
+  parameters?: {
+    numberOfChambers?: number;
+    chamberLength?: number;
+    chamberWidth?: number;
+    chamberHeight?: number;
+    electrodeSpacing?: number;
+    anodeMaterial?: string;
+    cathodeMaterial?: string;
+    connectionType?: string;
+    temperature?: number;
+    ph?: number;
+    flowRate?: number;
+    biofilmThickness?: number;
+    operatingVoltage?: number;
+  };
 }
 
 export default function StackedFuelCell({
   scale = 1,
   showAnimation = false,
   visualizationMode = 'static',
+  parameters = {},
 }: StackedFuelCellProps) {
   const groupRef = useRef<THREE.Group>(null);
   const stackRefs = useRef<(THREE.Mesh | null)[]>([]);
+
+  // Calculate dynamic dimensions and properties
+  const stackConfig = useMemo(() => {
+    const stackCount = parameters.numberOfChambers || 5;
+    const baseLength = 2.5;
+    const baseWidth = 1.2;
+    const baseHeight = 0.25;
+
+    // Scale based on parameters
+    const lengthScale = parameters.chamberLength ? parameters.chamberLength / 100 : 1;
+    const widthScale = parameters.chamberWidth ? parameters.chamberWidth / 50 : 1;
+    const heightScale = parameters.chamberHeight ? parameters.chamberHeight / 30 : 1;
+
+    return {
+      count: stackCount,
+      length: baseLength * lengthScale,
+      width: baseWidth * widthScale,
+      height: baseHeight * heightScale,
+      spacing: 0.35 * heightScale,
+    };
+  }, [parameters]);
+
+  // Material colors based on selections
+  const materialColors = useMemo(() => {
+    const anodeColor =
+      {
+        'carbon-cloth': '#424242',
+        'carbon-paper': '#616161',
+        graphite: '#757575',
+        'carbon-felt': '#37474f',
+      }[parameters.anodeMaterial || 'carbon-cloth'] || '#81c784';
+
+    const cathodeColor =
+      {
+        platinum: '#c0c0c0',
+        'carbon-pt': '#9e9e9e',
+        mno2: '#8d6e63',
+        carbon: '#424242',
+      }[parameters.cathodeMaterial || 'platinum'] || '#64b5f6';
+
+    return { anodeColor, cathodeColor };
+  }, [parameters]);
+
+  // Connection type configuration
+  const connectionConfig = useMemo(() => {
+    const connectionType = parameters.connectionType || 'single';
+    const voltage = parameters.operatingVoltage || 0.5;
+
+    return {
+      type: connectionType,
+      voltage: voltage,
+      showSeries: connectionType === 'series' || connectionType === 'mixed',
+      showParallel: connectionType === 'parallel' || connectionType === 'mixed',
+    };
+  }, [parameters]);
+
+  // Environmental effects
+  const environmentalEffects = useMemo(() => {
+    const temp = parameters.temperature || 25;
+    const ph = parameters.ph || 7.0;
+    const flowRate = parameters.flowRate || 10;
+
+    const tempIntensity = Math.max(0.3, Math.min(1.0, (temp - 15) / 25));
+    const biofilmColor = ph < 6.5 ? '#ff9800' : ph > 7.5 ? '#2196f3' : '#4caf50';
+    const flowSpeed = Math.max(0.5, Math.min(3.0, flowRate / 10));
+
+    return { tempIntensity, biofilmColor, flowSpeed };
+  }, [parameters]);
 
   useFrame((state, delta) => {
     if (groupRef.current && showAnimation) {
       groupRef.current.rotation.y += delta * 0.15;
     }
 
-    // Animate individual stack elements
+    // Animate individual stack elements with dynamic flow speed
     if (visualizationMode === 'flow') {
       stackRefs.current.forEach((ref, i) => {
         if (ref) {
-          const offset = Math.sin(state.clock.elapsedTime * 2 + i * 0.5) * 0.02;
-          ref.position.y = i * 0.35 + offset;
+          const offset =
+            Math.sin(state.clock.elapsedTime * 2 * environmentalEffects.flowSpeed + i * 0.5) * 0.02;
+          ref.position.y = i * stackConfig.spacing + offset;
         }
       });
     }
   });
 
-  const stackCount = 5;
-
   return (
     <group ref={groupRef} scale={scale}>
-      {/* Base platform */}
+      {/* Base platform - dynamic dimensions */}
       <mesh position={[0, -0.2, 0]}>
-        <boxGeometry args={[3, 0.1, 1.5]} />
+        <boxGeometry args={[stackConfig.length * 1.2, 0.1, stackConfig.width * 1.25]} />
         <meshStandardMaterial color="#37474f" metalness={0.7} roughness={0.3} />
       </mesh>
 
-      {/* Stacked fuel cell units */}
-      {Array.from({ length: stackCount }).map((_, i) => {
+      {/* Stacked fuel cell units - dynamic count and dimensions */}
+      {Array.from({ length: stackConfig.count }).map((_, i) => {
         const isAnode = i % 2 === 0;
-        const yPosition = i * 0.35;
+        const yPosition = i * stackConfig.spacing;
 
         return (
           <group key={i}>
-            {/* Main cell body */}
+            {/* Main cell body - dynamic dimensions and materials */}
             <mesh
               position={[0, yPosition, 0]}
               ref={(el) => {
                 stackRefs.current[i] = el;
               }}
             >
-              <boxGeometry args={[2.5, 0.25, 1.2]} />
+              <boxGeometry args={[stackConfig.length, stackConfig.height, stackConfig.width]} />
               <meshStandardMaterial
-                color={isAnode ? '#81c784' : '#64b5f6'}
+                color={isAnode ? materialColors.anodeColor : materialColors.cathodeColor}
                 transparent
-                opacity={0.8}
+                opacity={0.8 * environmentalEffects.tempIntensity}
                 metalness={0.3}
                 roughness={0.4}
               />
             </mesh>
 
-            {/* Electrode tabs */}
-            <mesh position={[1.4, yPosition, 0]}>
-              <boxGeometry args={[0.2, 0.15, 0.8]} />
+            {/* Electrode tabs - dynamic positioning */}
+            <mesh position={[stackConfig.length * 0.56, yPosition, 0]}>
+              <boxGeometry args={[0.2, 0.15, stackConfig.width * 0.67]} />
               <meshStandardMaterial
-                color={isAnode ? '#ffd700' : '#c0c0c0'}
+                color={isAnode ? materialColors.anodeColor : materialColors.cathodeColor}
                 metalness={0.9}
                 roughness={0.1}
               />
             </mesh>
 
-            {/* Internal electrode structure */}
-            <mesh position={[0, yPosition + 0.05, 0]}>
-              <boxGeometry args={[2.3, 0.05, 1.0]} />
+            {/* Internal electrode structure - dynamic dimensions */}
+            <mesh position={[0, yPosition + stackConfig.height * 0.2, 0]}>
+              <boxGeometry
+                args={[
+                  stackConfig.length * 0.92,
+                  stackConfig.height * 0.2,
+                  stackConfig.width * 0.83,
+                ]}
+              />
               <meshStandardMaterial color="#424242" metalness={0.8} roughness={0.2} />
             </mesh>
 
-            {/* Separator membrane */}
-            <mesh position={[0, yPosition + 0.1, 0]}>
-              <boxGeometry args={[2.4, 0.02, 1.1]} />
-              <meshStandardMaterial color="#ffffff" transparent opacity={0.7} />
+            {/* Separator membrane - dynamic dimensions */}
+            <mesh position={[0, yPosition + stackConfig.height * 0.4, 0]}>
+              <boxGeometry
+                args={[
+                  stackConfig.length * 0.96,
+                  stackConfig.height * 0.08,
+                  stackConfig.width * 0.92,
+                ]}
+              />
+              <meshStandardMaterial
+                color="#ffffff"
+                transparent
+                opacity={0.7 * environmentalEffects.tempIntensity}
+              />
             </mesh>
 
             {/* Flow visualizations */}
@@ -123,15 +222,21 @@ export default function StackedFuelCell({
               </>
             )}
 
-            {/* Biofilm on electrodes (biofilm mode) */}
+            {/* Biofilm on electrodes (biofilm mode) - dynamic dimensions and color */}
             {visualizationMode === 'biofilm' && isAnode && (
-              <mesh position={[0, yPosition + 0.08, 0]}>
-                <boxGeometry args={[2.2, 0.03, 0.9]} />
+              <mesh position={[0, yPosition + stackConfig.height * 0.32, 0]}>
+                <boxGeometry
+                  args={[
+                    stackConfig.length * 0.88,
+                    (parameters.biofilmThickness || 0.1) * 0.3,
+                    stackConfig.width * 0.75,
+                  ]}
+                />
                 <meshStandardMaterial
-                  color="#4caf50"
+                  color={environmentalEffects.biofilmColor}
                   transparent
-                  opacity={0.6}
-                  emissive="#2e7d32"
+                  opacity={0.6 * environmentalEffects.tempIntensity}
+                  emissive={environmentalEffects.biofilmColor}
                   emissiveIntensity={0.2}
                 />
               </mesh>
@@ -140,44 +245,74 @@ export default function StackedFuelCell({
         );
       })}
 
-      {/* Series connection wires */}
-      <mesh position={[1.8, stackCount * 0.175, 0]}>
-        <cylinderGeometry args={[0.03, 0.03, stackCount * 0.35]} />
-        <meshStandardMaterial color="#ff7043" metalness={0.8} />
+      {/* Series connection wires - conditional based on connection type */}
+      {connectionConfig.showSeries && (
+        <mesh
+          position={[stackConfig.length * 0.72, stackConfig.count * stackConfig.spacing * 0.5, 0]}
+        >
+          <cylinderGeometry args={[0.03, 0.03, stackConfig.count * stackConfig.spacing]} />
+          <meshStandardMaterial
+            color="#ff7043"
+            metalness={0.8}
+            emissive="#ff7043"
+            emissiveIntensity={connectionConfig.voltage * 0.1}
+          />
+        </mesh>
+      )}
+
+      {/* Parallel connection wires - conditional based on connection type */}
+      {connectionConfig.showParallel && (
+        <mesh
+          position={[-stackConfig.length * 0.72, stackConfig.count * stackConfig.spacing * 0.5, 0]}
+        >
+          <cylinderGeometry args={[0.03, 0.03, stackConfig.count * stackConfig.spacing]} />
+          <meshStandardMaterial
+            color="#2196f3"
+            metalness={0.8}
+            emissive="#2196f3"
+            emissiveIntensity={connectionConfig.voltage * 0.1}
+          />
+        </mesh>
+      )}
+
+      {/* Terminal connections - dynamic positioning */}
+      <mesh
+        position={[stackConfig.length * 0.72, stackConfig.count * stackConfig.spacing + 0.1, 0]}
+      >
+        <boxGeometry args={[0.15, 0.1, stackConfig.width * 0.25]} />
+        <meshStandardMaterial
+          color="#d32f2f"
+          metalness={0.7}
+          emissive="#d32f2f"
+          emissiveIntensity={connectionConfig.voltage * 0.05}
+        />
+      </mesh>
+      <mesh position={[-stackConfig.length * 0.72, -0.1, 0]}>
+        <boxGeometry args={[0.15, 0.1, stackConfig.width * 0.25]} />
+        <meshStandardMaterial
+          color="#1976d2"
+          metalness={0.7}
+          emissive="#1976d2"
+          emissiveIntensity={connectionConfig.voltage * 0.05}
+        />
       </mesh>
 
-      {/* Parallel connection option */}
-      <mesh position={[-1.8, stackCount * 0.175, 0]}>
-        <cylinderGeometry args={[0.03, 0.03, stackCount * 0.35]} />
-        <meshStandardMaterial color="#2196f3" metalness={0.8} />
-      </mesh>
-
-      {/* Terminal connections */}
-      <mesh position={[1.8, stackCount * 0.35 + 0.1, 0]}>
-        <boxGeometry args={[0.15, 0.1, 0.3]} />
-        <meshStandardMaterial color="#d32f2f" metalness={0.7} />
-      </mesh>
-      <mesh position={[-1.8, -0.1, 0]}>
-        <boxGeometry args={[0.15, 0.1, 0.3]} />
-        <meshStandardMaterial color="#1976d2" metalness={0.7} />
-      </mesh>
-
-      {/* Mounting hardware */}
-      {[0, stackCount * 0.35].map((y, i) => (
+      {/* Mounting hardware - dynamic positioning */}
+      {[0, stackConfig.count * stackConfig.spacing].map((y, i) => (
         <group key={i}>
-          <mesh position={[-1.5, y, 0.8]}>
+          <mesh position={[-stackConfig.length * 0.6, y, stackConfig.width * 0.67]}>
             <cylinderGeometry args={[0.05, 0.05, 0.2]} />
             <meshStandardMaterial color="#616161" metalness={0.8} />
           </mesh>
-          <mesh position={[1.5, y, 0.8]}>
+          <mesh position={[stackConfig.length * 0.6, y, stackConfig.width * 0.67]}>
             <cylinderGeometry args={[0.05, 0.05, 0.2]} />
             <meshStandardMaterial color="#616161" metalness={0.8} />
           </mesh>
-          <mesh position={[-1.5, y, -0.8]}>
+          <mesh position={[-stackConfig.length * 0.6, y, -stackConfig.width * 0.67]}>
             <cylinderGeometry args={[0.05, 0.05, 0.2]} />
             <meshStandardMaterial color="#616161" metalness={0.8} />
           </mesh>
-          <mesh position={[1.5, y, -0.8]}>
+          <mesh position={[stackConfig.length * 0.6, y, -stackConfig.width * 0.67]}>
             <cylinderGeometry args={[0.05, 0.05, 0.2]} />
             <meshStandardMaterial color="#616161" metalness={0.8} />
           </mesh>

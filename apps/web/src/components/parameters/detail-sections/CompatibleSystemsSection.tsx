@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { CompatibleSystems } from '@/types/parameters';
+import type { CompatibleSystems } from '../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Network, Thermometer, Globe } from '../../ui/icons';
 import { Separator } from '../../ui/separator';
@@ -31,7 +30,7 @@ export function CompatibleSystemsSection({ systems }: CompatibleSystemsSectionPr
                 <h4 className="font-medium">Operating Conditions</h4>
               </div>
               <div className="grid gap-2">
-                {systems.operatingConditions.map((condition, index) => (
+                {systems.operatingConditions.map((condition: any, index: number) => (
                   <div key={index} className="flex items-center justify-between py-1">
                     <span className="text-sm font-medium">{condition.parameter}</span>
                     <div className="flex items-center gap-2">
@@ -57,7 +56,7 @@ export function CompatibleSystemsSection({ systems }: CompatibleSystemsSectionPr
               <div className="space-y-3">
                 <h4 className="font-medium">System Applications</h4>
                 <div className="space-y-3">
-                  {systems.applications.map((app, index) => (
+                  {systems.applications.map((app: any, index: number) => (
                     <div key={index} className="space-y-1">
                       <div className="flex items-center justify-between">
                         <h5 className="font-medium text-sm">{app.name}</h5>
@@ -88,7 +87,7 @@ export function CompatibleSystemsSection({ systems }: CompatibleSystemsSectionPr
                   <h4 className="font-medium">Environmental Compatibility</h4>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {systems.environments.map((env, index) => (
+                  {systems.environments.map((env: any, index: number) => (
                     <Badge key={index} variant="secondary">
                       {env}
                     </Badge>

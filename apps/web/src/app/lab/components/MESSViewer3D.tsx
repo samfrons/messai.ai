@@ -17,6 +17,25 @@ interface MESSViewer3DProps {
   selectedModel?: string;
   viewScale?: 'molecular' | 'system' | 'industrial';
   visualizationMode?: 'static' | 'biofilm' | 'flow';
+  parameters?: {
+    chamberLength?: number;
+    chamberWidth?: number;
+    chamberHeight?: number;
+    electrodeSpacing?: number;
+    membraneThickness?: number;
+    numberOfChambers?: number;
+    anodeMaterial?: string;
+    cathodeMaterial?: string;
+    membraneType?: string;
+    temperature?: number;
+    ph?: number;
+    flowRate?: number;
+    biofilmThickness?: number;
+    operatingVoltage?: number;
+    connectionType?: string;
+    microbialSpecies?: string;
+    [key: string]: any;
+  };
 }
 
 // Enhanced MESS model component with detailed models
@@ -25,11 +44,13 @@ function MESSModel({
   scale = 1,
   showAnimation = false,
   visualizationMode = 'static',
+  parameters = {},
 }: {
   type: string;
   scale?: number;
   showAnimation?: boolean;
   visualizationMode?: 'static' | 'biofilm' | 'flow';
+  parameters?: any;
 }) {
   // Render specific model based on type
   const renderModel = () => {
@@ -40,6 +61,7 @@ function MESSModel({
             scale={scale}
             showAnimation={showAnimation}
             visualizationMode={visualizationMode}
+            parameters={parameters}
           />
         );
 
@@ -49,6 +71,7 @@ function MESSModel({
             scale={scale}
             showAnimation={showAnimation}
             visualizationMode={visualizationMode}
+            parameters={parameters}
           />
         );
 
@@ -58,6 +81,7 @@ function MESSModel({
             scale={scale}
             showAnimation={showAnimation}
             visualizationMode={visualizationMode}
+            parameters={parameters}
           />
         );
 
@@ -113,10 +137,12 @@ function Scene({
   selectedModel,
   viewScale,
   visualizationMode,
+  parameters,
 }: {
   selectedModel: string;
   viewScale: string;
   visualizationMode: 'static' | 'biofilm' | 'flow';
+  parameters?: any;
 }) {
   // Calculate scale based on view level and model type
   const getScaleForView = (viewScale: string, model: string) => {
@@ -178,6 +204,7 @@ function Scene({
         scale={scale}
         showAnimation={showAnimation}
         visualizationMode={visualizationMode}
+        parameters={parameters}
       />
 
       {/* Camera controls - adjusted for better framing */}
@@ -201,6 +228,7 @@ export default function MESSViewer3D({
   selectedModel = 'microfluidic',
   viewScale = 'system',
   visualizationMode = 'static',
+  parameters = {},
 }: MESSViewer3DProps) {
   const [isWebGLSupported, setIsWebGLSupported] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -281,6 +309,7 @@ export default function MESSViewer3D({
                 selectedModel={selectedModel}
                 viewScale={viewScale}
                 visualizationMode={visualizationMode}
+                parameters={parameters}
               />
             </Suspense>
           </Canvas>
@@ -291,6 +320,7 @@ export default function MESSViewer3D({
           selectedModel={selectedModel}
           viewScale={viewScale}
           visualizationMode={visualizationMode}
+          parameters={parameters}
         />
 
         {/* Loading overlay */}

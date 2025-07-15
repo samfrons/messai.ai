@@ -39,20 +39,23 @@ function parseSchema(schemaContent: string): SchemaModel[] {
     while ((fieldMatch = fieldRegex.exec(modelContent)) !== null) {
       const fieldName = fieldMatch[1];
       const fieldType = fieldMatch[2];
-      const attributes = fieldMatch[3]
+      const attributesStr = fieldMatch[3] || '';
+      const attributes = attributesStr
         .trim()
         .split(/\s+/)
         .filter((attr) => attr.length > 0);
 
       // Skip non-field lines (comments, relations, etc.)
-      if (fieldName.startsWith('//') || fieldName.startsWith('@@') || fieldName === 'map') {
+      if (fieldName?.startsWith('//') || fieldName?.startsWith('@@') || fieldName === 'map') {
         continue;
       }
 
-      fields[fieldName] = {
-        type: fieldType,
-        attributes: attributes,
-      };
+      if (fieldName) {
+        fields[fieldName] = {
+          type: fieldType || 'unknown',
+          attributes: attributes,
+        };
+      }
     }
 
     models.push({
@@ -233,7 +236,7 @@ function main() {
     const prodSchema = readFileSync(prodSchemaPath, 'utf8');
 
     const differences = compareSchemas(devSchema, prodSchema);
-    formatDifferences(differences);
+    formatDifferences(differences || []);
   } catch (error) {
     console.error('❌ Schema comparison failed:', error instanceof Error ? error.message : error);
     process.exit(1);
@@ -245,4 +248,5 @@ if (require.main === module) {
   main();
 }
 
-export { compareSchemas, SchemaDifference };
+export { compareSchemas };
+export type { SchemaDifference };

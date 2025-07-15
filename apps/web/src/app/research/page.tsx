@@ -10,6 +10,7 @@ import {
   PaperDetailModal,
   SearchFilters,
   ActiveFilterTags,
+  Pagination,
   type PaperData,
 } from '@messai/ui';
 import { useResearchSearch } from './hooks/useResearchSearch';
@@ -44,8 +45,8 @@ export default function ResearchPage() {
     searchHistory,
     hasActiveFilters,
     totalResults,
-    currentPageStart,
-    currentPageEnd,
+    // currentPageStart,
+    // currentPageEnd,
     setQuery,
     setFilters,
     setSortBy,
@@ -113,8 +114,6 @@ export default function ResearchPage() {
     { value: 'confidence-desc', label: 'AI Confidence' },
   ];
 
-  const pageSizeOptions = [10, 20, 50, 100];
-
   return (
     <div className="space-y-12">
       {/* Page Header */}
@@ -140,16 +139,17 @@ export default function ResearchPage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center gap-2"
+                  icon={
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707v4.586a1 1 0 01-1.447.894L9 18v-5.586a1 1 0 00-.293-.707L2.293 5.707A1 1 0 012 5V4z"
+                      />
+                    </svg>
+                  }
                 >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707v4.586a1 1 0 01-1.447.894L9 18v-5.586a1 1 0 00-.293-.707L2.293 5.707A1 1 0 012 5V4z"
-                    />
-                  </svg>
                   <span>Filters</span>
                   {hasActiveFilters && (
                     <Badge variant="outline" size="sm">
@@ -223,34 +223,33 @@ export default function ResearchPage() {
         </div>
       </div>
 
-      {/* Filters Panel */}
-      {showFilters && (
-        <div className="grid-12">
-          <div className="col-span-12">
-            <SearchFilters
-              filters={filters as any}
-              onFiltersChange={setFilters as any}
-              showAdvanced={true}
-              collapsible={false}
-            />
-          </div>
-        </div>
-      )}
-
       {/* Search Results or Dashboard */}
       {query || hasActiveFilters ? (
         /* Search Results Section */
         <div className="grid-12">
-          <div className="col-span-12 space-y-6">
+          {/* Filters Panel - Left Side */}
+          {showFilters && (
+            <div className="col-span-12 md:col-span-3 lg:col-span-2">
+              <SearchFilters
+                filters={filters as any}
+                onFiltersChange={setFilters as any}
+                showAdvanced={true}
+                collapsible={false}
+              />
+            </div>
+          )}
+
+          {/* Search Results - Right Side */}
+          <div
+            className={`col-span-12 ${showFilters ? 'md:col-span-9 lg:col-span-10' : ''} space-y-6`}
+          >
             {/* Results Header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <h3 className="text-lg font-serif">Search Results</h3>
-                {results && (
+                {results?.searchTime && (
                   <div className="text-sm opacity-60">
-                    Showing {currentPageStart}-{currentPageEnd} of {totalResults.toLocaleString()}{' '}
-                    results
-                    {results.searchTime && <span className="ml-2">({results.searchTime}ms)</span>}
+                    Search completed in {results.searchTime}ms
                   </div>
                 )}
               </div>
@@ -265,19 +264,6 @@ export default function ResearchPage() {
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
-                    </option>
-                  ))}
-                </select>
-
-                {/* Page Size */}
-                <select
-                  value={pageSize}
-                  onChange={(e) => setPageSize(parseInt(e.target.value))}
-                  className="border-b border-gray-300 bg-transparent px-3 py-2 text-sm focus:border-black transition-colors"
-                >
-                  {pageSizeOptions.map((size) => (
-                    <option key={size} value={size}>
-                      {size} per page
                     </option>
                   ))}
                 </select>
@@ -342,68 +328,44 @@ export default function ResearchPage() {
 
             {/* Pagination */}
             {results && results.totalPages > 1 && (
-              <div className="flex items-center justify-between border-t border-gray-200 pt-6">
-                <div className="flex-1 flex justify-between items-center">
-                  <Button
-                    variant="secondary"
-                    disabled={page === 0}
-                    onClick={() => setPage(page - 1)}
-                    className="flex items-center gap-2"
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                    Previous
-                  </Button>
-
-                  <div className="flex items-center space-x-2">
-                    {Array.from({ length: Math.min(5, results.totalPages) }, (_, i) => {
-                      const pageNum = i + Math.max(0, page - 2);
-                      if (pageNum >= results.totalPages) return null;
-
-                      return (
-                        <Button
-                          key={pageNum}
-                          variant={pageNum === page ? 'primary' : 'ghost'}
-                          size="sm"
-                          onClick={() => setPage(pageNum)}
-                        >
-                          {pageNum + 1}
-                        </Button>
-                      );
-                    })}
-                  </div>
-
-                  <Button
-                    variant="secondary"
-                    disabled={page >= results.totalPages - 1}
-                    onClick={() => setPage(page + 1)}
-                    className="flex items-center gap-2"
-                  >
-                    Next
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </Button>
-                </div>
-              </div>
+              <Pagination
+                currentPage={page}
+                totalPages={results.totalPages}
+                totalItems={totalResults}
+                itemsPerPage={pageSize}
+                itemsPerPageOptions={[10, 25, 50, 100]}
+                onPageChange={setPage}
+                onItemsPerPageChange={setPageSize}
+                isLoading={isLoading}
+                showItemsPerPage={true}
+                showPageJump={true}
+                showResultCount={true}
+                siblingCount={1}
+              />
             )}
           </div>
         </div>
       ) : (
         /* Dashboard Section */
         <div className="grid-12">
-          <div className="col-span-12 space-y-12">
+          {/* Filters Panel - Left Side */}
+          {showFilters && (
+            <div className="col-span-12 md:col-span-3 lg:col-span-2">
+              <SearchFilters
+                filters={filters as any}
+                onFiltersChange={setFilters as any}
+                showAdvanced={true}
+                collapsible={false}
+              />
+            </div>
+          )}
+
+          {/* Dashboard Content - Right Side */}
+          <div
+            className={`col-span-12 ${
+              showFilters ? 'md:col-span-9 lg:col-span-10' : ''
+            } space-y-12`}
+          >
             {/* Statistics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center space-y-2">

@@ -2,7 +2,22 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { z } from 'zod';
+// Conditional import for zod - only used in build scripts
+let z: any;
+try {
+  z = require('zod');
+} catch (e) {
+  console.warn('zod not available - parameter validation will be skipped');
+  z = {
+    string: () => ({ optional: () => ({}) }),
+    number: () => ({ optional: () => ({}) }),
+    boolean: () => ({ optional: () => ({}) }),
+    array: () => ({ optional: () => ({}) }),
+    object: () => ({ optional: () => ({}) }),
+    enum: () => ({ optional: () => ({}) }),
+    any: () => ({ optional: () => ({}) }),
+  };
+}
 
 /**
  * Unified Parameter System Builder
@@ -117,12 +132,12 @@ function readParameterSources() {
   );
 
   // Read integration mapping
-  const integrationMd = fs.readFileSync(
-    path.join(basePath, 'scripts/research/parameter-mapping-integration.md'),
-    'utf-8'
-  );
+  // const integrationMd = fs.readFileSync(
+  //   path.join(basePath, 'scripts/research/parameter-mapping-integration.md'),
+  //   'utf-8'
+  // );
 
-  return { libraryMd, jsonParams, validationRules, integrationMd };
+  return { libraryMd, jsonParams, validationRules };
 }
 
 // Parse markdown tables to extract parameters
@@ -209,21 +224,23 @@ function convertLibraryToJSON(libraryMd: string) {
             // Convert markdown parameter to our schema
             const parameter = {
               id:
-                param.parameter
+                param?.parameter
                   ?.replace(/`/g, '')
                   .toLowerCase()
                   .replace(/[\s\-\.]/g, '_')
                   .replace(/[^a-z0-9_]/g, '') || '',
               name:
-                param.parameter
+                param?.parameter
                   ?.replace(/`/g, '')
                   .replace(/_/g, ' ')
                   .replace(/\b\w/g, (l: string) => l.toUpperCase()) || '',
-              unit: param.unit || undefined,
-              type: param.type || 'number',
-              description: param.description || '',
-              range: param.range ? parseRange(param.range) : undefined,
-              default: param.default ? parseDefault(param.default, param.type) : undefined,
+              unit: param?.unit || undefined,
+              type: param?.type || 'number',
+              description: param?.description || '',
+              range: param?.range ? parseRange(param.range) : undefined,
+              default: param?.default
+                ? parseDefault(param.default, param.type || 'number')
+                : undefined,
             };
 
             if (parameter.id) {
@@ -251,8 +268,8 @@ function parseRange(rangeStr: string): { min?: number; max?: number } {
   const match = rangeStr.match(/(-?\d+(?:\.\d+)?)\s*(?:to|-)\s*(-?\d+(?:\.\d+)?)/);
   if (match) {
     return {
-      min: parseFloat(match[1]),
-      max: parseFloat(match[2]),
+      min: parseFloat(match[1] || '0'),
+      max: parseFloat(match[2] || '0'),
     };
   }
   return {};
@@ -442,7 +459,7 @@ async function unifyParameters() {
 
   try {
     // Read all sources
-    const { libraryMd, jsonParams, validationRules, integrationMd } = readParameterSources();
+    const { libraryMd, jsonParams, validationRules } = readParameterSources();
     console.log('✓ Read all parameter sources');
 
     // Convert library to JSON

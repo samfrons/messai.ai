@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { AffectingFactors } from '@/types/parameters';
+import type { AffectingFactors, Factor } from '../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Zap, Settings } from '../../ui/icons';
 import { Separator } from '../../ui/separator';
@@ -27,7 +26,7 @@ export function AffectingFactorsSection({ factors }: AffectingFactorsSectionProp
             <h4 className="font-medium">Primary Factors</h4>
           </div>
           <div className="space-y-3">
-            {factors.primary.map((factor, index) => (
+            {factors.primary.map((factor: Factor, index: number) => (
               <div key={index} className="space-y-2">
                 <div className="flex items-start justify-between gap-4">
                   <h5 className="font-medium text-sm">{factor.name}</h5>
@@ -56,7 +55,7 @@ export function AffectingFactorsSection({ factors }: AffectingFactorsSectionProp
             <div className="space-y-3">
               <h4 className="font-medium text-muted-foreground">Secondary Factors</h4>
               <div className="space-y-3">
-                {factors.secondary.map((factor, index) => (
+                {factors.secondary.map((factor: Factor, index: number) => (
                   <div key={index} className="space-y-2">
                     <div className="flex items-start justify-between gap-4">
                       <h5 className="font-medium text-sm">{factor.name}</h5>

@@ -37,9 +37,9 @@ const buttonVariants = {
     danger: 'border border-red-600 bg-red-600 text-white hover:bg-red-700 hover:border-red-700',
   },
   size: {
-    sm: 'h-9 px-4 text-sm',
-    base: 'h-11 px-6 text-sm',
-    lg: 'h-12 px-8 text-base',
+    sm: 'h-9 px-5 text-sm',
+    base: 'h-11 px-8 text-sm',
+    lg: 'h-12 px-10 text-base',
   },
 };
 
@@ -67,7 +67,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         className={cn(
           // Base styles - minimalist approach
-          'inline-flex items-center justify-center gap-2',
+          'inline-flex items-center justify-center gap-3',
           'font-normal tracking-wide',
           'transition-all duration-300 ease-out',
           'focus:outline-none focus-visible:ring-1 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-cream',

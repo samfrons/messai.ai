@@ -5,6 +5,7 @@ import type {
   ParameterSearchResults,
 } from '../../../types/parameters';
 import { getParameterCategories as categorizeParameter } from './parameter-categories';
+import { MICROFLUIDIC_PARAMETERS } from '../data/microfluidic-parameters';
 
 // Import the unified parameter data
 let unifiedData: any = null;
@@ -122,7 +123,10 @@ export async function getSystemParameters(): Promise<Parameter[]> {
     });
   });
 
-  return parameters;
+  // Merge with microfluidic parameters
+  const allParameters = [...parameters, ...MICROFLUIDIC_PARAMETERS];
+
+  return allParameters;
 }
 
 /**
@@ -193,6 +197,54 @@ export async function searchParameters(
     });
   }
 
+  // Apply compatibility filters
+  if (filters.compatibility) {
+    filteredParameters = filteredParameters.filter((param) => {
+      const paramCompatibility = param.compatibility;
+      if (!paramCompatibility) return true;
+
+      // Filter by compatible materials
+      if (filters.compatibility?.materials && filters.compatibility.materials.length > 0) {
+        const hasCompatibleMaterial = filters.compatibility.materials.some((material) =>
+          paramCompatibility.materials?.includes(material)
+        );
+        if (!hasCompatibleMaterial) return false;
+      }
+
+      // Filter by compatible microbes
+      if (filters.compatibility?.microbes && filters.compatibility.microbes.length > 0) {
+        const hasCompatibleMicrobe = filters.compatibility.microbes.some((microbe) =>
+          paramCompatibility.microbes?.includes(microbe)
+        );
+        if (!hasCompatibleMicrobe) return false;
+      }
+
+      // Filter by compatible environments
+      if (filters.compatibility?.environments && filters.compatibility.environments.length > 0) {
+        const hasCompatibleEnvironment = filters.compatibility.environments.some((env) =>
+          paramCompatibility.environments?.includes(env)
+        );
+        if (!hasCompatibleEnvironment) return false;
+      }
+
+      // Filter by compatible system types
+      if (filters.compatibility?.systemTypes && filters.compatibility.systemTypes.length > 0) {
+        const hasCompatibleSystem = filters.compatibility.systemTypes.some((system) =>
+          paramCompatibility.systemTypes?.includes(system)
+        );
+        if (!hasCompatibleSystem) return false;
+      }
+
+      // Filter by minimum compatibility score
+      if (filters.compatibility?.minScore !== undefined) {
+        const compatScore = calculateCompatibilityScore(param);
+        if (compatScore < filters.compatibility.minScore) return false;
+      }
+
+      return true;
+    });
+  }
+
   // Pagination
   const total = filteredParameters.length;
   const startIndex = (page - 1) * pageSize;
@@ -209,35 +261,25 @@ export async function searchParameters(
 }
 
 /**
+ * Calculate compatibility score for a parameter
+ */
+function calculateCompatibilityScore(parameter: Parameter): number {
+  const compatibility = parameter.compatibility;
+  if (!compatibility) return 0;
+
+  let score = 0;
+  score += (compatibility.materials?.length || 0) * 2;
+  score += (compatibility.microbes?.length || 0) * 3;
+  score += (compatibility.environments?.length || 0) * 1;
+  score += (compatibility.systemTypes?.length || 0) * 2;
+
+  return score;
+}
+
+/**
  * Check if a parameter is a categorical variable (should be filtered out)
  */
 function isCategoricalVariable(unifiedParam: any): boolean {
-  // Filter out categorical variables that are selections rather than measurable parameters
-  const categoricalPatterns = [
-    'species',
-    'strain',
-    'organism',
-    'microbe',
-    'bacteria',
-    'material_type',
-    'membrane_type',
-    'electrode_type',
-    'system_type',
-    'configuration',
-    'method',
-    'technique',
-    'source',
-    'origin',
-    'brand',
-    'model',
-    'vendor',
-    'supplier',
-    'manufacturer',
-    'selection',
-    'choice',
-    'option',
-  ];
-
   const paramName = unifiedParam.name?.toLowerCase() || '';
   const paramId = unifiedParam.id?.toLowerCase() || '';
 
@@ -251,7 +293,12 @@ function isCategoricalVariable(unifiedParam: any): boolean {
     return true;
   }
 
-  // Specific biological categorical variables to exclude
+  // If parameter has a unit, it's likely measurable regardless of name patterns
+  if (unifiedParam.unit) {
+    return false;
+  }
+
+  // Specific biological categorical variables to exclude (known dropdown selections)
   const biologicalCategoricalIds = [
     'microbial_species',
     'dominant_species',
@@ -264,6 +311,26 @@ function isCategoricalVariable(unifiedParam: any): boolean {
   if (biologicalCategoricalIds.includes(paramId)) {
     return true;
   }
+
+  // Refined categorical patterns - focus on truly categorical selections
+  const categoricalPatterns = [
+    'material_type',
+    'membrane_type',
+    'electrode_type',
+    'system_type',
+    'configuration_type',
+    'method_type',
+    'technique_type',
+    'source_type',
+    'brand_name',
+    'model_name',
+    'vendor_name',
+    'supplier_name',
+    'manufacturer_name',
+    'selection',
+    'choice',
+    'option',
+  ];
 
   // Check for categorical patterns in name or ID
   return categoricalPatterns.some(

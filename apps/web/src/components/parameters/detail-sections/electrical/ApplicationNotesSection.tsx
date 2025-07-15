@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-import type { ApplicationNote } from '@/types/parameters';
+import type { ApplicationNote } from '../../../../types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { FileText, Target, Beaker, Building } from '../../../ui/icons';
 import { Separator } from '../../../ui/separator';
@@ -29,7 +28,7 @@ export function ApplicationNotesSection({ notes }: ApplicationNotesSectionProps)
           <h3 className="text-lg font-semibold">Application Notes</h3>
         </div>
         <div className="space-y-6">
-          {notes.map((note, index) => {
+          {notes.map((note: any, index: number) => {
             const Icon = scaleIcons[note.scale as keyof typeof scaleIcons] || FileText;
 
             return (
@@ -53,7 +52,7 @@ export function ApplicationNotesSection({ notes }: ApplicationNotesSectionProps)
                   <div className="space-y-2">
                     <h5 className="text-sm font-medium text-muted-foreground">Considerations</h5>
                     <ul className="space-y-1 ml-4">
-                      {note.considerations.map((consideration, idx) => (
+                      {note.considerations.map((consideration: any, idx: number) => (
                         <li key={idx} className="text-sm text-muted-foreground">
                           • {consideration}
                         </li>
@@ -68,7 +67,7 @@ export function ApplicationNotesSection({ notes }: ApplicationNotesSectionProps)
                       Performance Targets
                     </h5>
                     <div className="flex flex-wrap gap-2">
-                      {note.targets.map((target, idx) => (
+                      {note.targets.map((target: any, idx: number) => (
                         <Badge key={idx} variant="secondary">
                           {target}
                         </Badge>
