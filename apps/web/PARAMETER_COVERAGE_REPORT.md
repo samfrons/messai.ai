@@ -2,9 +2,27 @@
 
 ## Summary
 
-- **Total Parameters**: 654
-- **Parameters with Markdown Documentation**: 16 (2.4%)
-- **Parameters with JSON-only Data**: 638 (97.6%)
+- **Total Entries in Unified Data**: 667
+- **Filtered Parameters (Measurable)**: 573 (85.9%)
+- **Filtered Variables (Categorical)**: 94 (14.1%)
+- **Parameters with Markdown Documentation**: 16 (2.8% of measurable parameters)
+- **Parameters with JSON-only Data**: 557 (97.2% of measurable parameters)
+
+## Parameter vs Variable Distinction
+
+**Implementation Status**: ✅ **Completed** (January 2025)
+
+The system now distinguishes between:
+
+- **Parameters**: Measurable properties with units (e.g., temperature, voltage)
+- **Variables**: Categorical selections (e.g., species type, material type)
+
+### Filtering Results
+
+- **Biological Variables Excluded**: 23 (species selections, organism types)
+- **Material Variables Excluded**: 31 (material types, electrode types)
+- **Configuration Variables Excluded**: 40 (system types, methods)
+- **Total Variables Filtered**: 94
 
 ## Current Markdown Coverage
 
@@ -41,21 +59,25 @@
 
 ## Parameter Distribution by Category
 
-| Category                  | Total Parameters | Subcategories                                    |
-| ------------------------- | ---------------- | ------------------------------------------------ |
-| Material Parameters       | 88               | Anodes (41), Cathodes (30), Membranes (17)       |
-| Biological Parameters     | 84               | Microorganisms (67), Biofilm (9), Kinetics (8)   |
-| Environmental Parameters  | 61               | Atmospheric (26), Light (17), Physical (18)      |
-| Application-Specific      | 58               | Wastewater (13), Biosensor (10), Space (8), etc. |
-| Monitoring & Control      | 55               | Sensors (17), Data (10), Control (9), etc.       |
-| Economic & Sustainability | 45               | Capital (9), Operating (9), Economic (10), etc.  |
-| Integration & Scaling     | 40               | Multi-scale (8), Network (7), Grid (9), etc.     |
-| Emerging Technology       | 39               | Nanomaterials (9), 3D Printing (9), etc.         |
-| Cell-Level Parameters     | 39               | Geometry (21), Configuration (9), etc.           |
-| Reactor-Level Parameters  | 37               | Stack (11), Components (10), Control (12)        |
-| Safety & Regulatory       | 37               | Safety (15), Compliance (14), Risk (8)           |
-| Performance Metrics       | 36               | Electrical (14), Chemical (11), Treatment (11)   |
-| Operational Parameters    | 35               | Process (11), Modes (15), Startup (9)            |
+**Note**: The following statistics reflect the pre-filtering totals from the
+unified data. After implementing the parameter vs variable distinction, many
+categorical variables have been excluded from the parameter system.
+
+| Category                  | Total Entries | Filtered Parameters\*                            | Subcategories |
+| ------------------------- | ------------- | ------------------------------------------------ | ------------- |
+| Material Parameters       | 88            | Anodes (41), Cathodes (30), Membranes (17)       |
+| Biological Parameters     | 84            | Microorganisms (67), Biofilm (9), Kinetics (8)   |
+| Environmental Parameters  | 61            | Atmospheric (26), Light (17), Physical (18)      |
+| Application-Specific      | 58            | Wastewater (13), Biosensor (10), Space (8), etc. |
+| Monitoring & Control      | 55            | Sensors (17), Data (10), Control (9), etc.       |
+| Economic & Sustainability | 45            | Capital (9), Operating (9), Economic (10), etc.  |
+| Integration & Scaling     | 40            | Multi-scale (8), Network (7), Grid (9), etc.     |
+| Emerging Technology       | 39            | Nanomaterials (9), 3D Printing (9), etc.         |
+| Cell-Level Parameters     | 39            | Geometry (21), Configuration (9), etc.           |
+| Reactor-Level Parameters  | 37            | Stack (11), Components (10), Control (12)        |
+| Safety & Regulatory       | 37            | Safety (15), Compliance (14), Risk (8)           |
+| Performance Metrics       | 36            | Electrical (14), Chemical (11), Treatment (11)   |
+| Operational Parameters    | 35            | Process (11), Modes (15), Startup (9)            |
 
 ## High-Priority Parameters for Markdown Documentation
 
@@ -126,15 +148,18 @@ Essential for commercialization:
 
 - Parameter detail page infrastructure (`/parameters/[id]/page.tsx`)
 - Parameter detail service with markdown/JSON fallback
-- All 654 parameters have functional detail pages
+- Parameter vs variable distinction filtering (January 2025)
+- All 573 measurable parameters have functional detail pages
 - JSON data provides basic information for all parameters
 - Markdown content enhances 16 parameters with rich documentation
+- Categorical variables are properly excluded from parameter system
 
 ⚠️ **Known Limitations:**
 
-- Only 2.4% of parameters have enhanced markdown documentation
+- Only 2.8% of measurable parameters have enhanced markdown documentation
 - Related parameters are currently hardcoded for some categories
 - Some markdown mappings in the original code pointed to non-existent files
+- 94 categorical variables are excluded from parameter detail pages
 
 ## Recommendations
 
@@ -160,9 +185,46 @@ Essential for commercialization:
 
 The parameter detail service correctly:
 
-- ✅ Loads all 654 parameters from unified JSON
+- ✅ Loads all 667 entries from unified JSON
+- ✅ Filters out 94 categorical variables, leaving 573 measurable parameters
 - ✅ Falls back gracefully when markdown is missing
 - ✅ Maps existing markdown files correctly
 - ✅ Displays parameter properties, ranges, and units
 - ✅ Shows category and subcategory information
 - ✅ Handles MXene variants with shared documentation
+- ✅ Properly excludes species selections from biological parameters
+- ✅ Validates parameter existence before displaying detail pages
+
+## Parameter vs Variable Implementation Details
+
+**Filtering Criteria**: The system uses `isCategoricalVariable()` function to
+exclude:
+
+- Parameters with `type: 'select'` (dropdown selections)
+- String parameters without units (categorical text)
+- Specific biological categorical IDs (e.g., 'microbial_species')
+- Pattern matching for categorical keywords (species, strain, organism, etc.)
+
+**Examples of Excluded Variables**:
+
+- `microbial_species` - Species selection dropdown
+- `electrode_type` - Material type selection
+- `system_configuration` - Setup type selection
+- `membrane_type` - Membrane selection dropdown
+
+**Examples of Included Parameters**:
+
+- `voltage_stability` - Measurable electrical property (mV)
+- `temperature` - Environmental measurement (°C)
+- `current_density` - Electrical measurement (A/m²)
+- `biofilm_thickness` - Biological measurement (μm)
+
+This distinction ensures that only measurable, quantifiable properties are
+treated as parameters, while categorical selections are handled separately as
+system variables.
+
+---
+
+**Last Updated**: January 15, 2025  
+**Report Version**: 2.0.0  
+**Parameter System Version**: 1.0.0 (with filtering)

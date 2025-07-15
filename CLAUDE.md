@@ -266,6 +266,71 @@ Experiment Tracking
   with sub-agents working within same context but on different, coordinated
   workstreams [Claude help here]
 
+### Parameter System Architecture (CRITICAL FOR AI AGENTS)
+
+MESSAI distinguishes between **Parameters** and **Variables** in its data
+architecture:
+
+#### Parameters vs Variables Distinction
+
+**Parameters** are measurable, quantifiable properties with:
+
+- Numeric values with units (e.g., temperature: 25°C, voltage: 1.2V)
+- Defined ranges (min/max values)
+- Continuous or discrete numeric measurements
+- Examples: `voltage_stability`, `temperature`, `conductivity`,
+  `current_density`
+
+**Variables** are categorical selections without measurable units:
+
+- Dropdown/select options (e.g., species selection, material type)
+- String values without units
+- Categorical choices for system configuration
+- Examples: `microbial_species`, `electrode_type`, `system_configuration`
+
+#### Implementation Details
+
+The system uses filtering logic in `parameter-data.ts` and
+`parameter-detail-service.ts`:
+
+```typescript
+// Variables are filtered out using isCategoricalVariable()
+function isCategoricalVariable(param: any): boolean {
+  // Select types are categorical
+  if (param.type === 'select') return true;
+
+  // Strings without units are categorical
+  if (param.type === 'string' && !param.unit) return true;
+
+  // Specific biological categorical exclusions
+  const biologicalCategoricalIds = [
+    'microbial_species',
+    'dominant_species',
+    'organism_type',
+  ];
+  return biologicalCategoricalIds.includes(param.id);
+}
+```
+
+#### Current Statistics
+
+- **Total entries in MESS_PARAMETERS_UNIFIED_FINAL.json**: 667
+- **Filtered parameters (measurable)**: 573
+- **Filtered variables (categorical)**: 94
+
+#### Critical Points for AI Agents
+
+1. **Never** treat species selection as a measurable parameter
+2. **Always** use the unified parameter data source
+   (`MESS_PARAMETERS_UNIFIED_FINAL.json`)
+3. **Distinguish** between system parameters (measurable) and system variables
+   (categorical)
+4. **Filter** categorical variables when displaying parameter lists or detail
+   pages
+
+For complete parameter system documentation, see
+[Parameter System Guide](/docs/ai-context/parameter-system-guide.md).
+
 ## 2. Project Structure
 
 Technology Stack
@@ -287,6 +352,8 @@ specific features:**
 
 - [Project Structure documentation](/docs/ai-context/project-structure.md) -
   Complete tech stack and file organization
+- [Parameter System Guide](/docs/ai-context/parameter-system-guide.md) -
+  Essential understanding of parameter vs variable distinction
 - [Lab Development Guide](/docs/ai-context/lab-development-guide.md) - Essential
   context for 3D lab features
 - [Development Status](/docs/development-status.md) - Current implementation
@@ -391,6 +458,50 @@ nx run <project>:<target>
 - Structure projects with clear folder hierarchies and consistent naming
   conventions
 - Import/export properly - design for reusability and maintainability
+
+### Parameter System Guidelines (REQUIRED)
+
+When working with the MESSAI parameter system:
+
+#### Data Source Requirements
+
+- **ALWAYS** use `MESS_PARAMETERS_UNIFIED_FINAL.json` as the single source of
+  truth
+- **NEVER** create mock parameter data - use the unified parameter library
+- **VALIDATE** parameter existence before displaying detail pages
+
+#### Parameter vs Variable Handling
+
+- **FILTER** categorical variables using `isCategoricalVariable()` function
+- **EXCLUDE** biological species selections from parameter lists
+- **DISTINGUISH** between measurable parameters and categorical variables in UI
+- **VALIDATE** parameter structure before processing
+
+#### Implementation Patterns
+
+```typescript
+// Correct: Filter out categorical variables
+const parameters = allParams.filter((param) => !isCategoricalVariable(param));
+
+// Correct: Validate parameter exists
+if (!parameter) {
+  console.warn(`Parameter ${id} not found`);
+  return null;
+}
+
+// Incorrect: Including species selection as parameter
+// Species selection should be handled as a variable, not parameter
+```
+
+#### File Consistency
+
+- Both `parameter-data.ts` and `parameter-detail-service.ts` must use the same
+  data source
+- Apply the same filtering logic in both services
+- Maintain consistent parameter transformation logic
+
+For detailed implementation examples, see
+[Parameter System Guide](/docs/ai-context/parameter-system-guide.md).
 
 ### Type Hints (REQUIRED)
 

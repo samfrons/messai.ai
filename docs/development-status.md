@@ -133,7 +133,86 @@ apps/web/src/app/lab/
 3. **Accessibility**: ARIA labels and keyboard navigation
 4. **Mobile Experience**: Touch-optimized 3D controls
 
+### 🔧 Parameter System Implementation (Recently Added)
+
+#### Parameter vs Variable Distinction
+
+**Implementation Status**: ✅ **Completed**
+
+The system now distinguishes between measurable parameters and categorical
+variables:
+
+- **Parameters**: Measurable properties with units (e.g., temperature, voltage)
+- **Variables**: Categorical selections (e.g., species type, material type)
+
+#### Technical Implementation
+
+**Core Filtering Logic**:
+
+```typescript
+function isCategoricalVariable(unifiedParam: any): boolean {
+  // Filter patterns for categorical variables
+  const categoricalPatterns = [
+    'species',
+    'strain',
+    'organism',
+    'material_type',
+    'electrode_type',
+  ];
+
+  // Select types are categorical
+  if (unifiedParam.type === 'select') return true;
+
+  // Strings without units are categorical
+  if (unifiedParam.type === 'string' && !unifiedParam.unit) return true;
+
+  // Specific biological exclusions
+  const biologicalCategoricalIds = [
+    'microbial_species',
+    'dominant_species',
+    'organism_type',
+  ];
+  return biologicalCategoricalIds.includes(unifiedParam.id);
+}
+```
+
+#### Files Modified
+
+1. **`parameter-data.ts`**: Added filtering logic in `getSystemParameters()`
+2. **`parameter-detail-service.ts`**: Added filtering logic in detail view
+3. **`MESS_PARAMETERS_UNIFIED_FINAL.json`**: Unified data source
+
+#### Current Statistics
+
+- **Total entries**: 667
+- **Filtered parameters (measurable)**: 573 (85.9%)
+- **Filtered variables (categorical)**: 94 (14.1%)
+
+#### Key Improvements
+
+- **Biological Category Cleanup**: Removed species selections like
+  "microbial_species"
+- **File Consistency**: Both services use same data source and filtering logic
+- **Error Handling**: Added validation for missing parameters
+- **Parameter Validation**: Enhanced parameter structure validation
+
+#### Benefits
+
+- **Cleaner UI**: Only measurable parameters displayed in parameter lists
+- **Better UX**: No confusion between parameters and selections
+- **Data Integrity**: Consistent filtering across all parameter interfaces
+- **Scientific Accuracy**: Proper distinction between measurements and choices
+
+#### Testing Results
+
+- ✅ Parameter filtering correctly excludes 94 categorical variables
+- ✅ `voltage_stability` parameter now accessible (was previously failing)
+- ✅ Biological category no longer includes species selections
+- ✅ Parameter detail pages handle missing parameters gracefully
+- ✅ Both services use consistent data source
+
 ---
 
-**Last Updated**: 2025-01-14  
-**Development Session**: Fixed 3D model display and error handling
+**Last Updated**: 2025-01-15  
+**Development Session**: Implemented parameter vs variable distinction and
+updated documentation
