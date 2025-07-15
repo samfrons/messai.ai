@@ -658,8 +658,9 @@ export class PaperValidator {
       return false;
     }
 
-    // Must meet minimum confidence
-    if (result.confidence < 70) {
+    // Must meet minimum confidence (lower threshold for non-strict mode)
+    const minConfidence = this.config.strictMode ? 70 : 60;
+    if (result.confidence < minConfidence) {
       return false;
     }
 

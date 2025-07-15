@@ -1,10 +1,10 @@
-import React from 'react';
+import Link from 'next/link';
 import { Card, Badge, Button } from '@messai/ui';
 import type { Parameter, ElectrodeType } from '../../../types/parameters';
 
 interface ParameterCardProps {
   parameter: Parameter;
-  onSelect: () => void;
+  onSelect?: () => void;
 }
 
 export default function ParameterCard({ parameter, onSelect }: ParameterCardProps) {
@@ -268,9 +268,11 @@ export default function ParameterCard({ parameter, onSelect }: ParameterCardProp
           <Button variant="primary" size="sm" className="flex-1">
             Use in Model
           </Button>
-          <Button variant="outline" size="sm" onClick={onSelect}>
-            View Details
-          </Button>
+          <Link href={`/parameters/${parameter.id}`}>
+            <Button variant="outline" size="sm">
+              View Details
+            </Button>
+          </Link>
           {parameter.outlierThreshold && (
             <Button
               variant="ghost"

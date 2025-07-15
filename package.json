@@ -35,6 +35,10 @@
     "security:check": "pnpm audit && pnpm outdated",
     "deps:check": "pnpm outdated",
     "deps:update": "pnpm update --interactive --latest",
+    "algae-research": "nx run feature-research-agents:algae-research",
+    "algae-research:mess": "nx run feature-research-agents:algae-research -- --mess-only",
+    "algae-research:expand": "nx run feature-research-agents:algae-research -- --expand-only",
+    "algae-research:integrated": "nx run feature-research-agents:algae-research:integrated",
     "prepare": "if [ \"$CI\" != \"true\" ] && [ \"$VERCEL\" != \"1\" ]; then husky install; fi"
   },
   "dependencies": {
@@ -77,6 +81,8 @@
     "@types/react-dom": "19.0.0",
     "autoprefixer": "10.4.13",
     "babel-jest": "^29.7.0",
+    "esbuild": "^0.25.6",
+    "esbuild-register": "^3.6.0",
     "eslint": "^9.8.0",
     "eslint-config-next": "^15.2.4",
     "eslint-config-prettier": "^10.0.0",

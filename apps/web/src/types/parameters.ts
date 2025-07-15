@@ -12,6 +12,20 @@ export type ParameterCategory =
   | 'system_configuration'
   | 'membrane';
 
+// New display categories for UI
+export type DisplayCategory =
+  | 'environmental'
+  | 'biological'
+  | 'electrical'
+  | 'materials'
+  | 'chemical'
+  | 'operational'
+  | 'physical'
+  | 'monitoring'
+  | 'economic'
+  | 'performance'
+  | 'safety';
+
 // Unified parameter data types
 export type UnifiedParameterType = 'number' | 'string' | 'boolean' | 'select' | 'array' | 'object';
 
@@ -284,6 +298,7 @@ export interface ValidationRule {
   required?: boolean;
   unit?: string;
   scientificConstraint?: string;
+  message?: string;
 }
 
 export interface ParameterValidation {
@@ -337,4 +352,66 @@ export interface ParameterListRequest {
   sort?: ParameterSortOption;
   page?: number;
   pageSize?: number;
+}
+
+// Parameter detail page types
+export interface ParameterDetail extends Parameter {
+  categoryName?: string;
+  subcategoryId?: string;
+  electrodeType?: ElectrodeType;
+  validationRules?: ValidationRule[];
+  typicalRange?: ParameterRange;
+  content?: ParameterSection[];
+  references?: Reference[];
+  performanceMetrics?: PerformanceMetric;
+  preparationMethods?: PreparationMethod[];
+  costAnalysis?: CostAnalysis;
+  limitations?: Limitations;
+  relatedParameters?: RelatedParameter[];
+}
+
+export interface ParameterSection {
+  title: string;
+  level: number;
+  content: string;
+  parent?: string;
+}
+
+export interface Reference {
+  text: string;
+  doi?: string;
+  url?: string;
+}
+
+export interface PerformanceMetric {
+  [key: string]: {
+    min: number;
+    max: number;
+    unit: string;
+  };
+}
+
+export interface PreparationMethod {
+  name: string;
+  steps: string[];
+  conditions?: string;
+}
+
+export interface CostAnalysis {
+  [key: string]: {
+    min: number;
+    max: number;
+    unit: string;
+  };
+}
+
+export interface Limitations {
+  performance: string[];
+  practical: string[];
+}
+
+export interface RelatedParameter {
+  id: string;
+  name: string;
+  category?: string;
 }

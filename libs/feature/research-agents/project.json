@@ -28,6 +28,41 @@
       "options": {
         "jestConfig": "libs/feature/research-agents/jest.config.ts"
       }
+    },
+    "process-mess-papers": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -r esbuild-register libs/feature/research-agents/src/scripts/process-mess-papers.ts",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "expand-algae-papers": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -r esbuild-register libs/feature/research-agents/src/scripts/expand-algae-papers.ts",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "run-algae-workflow": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -r esbuild-register libs/feature/research-agents/src/workflows/algae-paper-workflow.ts",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "algae-research": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -r esbuild-register libs/feature/research-agents/src/scripts/run-algae-research.ts",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "algae-research:integrated": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node -r esbuild-register libs/feature/research-agents/src/scripts/run-integrated-workflow.ts",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

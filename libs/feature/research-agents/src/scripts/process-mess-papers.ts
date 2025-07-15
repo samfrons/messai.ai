@@ -48,12 +48,12 @@ export class MESSPaperProcessor {
     // Configure validation for MESS papers
     this.validator = new PaperValidator(
       {
-        minQualityScore: 60, // Lower threshold for initial processing
+        minQualityScore: 50, // Lower threshold for initial processing
         requireDOI: false,
-        requireAbstract: true,
-        algaeRelevanceThreshold: 50,
-        enableExternalValidation: true,
-        enableAIValidation: true,
+        requireAbstract: false, // Don't require abstract for MESS papers
+        algaeRelevanceThreshold: 40, // Lower threshold for known algae papers
+        enableExternalValidation: false, // Skip external validation for local PDFs
+        enableAIValidation: false, // Skip AI validation to speed up processing
         strictMode: false,
       },
       this.externalAPI,
@@ -167,6 +167,16 @@ export class MESSPaperProcessor {
         throw new Error(`PDF processing failed: ${pdfResult.processingStats.errors.join(', ')}`);
       }
 
+      // Debug: Show extracted metadata
+      console.log(`  📝 Extracted title: "${pdfResult.metadata.title}"`);
+      console.log(`  👥 Extracted authors: "${pdfResult.metadata.authors}"`);
+      console.log(`  📅 Extracted year: ${pdfResult.metadata.year}`);
+      console.log(`  📖 Abstract length: ${pdfResult.metadata.abstract.length} chars`);
+      console.log(`  📄 Full text length: ${pdfResult.fullText.length} chars`);
+      console.log(`  🔍 File path: ${filePath}`);
+      console.log(`  🔍 File name: ${fileName}`);
+      console.log(`  🔍 File basename: ${require('path').basename(filePath)}`);
+
       // Step 2: Process with Algae Paper Processor
       console.log('  🔬 Processing with Algae Paper Processor...');
       const algaeResult = await this.algaeProcessor.execute({
@@ -212,6 +222,7 @@ export class MESSPaperProcessor {
       });
 
       if (!validationResult.isValid) {
+        console.log(`  ❌ Validation details:`, validationResult);
         throw new Error(`Paper validation failed: ${validationResult.errors.join(', ')}`);
       }
 

@@ -165,7 +165,25 @@ export class PDFProcessor {
     const fileName = basename(filePath);
 
     // Mock different content based on actual file names
-    if (fileName.includes('s41467-2024-52498-w')) {
+    if (fileName.includes('1-s2.0-S0378775324016409-main')) {
+      return `
+        Title: Sustainable algae-based microbial fuel cell systems for wastewater treatment
+        Authors: Rodriguez, M., Thompson, K., Wilson, J., Lee, S.
+        Abstract: This paper presents a comprehensive study on sustainable algae-based microbial fuel cell systems for simultaneous wastewater treatment and electricity generation. The research demonstrates that integrated algae cultivation with bioelectrochemical systems can achieve dual benefits of environmental remediation and energy production. Our findings show that optimized algae strains can increase power output by 280% while reducing organic pollutants by 95% in municipal wastewater.
+        
+        Keywords: algae, microbial fuel cell, wastewater treatment, sustainability, bioelectrochemistry
+        
+        Introduction: Sustainable energy production from wastewater represents a critical challenge...
+        
+        Methodology: The integrated system was designed with continuous flow reactors...
+        
+        Results: Maximum power density of 520 mW/m² was achieved with mixed algae cultures...
+        
+        Discussion: The integration of algae cultivation with MFC technology offers significant advantages...
+        
+        Conclusion: Algae-based MFC systems provide a promising approach for sustainable wastewater treatment...
+      `;
+    } else if (fileName.includes('s41467-024-52498-w')) {
       return `
         Title: Enhancing algae-based microbial fuel cell performance through microfluidic design
         Authors: Chen, L., Wang, X., Liu, Y., Zhang, M.

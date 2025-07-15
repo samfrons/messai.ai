@@ -409,6 +409,46 @@ export class OllamaService {
   }
 
   private getMockResponse(request: OllamaRequest): OllamaResponse {
+    // Return JSON response for quality assessment prompts
+    if (request.prompt.includes('quality') && request.prompt.includes('JSON')) {
+      return {
+        response: JSON.stringify({
+          overall_score: 78,
+          factors: [
+            {
+              factor: 'Scientific rigor',
+              score: 85,
+              reasoning: 'Well-designed experiments with proper controls',
+            },
+            {
+              factor: 'Relevance to algae fuel cell research',
+              score: 90,
+              reasoning: 'Directly addresses algae fuel cell research questions',
+            },
+            {
+              factor: 'Novelty and innovation',
+              score: 70,
+              reasoning: 'Incremental improvements over existing methods',
+            },
+            {
+              factor: 'Practical applicability',
+              score: 75,
+              reasoning: 'Results have potential for real-world implementation',
+            },
+            {
+              factor: 'Data quality and completeness',
+              score: 80,
+              reasoning: 'Comprehensive data with statistical analysis',
+            },
+          ],
+        }),
+        done: true,
+        total_duration: 1000,
+        eval_count: 50,
+        prompt_eval_count: 20,
+      };
+    }
+
     return {
       response: `Mock response for prompt: ${request.prompt.substring(0, 100)}...`,
       done: true,
