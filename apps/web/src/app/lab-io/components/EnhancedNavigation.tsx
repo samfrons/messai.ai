@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Badge } from '@messai/ui';
 
 interface NavigationItem {
@@ -43,7 +43,7 @@ export default function EnhancedNavigation() {
                   {item.badge && (
                     <Badge
                       variant="outline"
-                      size="xs"
+                      size="sm"
                       className="ml-2 bg-blue-50 text-blue-600 border-blue-200"
                     >
                       {item.badge}

@@ -120,8 +120,8 @@ export default function ParameterDetailPage() {
           {parameter.content && <ParameterContent content={parameter.content} />}
 
           {/* References */}
-          {parameter.references && parameter.references.length > 0 && (
-            <References references={parameter.references} />
+          {parameter.detailReferences && parameter.detailReferences.length > 0 && (
+            <References references={parameter.detailReferences} />
           )}
         </div>
 

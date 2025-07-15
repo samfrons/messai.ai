@@ -81,7 +81,7 @@ export default function ParameterProperties({ parameter }: ParameterPropertiesPr
                 {parameter.validationRules.map((rule, index) => (
                   <li key={index} className="flex items-start">
                     <span className="text-gray-400 mr-2">•</span>
-                    <span>{rule.message}</span>
+                    <span>{typeof rule === 'string' ? rule : (rule as any).message}</span>
                   </li>
                 ))}
               </ul>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Grid } from '@react-three/drei';
 import * as THREE from 'three';
@@ -8,6 +8,7 @@ import { Badge } from '@messai/ui';
 import MicrofluidicCell from './models/MicrofluidicCell';
 import StackedFuelCell from './models/StackedFuelCell';
 import BenchtopReactor from './models/BenchtopReactor';
+import AlgaeFuelCell from './models/AlgaeFuelCell';
 import PerformanceOverlay from './PerformanceOverlay';
 import ErrorBoundary from './ErrorBoundary';
 import Enhanced3DControls from './Enhanced3DControls';
@@ -33,6 +34,9 @@ function MESSModel({
   showAnimation?: boolean;
   visualizationMode?: 'static' | 'biofilm' | 'flow';
 }) {
+  // Debug logging
+  console.log('MESSModel rendering:', { type, scale, showAnimation, visualizationMode });
+
   // Render specific model based on type
   const renderModel = () => {
     switch (type) {
@@ -63,6 +67,15 @@ function MESSModel({
           />
         );
 
+      case 'algae':
+        return (
+          <AlgaeFuelCell
+            scale={scale}
+            showAnimation={showAnimation}
+            visualizationMode={visualizationMode}
+          />
+        );
+
       case 'industrial':
         return (
           <group scale={scale}>
@@ -87,10 +100,16 @@ function MESSModel({
 
       default:
         return (
-          <mesh scale={scale}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color="#9e9e9e" />
-          </mesh>
+          <group scale={scale}>
+            <mesh position={[0, 0, 0]}>
+              <boxGeometry args={[2, 1, 1]} />
+              <meshStandardMaterial color="#9e9e9e" />
+            </mesh>
+            <mesh position={[0, 0.7, 0]}>
+              <sphereGeometry args={[0.3, 16, 16]} />
+              <meshStandardMaterial color="#4CAF50" />
+            </mesh>
+          </group>
         );
     }
   };
@@ -127,6 +146,7 @@ function Scene({
       microfluidic: 1.2,
       stacked: 0.9,
       benchtop: 0.8,
+      algae: 0.7,
       industrial: 0.7,
     };
 
@@ -148,16 +168,22 @@ function Scene({
 
   return (
     <>
-      {/* Lighting setup without external HDR dependency */}
-      <ambientLight intensity={0.6} />
+      {/* Enhanced lighting setup for better model visibility */}
+      <ambientLight intensity={0.4} />
       <directionalLight
         position={[10, 10, 5]}
-        intensity={1}
+        intensity={1.2}
         castShadow
         shadow-mapSize={[2048, 2048]}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
       />
-      <directionalLight position={[-10, 10, -5]} intensity={0.5} />
-      <pointLight position={[0, 10, 0]} intensity={0.3} />
+      <directionalLight position={[-10, 10, -5]} intensity={0.8} />
+      <pointLight position={[0, 10, 0]} intensity={0.5} />
+      <pointLight position={[5, 5, 5]} intensity={0.3} />
 
       {/* Grid helper for reference - more subtle */}
       <Grid
@@ -187,8 +213,8 @@ function Scene({
         enablePan={true}
         enableZoom={true}
         enableRotate={true}
-        minDistance={5}
-        maxDistance={40}
+        minDistance={3}
+        maxDistance={50}
         maxPolarAngle={Math.PI * 0.85}
         target={[0, 0, 0]}
         makeDefault
@@ -206,6 +232,54 @@ export default function MESSViewer3D({
 }: MESSViewer3DProps) {
   const [isWebGLSupported, setIsWebGLSupported] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const canvasRef = useRef<HTMLDivElement>(null);
+
+  // Enhanced controls handlers
+  const handleViewChange = (view: string) => {
+    console.log('View changed to:', view);
+    // Camera position would be updated here
+  };
+
+  const handleScreenshot = () => {
+    console.log('Taking screenshot...');
+    // Screenshot functionality would be implemented here
+  };
+
+  const handleFullscreen = () => {
+    if (canvasRef.current) {
+      if (!isFullscreen) {
+        canvasRef.current.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+      setIsFullscreen(!isFullscreen);
+    }
+  };
+
+  const handleReset = () => {
+    console.log('Resetting view...');
+    // Reset camera position and controls
+  };
+
+  const handleShortcut = (action: string) => {
+    switch (action) {
+      case 'toggle-animation':
+        console.log('Toggle animation');
+        break;
+      case 'reset-view':
+        handleReset();
+        break;
+      case 'fullscreen':
+        handleFullscreen();
+        break;
+      case 'screenshot':
+        handleScreenshot();
+        break;
+      default:
+        console.log('Shortcut action:', action);
+    }
+  };
 
   // Check WebGL support
   React.useEffect(() => {
@@ -255,8 +329,19 @@ export default function MESSViewer3D({
   return (
     <ErrorBoundary>
       <div className={`relative bg-gray-50 ${className}`}>
-        {/* Canvas container - removed rounded corners and adjusted sizing */}
-        <div className="w-full h-full min-h-[600px] relative">
+        {/* Enhanced 3D Controls */}
+        <Enhanced3DControls
+          onViewChange={handleViewChange}
+          onScreenshot={handleScreenshot}
+          onFullscreen={handleFullscreen}
+          onReset={handleReset}
+        />
+
+        {/* Keyboard Shortcuts */}
+        <KeyboardShortcuts onShortcut={handleShortcut} />
+
+        {/* Canvas container - fixed sizing and positioning */}
+        <div ref={canvasRef} className="w-full h-full min-h-[600px] relative">
           <Canvas
             shadows
             dpr={[1, 2]}
@@ -274,11 +359,19 @@ export default function MESSViewer3D({
             onCreated={({ gl, camera }) => {
               gl.toneMapping = THREE.ACESFilmicToneMapping;
               gl.toneMappingExposure = 1;
-              // Ensure camera captures full scene
               camera.updateProjectionMatrix();
             }}
           >
-            <Suspense fallback={null}>
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-full">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+                    <p className="text-sm text-gray-600">Loading 3D model...</p>
+                  </div>
+                </div>
+              }
+            >
               <Scene
                 selectedModel={selectedModel}
                 viewScale={viewScale}

@@ -360,10 +360,8 @@ export interface ParameterDetail extends Parameter {
   categoryName?: string;
   subcategoryId?: string;
   electrodeType?: ElectrodeType;
-  validationRules?: ValidationRule[];
-  typicalRange?: ParameterRange;
   content?: ParameterSection[];
-  references?: Reference[];
+  detailReferences?: Reference[];
   performanceMetrics?: PerformanceMetric;
   preparationMethods?: PreparationMethod[];
   costAnalysis?: CostAnalysis;

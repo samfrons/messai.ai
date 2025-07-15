@@ -15,6 +15,9 @@ import ParameterControl, { sliderStyles } from './components/ParameterControl';
 import LoadingStates from './components/LoadingStates';
 import EnhancedNavigation from './components/EnhancedNavigation';
 import RealTimeUpdates from './components/RealTimeUpdates';
+import ExperimentsModule from './components/ExperimentsModule';
+import ModelVersioning from './components/ModelVersioning';
+import ToolsIntegrationPanel from './components/ToolsIntegrationPanel';
 
 // Helper function for class names
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -97,7 +100,7 @@ const initialParameters: ModelParameters = {
 };
 
 export default function LabIOPage() {
-  const [selectedModel, setSelectedModel] = useState('microfluidic');
+  const [selectedModel, setSelectedModel] = useState('algae');
   const [viewScale, setViewScale] = useState<'molecular' | 'system' | 'industrial'>('system');
   const [visualizationMode, setVisualizationMode] = useState<'static' | 'biofilm' | 'flow'>(
     'static'
@@ -128,6 +131,10 @@ export default function LabIOPage() {
     setParameters((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleLoadVersion = (versionParameters: Record<string, any>) => {
+    setParameters(versionParameters as ModelParameters);
+  };
+
   const models = [
     {
       id: 'microfluidic',
@@ -135,6 +142,14 @@ export default function LabIOPage() {
       status: 'Available',
       statusType: 'default',
       description: 'Microscope slide chip with magnetic electrodes',
+      version: '1.0',
+    },
+    {
+      id: 'algae',
+      name: 'Algae Fuel Cell Reactor',
+      status: 'Available',
+      statusType: 'default',
+      description: 'High-precision algae bioreactor with Caladan Bio aesthetic',
       version: '1.0',
     },
     {
@@ -249,7 +264,7 @@ export default function LabIOPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-serif text-base">{model.name}</h3>
-                        <Badge variant="ghost" size="xs">
+                        <Badge variant="ghost" size="sm">
                           v{model.version}
                         </Badge>
                       </div>
@@ -309,13 +324,17 @@ export default function LabIOPage() {
 
         {/* Center Column - 3D Viewer */}
         <div className="col-span-12 lg:col-span-6">
-          <Card shadow={false} padding="none" className="h-full">
-            <MESSViewer3D
-              className="h-full min-h-[600px]"
-              selectedModel={selectedModel}
-              viewScale={viewScale}
-              visualizationMode={visualizationMode}
-            />
+          <Card shadow={false} padding="none" className="h-full min-h-[600px]">
+            <div className="relative w-full h-full">
+              <MESSViewer3D
+                className="w-full h-full"
+                selectedModel={selectedModel}
+                viewScale={viewScale}
+                visualizationMode={visualizationMode}
+              />
+              {/* Experiments Module Overlay */}
+              <ExperimentsModule />
+            </div>
           </Card>
         </div>
 
@@ -619,6 +638,12 @@ export default function LabIOPage() {
 
       {/* Real-time Updates Component */}
       <RealTimeUpdates />
+
+      {/* Model Versioning Component */}
+      <ModelVersioning currentParameters={parameters} onLoadVersion={handleLoadVersion} />
+
+      {/* Tools Integration Panel */}
+      <ToolsIntegrationPanel />
     </>
   );
 }

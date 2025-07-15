@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, Button, Badge } from '@messai/ui';
-import { useRealTimeUpdates, RealTimeUpdate } from '../hooks/useRealTimeUpdates';
+import { useRealTimeUpdates, type RealTimeUpdate } from '../hooks/useRealTimeUpdates';
 
 export default function RealTimeUpdates() {
   const { status, subscribe, clearUpdates } = useRealTimeUpdates();
@@ -61,7 +61,7 @@ export default function RealTimeUpdates() {
           <div className={`w-2 h-2 rounded-full ${getConnectionColor()} mr-2`}></div>
           Real-time Updates
           {status.updates.length > 0 && (
-            <Badge variant="outline" size="xs" className="ml-2">
+            <Badge variant="outline" size="sm" className="ml-2">
               {status.updates.length}
             </Badge>
           )}
@@ -76,7 +76,7 @@ export default function RealTimeUpdates() {
               <div className="flex items-center gap-2">
                 <Badge
                   variant="outline"
-                  size="xs"
+                  size="sm"
                   className={`${
                     status.connected
                       ? 'bg-green-50 text-green-600 border-green-200'
@@ -85,7 +85,7 @@ export default function RealTimeUpdates() {
                 >
                   {status.connected ? 'Connected' : 'Disconnected'}
                 </Badge>
-                <Button variant="ghost" size="xs" onClick={clearUpdates} className="h-6 w-6 p-0">
+                <Button variant="ghost" size="sm" onClick={clearUpdates} className="h-6 w-6 p-0">
                   🗑️
                 </Button>
               </div>

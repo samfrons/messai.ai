@@ -111,7 +111,7 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
 
           // Merge markdown content into detail object
           detail.content = parsedContent.sections;
-          detail.references = parsedContent.references;
+          detail.detailReferences = parsedContent.references;
           detail.performanceMetrics = parsedContent.performanceMetrics;
           detail.preparationMethods = parsedContent.preparationMethods;
           detail.costAnalysis = parsedContent.costAnalysis;
@@ -138,7 +138,10 @@ export async function getParameterById(id: string): Promise<ParameterDetail | nu
       range: detail.range,
       default: detail.default,
       typicalRange: detail.typicalRange,
-      validationRules: detail.validationRules?.map((r) => r.message || '') || [],
+      validationRules:
+        detail.validationRules?.map((r) =>
+          typeof r === 'string' ? r : (r as any).message || ''
+        ) || [],
     } as any;
     const relatedParams = getRelatedParameterRecommendations(
       parameterForRecommendation,
@@ -406,18 +409,18 @@ function mapCategoryId(categoryId: string): ParameterCategory {
 /**
  * Extract properties from parameter
  */
-function extractProperties(parameter: any, categoryId: string): Record<string, any> {
+function extractProperties(parameter: any, _categoryId: string): Record<string, any> {
   const properties: Record<string, any> = {};
 
-  if (parameter.unit) properties.unit = parameter.unit;
+  if (parameter.unit) properties['unit'] = parameter.unit;
   if (parameter.range) {
-    properties.min = parameter.range.min;
-    properties.max = parameter.range.max;
+    properties['min'] = parameter.range.min;
+    properties['max'] = parameter.range.max;
   }
-  if (parameter.default !== undefined) properties.default = parameter.default;
+  if (parameter.default !== undefined) properties['default'] = parameter.default;
   if (parameter.typical_range) {
-    properties.typicalMin = parameter.typical_range.min;
-    properties.typicalMax = parameter.typical_range.max;
+    properties['typicalMin'] = parameter.typical_range.min;
+    properties['typicalMax'] = parameter.typical_range.max;
   }
 
   return properties;
@@ -447,28 +450,4 @@ function extractValidationRules(parameter: any): any[] {
   }
 
   return rules;
-}
-
-/**
- * Get related parameters
- */
-function getRelatedParameters(id: string, categoryId: string, subcategoryId: string): any[] {
-  const related = [];
-
-  // Add some hardcoded related parameters based on category
-  if (subcategoryId === 'anode-materials') {
-    related.push(
-      { id: 'graphite_felt', name: 'Graphite Felt' },
-      { id: 'carbon_brush', name: 'Carbon Brush' },
-      { id: 'mxene_anode', name: 'MXene Anode' }
-    );
-  } else if (subcategoryId === 'cathode-materials') {
-    related.push(
-      { id: 'air_cathode', name: 'Air Cathode' },
-      { id: 'platinum_cathode', name: 'Platinum Cathode' }
-    );
-  }
-
-  // Filter out the current parameter
-  return related.filter((p) => p.id !== id).slice(0, 5);
 }

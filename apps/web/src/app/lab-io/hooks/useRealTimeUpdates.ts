@@ -53,7 +53,10 @@ export function useRealTimeUpdates() {
         system: 'System performance metrics refreshed',
       };
 
-      const type = updateTypes[Math.floor(Math.random() * updateTypes.length)];
+      const typeIndex = Math.floor(Math.random() * updateTypes.length);
+      const type = updateTypes[typeIndex];
+      if (!type) return; // Type guard
+
       const newUpdate: RealTimeUpdate = {
         id: `update-${Date.now()}`,
         timestamp: Date.now(),

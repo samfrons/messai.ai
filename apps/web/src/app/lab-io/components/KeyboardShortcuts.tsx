@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Badge, Card } from '@messai/ui';
 
 interface KeyboardShortcutsProps {
@@ -73,7 +73,7 @@ export default function KeyboardShortcuts({ onShortcut }: KeyboardShortcutsProps
       <span key={index}>
         <Badge
           variant="outline"
-          size="xs"
+          size="sm"
           className={`mx-1 ${pressedKeys.has(key) ? 'bg-blue-100 border-blue-300' : ''}`}
         >
           {key === 'Space' ? '⎵' : key}
@@ -94,7 +94,7 @@ export default function KeyboardShortcuts({ onShortcut }: KeyboardShortcutsProps
         >
           <span className="mr-2">⌨️</span>
           Shortcuts
-          <Badge variant="outline" size="xs" className="ml-2">
+          <Badge variant="outline" size="sm" className="ml-2">
             ?
           </Badge>
         </Button>
@@ -107,7 +107,7 @@ export default function KeyboardShortcuts({ onShortcut }: KeyboardShortcutsProps
               <h3 className="font-semibold text-sm">Keyboard Shortcuts</h3>
               <Button
                 variant="ghost"
-                size="xs"
+                size="sm"
                 onClick={() => setIsVisible(false)}
                 className="h-6 w-6 p-0"
               >
@@ -127,7 +127,7 @@ export default function KeyboardShortcuts({ onShortcut }: KeyboardShortcutsProps
             <div className="mt-4 pt-4 border-t border-gray-200">
               <p className="text-xs text-gray-500">
                 Press{' '}
-                <Badge variant="outline" size="xs">
+                <Badge variant="outline" size="sm">
                   ?
                 </Badge>{' '}
                 to toggle this help

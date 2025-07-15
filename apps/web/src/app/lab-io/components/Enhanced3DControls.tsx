@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button, Badge, Card } from '@messai/ui';
 
 interface Enhanced3DControlsProps {
@@ -123,13 +123,13 @@ export default function Enhanced3DControls({
             <h3 className="font-semibold text-sm">3D Controls</h3>
             <div className="flex items-center gap-1">
               {isAnimating && (
-                <Badge variant="outline" size="xs" className="bg-blue-50 text-blue-600">
+                <Badge variant="outline" size="sm" className="bg-blue-50 text-blue-600">
                   Animating
                 </Badge>
               )}
               <Button
                 variant="ghost"
-                size="xs"
+                size="sm"
                 onClick={() => setShowAdvanced(!showAdvanced)}
                 className="h-6 w-6 p-0"
               >

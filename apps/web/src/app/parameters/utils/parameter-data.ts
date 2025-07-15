@@ -16,9 +16,9 @@ async function loadUnifiedData() {
   if (!unifiedData) {
     try {
       console.log(
-        '🔄 Fetching unified parameter data from /parameters/MESS_PARAMETERS_UNIFIED.json...'
+        '🔄 Fetching unified parameter data from /parameters/MESS_PARAMETERS_UNIFIED_FINAL.json...'
       );
-      const response = await fetch('/parameters/MESS_PARAMETERS_UNIFIED.json');
+      const response = await fetch('/parameters/MESS_PARAMETERS_UNIFIED_FINAL.json');
 
       console.log('📡 Fetch response:', {
         ok: response.ok,

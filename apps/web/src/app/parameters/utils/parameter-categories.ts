@@ -46,6 +46,20 @@ export const CATEGORY_DESCRIPTIONS: Record<DisplayCategory, string> = {
 
 // Map unified JSON categories to display categories
 export const UNIFIED_CATEGORY_MAPPINGS: Record<string, DisplayCategory> = {
+  // Direct mappings for unified JSON categories
+  environmental: 'environmental',
+  biological: 'biological',
+  materials: 'materials',
+  operational: 'operational',
+  monitoring: 'monitoring',
+  economic: 'economic',
+  performance: 'performance',
+  safety: 'safety',
+  electrical: 'electrical',
+  chemical: 'chemical',
+  physical: 'physical',
+
+  // Legacy mappings (for backward compatibility)
   'environmental-parameters': 'environmental',
   'biological-parameters': 'biological',
   'material-parameters': 'materials',
@@ -226,6 +240,12 @@ const MONITORING_PATTERNS = [
  * Determine the display category for a parameter
  */
 export function getParameterCategory(parameter: any, unifiedCategoryId: string): DisplayCategory {
+  // First, check if the unified category ID directly maps to a display category
+  if (UNIFIED_CATEGORY_MAPPINGS[unifiedCategoryId]) {
+    return UNIFIED_CATEGORY_MAPPINGS[unifiedCategoryId];
+  }
+
+  // If direct mapping doesn't work, fall back to pattern matching
   const paramId = parameter.id.toLowerCase();
   const paramName = parameter.name.toLowerCase();
   const paramDescription = (parameter.description || '').toLowerCase();
@@ -268,8 +288,8 @@ export function getParameterCategory(parameter: any, unifiedCategoryId: string):
     return 'monitoring';
   }
 
-  // Fall back to unified category mapping
-  return UNIFIED_CATEGORY_MAPPINGS[unifiedCategoryId] || 'operational';
+  // Final fallback
+  return 'operational';
 }
 
 /**
