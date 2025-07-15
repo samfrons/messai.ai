@@ -3,7 +3,9 @@ import type {
   ParameterCategory,
   ParameterFilter,
   ParameterSearchResults,
+  DisplayCategory,
 } from '../../../types/parameters';
+import { getParameterCategory, getParameterCategories } from './parameter-categories';
 
 // Import the unified parameter data
 let unifiedData: any = null;
@@ -75,6 +77,11 @@ export async function getSystemParameters(): Promise<Parameter[]> {
     category.subcategories.forEach((subcategory: any) => {
       subcategory.parameters.forEach((param: any) => {
         const transformedParam = transformUnifiedParameter(param, category, subcategory);
+
+        // Add display category using our new categorization logic
+        const { primary } = getParameterCategories(param, category.id);
+        transformedParam.displayCategory = primary;
+
         parameters.push(transformedParam);
       });
     });
@@ -123,9 +130,11 @@ export async function searchParameters(
     );
   }
 
-  // Apply category filter
+  // Apply category filter - check both original category and display category
   if (filters.category) {
-    filteredParameters = filteredParameters.filter((param) => param.category === filters.category);
+    filteredParameters = filteredParameters.filter(
+      (param) => param.category === filters.category || param.displayCategory === filters.category
+    );
   }
 
   // Apply subcategory filter
@@ -276,8 +285,9 @@ function generateFacets(parameters: Parameter[]) {
   const propertyRanges: Record<string, { min: number; max: number }> = {};
 
   parameters.forEach((param) => {
-    // Count categories
-    categories.set(param.category, (categories.get(param.category) || 0) + 1);
+    // Count display categories (preferred) or fall back to original category
+    const categoryToCount = param.displayCategory || param.category;
+    categories.set(categoryToCount, (categories.get(categoryToCount) || 0) + 1);
 
     // Count subcategories
     if (param.subcategory) {

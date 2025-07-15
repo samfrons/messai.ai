@@ -1,10 +1,12 @@
 import { useMemo, useCallback, useState, useEffect } from 'react';
 import { getParameterCategories, getSystemParameters } from '../utils/parameter-data';
+import { getAvailableCategories } from '../utils/parameter-categories';
 import type {
   ParameterFilter,
   ParameterCategory,
   ParameterType,
   ParameterCategoryData,
+  DisplayCategory,
 } from '../../../types/parameters';
 
 export function useParameterFilters(

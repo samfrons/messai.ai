@@ -51,6 +51,7 @@ export interface Parameter {
   id: string;
   name: string;
   category: ParameterCategory;
+  displayCategory?: DisplayCategory; // New display category for UI
   subcategory?: string; // From parameter library classification
   subcategoryCode?: string; // Code for programmatic access
   type?: ParameterType;
