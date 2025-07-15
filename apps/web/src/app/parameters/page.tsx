@@ -8,7 +8,6 @@ import { useParameterSearch } from './hooks/useParameterSearch';
 import { useParameterFilters } from './hooks/useParameterFilters';
 
 export default function ParametersPage() {
-  console.log('🔄 Parameters page loaded with new code!');
   const [showFilters, setShowFilters] = useState(false);
   const [searchInput, setSearchInput] = useState('');
 
@@ -34,7 +33,6 @@ export default function ParametersPage() {
     propertyRanges,
     compatibilityOptions,
     categories,
-    isLoading: filtersLoading,
     updateFilter,
     clearCategoryFilter,
   } = useParameterFilters(filters, setFilters);
@@ -191,8 +189,8 @@ export default function ParametersPage() {
               }))}
               typeOptions={typeOptions}
               propertyRanges={propertyRanges}
-              compatibilityOptions={compatibilityOptions}
-              categories={categories}
+              {...(compatibilityOptions && { compatibilityOptions })}
+              {...(categories && { categories })}
             />
           </div>
         )}

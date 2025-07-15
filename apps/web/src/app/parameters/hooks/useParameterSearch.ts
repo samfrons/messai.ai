@@ -23,13 +23,7 @@ export function useParameterSearch() {
           ...(query && { query }),
         };
 
-        console.log('Searching parameters with filters:', searchFilters);
         const searchResults = await searchParameters(searchFilters, page, pageSize);
-        console.log('Search results:', {
-          count: searchResults.parameters.length,
-          total: searchResults.total,
-          firstParam: searchResults.parameters[0]?.name,
-        });
         setResults(searchResults.parameters);
         setTotalResults(searchResults.total);
         setFacets(searchResults.facets);
