@@ -4,7 +4,7 @@ import type {
   ParameterFilter,
   ParameterSearchResults,
 } from '../../../types/parameters';
-import { getParameterCategories as getParameterCategoriesMapping } from './parameter-categories';
+import { getParameterCategories as categorizeParameter } from './parameter-categories';
 
 // Import the unified parameter data
 let unifiedData: any = null;
@@ -78,7 +78,7 @@ export async function getSystemParameters(): Promise<Parameter[]> {
         const transformedParam = transformUnifiedParameter(param, category, subcategory);
 
         // Add display category using our new categorization logic
-        const { primary } = getParameterCategoriesMapping(param, category.id);
+        const { primary } = categorizeParameter(param, category.id);
         transformedParam.displayCategory = primary;
 
         parameters.push(transformedParam);

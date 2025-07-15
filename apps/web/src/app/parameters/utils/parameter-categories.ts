@@ -369,9 +369,14 @@ export function getCategoryStats(parameters: any[]): Record<DisplayCategory, num
   };
 
   parameters.forEach((param) => {
-    const { primary, secondary } = getParameterCategories(param, param.categoryId);
-    stats[primary]++;
-    secondary.forEach((cat) => stats[cat]++);
+    // Use displayCategory if already set, otherwise calculate it
+    if (param.displayCategory && param.displayCategory in stats) {
+      stats[param.displayCategory as DisplayCategory]++;
+    } else {
+      const { primary, secondary } = getParameterCategories(param, param.category);
+      stats[primary]++;
+      secondary.forEach((cat) => stats[cat]++);
+    }
   });
 
   return stats;
@@ -382,7 +387,12 @@ export function getCategoryStats(parameters: any[]): Record<DisplayCategory, num
  */
 export function filterParametersByCategory(parameters: any[], category: DisplayCategory): any[] {
   return parameters.filter((param) => {
-    const { primary, secondary } = getParameterCategories(param, param.categoryId);
+    // Use displayCategory if already set
+    if (param.displayCategory) {
+      return param.displayCategory === category;
+    }
+    // Otherwise calculate it
+    const { primary, secondary } = getParameterCategories(param, param.category);
     return primary === category || secondary.includes(category);
   });
 }
