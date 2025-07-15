@@ -12,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const navigation = [
     { label: 'Dashboard', href: '/' },
     { label: 'Research', href: '/research' },
+    { label: 'About', href: '/about' },
     { label: 'Laboratory', href: '/lab' },
     { label: 'Lab-IO', href: '/lab-io' },
     { label: 'Parameters', href: '/parameters' },

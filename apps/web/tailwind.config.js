@@ -18,7 +18,7 @@ module.exports = {
       // CETEP-inspired minimalist color palette
       colors: {
         cream: '#f9f4ea',
-        black: '#000000',
+        black: 'rgb(12 22 56 / 90%)',
         gray: {
           50: '#fafafa',
           100: '#f5f5f5',
@@ -81,6 +81,7 @@ module.exports = {
       animation: {
         'fade-in': 'fadeIn 0.4s ease-out',
         'slide-in': 'slideIn 0.5s ease-out',
+        'slide-down': 'slideDown 0.3s ease-out',
       },
 
       keyframes: {
@@ -90,6 +91,10 @@ module.exports = {
         },
         slideIn: {
           '0%': { transform: 'translateY(-20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
