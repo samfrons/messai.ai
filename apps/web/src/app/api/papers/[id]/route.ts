@@ -9,36 +9,13 @@ export async function GET(_request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
 
-    const paper = await prisma.paper.findUnique({
+    const paper = await prisma.researchPaper.findUnique({
       where: { id },
       include: {
-        uploadedBy: {
+        user: {
           select: { id: true, name: true, email: true },
         },
-        tags: true,
-        citations: {
-          include: {
-            citedPaper: {
-              select: { id: true, title: true, authors: true, year: true },
-            },
-          },
-        },
-        citedBy: {
-          include: {
-            citingPaper: {
-              select: { id: true, title: true, authors: true, year: true },
-            },
-          },
-        },
-        predictions: {
-          take: 5,
-          orderBy: { createdAt: 'desc' },
-          include: {
-            user: {
-              select: { id: true, name: true },
-            },
-          },
-        },
+        experiments: true,
       },
     });
 
@@ -99,33 +76,33 @@ export async function PUT(request: NextRequest, { params }: Props) {
       verified,
     } = body;
 
-    const paper = await prisma.paper.update({
+    const paper = await prisma.researchPaper.update({
       where: { id },
       data: {
         ...(title && { title }),
         ...(abstract && { abstract }),
         ...(authors && { authors }),
         ...(journal && { journal }),
-        ...(year && { year: parseInt(year) }),
+        ...(year && { publicationDate: new Date(parseInt(year), 0, 1) }),
         ...(doi && { doi }),
-        ...(pmid && { pmid }),
+        ...(pmid && { pubmedId: pmid }),
         ...(arxivId && { arxivId }),
-        ...(url && { url }),
-        ...(pdfUrl && { pdfUrl }),
-        ...(summary && { summary }),
-        ...(keyFindings && { keyFindings }),
-        ...(performanceData && { performanceData }),
-        ...(methodology && { methodology }),
-        ...(materials && { materials }),
-        ...(qualityScore !== undefined && { qualityScore }),
-        ...(verified !== undefined && { verified }),
+        ...(url && { externalUrl: url }),
+        ...(pdfUrl && { externalUrl: pdfUrl }), // Note: schema only has one URL field
+        ...(summary && { aiSummary: summary }),
+        ...(keyFindings && { aiKeyFindings: keyFindings }),
+        ...(performanceData && { performanceMetrics: performanceData }),
+        ...(methodology && { aiMethodology: methodology }),
+        ...(materials && { anodeMaterials: materials }),
+        ...(qualityScore !== undefined && { aiConfidence: qualityScore / 100 }),
+        ...(verified !== undefined && { isPublic: verified }),
         updatedAt: new Date(),
       },
       include: {
-        uploadedBy: {
+        user: {
           select: { id: true, name: true, email: true },
         },
-        tags: true,
+        experiments: true,
       },
     });
 
@@ -166,7 +143,7 @@ export async function DELETE(_request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
 
-    await prisma.paper.delete({
+    await prisma.researchPaper.delete({
       where: { id },
     });
 

@@ -183,9 +183,7 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   cell_volume: '/parameters/parameters-v1/physical/cell-volume.md',
 
   // More biological parameters (January 2025)
-  extracellular_polymeric_substances:
-    '/parameters/parameters-v1/biological/extracellular-polymeric-substances.md',
-  cell_viability: '/parameters/parameters-v1/biological/cell-viability.md',
+  // extracellular_polymeric_substances already defined above
 
   // Newly generated chemical parameters (January 2025)
   chemical_stability: '/parameters/parameters-v1/chemical/chemical-stability.md',
@@ -231,7 +229,7 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   ch4_production_rate: '/parameters/parameters-v1/performance/methane-production-rate.md',
 
   // New batch - Biological parameters (January 2025)
-  biofilm_thickness: '/parameters/parameters-v1/biological/biofilm-thickness.md',
+  // biofilm_thickness: '/parameters/parameters-v1/biological/biofilm-thickness.md', // DUPLICATE: Removed - already defined on line 117
   bacterial_concentration: '/parameters/parameters-v1/biological/bacterial-concentration.md',
 
   // New batch - Materials parameters (January 2025)
@@ -278,7 +276,23 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   specific_surface_area: '/parameters/parameters-v1/materials/specific-surface-area.md',
 
   // Current batch - Environmental parameters (January 2025)
-  atmospheric_pressure: '/parameters/parameters-v1/environmental/atmospheric-pressure-env.md',
+  // atmospheric_pressure: '/parameters/parameters-v1/environmental/atmospheric-pressure-env.md', // DUPLICATE: Removed - already defined on line 203
+
+  // Latest batch - Core parameters (January 2025)
+  cod_concentration: '/parameters/parameters-v1/biological/cod-concentration.md',
+  substrate_concentration: '/parameters/parameters-v1/biological/substrate-concentration.md',
+  biofilm_permeability: '/parameters/parameters-v1/biological/biofilm-permeability.md',
+  microbial_activity: '/parameters/parameters-v1/biological/microbial-activity.md',
+  voltage_stability: '/parameters/parameters-v1/electrical/voltage-stability.md',
+  energy_density: '/parameters/parameters-v1/electrical/energy-density.md',
+  diffusion_resistance: '/parameters/parameters-v1/electrical/diffusion-resistance.md',
+  electrode_thickness: '/parameters/parameters-v1/materials/electrode-thickness.md',
+  membrane_permeability: '/parameters/parameters-v1/materials/membrane-permeability.md',
+  porosity_electrode: '/parameters/parameters-v1/materials/porosity-electrode.md',
+  mass_transfer_coefficient: '/parameters/parameters-v1/physical/mass-transfer-coefficient.md',
+  hydraulic_permeability: '/parameters/parameters-v1/physical/hydraulic-permeability.md',
+  ionic_conductivity: '/parameters/parameters-v1/chemical/ionic-conductivity.md',
+  ohmic_resistance: '/parameters/parameters-v1/operational/ohmic-resistance.md',
 
   // Placeholder mappings for parameters not yet generated
   microbial_growth_rate: '/parameters/parameters-v1/biological/growth-rate.md',

@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../lib/db';
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     console.log('=== DB Test API ===');
-    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
-    console.log('FORCE_POSTGRES:', process.env.FORCE_POSTGRES);
-    console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('DATABASE_URL exists:', !!process.env['DATABASE_URL']);
+    console.log('FORCE_POSTGRES:', process.env['FORCE_POSTGRES']);
+    console.log('NODE_ENV:', process.env['NODE_ENV']);
 
-    if (!process.env.DATABASE_URL) {
+    if (!process.env['DATABASE_URL']) {
       return NextResponse.json(
         {
           error: 'DATABASE_URL not found in environment',
           env: {
-            NODE_ENV: process.env.NODE_ENV,
-            FORCE_POSTGRES: process.env.FORCE_POSTGRES,
+            NODE_ENV: process.env['NODE_ENV'],
+            FORCE_POSTGRES: process.env['FORCE_POSTGRES'],
           },
         },
         { status: 500 }
@@ -30,9 +30,9 @@ export async function GET(request: NextRequest) {
       data: {
         totalPapers: count,
         environment: {
-          NODE_ENV: process.env.NODE_ENV,
-          FORCE_POSTGRES: process.env.FORCE_POSTGRES,
-          DATABASE_URL_SET: !!process.env.DATABASE_URL,
+          NODE_ENV: process.env['NODE_ENV'],
+          FORCE_POSTGRES: process.env['FORCE_POSTGRES'],
+          DATABASE_URL_SET: !!process.env['DATABASE_URL'],
         },
       },
     });
