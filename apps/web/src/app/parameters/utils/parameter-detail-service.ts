@@ -113,12 +113,28 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   coulombic_efficiency: '/parameters/parameters-v1/electrical/coulombic-efficiency.md',
   internal_resistance: '/parameters/parameters-v1/electrical/resistance.md',
 
-  // Biological parameters (5 files available)
+  // Biological parameters (18 files available - original 5 + 13 newly generated)
   biofilm_thickness: '/parameters/parameters-v1/biological/biofilm-properties.md',
   electron_transfer_rate: '/parameters/parameters-v1/biological/electron-transfer.md',
   growth_rate: '/parameters/parameters-v1/biological/growth-kinetics.md',
   microbial_diversity: '/parameters/parameters-v1/biological/microbial-communities.md',
   substrate_utilization: '/parameters/parameters-v1/biological/substrate-utilization.md',
+
+  // Newly generated biological parameters (13 files)
+  biofilm_density: '/parameters/parameters-v1/biological/biofilm-density.md',
+  biofilm_coverage: '/parameters/parameters-v1/biological/biofilm-coverage.md',
+  biofilm_roughness: '/parameters/parameters-v1/biological/biofilm-roughness.md',
+  biofilm_adhesion_strength: '/parameters/parameters-v1/biological/biofilm-adhesion-strength.md',
+  metabolic_activity: '/parameters/parameters-v1/biological/metabolic-activity.md',
+  metabolic_rate: '/parameters/parameters-v1/biological/metabolic-rate.md',
+  respiration_rate: '/parameters/parameters-v1/biological/respiration-rate.md',
+  mediator_concentration: '/parameters/parameters-v1/biological/mediator-concentration.md',
+  substrate_utilization_rate: '/parameters/parameters-v1/biological/substrate-utilization-rate.md',
+  atp_concentration: '/parameters/parameters-v1/biological/atp-concentration.md',
+  half_saturation_constant: '/parameters/parameters-v1/biological/half-saturation-constant.md',
+
+  // Note: The following are duplicates using growth-rate.md for different parameter IDs
+  microbial_growth_rate: '/parameters/parameters-v1/biological/growth-rate.md',
 };
 
 /**

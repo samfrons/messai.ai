@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-07-16T00:09:17.908Z",
+  "summary": {
+    "total": 1,
+    "successful": 0,
+    "failed": 1,
+    "skipped": 0,
+    "averageQuality": 0
+  },
+  "details": {
+    "successful": [],
+    "failed": [
+      {
+        "parameter": {
+          "id": "biofilm_conductivity",
+          "name": "Biofilm Conductivity",
+          "description": "Electrical conductivity",
+          "unit": "S/m",
+          "type": "number",
+          "category": "Biological Parameters",
+          "subcategory": "Biofilm Parameters",
+          "default": 0.01,
+          "range": {
+            "min": 0.001,
+            "max": 1,
+            "typical": 0.01
+          },
+          "tags": ["biological", "biofilm-parameters"],
+          "categoryId": "biological",
+          "subcategoryId": "biofilm-parameters",
+          "currentQuality": 0,
+          "needsUpdate": false
+        },
+        "error": "Failed to call Ollama: Command failed: curl -s -X POST http://localhost:11434/api/generate -H \"Content-Type: application/json\" -d '{\"model\":\"mistral-small3.2:latest\",\"prompt\":\"You are a technical documentation specialist for microbial electrochemical systems (MESS). Generate comprehensive, scientifically accurate documentation for the following parameter.\\n\\nPARAMETER TO DOCUMENT:\\n- ID: biofilm_conductivity\\n- Name: Biofilm Conductivity\\n- Description: Electrical conductivity\\n- Unit: S/m\\n- Type: number\\n- Category: Biological Parameters (biological)\\n- Subcategory: Biofilm Parameters (biofilm-parameters)\\n- Range: 0.001 - 1\\n\\n\\nDOCUMENTATION REQUIREMENTS:\\n1. Follow the exact structure and style of the examples below\\n2. Include all required sections: Definition, Typical Values, Measurement Methods, Affecting Factors, Performance Impact, Compatible Systems, Validation Rules, References, Application Notes\\n3. Be scientifically accurate and cite relevant literature\\n4. Include specific numeric ranges and validation criteria\\n5. Provide practical measurement guidance\\n6. Consider the parameter'\\''s role in MESS systems\\n\\nSTYLE GUIDELINES:\\n- Use technical but accessible language\\n- Include specific formulas where applicable\\n- Provide comprehensive typical value ranges\\n- Include validation rules with specific criteria\\n- Reference actual scientific literature (use realistic citations)\\n- Structure content with clear headings and subheadings\\n- Include practical application notes for different system scales\\n\\nEXAMPLE DOCUMENTATION STRUCTURE:\\n\\n--- Example from biofilm_properties ---\\n# Biofilm Properties\\n\\n## Definition\\n\\nBiofilms in bioelectrochemical systems are structured communities of\\nmicroorganisms embedded in a self-produced matrix of extracellular polymeric\\nsubstances (EPS). These three-dimensional structures facilitate electron\\ntransfer to electrodes and create optimal microenvironments for\\nelectrochemically active bacteria. Biofilm properties significantly influence\\nsystem performance, stability, and longevity.\\n\\n## Typical Values\\n\\n### Biofilm Thickness\\n\\n- **Range**: 1-1000 μm\\n- **Typical**: 50-200 μm\\n- **Outlier threshold**: >500 μm\\n- **Validation**: Mature biofilms typically 50-200 μm\\n\\n### Biofilm Conductivity\\n\\n- **Range**: 0.001-1 S/m\\n- **Typical**: 0.01-0.1 S/m\\n- **Outlier threshold**: >0.5 S/m\\n\\n### Cell Density\\n\\n- **Range**: 1×10⁶ - 1×10¹² cells/cm³\\n- **Typical**: 1×10⁸ - 1×10¹⁰ cells/cm³\\n- **Outlier threshold**: >1×10¹¹ cells/cm³\\n\\n### EPS Content\\n\\n- **Range**: 0-500 mg/g VSS\\n- **Typical**: 50-200 mg/g VSS\\n- **Outlier threshold**: >300 mg/g VSS\\n\\n### Bio\\n---\\n\\n--- Example from electron_transfer ---\\n# Electron Transfer\\n\\n## Definition\\n\\nElectron transfer in bioelectrochemical systems is the process by which\\nmicroorganisms transfer electrons from metabolic processes to external\\nelectrodes. This process is fundamental to all bioelectrochemical systems and\\ncan occur through direct contact, conductive nanowires, or electron mediators.\\nThe efficiency and rate of electron transfer directly determine system\\nperformance.\\n\\n## Typical Values\\n\\n### Transfer Rate\\n\\n- **Range**: 0.001-1000 s⁻¹\\n- **Typical**: 0.1-10 s⁻¹\\n- **Outlier threshold**: >100 s⁻¹\\n\\n### Mediator Concentration\\n\\n- **Range**: 0-10 mM\\n- **Typical**: 0.1-2 mM\\n- **Outlier threshold**: >5 mM\\n\\n### Transfer Mechanism Distribution\\n\\n- **Direct contact**: 30-50% of total transfer\\n- **Nanowires**: 20-40% of total transfer\\n- **Mediator-based**: 10-30% of total transfer\\n- **Mixed mechanisms**: Common in natural systems\\n\\n### Biofilm Conductivity\\n\\n- **Range**: 0.001-1 S/m\\n- **Typical**: 0.01-0.1 S/m\\n- **Outlier threshold**: >0.5 S/m\\n\\n## Measur\\n---\\n\\n\\nGenerate comprehensive documentation for Biofilm Conductivity following the same structure, depth, and quality as the examples. The documentation should be complete, technically accurate, and immediately useful for researchers and engineers working with microbial electrochemical systems.\",\"stream\":false,\"options\":{\"temperature\":0.7,\"top_p\":0.9,\"top_k\":40}}' --max-time 120\n"
+      }
+    ],
+    "skipped": []
+  }
+}

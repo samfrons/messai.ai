@@ -13,8 +13,7 @@ import {
   Pagination,
   type PaperData,
 } from '@messai/ui';
-import { useResearchSearch } from './hooks/useResearchSearch';
-import { getRecentPapers, getTopCitedPapers } from './mockData';
+import { useResearchAPI } from '../../hooks/useResearchAPI';
 import type { ResearchPaper, SortOption } from './types';
 
 /**
@@ -42,6 +41,7 @@ export default function ResearchPage() {
     pageSize,
     isLoading,
     results,
+    error,
     searchHistory,
     hasActiveFilters,
     totalResults,
@@ -53,7 +53,7 @@ export default function ResearchPage() {
     setPage,
     setPageSize,
     clearFilters,
-  } = useResearchSearch();
+  } = useResearchAPI();
 
   // Convert ResearchPaper to PaperData for components
   const convertToPaperData = (paper: ResearchPaper): PaperData => ({
@@ -101,9 +101,22 @@ export default function ResearchPage() {
     // In a real implementation, this would open the PDF or redirect to publisher
   };
 
-  // Sample data for dashboard stats
-  const recentPapers = useMemo(() => getRecentPapers(3).map(convertToPaperData), []);
-  const topCitedPapers = useMemo(() => getTopCitedPapers(3).map(convertToPaperData), []);
+  // Quick action handlers
+  const handleViewRecentPapers = () => {
+    setQuery(''); // Clear search query
+    setSearchInput('');
+    setSortBy('added-desc');
+    // Set a minimal filter to trigger search results view
+    setFilters({ yearRange: { start: 2020, end: new Date().getFullYear() + 1 } });
+  };
+
+  const handleViewCitedPapers = () => {
+    setQuery(''); // Clear search query
+    setSearchInput('');
+    setSortBy('citations-desc');
+    // Set a minimal filter to trigger search results view
+    setFilters({ minCitations: 0 });
+  };
 
   const sortOptions: { value: SortOption; label: string }[] = [
     { value: 'relevance', label: 'Most Relevant' },
@@ -224,7 +237,7 @@ export default function ResearchPage() {
       </div>
 
       {/* Search Results or Dashboard */}
-      {query || hasActiveFilters ? (
+      {query || hasActiveFilters || results ? (
         /* Search Results Section */
         <div className="grid-12">
           {/* Filters Panel - Left Side */}
@@ -247,9 +260,17 @@ export default function ResearchPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <h3 className="text-lg font-serif">Search Results</h3>
-                {results?.searchTime && (
-                  <div className="text-sm opacity-60">
-                    Search completed in {results.searchTime}ms
+                {results && (
+                  <div className="flex items-center gap-4 text-sm opacity-60">
+                    <span>
+                      {results.totalCount.toLocaleString()} papers found
+                      {results.totalCount > pageSize && (
+                        <span> • Showing {Math.min(pageSize, results.papers.length)} per page</span>
+                      )}
+                    </span>
+                    {results.searchTime && (
+                      <span>• Search completed in {results.searchTime}ms</span>
+                    )}
                   </div>
                 )}
               </div>
@@ -272,9 +293,35 @@ export default function ResearchPage() {
 
             {/* Results List */}
             <div className="space-y-4">
-              {isLoading ? (
+              {error ? (
+                // Error state
+                <Card shadow={false} className="text-center py-12 border border-red-200 bg-red-50">
+                  <svg
+                    className="w-16 h-16 text-red-300 mx-auto mb-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z"
+                    />
+                  </svg>
+                  <h3 className="text-lg mb-2 text-red-800">Search Error</h3>
+                  <p className="text-red-600 mb-4">{error}</p>
+                  <Button
+                    variant="secondary"
+                    onClick={() => window.location.reload()}
+                    className="text-red-700 border-red-300 hover:bg-red-100"
+                  >
+                    Retry Search
+                  </Button>
+                </Card>
+              ) : isLoading ? (
                 // Loading state
-                Array.from({ length: 3 }).map((_, index) => (
+                Array.from({ length: 6 }).map((_, index) => (
                   <div key={index} className="animate-pulse">
                     <Card shadow={false} className="p-8">
                       <div className="space-y-4">
@@ -327,13 +374,13 @@ export default function ResearchPage() {
             </div>
 
             {/* Pagination */}
-            {results && results.totalPages > 1 && (
+            {results && results.totalCount > 0 && (
               <Pagination
                 currentPage={page}
                 totalPages={results.totalPages}
                 totalItems={totalResults}
                 itemsPerPage={pageSize}
-                itemsPerPageOptions={[10, 25, 50, 100]}
+                itemsPerPageOptions={[20, 40, 80, 100]}
                 onPageChange={setPage}
                 onItemsPerPageChange={setPageSize}
                 isLoading={isLoading}
@@ -386,60 +433,74 @@ export default function ResearchPage() {
               </div>
             </div>
 
-            {/* Recent Papers */}
-            <Card shadow={false} padding="lg">
-              <h2 className="text-xl font-serif font-light mb-6">Recent Papers</h2>
-              <div className="space-y-4">
-                {recentPapers.map((paper) => (
-                  <PaperCard
-                    key={paper.id}
-                    paper={paper}
-                    onPaperClick={handlePaperClick}
-                    showMetrics={true}
-                    truncateAbstract={true}
-                    maxAbstractLines={2}
-                  />
-                ))}
-              </div>
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    setQuery('recent');
-                    setSearchInput('recent');
-                  }}
-                  className="w-full"
-                >
-                  View All Recent Papers
-                </Button>
-              </div>
-            </Card>
+            {/* Quick Actions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card
+                shadow={false}
+                padding="lg"
+                className="border-2 border-gray-100 hover:border-gray-200 transition-colors"
+              >
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+                    <svg
+                      className="w-6 h-6 text-gray-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-serif font-light mb-2">Recent Papers</h3>
+                    <p className="text-sm opacity-60 mb-4">
+                      Browse the latest research papers added to our database
+                    </p>
+                    <Button variant="secondary" onClick={handleViewRecentPapers} className="w-full">
+                      View Recent Papers
+                    </Button>
+                  </div>
+                </div>
+              </Card>
 
-            {/* Top Cited Papers */}
-            <Card shadow={false} padding="lg">
-              <h2 className="text-xl font-serif font-light mb-6">Most Cited Papers</h2>
-              <div className="space-y-4">
-                {topCitedPapers.map((paper) => (
-                  <PaperCard
-                    key={paper.id}
-                    paper={paper}
-                    onPaperClick={handlePaperClick}
-                    showMetrics={true}
-                    truncateAbstract={true}
-                    maxAbstractLines={2}
-                  />
-                ))}
-              </div>
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <Button
-                  variant="secondary"
-                  onClick={() => setSortBy('citations-desc')}
-                  className="w-full"
-                >
-                  View All Highly Cited Papers
-                </Button>
-              </div>
-            </Card>
+              <Card
+                shadow={false}
+                padding="lg"
+                className="border-2 border-gray-100 hover:border-gray-200 transition-colors"
+              >
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+                    <svg
+                      className="w-6 h-6 text-gray-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-serif font-light mb-2">Most Cited Papers</h3>
+                    <p className="text-sm opacity-60 mb-4">
+                      Explore high-impact research with the most citations
+                    </p>
+                    <Button variant="secondary" onClick={handleViewCitedPapers} className="w-full">
+                      View Highly Cited Papers
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </div>
 
             {/* Feature Highlights */}
             <Card shadow={false} padding="lg" className="bg-gray-50">

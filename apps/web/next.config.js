@@ -57,7 +57,7 @@ const nextConfig = {
               script-src 'self' 'unsafe-eval' 'unsafe-inline';
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               img-src 'self' blob: data: https:;
-              font-src 'self' https://fonts.gstatic.com;
+              font-src 'self' https://fonts.gstatic.com data:;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
