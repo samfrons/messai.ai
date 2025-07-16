@@ -1,241 +1,220 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '../../../lib/db';
-import { transformDBPaperToResearchPaper } from '../../../services/paper-service';
-import type { Prisma } from '@prisma/client';
-import type { SortOption } from '../../research/types';
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
     const startTime = Date.now();
+    const { searchParams } = new URL(request.url);
 
-    // Parse pagination parameters
-    const page = Math.max(0, parseInt(searchParams.get('page') || '0')); // 0-indexed for frontend
-    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '40')));
-    const skip = page * limit;
-
-    // Parse search parameters
+    // Parse query parameters
     const search = searchParams.get('search') || '';
-    const sortBy = (searchParams.get('sort') || 'relevance') as SortOption;
+    const sort = searchParams.get('sort') || 'relevance';
+    const page = parseInt(searchParams.get('page') || '0', 10);
+    const limit = parseInt(searchParams.get('limit') || '40', 10);
 
-    // Parse filter parameters
-    const yearStart = searchParams.get('yearStart')
-      ? parseInt(searchParams.get('yearStart')!)
-      : undefined;
-    const yearEnd = searchParams.get('yearEnd')
-      ? parseInt(searchParams.get('yearEnd')!)
-      : undefined;
-    const journalTypes = searchParams.get('journalTypes')?.split(',').filter(Boolean) || [];
-    const researchFocus = searchParams.get('researchFocus')?.split(',').filter(Boolean) || [];
-    const minCitations = searchParams.get('minCitations')
-      ? parseInt(searchParams.get('minCitations')!)
-      : undefined;
-    const minQualityScore = searchParams.get('minQualityScore')
-      ? parseFloat(searchParams.get('minQualityScore')!)
-      : undefined;
-    const minConfidenceScore = searchParams.get('minConfidenceScore')
-      ? parseFloat(searchParams.get('minConfidenceScore')!)
-      : undefined;
+    // Parse filters
+    const yearStart = searchParams.get('yearStart');
+    const yearEnd = searchParams.get('yearEnd');
+    const minCitations = searchParams.get('minCitations');
+    const minQualityScore = searchParams.get('minQualityScore');
     const hasMetrics = searchParams.get('hasMetrics') === 'true';
     const verified = searchParams.get('verified') === 'true';
-    const fullTextOnly = searchParams.get('fullTextOnly') === 'true';
 
     // Build where clause
-    const where: Prisma.PaperWhereInput = {};
+    const where: any = {};
 
-    // Text search across multiple fields
-    if (search.trim()) {
-      const searchTerms = search
-        .toLowerCase()
-        .split(' ')
-        .filter((term) => term.length > 0);
-
-      where.OR = searchTerms.map((term) => ({
-        OR: [
-          { title: { contains: term, mode: 'insensitive' } },
-          { abstract: { contains: term, mode: 'insensitive' } },
-          { journal: { contains: term, mode: 'insensitive' } },
-          // Note: Authors field search handled differently for JSON vs Array
-        ],
-      }));
+    // Search query
+    if (search) {
+      where.OR = [
+        { title: { contains: search, mode: 'insensitive' } },
+        { abstract: { contains: search, mode: 'insensitive' } },
+        { authors: { contains: search, mode: 'insensitive' } }, // Fix: authors is a string, not array
+        { journal: { contains: search, mode: 'insensitive' } },
+        { systemType: { contains: search, mode: 'insensitive' } },
+      ];
     }
 
-    // Year range filter
-    if (yearStart !== undefined || yearEnd !== undefined) {
-      where.year = {};
-      if (yearStart !== undefined) where.year.gte = yearStart;
-      if (yearEnd !== undefined) where.year.lte = yearEnd;
+    // Year range filter - extract year from publicationDate
+    if (yearStart || yearEnd) {
+      const dateFilters: any = {};
+      if (yearStart) {
+        dateFilters.gte = new Date(`${yearStart}-01-01`);
+      }
+      if (yearEnd) {
+        dateFilters.lte = new Date(`${yearEnd}-12-31`);
+      }
+      where.publicationDate = dateFilters;
     }
 
-    // Citation count filter
-    if (minCitations !== undefined) {
-      where.citationCount = { gte: minCitations };
+    // Citation filter (use powerOutput as proxy)
+    if (minCitations) {
+      where.powerOutput = { gte: parseInt(minCitations, 10) };
     }
 
-    // Quality score filter
-    if (minQualityScore !== undefined) {
-      where.qualityScore = { gte: minQualityScore };
+    // Quality score filter (use aiConfidence as proxy)
+    if (minQualityScore) {
+      where.aiConfidence = { gte: parseFloat(minQualityScore) / 100 }; // Convert to 0-1 scale
     }
 
-    // Verified papers filter
+    // Performance metrics filter
+    if (hasMetrics) {
+      where.powerOutput = { not: null };
+    }
+
+    // Verified filter (use isPublic as proxy)
     if (verified) {
-      where.verified = true;
+      where.isPublic = true;
     }
 
-    // Full text availability filter
-    if (fullTextOnly) {
-      where.pdfUrl = { not: null };
-    }
-
-    // Performance metrics filter (requires post-processing due to JSON field)
-    // This will be handled after database query
-
-    // Build order by clause
-    const orderBy: Prisma.PaperOrderByWithRelationInput[] = [];
-
-    switch (sortBy) {
+    // Determine sort order
+    let orderBy: any = {};
+    switch (sort) {
+      case 'date':
       case 'year-desc':
-        orderBy.push({ year: 'desc' });
+        orderBy = { publicationDate: 'desc' };
         break;
       case 'year-asc':
-        orderBy.push({ year: 'asc' });
+        orderBy = { publicationDate: 'asc' };
         break;
+      case 'citations':
       case 'citations-desc':
-        orderBy.push({ citationCount: 'desc' });
+        orderBy = { powerOutput: 'desc' }; // Use powerOutput as proxy for importance
         break;
       case 'citations-asc':
-        orderBy.push({ citationCount: 'asc' });
+        orderBy = { powerOutput: 'asc' };
         break;
+      case 'quality':
       case 'quality-desc':
-        orderBy.push({ qualityScore: 'desc' });
+        orderBy = { aiConfidence: 'desc' };
         break;
       case 'quality-asc':
-        orderBy.push({ qualityScore: 'asc' });
+        orderBy = { aiConfidence: 'asc' };
         break;
       case 'added-desc':
-        orderBy.push({ createdAt: 'desc' });
-        break;
-      case 'confidence-desc':
-        orderBy.push({ qualityScore: 'desc' }); // Use qualityScore as proxy for confidence
+        orderBy = { createdAt: 'desc' };
         break;
       case 'relevance':
       default:
-        // For relevance, we'll sort by a combination of factors
-        orderBy.push({ qualityScore: 'desc' }, { citationCount: 'desc' }, { year: 'desc' });
+        // For relevance, we'll use a combination of AI confidence and creation date
+        orderBy = [{ aiConfidence: 'desc' }, { createdAt: 'desc' }];
         break;
     }
 
-    // Execute database queries
-    const [dbPapers, total] = await Promise.all([
-      prisma.paper.findMany({
+    // Execute queries in parallel
+    const [papers, totalCount] = await Promise.all([
+      prisma.researchPaper.findMany({
         where,
-        skip,
-        take: limit,
         orderBy,
-        include: {
-          uploadedBy: {
-            select: { id: true, name: true },
-          },
-          tags: true,
-          _count: {
-            select: { citations: true, citedBy: true },
-          },
+        skip: page * limit,
+        take: limit,
+        select: {
+          id: true,
+          title: true,
+          authors: true,
+          abstract: true,
+          publicationDate: true,
+          journal: true,
+          doi: true,
+          externalUrl: true,
+          systemType: true,
+          powerOutput: true,
+          efficiency: true,
+          aiSummary: true,
+          aiKeyFindings: true,
+          aiConfidence: true,
+          source: true,
+          isPublic: true,
+          createdAt: true,
         },
       }),
-      prisma.paper.count({ where }),
+      prisma.researchPaper.count({ where }),
     ]);
 
-    // Transform database papers to frontend format
-    let transformedPapers = dbPapers.map(transformDBPaperToResearchPaper);
+    // Transform papers to match frontend expectations
+    const transformedPapers = papers.map((paper) => {
+      // Parse authors - handle both string array and JSON string
+      let authorsList: string[] = [];
+      if (Array.isArray(paper.authors)) {
+        authorsList = paper.authors;
+      } else if (typeof paper.authors === 'string') {
+        try {
+          authorsList = JSON.parse(paper.authors);
+        } catch {
+          authorsList = [paper.authors];
+        }
+      }
 
-    // Apply post-database filters that require JSON parsing
-    if (hasMetrics) {
-      transformedPapers = transformedPapers.filter(
-        (paper) =>
-          paper.performanceMetrics &&
-          (paper.performanceMetrics.maxPowerDensity ||
-            paper.performanceMetrics.coulombicEfficiency ||
-            paper.performanceMetrics.energyRecoveryEfficiency)
-      );
-    }
+      // Parse key findings
+      let keyFindings: string[] = [];
+      if (paper.aiKeyFindings) {
+        try {
+          keyFindings = JSON.parse(paper.aiKeyFindings as string);
+        } catch {
+          keyFindings = [];
+        }
+      }
 
-    if (minConfidenceScore !== undefined) {
-      transformedPapers = transformedPapers.filter(
-        (paper) => (paper.aiConfidenceScore || 0) >= minConfidenceScore
-      );
-    }
+      // Extract year from publicationDate
+      const year = paper.publicationDate ? new Date(paper.publicationDate).getFullYear() : null;
 
-    // Filter by research focus (using inferred values)
-    if (researchFocus.length > 0) {
-      transformedPapers = transformedPapers.filter((paper) =>
-        paper.researchFocus.some((focus) => researchFocus.includes(focus))
-      );
-    }
+      // Clean abstract text by removing JATS XML tags
+      const cleanAbstract = (text: string) => {
+        if (!text) return '';
+        return text
+          .replace(/<jats:[^>]*>/g, '') // Remove opening JATS tags
+          .replace(/<\/jats:[^>]*>/g, '') // Remove closing JATS tags
+          .replace(/<[^>]*>/g, '') // Remove any remaining HTML/XML tags
+          .trim();
+      };
 
-    // Apply additional text search to author names (post-transformation)
-    if (search.trim()) {
-      const searchTerms = search
-        .toLowerCase()
-        .split(' ')
-        .filter((term) => term.length > 0);
-      transformedPapers = transformedPapers.filter((paper) => {
-        const authorText = paper.authors
-          .map((a) => a.name)
-          .join(' ')
-          .toLowerCase();
-        return (
-          searchTerms.some((term) => authorText.includes(term)) ||
-          searchTerms.some(
-            (term) =>
-              paper.title.toLowerCase().includes(term) ||
-              paper.abstract.toLowerCase().includes(term) ||
-              paper.journal.name.toLowerCase().includes(term)
-          )
-        );
-      });
-    }
+      return {
+        id: paper.id,
+        title: paper.title,
+        authors: authorsList.map((name) => ({ name, affiliation: '' })),
+        abstract: cleanAbstract(paper.abstract || ''),
+        year: year || 0,
+        journal: {
+          name: paper.journal || '',
+          impactFactor: 0,
+        },
+        doi: paper.doi || '',
+        url: paper.externalUrl || '',
+        pdfUrl: paper.externalUrl || '', // Use externalUrl as PDF URL fallback
+        citation: {
+          citationCount: paper.powerOutput || 0, // Use powerOutput as proxy for citations
+          hIndex: 0,
+          scholarProfile: '',
+        },
+        qualityScore: (paper.aiConfidence || 0) * 100, // Convert 0-1 to 0-100 scale
+        aiConfidenceScore: (paper.aiConfidence || 0) * 100,
+        verified: paper.isPublic,
+        researchFocus: paper.systemType ? [paper.systemType] : [],
+        performanceMetrics: {
+          maxPowerDensity: paper.powerOutput,
+          coulombicEfficiency: paper.efficiency,
+          currentDensity: null, // Not available in this schema
+        },
+        keyFindings: keyFindings,
+        aiEnhanced: !!paper.aiSummary,
+        source: paper.source || 'database',
+        processingDate: paper.createdAt.toISOString(),
+        hasFullText: !!paper.externalUrl,
+      };
+    });
 
-    // Calculate relevance scores for relevance sorting
-    if (sortBy === 'relevance' && search.trim()) {
-      const searchTerms = search
-        .toLowerCase()
-        .split(' ')
-        .filter((term) => term.length > 0);
-
-      transformedPapers = transformedPapers
-        .map((paper) => {
-          let relevanceScore = 0;
-          const title = paper.title.toLowerCase();
-          const abstract = paper.abstract.toLowerCase();
-          const authorText = paper.authors
-            .map((a) => a.name)
-            .join(' ')
-            .toLowerCase();
-
-          searchTerms.forEach((term) => {
-            // Title matches get highest score
-            if (title.includes(term)) relevanceScore += 3;
-            // Abstract matches get medium score
-            if (abstract.includes(term)) relevanceScore += 2;
-            // Author matches get base score
-            if (authorText.includes(term)) relevanceScore += 1;
-          });
-
-          // Boost by quality metrics
-          relevanceScore *= 1 + paper.qualityScore / 100;
-          relevanceScore *= 1 + Math.log10(paper.citation.citationCount + 1) / 10;
-
-          return { ...paper, relevanceScore };
-        })
-        .sort((a, b) => {
-          const aScore = (a as any).relevanceScore || 0;
-          const bScore = (b as any).relevanceScore || 0;
-          return bScore - aScore;
-        });
-    }
-
-    // Generate search suggestions
-    const suggestions = search.trim() ? generateSuggestions(search) : undefined;
+    // Calculate statistics
+    const stats = {
+      totalPapers: totalCount,
+      systemTypes: await prisma.researchPaper.groupBy({
+        by: ['systemType'],
+        where: { systemType: { not: null } },
+        _count: true,
+      }),
+      yearRange: await prisma.researchPaper.aggregate({
+        _min: { publicationDate: true },
+        _max: { publicationDate: true },
+      }),
+    };
 
     const searchTime = Date.now() - startTime;
 
@@ -245,11 +224,26 @@ export async function GET(request: NextRequest) {
         pagination: {
           page,
           limit,
-          total: transformedPapers.length, // Use filtered count
-          pages: Math.ceil(transformedPapers.length / limit),
+          total: totalCount,
+          pages: Math.ceil(totalCount / limit),
+        },
+        stats: {
+          totalResults: totalCount,
+          systemTypes: stats.systemTypes.map((st) => ({
+            type: st.systemType,
+            count: st._count,
+          })),
+          yearRange: {
+            min: stats.yearRange._min.publicationDate
+              ? new Date(stats.yearRange._min.publicationDate).getFullYear()
+              : 2000,
+            max: stats.yearRange._max.publicationDate
+              ? new Date(stats.yearRange._max.publicationDate).getFullYear()
+              : new Date().getFullYear(),
+          },
         },
         searchTime,
-        suggestions,
+        suggestions: search ? [] : undefined, // Add empty suggestions array when search is provided
       },
       error: null,
     });
@@ -259,135 +253,8 @@ export async function GET(request: NextRequest) {
       {
         data: null,
         error: {
-          message: 'Failed to fetch papers',
+          message: error instanceof Error ? error.message : 'Failed to fetch papers',
           code: 'FETCH_ERROR',
-        },
-      },
-      { status: 500 }
-    );
-  }
-}
-
-/**
- * Generate search suggestions based on query
- */
-function generateSuggestions(query: string): string[] {
-  const lowerQuery = query.toLowerCase();
-  const suggestions: string[] = [];
-
-  // Common research terms
-  const commonTerms = [
-    'microbial fuel cell',
-    'electrode design',
-    'biofilm engineering',
-    'power density',
-    'coulombic efficiency',
-    'energy recovery',
-    'wastewater treatment',
-    'hydrogen production',
-    'performance optimization',
-    'materials science',
-    'graphene',
-    'bioelectrochemical',
-    'electrolysis',
-    'desalination',
-    'proton exchange membrane',
-    'solid oxide fuel cell',
-  ];
-
-  // Add matching terms
-  commonTerms.forEach((term) => {
-    if (term.includes(lowerQuery) && !suggestions.includes(term)) {
-      suggestions.push(term);
-    }
-  });
-
-  return suggestions.slice(0, 5);
-}
-
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
-
-    const {
-      title,
-      abstract,
-      authors,
-      journal,
-      year,
-      doi,
-      pmid,
-      arxivId,
-      url,
-      pdfUrl,
-      uploadedById,
-    } = body;
-
-    if (!title || !abstract || !authors || !year) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Missing required fields: title, abstract, authors, year',
-            code: 'VALIDATION_ERROR',
-          },
-        },
-        { status: 400 }
-      );
-    }
-
-    const paper = await prisma.paper.create({
-      data: {
-        title,
-        abstract,
-        authors,
-        journal,
-        year: parseInt(year),
-        doi,
-        pmid,
-        arxivId,
-        url,
-        pdfUrl,
-        uploadedById,
-        processingStatus: 'pending',
-      },
-      include: {
-        uploadedBy: {
-          select: { id: true, name: true, email: true },
-        },
-        tags: true,
-      },
-    });
-
-    return NextResponse.json(
-      {
-        data: paper,
-        error: null,
-      },
-      { status: 201 }
-    );
-  } catch (error) {
-    console.error('Papers creation error:', error);
-
-    if (error instanceof Error && error.message.includes('Unique constraint')) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Paper with this DOI/PMID already exists',
-            code: 'DUPLICATE_ERROR',
-          },
-        },
-        { status: 409 }
-      );
-    }
-
-    return NextResponse.json(
-      {
-        data: null,
-        error: {
-          message: 'Failed to create paper',
-          code: 'CREATION_ERROR',
         },
       },
       { status: 500 }

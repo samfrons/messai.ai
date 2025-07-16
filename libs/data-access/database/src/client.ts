@@ -8,10 +8,17 @@ function createPrismaClient() {
   const isProduction = process.env.NODE_ENV === 'production';
   const isDevelopment = process.env.NODE_ENV === 'development';
 
+  // Check if we should use Prisma Accelerate (production only)
+  const accelerateUrl = process.env.PRISMA_ACCELERATE_URL;
+  const hasAccelerate = !!accelerateUrl && isProduction;
+
   // Determine which URL to use based on environment
   let connectionUrl: string;
 
-  if (
+  if (hasAccelerate && process.env.DATABASE_URL?.includes('postgres')) {
+    // Production with Prisma Accelerate
+    connectionUrl = accelerateUrl;
+  } else if (
     process.env.DATABASE_URL?.includes('postgres') &&
     (isProduction || process.env.FORCE_POSTGRES === 'true')
   ) {
@@ -21,14 +28,14 @@ function createPrismaClient() {
     // Explicit SQLite URL
     connectionUrl = process.env.DATABASE_URL;
   } else {
-    // Default to PostgreSQL for development
-    connectionUrl = process.env.DATABASE_URL || 'file:./prisma/dev.db';
+    // Default to SQLite for local development
+    connectionUrl = 'file:./prisma/dev.db';
   }
 
-  // For PostgreSQL connections, add connection pooling params
+  // For non-Accelerate PostgreSQL connections, add connection pooling params
   let finalUrl = connectionUrl;
 
-  if (connectionUrl.includes('postgres')) {
+  if (!hasAccelerate && connectionUrl.includes('postgres')) {
     try {
       const url = new URL(connectionUrl.replace('postgresql://', 'postgres://'));
       url.searchParams.set('connection_limit', '5'); // Reduce connection limit
@@ -57,3 +64,22 @@ export const prisma = globalForPrisma.prisma ?? createPrismaClient();
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma;
 }
+
+// Handle cleanup on process termination
+if (typeof process !== 'undefined') {
+  process.on('beforeExit', async () => {
+    await prisma.$disconnect();
+  });
+
+  process.on('SIGINT', async () => {
+    await prisma.$disconnect();
+    process.exit(0);
+  });
+
+  process.on('SIGTERM', async () => {
+    await prisma.$disconnect();
+    process.exit(0);
+  });
+}
+
+export default prisma;

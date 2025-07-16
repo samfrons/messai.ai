@@ -18,7 +18,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@messai/database": ["../../libs/data-access/database/src/index.ts"]
     },
     "types": ["jest", "node"],
     "outDir": "dist",
