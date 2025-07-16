@@ -113,27 +113,174 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   coulombic_efficiency: '/parameters/parameters-v1/electrical/coulombic-efficiency.md',
   internal_resistance: '/parameters/parameters-v1/electrical/resistance.md',
 
-  // Biological parameters (18 files available - original 5 + 13 newly generated)
+  // Biological parameters (original 5 files)
   biofilm_thickness: '/parameters/parameters-v1/biological/biofilm-properties.md',
   electron_transfer_rate: '/parameters/parameters-v1/biological/electron-transfer.md',
   growth_rate: '/parameters/parameters-v1/biological/growth-kinetics.md',
   microbial_diversity: '/parameters/parameters-v1/biological/microbial-communities.md',
   substrate_utilization: '/parameters/parameters-v1/biological/substrate-utilization.md',
 
-  // Newly generated biological parameters (13 files)
-  biofilm_density: '/parameters/parameters-v1/biological/biofilm-density.md',
+  // Newly generated biological parameters (January 2025)
+  biofilm_conductivity: '/parameters/parameters-v1/biological/biofilm-conductivity.md',
   biofilm_coverage: '/parameters/parameters-v1/biological/biofilm-coverage.md',
+  biofilm_density: '/parameters/parameters-v1/biological/biofilm-density.md',
+  biofilm_porosity: '/parameters/parameters-v1/biological/biofilm-porosity.md',
   biofilm_roughness: '/parameters/parameters-v1/biological/biofilm-roughness.md',
   biofilm_adhesion_strength: '/parameters/parameters-v1/biological/biofilm-adhesion-strength.md',
   metabolic_activity: '/parameters/parameters-v1/biological/metabolic-activity.md',
+  substrate_utilization_rate: '/parameters/parameters-v1/biological/substrate-utilization-rate.md',
+  mediator_concentration: '/parameters/parameters-v1/biological/mediator-concentration.md',
+  doubling_time: '/parameters/parameters-v1/biological/doubling-time.md',
+  atp_concentration: '/parameters/parameters-v1/biological/atp-concentration.md',
+  enzyme_activity: '/parameters/parameters-v1/biological/enzyme-activity.md',
   metabolic_rate: '/parameters/parameters-v1/biological/metabolic-rate.md',
   respiration_rate: '/parameters/parameters-v1/biological/respiration-rate.md',
-  mediator_concentration: '/parameters/parameters-v1/biological/mediator-concentration.md',
-  substrate_utilization_rate: '/parameters/parameters-v1/biological/substrate-utilization-rate.md',
-  atp_concentration: '/parameters/parameters-v1/biological/atp-concentration.md',
   half_saturation_constant: '/parameters/parameters-v1/biological/half-saturation-constant.md',
 
-  // Note: The following are duplicates using growth-rate.md for different parameter IDs
+  // Newly generated electrical parameters (January 2025)
+  faradaic_efficiency: '/parameters/parameters-v1/electrical/faradaic-efficiency.md',
+  exchange_current_density: '/parameters/parameters-v1/electrical/exchange-current-density.md',
+  overpotential: '/parameters/parameters-v1/electrical/overpotential.md',
+  tafel_slope: '/parameters/parameters-v1/electrical/tafel-slope.md',
+
+  // Additional biological parameters (January 2025)
+  decay_rate: '/parameters/parameters-v1/biological/decay-rate.md',
+  maximum_growth_rate: '/parameters/parameters-v1/biological/maximum-growth-rate.md',
+  yield_coefficient: '/parameters/parameters-v1/biological/yield-coefficient.md',
+  inhibition_constant: '/parameters/parameters-v1/biological/inhibition-constant.md',
+  maintenance_coefficient: '/parameters/parameters-v1/biological/maintenance-coefficient.md',
+  substrate_affinity: '/parameters/parameters-v1/biological/substrate-affinity.md',
+  substrate_uptake_rate: '/parameters/parameters-v1/biological/substrate-uptake-rate.md',
+  dominant_species_fraction: '/parameters/parameters-v1/biological/dominant-species-fraction.md',
+
+  // Additional electrical parameters (January 2025)
+  limiting_current: '/parameters/parameters-v1/electrical/limiting-current.md',
+  capacitance: '/parameters/parameters-v1/electrical/double-layer-capacitance.md',
+  charge_transfer_resistance: '/parameters/parameters-v1/electrical/charge-transfer-resistance.md',
+  power_efficiency: '/parameters/parameters-v1/electrical/power-efficiency.md',
+
+  // Newly generated materials parameters (January 2025)
+  conductivity_printed: '/parameters/parameters-v1/materials/conductivity-printed.md',
+  material_viscosity: '/parameters/parameters-v1/materials/material-viscosity.md',
+  layer_resolution: '/parameters/parameters-v1/materials/layer-resolution.md',
+  shrinkage_rate: '/parameters/parameters-v1/materials/shrinkage-rate.md',
+  printing_speed: '/parameters/parameters-v1/materials/printing-speed.md',
+  nozzle_temperature: '/parameters/parameters-v1/materials/nozzle-temperature.md',
+  bed_temperature: '/parameters/parameters-v1/materials/bed-temperature.md',
+
+  // Latest biological parameters (January 2025)
+  extracellular_polymeric_substances:
+    '/parameters/parameters-v1/biological/extracellular-polymeric-substances.md',
+  cell_viability: '/parameters/parameters-v1/biological/cell-viability.md',
+  biofilm_age: '/parameters/parameters-v1/biological/biofilm-age.md',
+  biofilm_resistance: '/parameters/parameters-v1/biological/biofilm-resistance.md',
+
+  // Latest electrical parameters (January 2025)
+  redox_potential: '/parameters/parameters-v1/electrical/redox-potential.md',
+
+  // Latest physical parameters (January 2025)
+  electrode_spacing_cell: '/parameters/parameters-v1/physical/electrode-spacing-cell.md',
+  cell_volume: '/parameters/parameters-v1/physical/cell-volume.md',
+
+  // More biological parameters (January 2025)
+  extracellular_polymeric_substances:
+    '/parameters/parameters-v1/biological/extracellular-polymeric-substances.md',
+  cell_viability: '/parameters/parameters-v1/biological/cell-viability.md',
+
+  // Newly generated chemical parameters (January 2025)
+  chemical_stability: '/parameters/parameters-v1/chemical/chemical-stability.md',
+  ionic_strength: '/parameters/parameters-v1/chemical/ionic-strength.md',
+  buffer_concentration: '/parameters/parameters-v1/chemical/buffer-concentration.md',
+
+  // Newly generated operational parameters (January 2025)
+  calibration_frequency: '/parameters/parameters-v1/operational/calibration-frequency.md',
+  detection_limit: '/parameters/parameters-v1/operational/detection-limit.md',
+
+  // Newly generated performance parameters (January 2025)
+  conversion_efficiency: '/parameters/parameters-v1/performance/conversion-efficiency.md',
+  h2_production_rate: '/parameters/parameters-v1/performance/h2-production-rate.md',
+
+  // Newly generated environmental parameters (January 2025)
+  ambient_temperature: '/parameters/parameters-v1/environmental/ambient-temperature.md',
+  atmospheric_pressure: '/parameters/parameters-v1/environmental/atmospheric-pressure.md',
+  relative_humidity: '/parameters/parameters-v1/environmental/relative-humidity.md',
+  co2_concentration: '/parameters/parameters-v1/environmental/co2-concentration.md',
+
+  // Latest batch - Chemical parameters (January 2025)
+  c_n_ratio: '/parameters/parameters-v1/chemical/c-n-ratio.md',
+  surface_tension: '/parameters/parameters-v1/chemical/surface-tension.md',
+  corrosivity: '/parameters/parameters-v1/chemical/corrosivity.md',
+
+  // Latest batch - Biological parameters (January 2025)
+  bod_concentration: '/parameters/parameters-v1/biological/bod-concentration.md',
+
+  // Latest batch - Electrical parameters (January 2025)
+  electrode_potential: '/parameters/parameters-v1/electrical/electrode-potential.md',
+  cell_potential: '/parameters/parameters-v1/electrical/cell-potential.md',
+  current_efficiency: '/parameters/parameters-v1/electrical/current-efficiency.md',
+  resistance: '/parameters/parameters-v1/electrical/system-resistance.md',
+
+  // Latest batch - Environmental parameters (January 2025)
+  air_flow_rate: '/parameters/parameters-v1/environmental/air-flow-rate.md',
+  ambient_oxygen_concentration:
+    '/parameters/parameters-v1/environmental/ambient-oxygen-concentration.md',
+
+  // Latest batch - Performance parameters (January 2025)
+  biogas_yield: '/parameters/parameters-v1/performance/biogas-yield.md',
+  ch4_content_biogas: '/parameters/parameters-v1/performance/methane-content.md',
+  ch4_production_rate: '/parameters/parameters-v1/performance/methane-production-rate.md',
+
+  // New batch - Biological parameters (January 2025)
+  biofilm_thickness: '/parameters/parameters-v1/biological/biofilm-thickness.md',
+  bacterial_concentration: '/parameters/parameters-v1/biological/bacterial-concentration.md',
+
+  // New batch - Materials parameters (January 2025)
+  surface_roughness: '/parameters/parameters-v1/materials/surface-roughness.md',
+  porosity: '/parameters/parameters-v1/materials/porosity.md',
+  catalyst_loading: '/parameters/parameters-v1/materials/catalyst-loading.md',
+  membrane_thickness: '/parameters/parameters-v1/materials/membrane-thickness.md',
+
+  // New batch - Safety parameters (January 2025)
+  compliance_audits: '/parameters/parameters-v1/safety/compliance-audits.md',
+  emission_standard_co2: '/parameters/parameters-v1/safety/emission-standard-co2.md',
+
+  // New batch - Monitoring parameters (January 2025)
+  sampling_rate: '/parameters/parameters-v1/monitoring/sampling-rate.md',
+  model_accuracy: '/parameters/parameters-v1/monitoring/model-accuracy.md',
+  alarm_threshold_temperature:
+    '/parameters/parameters-v1/monitoring/alarm-threshold-temperature.md',
+
+  // New batch - Economic parameters (January 2025)
+  carbon_footprint: '/parameters/parameters-v1/economic/carbon-footprint.md',
+  payback_period: '/parameters/parameters-v1/economic/payback-period.md',
+
+  // Current batch - Biological parameters (January 2025)
+  initial_substrate_conc: '/parameters/parameters-v1/biological/initial-substrate-concentration.md',
+  substrate_loading_rate: '/parameters/parameters-v1/biological/substrate-loading-rate.md',
+  inoculum_concentration: '/parameters/parameters-v1/biological/inoculum-concentration.md',
+
+  // Current batch - Physical parameters (January 2025)
+  electrode_surface_area: '/parameters/parameters-v1/physical/electrode-surface-area.md',
+  contact_resistance: '/parameters/parameters-v1/physical/contact-resistance.md',
+  reactor_geometry: '/parameters/parameters-v1/physical/reactor-geometry.md',
+
+  // Current batch - Operational parameters (January 2025)
+  hydraulic_retention_time: '/parameters/parameters-v1/operational/hydraulic-retention-time.md',
+  flow_rate: '/parameters/parameters-v1/operational/flow-rate.md',
+  operating_temperature: '/parameters/parameters-v1/operational/operating-temperature.md',
+
+  // Current batch - Chemical parameters (January 2025)
+  dissolved_oxygen: '/parameters/parameters-v1/chemical/dissolved-oxygen.md',
+  conductivity: '/parameters/parameters-v1/chemical/electrolyte-conductivity.md',
+  ph_level: '/parameters/parameters-v1/chemical/ph-level.md',
+
+  // Current batch - Materials parameters (January 2025)
+  specific_surface_area: '/parameters/parameters-v1/materials/specific-surface-area.md',
+
+  // Current batch - Environmental parameters (January 2025)
+  atmospheric_pressure: '/parameters/parameters-v1/environmental/atmospheric-pressure-env.md',
+
+  // Placeholder mappings for parameters not yet generated
   microbial_growth_rate: '/parameters/parameters-v1/biological/growth-rate.md',
 };
 

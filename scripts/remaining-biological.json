@@ -1,0 +1,389 @@
+[
+  {
+    "id": "mediator_concentration",
+    "name": "Mediator Concentration",
+    "description": "Electron mediator concentration",
+    "unit": "mM",
+    "type": "number",
+    "subcategory": "Biofilm Parameters",
+    "subcategoryId": "biofilm-parameters"
+  },
+  {
+    "id": "doubling_time",
+    "name": "Cell Doubling Time",
+    "description": "Time required for cell population to double",
+    "unit": "hours",
+    "type": "number",
+    "subcategory": "Kinetics",
+    "subcategoryId": "kinetics"
+  },
+  {
+    "id": "atp_concentration",
+    "name": "ATP Concentration",
+    "description": "Intracellular ATP concentration",
+    "unit": "μM",
+    "type": "number",
+    "subcategory": "Metabolic Parameters",
+    "subcategoryId": "metabolic-parameters"
+  },
+  {
+    "id": "enzyme_activity",
+    "name": "Enzyme Activity",
+    "description": "Activity of key metabolic enzymes",
+    "unit": "U/mg protein",
+    "type": "number",
+    "subcategory": "Metabolic Parameters",
+    "subcategoryId": "metabolic-parameters"
+  },
+  {
+    "id": "metabolic_rate",
+    "name": "Metabolic Rate",
+    "description": "Overall metabolic activity of microorganisms",
+    "unit": "μmol O₂/mg·h",
+    "type": "number",
+    "subcategory": "Metabolic Parameters",
+    "subcategoryId": "metabolic-parameters"
+  },
+  {
+    "id": "respiration_rate",
+    "name": "Cellular Respiration Rate",
+    "description": "Rate of cellular respiration",
+    "unit": "mg O₂/L·h",
+    "type": "number",
+    "subcategory": "Metabolic Parameters",
+    "subcategoryId": "metabolic-parameters"
+  },
+  {
+    "id": "decay_rate",
+    "name": "Decay Rate",
+    "description": "Endogenous decay",
+    "unit": "1/h",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "half_saturation_constant",
+    "name": "Half Saturation Constant",
+    "description": "Ks for substrate",
+    "unit": "g/L",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "inhibition_constant",
+    "name": "Inhibition Constant",
+    "description": "Substrate inhibition",
+    "unit": "g/L",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "maintenance_coefficient",
+    "name": "Maintenance Coefficient",
+    "description": "Maintenance energy",
+    "unit": "1/h",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "maximum_growth_rate",
+    "name": "Maximum Growth Rate",
+    "description": "μmax",
+    "unit": "1/h",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "substrate_affinity",
+    "name": "Substrate Affinity",
+    "description": "Substrate affinity",
+    "unit": "L/g/h",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "substrate_uptake_rate",
+    "name": "Substrate Uptake Rate",
+    "description": "Specific uptake rate",
+    "unit": "g/g/h",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "yield_coefficient",
+    "name": "Yield Coefficient",
+    "description": "Biomass yield",
+    "unit": "g/g",
+    "type": "number",
+    "subcategory": "Microbial Kinetics",
+    "subcategoryId": "microbial-kinetics"
+  },
+  {
+    "id": "dominant_species_fraction",
+    "name": "Dominant Species Fraction",
+    "description": "Fraction of dominant microbial species",
+    "unit": "%",
+    "type": "number",
+    "subcategory": "Microbial Selection",
+    "subcategoryId": "microbial-selection"
+  },
+  {
+    "id": "inoculum_concentration",
+    "name": "Inoculum Concentration",
+    "description": "Initial microbial concentration for startup",
+    "unit": "cells/mL",
+    "type": "number",
+    "subcategory": "Microbial Selection",
+    "subcategoryId": "microbial-selection"
+  },
+  {
+    "id": "chlamydomonas_reinhardtii",
+    "name": "Chlamydomonas Reinhardtii",
+    "description": "Model green alga",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "chlorella_vulgaris",
+    "name": "Chlorella Vulgaris",
+    "description": "Green microalga",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "clostridium_butyricum",
+    "name": "Clostridium Butyricum",
+    "description": "Fermentative bacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "desulfovibrio_desulfuricans",
+    "name": "Desulfovibrio Desulfuricans",
+    "description": "Sulfate-reducing bacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "dunaliella_salina",
+    "name": "Dunaliella Salina",
+    "description": "Halophilic alga",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "e_coli_engineered",
+    "name": "E Coli Engineered",
+    "description": "Engineered E. coli strains",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "enterobacter_aerogenes",
+    "name": "Enterobacter Aerogenes",
+    "description": "H₂ producer",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "geobacter_sulfurreducens",
+    "name": "Geobacter Sulfurreducens",
+    "description": "Metal-reducing bacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "klebsiella_pneumoniae",
+    "name": "Klebsiella Pneumoniae",
+    "description": "Facultative anaerobe",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "methanobacterium_formicicum",
+    "name": "Methanobacterium Formicicum",
+    "description": "Formate-utilizing methanogen",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "methanobrevibacter_smithii",
+    "name": "Methanobrevibacter Smithii",
+    "description": "Hydrogenotrophic methanogen",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "methanococcus_maripaludis",
+    "name": "Methanococcus Maripaludis",
+    "description": "Marine methanogen",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "methanosarcina_acetivorans",
+    "name": "Methanosarcina Acetivorans",
+    "description": "Acetoclastic methanogen",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "ochrobactrum_anthropi",
+    "name": "Ochrobactrum Anthropi",
+    "description": "Heavy metal tolerant",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "pseudomonas_aeruginosa",
+    "name": "Pseudomonas Aeruginosa",
+    "description": "Biofilm-forming bacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "rhodobacter_sphaeroides",
+    "name": "Rhodobacter Sphaeroides",
+    "description": "Purple non-sulfur bacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "rhodoferax_ferrireducens",
+    "name": "Rhodoferax Ferrireducens",
+    "description": "Psychrotolerant electroactive",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "rhodopseudomonas_palustris",
+    "name": "Rhodopseudomonas Palustris",
+    "description": "Metabolically versatile",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "scenedesmus_obliquus",
+    "name": "Scenedesmus Obliquus",
+    "description": "Robust green alga",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "shewanella_oneidensis",
+    "name": "Shewanella Oneidensis",
+    "description": "Versatile electroactive bacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "spirulina_platensis",
+    "name": "Spirulina Platensis",
+    "description": "Cyanobacterium",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "synthetic_consortium",
+    "name": "Synthetic Consortium",
+    "description": "Designed microbial community",
+    "unit": "-",
+    "type": "object",
+    "subcategory": "Microorganism Database",
+    "subcategoryId": "microorganism-database"
+  },
+  {
+    "id": "bod_concentration",
+    "name": "BOD Concentration",
+    "description": "Biological oxygen demand of substrate",
+    "unit": "mg/L",
+    "type": "number",
+    "subcategory": "Substrate Parameters",
+    "subcategoryId": "substrate-parameters"
+  },
+  {
+    "id": "c_n_ratio",
+    "name": "C/N Ratio",
+    "description": "Carbon to nitrogen ratio in substrate",
+    "unit": "",
+    "type": "number",
+    "subcategory": "Substrate Parameters",
+    "subcategoryId": "substrate-parameters"
+  },
+  {
+    "id": "cod_concentration",
+    "name": "COD Concentration",
+    "description": "Chemical oxygen demand of the substrate",
+    "unit": "mg/L",
+    "type": "number",
+    "subcategory": "Substrate Parameters",
+    "subcategoryId": "substrate-parameters"
+  },
+  {
+    "id": "substrate_concentration",
+    "name": "Substrate Concentration",
+    "description": "Concentration of organic substrate in the feed",
+    "unit": "mg/L",
+    "type": "number",
+    "subcategory": "Substrate Parameters",
+    "subcategoryId": "substrate-parameters"
+  },
+  {
+    "id": "substrate_loading_rate",
+    "name": "Substrate Loading Rate",
+    "description": "Rate of substrate addition to reactor",
+    "unit": "kg COD/m³·d",
+    "type": "number",
+    "subcategory": "Substrate Parameters",
+    "subcategoryId": "substrate-parameters"
+  }
+]

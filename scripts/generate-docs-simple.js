@@ -16,8 +16,8 @@ const execAsync = promisify(exec);
 const CONFIG = {
   model: 'phi3.5:latest',
   baseUrl: 'http://localhost:11434',
-  unifiedDataPath: './parameters/MESS_PARAMETERS_UNIFIED_FINAL.json',
-  outputPath: './parameters/parameters-v1',
+  unifiedDataPath: '../apps/web/public/parameters/MESS_PARAMETERS_UNIFIED_FINAL.json',
+  outputPath: '../apps/web/public/parameters/parameters-v1',
   delayBetweenRequests: 1000,
 };
 
