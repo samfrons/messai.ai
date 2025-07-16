@@ -1,13 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import type {
-  ResearchPaper,
-  SearchFilters,
-  SortOption,
-  SearchResults,
-  SearchState,
-} from '../app/research/types';
+import type { SearchFilters, SortOption, SearchResults, SearchState } from '../app/research/types';
 
 /**
  * Custom hook for research paper search using the API
@@ -36,7 +30,7 @@ export const useResearchAPI = () => {
   const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
   // Debounce timer
-  const debounceTimerRef = useRef<NodeJS.Timeout>();
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   /**
    * Builds URL search parameters from current state
@@ -166,7 +160,6 @@ export const useResearchAPI = () => {
 
       // Clean up old cache entries (keep cache size reasonable)
       if (cacheRef.current.size > 50) {
-        const now = Date.now();
         for (const [key, entry] of cacheRef.current.entries()) {
           if (!isCacheValid(entry.timestamp)) {
             cacheRef.current.delete(key);
@@ -184,7 +177,7 @@ export const useResearchAPI = () => {
    */
   const executeSearch = useCallback(async () => {
     try {
-      setSearchState((prev) => ({ ...prev, isLoading: true, error: undefined }));
+      setSearchState((prev) => ({ ...prev, isLoading: true, error: '' }));
 
       const results = await fetchPapers(
         searchState.query,
