@@ -30,6 +30,126 @@
 
 [... rest of existing content remains unchanged ...]
 
-## Research Library Instructions
+## 7. Research Library Database Integration (CRITICAL FOR AI AGENTS)
 
-- Do not generate mock data or research papers
+### Database Architecture
+
+MESSAI uses a PostgreSQL database containing **3,721 research papers** with
+comprehensive MES-specific data. The database is accessible through:
+
+- **Production**: PostgreSQL via Prisma Data Platform
+- **Development**: Same PostgreSQL instance (forced via `FORCE_POSTGRES=true`)
+- **Model**: `ResearchPaper` (NOT `Paper` - this is critical!)
+
+### Database Connection
+
+```typescript
+// Always use the configured client
+import { prisma } from '@messai/database';
+// OR for API routes
+import { prisma } from '../../../lib/db';
+
+// Test connection
+const count = await prisma.researchPaper.count(); // Should return 3,721
+```
+
+### Critical Field Mappings (API vs Database)
+
+When working with the research papers API, understand these key mappings:
+
+**Database Schema → API Response:**
+
+- `publicationDate` → Extract `year` via `new Date().getFullYear()`
+- `aiConfidence` (0-1) → `qualityScore` (0-100) via `* 100`
+- `powerOutput` → Used as proxy for `citationCount`
+- `isPublic` → Used as proxy for `verified`
+- `externalUrl` → Maps to both `url` and `pdfUrl`
+- `abstract` → Clean JATS XML tags before serving
+- `authors` → Parse JSON string to array format
+
+**JATS XML Cleaning:**
+
+```typescript
+const cleanAbstract = (text: string) => {
+  return text
+    .replace(/<jats:[^>]*>/g, '') // Remove opening JATS tags
+    .replace(/<\/jats:[^>]*>/g, '') // Remove closing JATS tags
+    .replace(/<[^>]*>/g, '') // Remove any remaining HTML/XML tags
+    .trim();
+};
+```
+
+### API Endpoint Structure
+
+- **Endpoint**: `/api/papers`
+- **Method**: GET
+- **Query Params**: `search`, `sort`, `page`, `limit`, `yearStart`, `yearEnd`,
+  etc.
+- **Response Format**:
+
+```typescript
+{
+  data: {
+    papers: ResearchPaper[], // 40 per page by default
+    pagination: { page, limit, total, pages },
+    stats: { totalResults, systemTypes, yearRange },
+    searchTime: number,
+    suggestions?: string[]
+  },
+  error: null
+}
+```
+
+### System Type Distribution
+
+- **MFC**: 677 papers (Microbial Fuel Cells)
+- **BES**: 184 papers (Bioelectrochemical Systems)
+- **MEC**: 116 papers (Microbial Electrolysis Cells)
+- **MES**: 33 papers (Microbial Electrochemical Systems)
+- **MDC**: 9 papers (Microbial Desalination Cells)
+
+### Environment Configuration
+
+**Required Environment Variables:**
+
+- `DATABASE_URL`: PostgreSQL connection string
+- `DIRECT_URL`: Direct PostgreSQL connection (same as DATABASE_URL)
+- `FORCE_POSTGRES=true`: Forces PostgreSQL in development
+- `NODE_ENV`: development/production
+
+**Testing Commands:**
+
+```bash
+pnpm db:test          # Test database connection
+pnpm db:generate      # Generate Prisma client
+curl localhost:3000/api/db-test  # Test API connection
+```
+
+### Common Issues & Solutions
+
+**Problem**: "Module not found: @messai/database" **Solution**: Ensure
+TypeScript paths are configured:
+
+```json
+// tsconfig.base.json
+"paths": {
+  "@messai/database": ["libs/data-access/database/src/index.ts"]
+}
+```
+
+**Problem**: "Unknown argument qualityScore" **Solution**: Use correct
+ResearchPaper model fields (see mappings above)
+
+**Problem**: "Invalid DATABASE_URL" **Solution**: Ensure environment variables
+are loaded:
+
+- Next.js: Uses `.env.local` automatically
+- Scripts: Use `dotenv -e .env --` prefix or `require('dotenv').config()`
+
+### Research Library Instructions
+
+- **NEVER** generate mock data or research papers
+- **ALWAYS** use ResearchPaper model (not Paper)
+- **ALWAYS** verify API nomenclature matches database fields
+- **ALWAYS** clean JATS XML from abstracts before display
+- **ALWAYS** check environment variables are loaded properly
