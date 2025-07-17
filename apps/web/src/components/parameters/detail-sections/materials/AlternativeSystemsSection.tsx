@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { AlternativeSystem } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Layers3, CheckCircle, XCircle } from '../../../ui/icons';

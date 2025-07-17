@@ -1,4 +1,4 @@
-import React, { type ReactElement } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 import { render, type RenderOptions } from '@testing-library/react';
 import { type NextRouter } from 'next/router';
 
@@ -30,7 +30,7 @@ const mockRouter: Partial<NextRouter> = {
 
 // Test providers wrapper
 interface TestProvidersProps {
-  children: React.ReactNode;
+  children: ReactNode;
   router?: Partial<NextRouter> | undefined;
 }
 

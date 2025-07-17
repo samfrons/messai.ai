@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { PerformanceImpact } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Activity, TrendingUp, Clock } from '../../ui/icons';

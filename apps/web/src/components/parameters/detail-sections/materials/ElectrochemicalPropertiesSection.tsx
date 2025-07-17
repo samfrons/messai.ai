@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { ElectrochemicalProperties } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Zap, Battery } from '../../../ui/icons';

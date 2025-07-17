@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { Limitations } from '@/types/parameters';
 import { Card } from '@messai/ui';
 import { AlertTriangle, Shield, Activity, Leaf } from '../../ui/icons';

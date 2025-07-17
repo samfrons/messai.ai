@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { ValidationRules } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { CheckCircle, Beaker, FileText } from '../../ui/icons';

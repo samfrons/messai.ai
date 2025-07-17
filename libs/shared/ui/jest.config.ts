@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: '@messai/ui',
   preset: '../../../jest.preset.js',
   testEnvironment: 'jsdom',

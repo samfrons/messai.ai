@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { TypicalValues } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { TrendingUp, AlertTriangle } from '../../ui/icons';

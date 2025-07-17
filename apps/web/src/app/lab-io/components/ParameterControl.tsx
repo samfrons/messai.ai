@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { type ChangeEvent } from 'react';
 import { Input } from '@messai/ui';
 import { cn } from '@messai/ui';
 
@@ -31,7 +31,7 @@ export default function ParameterControl({
   description,
   className,
 }: ParameterControlProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const newValue =
       type === 'number' || type === 'range' ? parseFloat(e.target.value) : e.target.value;
     onChange(newValue);

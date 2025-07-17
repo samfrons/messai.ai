@@ -3,7 +3,11 @@
  * Advanced multi-model orchestration for research agents
  */
 
-import { OllamaService, OllamaRequest, OllamaResponse } from './ollama-service';
+import { BaseOllamaService, BaseOllamaRequest, BaseOllamaResponse } from './base-ollama-service';
+
+// Re-export with original names for compatibility
+export type OllamaRequest = BaseOllamaRequest;
+export type OllamaResponse = BaseOllamaResponse;
 
 export interface ModelInfo {
   id: string;
@@ -46,7 +50,7 @@ export interface ModelRequest {
   streaming?: boolean;
 }
 
-export class EnhancedOllamaClient extends OllamaService {
+export class EnhancedOllamaClient extends BaseOllamaService {
   private models: Map<string, ModelInfo> = new Map();
   private modelHealthStatus: Map<string, boolean> = new Map();
   private lastHealthCheck: Date = new Date();

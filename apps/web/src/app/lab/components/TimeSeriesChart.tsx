@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback, type MouseEvent } from 'react';
 
 interface TimeSeriesDataPoint {
   timestamp: number;
@@ -41,7 +41,7 @@ export default function TimeSeriesChart({
   const animationRef = useRef<number | undefined>(undefined);
 
   // Calculate data bounds
-  const dataBounds = React.useMemo(() => {
+  const dataBounds = useMemo(() => {
     if (data.length === 0) return { minY: 0, maxY: 1, minX: 0, maxX: 1 };
 
     const values = data.map((d) => d.value);
@@ -56,7 +56,7 @@ export default function TimeSeriesChart({
   }, [data, yAxisMin, yAxisMax]);
 
   // Animation frame for smooth updates
-  const drawChart = React.useCallback(() => {
+  const drawChart = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -260,7 +260,7 @@ export default function TimeSeriesChart({
   }, [drawChart, animated]);
 
   // Handle mouse events for interactivity
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas || data.length === 0) return;
 

@@ -1,4 +1,4 @@
-import React, { forwardRef, type InputHTMLAttributes } from 'react';
+import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react';
 import { cn, type Size } from '../utils';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -13,11 +13,11 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   /**
    * Icon to display before input
    */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /**
    * Icon to display after input
    */
-  iconAfter?: React.ReactNode;
+  iconAfter?: ReactNode;
   /**
    * Label for the input
    */

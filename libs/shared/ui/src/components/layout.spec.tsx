@@ -1,10 +1,10 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { render, screen } from '@messai/testing';
 import Layout from './layout';
 
 // Mock Next.js components
 jest.mock('next/link', () => {
-  return function MockLink({ children, href }: { children: React.ReactNode; href: string }) {
+  return function MockLink({ children, href }: { children: ReactNode; href: string }) {
     return <a href={href}>{children}</a>;
   };
 });

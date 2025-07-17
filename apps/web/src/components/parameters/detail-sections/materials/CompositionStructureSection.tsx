@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { CompositionStructure } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Atom, Layers } from '../../../ui/icons';

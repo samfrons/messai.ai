@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import type { PreparationMethod } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { FlaskConical, AlertTriangle, Wrench } from '../../ui/icons';
