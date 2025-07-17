@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+// React import removed - not needed in React 18+
 import type { ValidationRules } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { CheckCircle, Beaker, FileText } from '../../ui/icons';

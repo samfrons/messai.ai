@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+// React import removed - not needed for JSX in React 18+
 import type { Definition } from '@/types/parameters';
 import { Card } from '@messai/ui';
 import { BookOpen } from '../../ui/icons';

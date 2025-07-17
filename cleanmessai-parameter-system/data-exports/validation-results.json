@@ -1,0 +1,256 @@
+{
+  "metadata": {
+    "exportDate": "2025-07-17T10:00:00.000Z",
+    "version": "1.0.0",
+    "totalValidations": 12,
+    "systemType": "MFC",
+    "description": "Sample parameter validation results for MFC system configuration"
+  },
+  "configuration": {
+    "systemType": "MFC",
+    "anodeMaterial": "Carbon Felt",
+    "cathodeMaterial": "Platinum",
+    "microorganism": "Geobacter sulfurreducens",
+    "temperature": 35,
+    "ph": 7.0,
+    "substrateConcentration": 1.2,
+    "powerDensity": 150,
+    "currentDensity": 800,
+    "voltage": 0.65,
+    "reactorVolume": 100,
+    "electrodeArea": 25
+  },
+  "validationResults": [
+    {
+      "parameter": "temperature",
+      "value": 35,
+      "unit": "°C",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      },
+      "ranges": {
+        "valid": { "min": 4, "max": 80 },
+        "typical": { "min": 20, "max": 40 },
+        "optimal": 30
+      },
+      "status": "valid"
+    },
+    {
+      "parameter": "ph",
+      "value": 7.0,
+      "unit": "pH",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      },
+      "ranges": {
+        "valid": { "min": 1, "max": 14 },
+        "typical": { "min": 6.5, "max": 8.5 },
+        "optimal": 7.0
+      },
+      "status": "valid"
+    },
+    {
+      "parameter": "substrateConcentration",
+      "value": 1.2,
+      "unit": "g/L",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      },
+      "ranges": {
+        "valid": { "min": 0.01, "max": 100 },
+        "typical": { "min": 0.5, "max": 5 },
+        "optimal": 1.0
+      },
+      "status": "valid"
+    },
+    {
+      "parameter": "powerDensity",
+      "value": 150,
+      "unit": "mW/cm²",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": [
+          "Power density is within good range for Carbon Felt anodes"
+        ]
+      },
+      "ranges": {
+        "valid": { "min": 0.1, "max": 5000 },
+        "typical": { "min": 50, "max": 500 },
+        "optimal": 100
+      },
+      "status": "valid"
+    },
+    {
+      "parameter": "currentDensity",
+      "value": 800,
+      "unit": "mA/cm²",
+      "result": {
+        "isValid": true,
+        "warnings": ["Current density is above typical range for MFC systems"],
+        "errors": [],
+        "suggestions": [
+          "Verify electrode materials can handle this current density",
+          "Monitor system stability at high current densities"
+        ]
+      },
+      "ranges": {
+        "valid": { "min": 0.1, "max": 50000 },
+        "typical": { "min": 100, "max": 2000 },
+        "optimal": 500
+      },
+      "status": "warning"
+    },
+    {
+      "parameter": "voltage",
+      "value": 0.65,
+      "unit": "V",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      },
+      "ranges": {
+        "valid": { "min": 0.1, "max": 1.2 },
+        "typical": { "min": 0.3, "max": 0.8 },
+        "optimal": 0.6
+      },
+      "status": "valid"
+    },
+    {
+      "parameter": "reactorVolume",
+      "value": 100,
+      "unit": "mL",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      },
+      "ranges": {
+        "valid": { "min": 1, "max": 100000 },
+        "typical": { "min": 50, "max": 1000 },
+        "optimal": 100
+      },
+      "status": "valid"
+    },
+    {
+      "parameter": "electrodeArea",
+      "value": 25,
+      "unit": "cm²",
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      },
+      "ranges": {
+        "valid": { "min": 0.1, "max": 10000 },
+        "typical": { "min": 10, "max": 100 },
+        "optimal": 25
+      },
+      "status": "valid"
+    }
+  ],
+  "crossParameterValidation": {
+    "powerCurrentConsistency": {
+      "isValid": true,
+      "calculatedPower": 162.5,
+      "reportedPower": 150,
+      "difference": 12.5,
+      "tolerance": 20,
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      }
+    },
+    "materialCompatibility": {
+      "isValid": true,
+      "anodeCathodeCompatibility": 0.85,
+      "anodeOrganismCompatibility": 0.9,
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": ["Excellent material compatibility detected"]
+      }
+    },
+    "operatingConditions": {
+      "isValid": true,
+      "temperaturePHCompatibility": true,
+      "substrateOrganismCompatibility": true,
+      "result": {
+        "isValid": true,
+        "warnings": [],
+        "errors": [],
+        "suggestions": []
+      }
+    }
+  },
+  "summary": {
+    "totalParameters": 8,
+    "validParameters": 8,
+    "parametersWithWarnings": 1,
+    "parametersWithErrors": 0,
+    "overallScore": 95,
+    "overallStatus": "valid",
+    "categories": {
+      "biological": {
+        "valid": 2,
+        "warnings": 0,
+        "errors": 0
+      },
+      "electrical": {
+        "valid": 2,
+        "warnings": 1,
+        "errors": 0
+      },
+      "environmental": {
+        "valid": 2,
+        "warnings": 0,
+        "errors": 0
+      },
+      "materials": {
+        "valid": 2,
+        "warnings": 0,
+        "errors": 0
+      }
+    }
+  },
+  "recommendations": {
+    "immediate": [
+      "Monitor system performance at high current density",
+      "Verify electrode stability over time"
+    ],
+    "optimization": [
+      "Consider optimizing current density to typical range",
+      "Evaluate cost-benefit of platinum cathode",
+      "Test system with different substrate concentrations"
+    ],
+    "research": [
+      "Investigate long-term stability at these operating conditions",
+      "Compare performance with alternative cathode materials"
+    ]
+  },
+  "complianceStatus": {
+    "safetyCompliance": "pass",
+    "performanceCompliance": "pass",
+    "environmentalCompliance": "pass",
+    "economicViability": "good",
+    "overallCompliance": "pass"
+  },
+  "timestamp": "2025-07-17T10:00:00.000Z"
+}

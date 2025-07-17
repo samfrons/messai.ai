@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [papers, total] = await Promise.all([
-      prisma.paper.findMany({
+      prisma.researchPaper.findMany({
         where,
         skip,
         take: limit,
@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
           },
         },
       }),
-      prisma.paper.count({ where }),
+      prisma.researchPaper.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const paper = await prisma.paper.create({
+    const paper = await prisma.researchPaper.create({
       data: {
         title,
         abstract,

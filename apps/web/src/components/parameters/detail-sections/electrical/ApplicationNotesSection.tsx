@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+// React import removed - not needed in React 18+
 import type { ApplicationNote } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { FileText, Target, Beaker, Building } from '../../../ui/icons';

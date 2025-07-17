@@ -221,7 +221,7 @@ async function processMESSPapers() {
   for (const paper of mockPapers) {
     try {
       // Check if paper already exists
-      const existingPaper = await prisma.paper.findFirst({
+      const existingPaper = await prisma.researchPaper.findFirst({
         where: {
           OR: [{ title: paper.title }, ...(paper.doi ? [{ doi: paper.doi }] : [])],
         },
@@ -233,7 +233,7 @@ async function processMESSPapers() {
       }
 
       // Create paper record
-      const createdPaper = await prisma.paper.create({
+      const createdPaper = await prisma.researchPaper.create({
         data: {
           title: paper.title,
           authors: normalizeAuthorsForDB(paper.authors),
@@ -285,7 +285,7 @@ async function processMESSPapers() {
           });
 
           // Connect paper to tag
-          await prisma.paper.update({
+          await prisma.researchPaper.update({
             where: { id: createdPaper.id },
             data: {
               tags: {
@@ -325,7 +325,7 @@ async function processMESSPapers() {
 
 async function getProcessingStatus() {
   // Get count of MESS papers in database
-  const messCount = await prisma.paper.count({
+  const messCount = await prisma.researchPaper.count({
     where: {
       tags: {
         some: {
@@ -344,7 +344,7 @@ async function getProcessingStatus() {
 }
 
 async function listMESSPapers() {
-  const papers = await prisma.paper.findMany({
+  const papers = await prisma.researchPaper.findMany({
     where: {
       tags: {
         some: {
@@ -381,8 +381,8 @@ async function listMESSPapers() {
 }
 
 async function getProcessingStats() {
-  const totalPapers = await prisma.paper.count();
-  const messPapers = await prisma.paper.count({
+  const totalPapers = await prisma.researchPaper.count();
+  const messPapers = await prisma.researchPaper.count({
     where: {
       tags: {
         some: {
@@ -392,7 +392,7 @@ async function getProcessingStats() {
     },
   });
 
-  const algaePapers = await prisma.paper.count({
+  const algaePapers = await prisma.researchPaper.count({
     where: {
       tags: {
         some: {
@@ -402,7 +402,7 @@ async function getProcessingStats() {
     },
   });
 
-  const fuelCellPapers = await prisma.paper.count({
+  const fuelCellPapers = await prisma.researchPaper.count({
     where: {
       tags: {
         some: {
@@ -412,7 +412,7 @@ async function getProcessingStats() {
     },
   });
 
-  const averageQuality = await prisma.paper.aggregate({
+  const averageQuality = await prisma.researchPaper.aggregate({
     where: {
       tags: {
         some: {

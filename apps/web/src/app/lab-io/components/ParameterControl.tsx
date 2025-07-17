@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+// React import removed - not needed in React 18+
 import { Input } from '@messai/ui';
 import { cn } from '@messai/ui';
 

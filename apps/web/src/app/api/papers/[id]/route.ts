@@ -9,7 +9,7 @@ export async function GET(_request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
 
-    const paper = await prisma.paper.findUnique({
+    const paper = await prisma.researchPaper.findUnique({
       where: { id },
       include: {
         uploadedBy: {
@@ -99,7 +99,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
       verified,
     } = body;
 
-    const paper = await prisma.paper.update({
+    const paper = await prisma.researchPaper.update({
       where: { id },
       data: {
         ...(title && { title }),
@@ -166,7 +166,7 @@ export async function DELETE(_request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
 
-    await prisma.paper.delete({
+    await prisma.researchPaper.delete({
       where: { id },
     });
 

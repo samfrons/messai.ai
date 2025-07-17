@@ -1,102 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '../../../../lib/db';
+// import { prisma } from '../../../../lib/db'; // Unused - endpoint disabled
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-export async function GET(_request: NextRequest, { params }: Props) {
-  try {
-    const { id } = await params;
-
-    const prediction = await prisma.prediction.findUnique({
-      where: { id },
-      include: {
-        user: {
-          select: { id: true, name: true, email: true },
-        },
-        paper: {
-          select: {
-            id: true,
-            title: true,
-            authors: true,
-            year: true,
-            abstract: true,
-            performanceData: true,
-          },
-        },
+export async function GET(_request: NextRequest, { params: _params }: Props) {
+  // FIXME: This endpoint is currently disabled as the Prediction model doesn't exist
+  return NextResponse.json(
+    {
+      data: null,
+      error: {
+        message: 'Predictions endpoint temporarily disabled - model not found in schema',
+        code: 'MODEL_NOT_FOUND',
       },
-    });
-
-    if (!prediction) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Prediction not found',
-            code: 'NOT_FOUND',
-          },
-        },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({
-      data: prediction,
-      error: null,
-    });
-  } catch (error) {
-    console.error('Prediction detail API error:', error);
-    return NextResponse.json(
-      {
-        data: null,
-        error: {
-          message: 'Failed to fetch prediction',
-          code: 'FETCH_ERROR',
-        },
-      },
-      { status: 500 }
-    );
-  }
+    },
+    { status: 501 }
+  );
 }
 
-export async function DELETE(_request: NextRequest, { params }: Props) {
-  try {
-    const { id } = await params;
-
-    await prisma.prediction.delete({
-      where: { id },
-    });
-
-    return NextResponse.json({
-      data: { message: 'Prediction deleted successfully' },
-      error: null,
-    });
-  } catch (error) {
-    console.error('Prediction deletion error:', error);
-
-    if (error instanceof Error && error.message.includes('Record to delete does not exist')) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Prediction not found',
-            code: 'NOT_FOUND',
-          },
-        },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json(
-      {
-        data: null,
-        error: {
-          message: 'Failed to delete prediction',
-          code: 'DELETE_ERROR',
-        },
+export async function DELETE(_request: NextRequest, { params: _params }: Props) {
+  // FIXME: This endpoint is currently disabled as the Prediction model doesn't exist
+  return NextResponse.json(
+    {
+      data: null,
+      error: {
+        message: 'Predictions endpoint temporarily disabled - model not found in schema',
+        code: 'MODEL_NOT_FOUND',
       },
-      { status: 500 }
-    );
-  }
+    },
+    { status: 501 }
+  );
 }

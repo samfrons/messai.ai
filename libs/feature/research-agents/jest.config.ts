@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'feature-research-agents',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

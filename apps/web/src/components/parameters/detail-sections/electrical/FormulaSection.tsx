@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+// React import removed - not needed in React 18+
 import type { Formula } from '@/types/parameters';
 import { Card } from '@messai/ui';
 import { Calculator, Info } from '../../../ui/icons';

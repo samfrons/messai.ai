@@ -1,0 +1,427 @@
+{
+  "metadata": {
+    "exportDate": "2025-07-17T10:00:00.000Z",
+    "version": "3.1.0",
+    "totalParameters": 25,
+    "categories": ["biological", "electrical", "environmental", "materials"],
+    "description": "Sample parameter export showing key parameters from each category"
+  },
+  "parameters": [
+    {
+      "id": "biofilm_conductivity",
+      "name": "Biofilm Conductivity",
+      "description": "Electrical conductivity of biofilm layer",
+      "unit": "S/m",
+      "type": "number",
+      "category": "biological",
+      "subcategory": "biofilm-parameters",
+      "range": {
+        "min": 0.001,
+        "max": 1,
+        "typical": 0.01
+      },
+      "default": 0.01,
+      "tags": ["biofilm", "conductivity", "electrical"]
+    },
+    {
+      "id": "biofilm_coverage",
+      "name": "Biofilm Coverage",
+      "description": "Percentage of electrode surface covered by biofilm",
+      "unit": "%",
+      "type": "number",
+      "category": "biological",
+      "subcategory": "biofilm-parameters",
+      "range": {
+        "min": 0,
+        "max": 100,
+        "typical": 70
+      },
+      "default": 70,
+      "tags": ["biofilm", "coverage", "electrode"]
+    },
+    {
+      "id": "biofilm_thickness",
+      "name": "Biofilm Thickness",
+      "description": "Average thickness of biofilm layer",
+      "unit": "μm",
+      "type": "number",
+      "category": "biological",
+      "subcategory": "biofilm-parameters",
+      "range": {
+        "min": 1,
+        "max": 1000,
+        "typical": 50
+      },
+      "default": 50,
+      "tags": ["biofilm", "thickness", "morphology"]
+    },
+    {
+      "id": "microorganism_species",
+      "name": "Microorganism Species",
+      "description": "Primary microorganism species used in the system",
+      "unit": "taxonomic",
+      "type": "select",
+      "category": "biological",
+      "subcategory": "microbial-community",
+      "options": [
+        "Geobacter sulfurreducens",
+        "Shewanella oneidensis",
+        "Mixed Culture",
+        "Pseudomonas aeruginosa",
+        "Clostridium acetobutylicum"
+      ],
+      "default": "Mixed Culture",
+      "tags": ["microorganism", "species", "taxonomy"]
+    },
+    {
+      "id": "cell_density",
+      "name": "Cell Density",
+      "description": "Number of viable cells per unit volume",
+      "unit": "cells/mL",
+      "type": "number",
+      "category": "biological",
+      "subcategory": "microbial-community",
+      "range": {
+        "min": 1000000,
+        "max": 1000000000,
+        "typical": 100000000
+      },
+      "default": 100000000,
+      "tags": ["cells", "density", "viable"]
+    },
+    {
+      "id": "power_density",
+      "name": "Power Density",
+      "description": "Power output per unit electrode area",
+      "unit": "mW/cm²",
+      "type": "number",
+      "category": "electrical",
+      "subcategory": "power-output",
+      "range": {
+        "min": 0.1,
+        "max": 5000,
+        "typical": 100
+      },
+      "default": 100,
+      "tags": ["power", "density", "performance"]
+    },
+    {
+      "id": "current_density",
+      "name": "Current Density",
+      "description": "Current per unit electrode area",
+      "unit": "mA/cm²",
+      "type": "number",
+      "category": "electrical",
+      "subcategory": "current-characteristics",
+      "range": {
+        "min": 0.1,
+        "max": 50000,
+        "typical": 500
+      },
+      "default": 500,
+      "tags": ["current", "density", "electrode"]
+    },
+    {
+      "id": "open_circuit_voltage",
+      "name": "Open Circuit Voltage",
+      "description": "Voltage when no current is flowing",
+      "unit": "V",
+      "type": "number",
+      "category": "electrical",
+      "subcategory": "voltage-characteristics",
+      "range": {
+        "min": 0.1,
+        "max": 1.2,
+        "typical": 0.7
+      },
+      "default": 0.7,
+      "tags": ["voltage", "open-circuit", "potential"]
+    },
+    {
+      "id": "internal_resistance",
+      "name": "Internal Resistance",
+      "description": "Total internal resistance of the system",
+      "unit": "Ω",
+      "type": "number",
+      "category": "electrical",
+      "subcategory": "impedance",
+      "range": {
+        "min": 0.001,
+        "max": 1000,
+        "typical": 10
+      },
+      "default": 10,
+      "tags": ["resistance", "internal", "impedance"]
+    },
+    {
+      "id": "coulombic_efficiency",
+      "name": "Coulombic Efficiency",
+      "description": "Ratio of electrons harvested to electrons available",
+      "unit": "%",
+      "type": "number",
+      "category": "electrical",
+      "subcategory": "efficiency",
+      "range": {
+        "min": 1,
+        "max": 100,
+        "typical": 60
+      },
+      "default": 60,
+      "tags": ["efficiency", "coulombic", "electrons"]
+    },
+    {
+      "id": "operating_temperature",
+      "name": "Operating Temperature",
+      "description": "Cell/reactor operating temperature",
+      "unit": "°C",
+      "type": "number",
+      "category": "environmental",
+      "subcategory": "temperature-control",
+      "range": {
+        "min": 4,
+        "max": 80,
+        "typical": 30
+      },
+      "default": 30,
+      "tags": ["temperature", "operating", "thermal"]
+    },
+    {
+      "id": "ph_level",
+      "name": "pH Level",
+      "description": "Solution pH level",
+      "unit": "pH",
+      "type": "number",
+      "category": "environmental",
+      "subcategory": "chemical-conditions",
+      "range": {
+        "min": 1,
+        "max": 14,
+        "typical": 7
+      },
+      "default": 7,
+      "tags": ["pH", "acidity", "chemical"]
+    },
+    {
+      "id": "dissolved_oxygen",
+      "name": "Dissolved Oxygen",
+      "description": "Concentration of dissolved oxygen in solution",
+      "unit": "mg/L",
+      "type": "number",
+      "category": "environmental",
+      "subcategory": "chemical-conditions",
+      "range": {
+        "min": 0,
+        "max": 20,
+        "typical": 2
+      },
+      "default": 2,
+      "tags": ["oxygen", "dissolved", "concentration"]
+    },
+    {
+      "id": "ionic_strength",
+      "name": "Ionic Strength",
+      "description": "Measure of ion concentration in solution",
+      "unit": "M",
+      "type": "number",
+      "category": "environmental",
+      "subcategory": "chemical-conditions",
+      "range": {
+        "min": 0.001,
+        "max": 5,
+        "typical": 0.1
+      },
+      "default": 0.1,
+      "tags": ["ionic", "strength", "concentration"]
+    },
+    {
+      "id": "humidity",
+      "name": "Humidity",
+      "description": "Relative humidity of environment",
+      "unit": "%",
+      "type": "number",
+      "category": "environmental",
+      "subcategory": "atmospheric-conditions",
+      "range": {
+        "min": 0,
+        "max": 100,
+        "typical": 50
+      },
+      "default": 50,
+      "tags": ["humidity", "moisture", "atmospheric"]
+    },
+    {
+      "id": "anode_material",
+      "name": "Anode Material",
+      "description": "Primary anode material composition",
+      "unit": "categorical",
+      "type": "select",
+      "category": "materials",
+      "subcategory": "electrode-materials",
+      "options": [
+        "Carbon Felt",
+        "Carbon Cloth",
+        "Graphene Oxide",
+        "Stainless Steel",
+        "MXene",
+        "Carbon Brush",
+        "Titanium"
+      ],
+      "default": "Carbon Felt",
+      "tags": ["anode", "material", "electrode"]
+    },
+    {
+      "id": "cathode_material",
+      "name": "Cathode Material",
+      "description": "Primary cathode material composition",
+      "unit": "categorical",
+      "type": "select",
+      "category": "materials",
+      "subcategory": "electrode-materials",
+      "options": [
+        "Platinum",
+        "Carbon Cloth",
+        "Activated Carbon",
+        "MXene",
+        "Stainless Steel",
+        "Nickel Mesh"
+      ],
+      "default": "Platinum",
+      "tags": ["cathode", "material", "electrode"]
+    },
+    {
+      "id": "membrane_type",
+      "name": "Membrane Type",
+      "description": "Type of membrane separator used",
+      "unit": "categorical",
+      "type": "select",
+      "category": "materials",
+      "subcategory": "membrane-materials",
+      "options": [
+        "Nafion",
+        "CMI-7000",
+        "AMI-7001",
+        "Cellulose Acetate",
+        "None (Membrane-less)"
+      ],
+      "default": "Nafion",
+      "tags": ["membrane", "separator", "material"]
+    },
+    {
+      "id": "electrode_area",
+      "name": "Electrode Area",
+      "description": "Total surface area of electrode",
+      "unit": "cm²",
+      "type": "number",
+      "category": "materials",
+      "subcategory": "electrode-properties",
+      "range": {
+        "min": 0.1,
+        "max": 10000,
+        "typical": 25
+      },
+      "default": 25,
+      "tags": ["electrode", "area", "surface"]
+    },
+    {
+      "id": "electrode_spacing",
+      "name": "Electrode Spacing",
+      "description": "Distance between anode and cathode",
+      "unit": "cm",
+      "type": "number",
+      "category": "materials",
+      "subcategory": "electrode-properties",
+      "range": {
+        "min": 0.1,
+        "max": 100,
+        "typical": 2
+      },
+      "default": 2,
+      "tags": ["electrode", "spacing", "distance"]
+    },
+    {
+      "id": "substrate_type",
+      "name": "Substrate Type",
+      "description": "Primary substrate for microbial metabolism",
+      "unit": "categorical",
+      "type": "select",
+      "category": "biological",
+      "subcategory": "substrate-parameters",
+      "options": [
+        "Acetate",
+        "Glucose",
+        "Wastewater",
+        "Lactate",
+        "Butyrate",
+        "Propionate"
+      ],
+      "default": "Acetate",
+      "tags": ["substrate", "metabolism", "organic"]
+    },
+    {
+      "id": "substrate_concentration",
+      "name": "Substrate Concentration",
+      "description": "Concentration of primary substrate",
+      "unit": "g/L",
+      "type": "number",
+      "category": "biological",
+      "subcategory": "substrate-parameters",
+      "range": {
+        "min": 0.01,
+        "max": 100,
+        "typical": 1
+      },
+      "default": 1,
+      "tags": ["substrate", "concentration", "organic"]
+    },
+    {
+      "id": "flow_rate",
+      "name": "Flow Rate",
+      "description": "Volumetric flow rate of solution",
+      "unit": "mL/min",
+      "type": "number",
+      "category": "environmental",
+      "subcategory": "hydraulic-conditions",
+      "range": {
+        "min": 0.1,
+        "max": 1000,
+        "typical": 10
+      },
+      "default": 10,
+      "tags": ["flow", "rate", "hydraulic"]
+    },
+    {
+      "id": "system_configuration",
+      "name": "System Configuration",
+      "description": "Basic system architecture type",
+      "unit": "categorical",
+      "type": "select",
+      "category": "materials",
+      "subcategory": "system-design",
+      "options": [
+        "Single Chamber",
+        "Dual Chamber",
+        "Stacked",
+        "Tubular",
+        "Flat Plate"
+      ],
+      "default": "Dual Chamber",
+      "tags": ["system", "configuration", "architecture"]
+    },
+    {
+      "id": "reactor_volume",
+      "name": "Reactor Volume",
+      "description": "Total volume of reactor chamber",
+      "unit": "mL",
+      "type": "number",
+      "category": "materials",
+      "subcategory": "system-design",
+      "range": {
+        "min": 1,
+        "max": 100000,
+        "typical": 100
+      },
+      "default": 100,
+      "tags": ["reactor", "volume", "chamber"]
+    }
+  ]
+}

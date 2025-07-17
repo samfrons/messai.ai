@@ -5,11 +5,8 @@
 
 import { BaseResearchAgent } from '../core/base-agent';
 import type { AgentTask, ValidationResult, AgentConfiguration } from '../types/agent.types';
-import type {
-  PaperAnalysisInput,
-  PaperAnalysisResult,
-  PerformanceMetrics,
-} from '../types/research.types';
+import type { PerformanceMetrics } from '../types/research.types';
+// Removed unused imports: PaperAnalysisInput, PaperAnalysisResult
 
 export interface AlgaePaperInput {
   filePath?: string;

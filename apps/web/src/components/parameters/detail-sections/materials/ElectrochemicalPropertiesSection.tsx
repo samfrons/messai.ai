@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+// React import removed - not needed for JSX in React 18+
 import type { ElectrochemicalProperties } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Zap, Battery } from '../../../ui/icons';

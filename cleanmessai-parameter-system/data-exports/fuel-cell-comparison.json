@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "exportDate": "2025-07-17T10:00:00.000Z",
+    "version": "1.0.0",
+    "comparisonId": "fc_comp_001",
+    "systemCount": 4,
+    "modelFidelity": "INTERMEDIATE",
+    "processingTime": 342,
+    "description": "Sample fuel cell system comparison analysis"
+  },
+  "comparison": {
+    "results": [
+      {
+        "systemId": "pem-baseline",
+        "systemName": "PEM Baseline Configuration",
+        "prediction": {
+          "powerOutput": 125.6,
+          "efficiency": 52.3,
+          "voltage": 0.68,
+          "current": 184.7,
+          "fuelUtilization": 78.2,
+          "confidence": 89.5,
+          "warnings": [],
+          "recommendations": [
+            "Consider increasing operating pressure for better performance",
+            "Monitor membrane hydration levels"
+          ]
+        },
+        "metrics": {
+          "power": 125.6,
+          "efficiency": 52.3,
+          "powerDensity": 502.4,
+          "voltage": 0.68,
+          "current": 184.7,
+          "fuelUtilization": 78.2,
+          "cost": 3850.0,
+          "durability": 5000,
+          "co2Emissions": 0.0,
+          "waterProduction": 0.034
+        },
+        "rank": {
+          "power": 3,
+          "efficiency": 3,
+          "cost": 2,
+          "durability": 4,
+          "overall": 3
+        },
+        "optimization": {
+          "potentialImprovement": 12,
+          "optimizedPower": 140.7,
+          "optimizedEfficiency": 57.9
+        }
+      },
+      {
+        "systemId": "sofc-high-temp",
+        "systemName": "SOFC High Temperature",
+        "prediction": {
+          "powerOutput": 186.4,
+          "efficiency": 68.7,
+          "voltage": 0.85,
+          "current": 219.3,
+          "fuelUtilization": 85.1,
+          "confidence": 91.2,
+          "warnings": [
+            "High operating temperature requires careful thermal management"
+          ],
+          "recommendations": [
+            "Implement robust thermal insulation",
+            "Consider waste heat recovery systems"
+          ]
+        },
+        "metrics": {
+          "power": 186.4,
+          "efficiency": 68.7,
+          "powerDensity": 621.3,
+          "voltage": 0.85,
+          "current": 219.3,
+          "fuelUtilization": 85.1,
+          "cost": 5200.0,
+          "durability": 40000,
+          "co2Emissions": 0.0,
+          "waterProduction": 0.041
+        },
+        "rank": {
+          "power": 1,
+          "efficiency": 1,
+          "cost": 4,
+          "durability": 1,
+          "overall": 1
+        },
+        "optimization": {
+          "potentialImprovement": 8,
+          "optimizedPower": 201.3,
+          "optimizedEfficiency": 74.2
+        }
+      },
+      {
+        "systemId": "pafc-industrial",
+        "systemName": "PAFC Industrial Scale",
+        "prediction": {
+          "powerOutput": 78.9,
+          "efficiency": 46.2,
+          "voltage": 0.71,
+          "current": 111.1,
+          "fuelUtilization": 72.8,
+          "confidence": 87.3,
+          "warnings": ["Lower efficiency compared to other technologies"],
+          "recommendations": [
+            "Optimize operating pressure for better performance",
+            "Consider catalyst improvements"
+          ]
+        },
+        "metrics": {
+          "power": 78.9,
+          "efficiency": 46.2,
+          "powerDensity": 315.6,
+          "voltage": 0.71,
+          "current": 111.1,
+          "fuelUtilization": 72.8,
+          "cost": 2800.0,
+          "durability": 60000,
+          "co2Emissions": 0.0,
+          "waterProduction": 0.021
+        },
+        "rank": {
+          "power": 4,
+          "efficiency": 4,
+          "cost": 1,
+          "durability": 2,
+          "overall": 4
+        },
+        "optimization": {
+          "potentialImprovement": 15,
+          "optimizedPower": 90.7,
+          "optimizedEfficiency": 53.1
+        }
+      },
+      {
+        "systemId": "afc-portable",
+        "systemName": "AFC Portable System",
+        "prediction": {
+          "powerOutput": 94.2,
+          "efficiency": 61.5,
+          "voltage": 0.75,
+          "current": 125.6,
+          "fuelUtilization": 82.4,
+          "confidence": 85.7,
+          "warnings": [
+            "Sensitive to CO2 contamination",
+            "Requires high purity fuel"
+          ],
+          "recommendations": [
+            "Implement CO2 scrubbing system",
+            "Monitor fuel purity continuously"
+          ]
+        },
+        "metrics": {
+          "power": 94.2,
+          "efficiency": 61.5,
+          "powerDensity": 376.8,
+          "voltage": 0.75,
+          "current": 125.6,
+          "fuelUtilization": 82.4,
+          "cost": 3200.0,
+          "durability": 8000,
+          "co2Emissions": 0.0,
+          "waterProduction": 0.024
+        },
+        "rank": {
+          "power": 2,
+          "efficiency": 2,
+          "cost": 3,
+          "durability": 3,
+          "overall": 2
+        },
+        "optimization": {
+          "potentialImprovement": 10,
+          "optimizedPower": 103.6,
+          "optimizedEfficiency": 67.7
+        }
+      }
+    ],
+    "summary": {
+      "bestPower": {
+        "systemId": "sofc-high-temp",
+        "systemName": "SOFC High Temperature",
+        "value": 186.4,
+        "unit": "W"
+      },
+      "bestEfficiency": {
+        "systemId": "sofc-high-temp",
+        "systemName": "SOFC High Temperature",
+        "value": 68.7,
+        "unit": "%"
+      },
+      "bestCost": {
+        "systemId": "pafc-industrial",
+        "systemName": "PAFC Industrial Scale",
+        "value": 2800.0,
+        "unit": "$"
+      },
+      "bestDurability": {
+        "systemId": "sofc-high-temp",
+        "systemName": "SOFC High Temperature",
+        "value": 40000,
+        "unit": "hours"
+      },
+      "bestOverall": {
+        "systemId": "sofc-high-temp",
+        "systemName": "SOFC High Temperature",
+        "rank": 1
+      }
+    },
+    "analysis": {
+      "powerRange": {
+        "min": 78.9,
+        "max": 186.4,
+        "average": 121.3
+      },
+      "efficiencyRange": {
+        "min": 46.2,
+        "max": 68.7,
+        "average": 57.2
+      },
+      "costRange": {
+        "min": 2800.0,
+        "max": 5200.0,
+        "average": 3762.5
+      },
+      "durabilityRange": {
+        "min": 5000,
+        "max": 60000,
+        "average": 28250
+      },
+      "tradeoffs": [
+        "SOFC shows highest power and efficiency but at highest cost",
+        "PAFC offers lowest cost but with reduced performance",
+        "AFC provides balanced performance with moderate cost",
+        "All systems show potential for optimization improvements"
+      ],
+      "recommendations": [
+        "SOFC recommended for high-performance applications",
+        "PAFC suitable for cost-sensitive industrial applications",
+        "AFC good for portable and mobile applications",
+        "PEM appropriate for automotive and residential use"
+      ]
+    }
+  },
+  "operatingConditions": {
+    "pem-baseline": {
+      "fuelCellType": "PEM",
+      "cellCount": 10,
+      "activeArea": 25.0,
+      "operatingTemperature": 70,
+      "operatingPressure": 1.5,
+      "humidity": 90,
+      "fuelFlowRate": 0.5,
+      "airFlowRate": 2.0,
+      "anodeCatalyst": "pt-c",
+      "cathodeCatalyst": "pt-c",
+      "membraneType": "nafion"
+    },
+    "sofc-high-temp": {
+      "fuelCellType": "SOFC",
+      "cellCount": 8,
+      "activeArea": 30.0,
+      "operatingTemperature": 850,
+      "operatingPressure": 1.1,
+      "humidity": 10,
+      "fuelFlowRate": 0.3,
+      "airFlowRate": 1.5,
+      "anodeCatalyst": "ni-based",
+      "cathodeCatalyst": "lscf",
+      "membraneType": "ceramic"
+    },
+    "pafc-industrial": {
+      "fuelCellType": "PAFC",
+      "cellCount": 15,
+      "activeArea": 20.0,
+      "operatingTemperature": 200,
+      "operatingPressure": 3.0,
+      "humidity": 60,
+      "fuelFlowRate": 0.8,
+      "airFlowRate": 3.2,
+      "anodeCatalyst": "pt-c",
+      "cathodeCatalyst": "pt-c",
+      "membraneType": "phosphoric-acid"
+    },
+    "afc-portable": {
+      "fuelCellType": "AFC",
+      "cellCount": 12,
+      "activeArea": 22.0,
+      "operatingTemperature": 80,
+      "operatingPressure": 2.0,
+      "humidity": 95,
+      "fuelFlowRate": 0.6,
+      "airFlowRate": 2.4,
+      "anodeCatalyst": "ag-based",
+      "cathodeCatalyst": "ag-based",
+      "membraneType": "koh-solution"
+    }
+  },
+  "validation": {
+    "isValid": true,
+    "warnings": [
+      "SOFC high temperature operation requires specialized materials",
+      "AFC system sensitive to fuel purity requirements",
+      "All systems require proper thermal management"
+    ],
+    "errors": [],
+    "suggestions": [
+      "Consider hybrid system combinations for optimal performance",
+      "Evaluate system integration requirements",
+      "Plan for maintenance and operational costs"
+    ]
+  }
+}
