@@ -25,6 +25,20 @@ export interface PaperData {
   aiEnhanced: boolean;
   qualityScore: number;
   fullTextAvailable: boolean;
+
+  // In Silico Model Integration (optional fields)
+  inSilicoAvailable?: boolean;
+  modelType?: string;
+  modelParameters?: any; // JSON object
+  performanceTargets?: any; // JSON object
+  systemGeometry?: any; // JSON object
+  materialSpecs?: any; // JSON object
+  operatingSpecs?: any; // JSON object
+  methodology?: string[]; // JSON array
+  recreationDifficulty?: 'easy' | 'medium' | 'hard';
+  parameterCompleteness?: number; // 0-1
+  validationStatus?: 'validated' | 'pending' | 'failed';
+  modelAccuracy?: number; // 0-1
 }
 
 export interface PaperCardProps extends HTMLAttributes<HTMLDivElement> {
@@ -121,14 +135,25 @@ export const PaperCard = forwardRef<HTMLDivElement, PaperCardProps>(
             <h3 className="text-lg font-serif font-normal text-black leading-tight flex-1">
               {paper.title}
             </h3>
-            {paper.aiEnhanced && (
-              <div className="flex items-center gap-1 text-xs text-primary-600 bg-primary-50 px-2 py-1 rounded-full shrink-0">
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L13.09 8.26L17 7L15.74 9.91L22 11L15.74 12.09L17 15L13.09 13.74L12 20L10.91 13.74L7 15L8.26 12.09L2 11L8.26 9.91L7 7L10.91 8.26L12 2Z" />
-                </svg>
-                AI Enhanced
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {paper.aiEnhanced && (
+                <div className="flex items-center gap-1 text-xs text-primary-600 bg-primary-50 px-2 py-1 rounded-full shrink-0">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L13.09 8.26L17 7L15.74 9.91L22 11L15.74 12.09L17 15L13.09 13.74L12 20L10.91 13.74L7 15L8.26 12.09L2 11L8.26 9.91L7 7L10.91 8.26L12 2Z" />
+                  </svg>
+                  AI Enhanced
+                </div>
+              )}
+              {paper.inSilicoAvailable && (
+                <div className="flex items-center gap-1 text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full shrink-0">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 5h2V3c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v2h2c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2zM7 3v2h10V3H7zm12 4H5v11h14V7z" />
+                    <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                  </svg>
+                  3D Model
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Authors and Journal Info */}

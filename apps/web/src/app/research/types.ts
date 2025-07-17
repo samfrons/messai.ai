@@ -166,6 +166,43 @@ export interface ResearchPaper {
     publisherUrl?: string;
     pubmedUrl?: string;
   };
+
+  // In Silico Model Integration (optional fields)
+  /** Whether this paper has an available 3D model */
+  inSilicoAvailable?: boolean;
+
+  /** Type of 3D model available */
+  modelType?: string;
+
+  /** Parameters for 3D modeling (JSON object) */
+  modelParameters?: any;
+
+  /** Performance targets for validation (JSON object) */
+  performanceTargets?: any;
+
+  /** System geometry specifications (JSON object) */
+  systemGeometry?: any;
+
+  /** Material specifications (JSON object) */
+  materialSpecs?: any;
+
+  /** Operating specifications (JSON object) */
+  operatingSpecs?: any;
+
+  /** Experimental methodology steps */
+  methodology?: string[];
+
+  /** Recreation difficulty rating */
+  recreationDifficulty?: 'easy' | 'medium' | 'hard';
+
+  /** Parameter completeness score (0-1) */
+  parameterCompleteness?: number;
+
+  /** Model validation status */
+  validationStatus?: 'validated' | 'pending' | 'failed';
+
+  /** Model prediction accuracy (0-1) */
+  modelAccuracy?: number;
 }
 
 /**

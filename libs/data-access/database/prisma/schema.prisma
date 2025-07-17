@@ -187,6 +187,21 @@ model ResearchPaper {
   systemConfiguration    String?      // JSON: {type: MFC/MEC/MDC/MES/BES, subtype, scale, architecture}
   performanceBenchmarks  String?      // JSON: {powerDensity: {max, operating, normalized}, comparativeRank}
   
+  // In Silico Model Integration (additive fields)
+  inSilicoAvailable      Boolean?     @default(false)  // Whether 3D model is available
+  modelType              String?      // 'nanowire-mfc', 'flow-mfc', 'traditional-mfc', etc.
+  modelParameters        String?      // JSON: extracted parameters for 3D modeling
+  performanceTargets     String?      // JSON: target metrics for validation
+  systemGeometry         String?      // JSON: geometric specifications for 3D model
+  materialSpecs          String?      // JSON: material properties for modeling
+  operatingSpecs         String?      // JSON: operating conditions for simulation
+  methodology            String?      // JSON: experimental steps and procedures
+  recreationDifficulty   String?      // 'easy', 'medium', 'hard' - complexity rating
+  parameterCompleteness  Float?       // 0-1 score for parameter completeness
+  validationStatus       String?      // 'validated', 'pending', 'failed'
+  modelAccuracy          Float?       // 0-1 score for model prediction accuracy
+  lastValidated          DateTime?    // When model was last validated
+  
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
   
@@ -206,6 +221,10 @@ model ResearchPaper {
   @@index([createdAt])
   @@index([microbialCommunity])
   @@index([systemConfiguration])
+  @@index([inSilicoAvailable])
+  @@index([modelType])
+  @@index([validationStatus])
+  @@index([lastValidated])
 }
 
 model ExperimentPaper {

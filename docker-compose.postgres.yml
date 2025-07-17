@@ -3,20 +3,43 @@ version: "3.8"
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: messai-postgres
+    container_name: messai-postgres-dev
     environment:
       POSTGRES_USER: messai
       POSTGRES_PASSWORD: messai_dev_password
       POSTGRES_DB: messai_dev
+      # Performance optimizations for development
+      POSTGRES_SHARED_PRELOAD_LIBRARIES: "pg_stat_statements"
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      # Optional: Mount initialization scripts
+      - ./scripts/db:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U messai"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U messai -d messai_dev"]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    # Performance settings for development
+    command: >
+      postgres
+      -c shared_buffers=256MB
+      -c max_connections=100
+      -c effective_cache_size=1GB
+      -c maintenance_work_mem=64MB
+      -c checkpoint_completion_target=0.9
+      -c wal_buffers=16MB
+      -c default_statistics_target=100
+      -c random_page_cost=1.1
+      -c effective_io_concurrency=200
+      -c work_mem=4MB
+      -c min_wal_size=1GB
+      -c max_wal_size=4GB
 
 volumes:
   postgres_data:
+    driver: local

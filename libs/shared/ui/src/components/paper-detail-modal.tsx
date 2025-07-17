@@ -137,6 +137,131 @@ export const PaperDetailModal = forwardRef<HTMLDivElement, PaperDetailModalProps
                   ))}
                 </div>
               </div>
+
+              {/* In Silico Model Section */}
+              {paper.inSilicoAvailable && (
+                <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 5h2V3c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v2h2c1.1 0 2 .9 2 2v11c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2zM7 3v2h10V3H7zm12 4H5v11h14V7z" />
+                        <path d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-blue-900">3D Model Available</h3>
+                      <p className="text-sm text-blue-700">
+                        Recreate this system in the interactive lab
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Model Info Grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <div className="text-sm font-medium text-blue-900">Model Type</div>
+                      <div className="text-sm text-blue-700 capitalize">
+                        {paper.modelType?.replace('-', ' ') || 'Unknown'}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-blue-900">Difficulty</div>
+                      <div className="text-sm text-blue-700 capitalize">
+                        {paper.recreationDifficulty || 'Not specified'}
+                      </div>
+                    </div>
+                    {paper.parameterCompleteness && (
+                      <div>
+                        <div className="text-sm font-medium text-blue-900">
+                          Parameter Completeness
+                        </div>
+                        <div className="text-sm text-blue-700">
+                          {Math.round(paper.parameterCompleteness * 100)}%
+                        </div>
+                      </div>
+                    )}
+                    {paper.validationStatus && (
+                      <div>
+                        <div className="text-sm font-medium text-blue-900">Validation Status</div>
+                        <div
+                          className={cn(
+                            'text-sm font-medium capitalize',
+                            paper.validationStatus === 'validated'
+                              ? 'text-green-600'
+                              : paper.validationStatus === 'pending'
+                              ? 'text-yellow-600'
+                              : 'text-red-600'
+                          )}
+                        >
+                          {paper.validationStatus}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Performance Targets */}
+                  {paper.performanceTargets && (
+                    <div className="mb-4">
+                      <div className="text-sm font-medium text-blue-900 mb-2">
+                        Performance Targets
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        {paper.performanceTargets.powerDensity && (
+                          <div className="flex justify-between">
+                            <span>Power Density:</span>
+                            <span className="font-medium">
+                              {paper.performanceTargets.powerDensity} mW/m²
+                            </span>
+                          </div>
+                        )}
+                        {paper.performanceTargets.currentDensity && (
+                          <div className="flex justify-between">
+                            <span>Current Density:</span>
+                            <span className="font-medium">
+                              {paper.performanceTargets.currentDensity} mA/m²
+                            </span>
+                          </div>
+                        )}
+                        {paper.performanceTargets.coulombicEfficiency && (
+                          <div className="flex justify-between">
+                            <span>Efficiency:</span>
+                            <span className="font-medium">
+                              {paper.performanceTargets.coulombicEfficiency}%
+                            </span>
+                          </div>
+                        )}
+                        {paper.performanceTargets.operatingVoltage && (
+                          <div className="flex justify-between">
+                            <span>Voltage:</span>
+                            <span className="font-medium">
+                              {paper.performanceTargets.operatingVoltage} V
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Action Button */}
+                  <div className="pt-3 border-t border-blue-200">
+                    <Button
+                      variant="primary"
+                      className="w-full bg-blue-600 hover:bg-blue-700"
+                      onClick={() => {
+                        // TODO: Implement navigation to lab with paper parameters
+                        const labUrl = `/lab?paper=${paper.id}&model=${paper.modelType}`;
+                        window.open(labUrl, '_blank');
+                      }}
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M3 3h18v18H3V3zm16 16V5H5v14h14z" />
+                        <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
+                      </svg>
+                      View in 3D Lab
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Sidebar with metrics and info */}

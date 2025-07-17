@@ -53,6 +53,47 @@ import { prisma } from '../../../lib/db';
 const count = await prisma.researchPaper.count(); // Should return 3,721
 ```
 
+### Environment Setup
+
+**Local Development (Recommended)**:
+
+```bash
+# Setup local PostgreSQL with Docker
+pnpm db:setup:local
+
+# This automatically:
+# 1. Copies .env.development.local to .env.local
+# 2. Starts Docker PostgreSQL container
+# 3. Pushes schema to local database
+```
+
+**Production Environment**:
+
+- Uses remote Prisma PostgreSQL with 3,721+ research papers
+- Configured via .env.production.local
+- Automatic connection pooling and optimization
+
+### Database Management Commands
+
+**Local Development**:
+
+```bash
+# Start/stop local PostgreSQL
+pnpm db:local:start
+pnpm db:local:stop
+pnpm db:local:restart
+
+# Database operations
+pnpm db:push          # Push schema changes
+pnpm db:generate      # Generate Prisma client
+pnpm db:studio        # Open Prisma Studio
+
+# Backup and restore
+pnpm db:backup        # Create backup
+pnpm db:restore       # Restore from backup
+pnpm db:backup:verify # Verify backup integrity
+```
+
 ### Critical Field Mappings (API vs Database)
 
 When working with the research papers API, understand these key mappings:

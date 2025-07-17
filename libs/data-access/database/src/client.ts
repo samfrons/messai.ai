@@ -6,54 +6,59 @@ const globalForPrisma = globalThis as unknown as {
 
 function createPrismaClient() {
   const isProduction = process.env.NODE_ENV === 'production';
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isLocalDevelopment = process.env.DATABASE_URL?.includes('localhost');
 
-  // Check if we should use Prisma Accelerate (production only)
-  const accelerateUrl = process.env.PRISMA_ACCELERATE_URL;
-  const hasAccelerate = !!accelerateUrl && isProduction;
+  // Get database URL from environment
+  const databaseUrl = process.env.DATABASE_URL;
 
-  // Determine which URL to use based on environment
-  let connectionUrl: string;
-
-  if (hasAccelerate && process.env.DATABASE_URL?.includes('postgres')) {
-    // Production with Prisma Accelerate
-    connectionUrl = accelerateUrl;
-  } else if (
-    process.env.DATABASE_URL?.includes('postgres') &&
-    (isProduction || process.env.FORCE_POSTGRES === 'true')
-  ) {
-    // Production PostgreSQL or forced PostgreSQL
-    connectionUrl = process.env.DATABASE_URL;
-  } else if (process.env.DATABASE_URL?.startsWith('file:')) {
-    // Explicit SQLite URL
-    connectionUrl = process.env.DATABASE_URL;
-  } else {
-    // Default to SQLite for local development
-    connectionUrl = 'file:./prisma/dev.db';
+  if (!databaseUrl) {
+    throw new Error('DATABASE_URL environment variable is required');
   }
 
-  // For non-Accelerate PostgreSQL connections, add connection pooling params
-  let finalUrl = connectionUrl;
+  // Determine if we should use Prisma Accelerate (production remote databases only)
+  const accelerateUrl = process.env.PRISMA_ACCELERATE_URL;
+  const useAccelerate = !!(accelerateUrl && isProduction && !isLocalDevelopment);
 
-  if (!hasAccelerate && connectionUrl.includes('postgres')) {
+  // Use Accelerate URL if available and appropriate, otherwise use direct URL
+  let connectionUrl = useAccelerate ? accelerateUrl : databaseUrl;
+
+  // Add connection pooling for PostgreSQL (except when using Accelerate)
+  if (!useAccelerate && connectionUrl.includes('postgres')) {
     try {
-      const url = new URL(connectionUrl.replace('postgresql://', 'postgres://'));
-      url.searchParams.set('connection_limit', '5'); // Reduce connection limit
-      url.searchParams.set('pool_timeout', '10'); // Shorter timeout
-      finalUrl = url.toString().replace('postgres://', 'postgresql://');
-    } catch (e) {
-      // If URL parsing fails, use the original connection string
-      finalUrl = connectionUrl;
+      const url = new URL(connectionUrl);
+
+      // Optimize connection settings based on environment
+      if (isLocalDevelopment) {
+        // Local development: fewer connections, faster timeouts
+        url.searchParams.set('connection_limit', '10');
+        url.searchParams.set('pool_timeout', '20');
+      } else {
+        // Remote database: more conservative settings
+        url.searchParams.set('connection_limit', '5');
+        url.searchParams.set('pool_timeout', '10');
+      }
+
+      connectionUrl = url.toString();
+    } catch (error) {
+      console.warn('Failed to parse DATABASE_URL for connection pooling:', error);
+      // Continue with original URL if parsing fails
     }
   }
+
+  // Configure logging based on environment
+  const logLevels = isProduction
+    ? ['error']
+    : process.env.DATABASE_LOGGING === 'true'
+    ? ['query', 'info', 'warn', 'error']
+    : ['error', 'warn'];
 
   const client = new PrismaClient({
     datasources: {
       db: {
-        url: finalUrl,
+        url: connectionUrl,
       },
     },
-    log: isProduction ? ['error'] : ['error', 'warn'],
+    log: logLevels as any,
   });
 
   return client;
