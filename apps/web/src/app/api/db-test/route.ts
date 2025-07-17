@@ -5,6 +5,10 @@ export async function GET(_request: NextRequest) {
   try {
     console.log('=== DB Test API ===');
     console.log('DATABASE_URL exists:', !!process.env['DATABASE_URL']);
+    console.log(
+      'DATABASE_URL is local:',
+      process.env['DATABASE_URL']?.includes('localhost') ? 'YES' : 'NO'
+    );
     console.log('FORCE_POSTGRES:', process.env['FORCE_POSTGRES']);
     console.log('NODE_ENV:', process.env['NODE_ENV']);
 
@@ -33,6 +37,7 @@ export async function GET(_request: NextRequest) {
           NODE_ENV: process.env['NODE_ENV'],
           FORCE_POSTGRES: process.env['FORCE_POSTGRES'],
           DATABASE_URL_SET: !!process.env['DATABASE_URL'],
+          DATABASE_IS_LOCAL: process.env['DATABASE_URL']?.includes('localhost') || false,
         },
       },
     });
