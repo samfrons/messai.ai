@@ -115,8 +115,6 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
 
   // Biological parameters (original 5 files)
   biofilm_thickness: '/parameters/parameters-v1/biological/biofilm-properties.md',
-  electron_transfer_rate: '/parameters/parameters-v1/biological/electron-transfer.md',
-  growth_rate: '/parameters/parameters-v1/biological/growth-kinetics.md',
   microbial_diversity: '/parameters/parameters-v1/biological/microbial-communities.md',
   substrate_utilization: '/parameters/parameters-v1/biological/substrate-utilization.md',
 
@@ -155,7 +153,7 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
 
   // Additional electrical parameters (January 2025)
   limiting_current: '/parameters/parameters-v1/electrical/limiting-current.md',
-  capacitance: '/parameters/parameters-v1/electrical/double-layer-capacitance.md',
+  double_layer_capacitance: '/parameters/parameters-v1/electrical/double-layer-capacitance.md',
   charge_transfer_resistance: '/parameters/parameters-v1/electrical/charge-transfer-resistance.md',
   power_efficiency: '/parameters/parameters-v1/electrical/power-efficiency.md',
 
@@ -293,6 +291,23 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   hydraulic_permeability: '/parameters/parameters-v1/physical/hydraulic-permeability.md',
   ionic_conductivity: '/parameters/parameters-v1/chemical/ionic-conductivity.md',
   ohmic_resistance: '/parameters/parameters-v1/operational/ohmic-resistance.md',
+
+  // Batch 6 - High-priority parameters (January 2025)
+  electron_transfer_rate: '/parameters/parameters-v1/biological/electron-transfer-rate.md',
+  growth_rate: '/parameters/parameters-v1/biological/growth-rate.md',
+  oxidation_reduction_potential:
+    '/parameters/parameters-v1/chemical/oxidation-reduction-potential.md',
+  salt_concentration: '/parameters/parameters-v1/chemical/salt-concentration.md',
+  capacitance: '/parameters/parameters-v1/electrical/capacitance.md',
+  cell_voltage: '/parameters/parameters-v1/electrical/cell-voltage.md',
+  maximum_power_density: '/parameters/parameters-v1/electrical/maximum-power-density.md',
+  conductivity: '/parameters/parameters-v1/chemical/conductivity.md',
+  viscosity: '/parameters/parameters-v1/chemical/viscosity.md',
+  total_dissolved_solids: '/parameters/parameters-v1/chemical/total-dissolved-solids.md',
+  cell_diameter: '/parameters/parameters-v1/physical/cell-diameter.md',
+  cell_height: '/parameters/parameters-v1/physical/cell-height.md',
+  energy_efficiency: '/parameters/parameters-v1/performance/energy-efficiency.md',
+  h2_purity: '/parameters/parameters-v1/performance/h2-purity.md',
 
   // Placeholder mappings for parameters not yet generated
   microbial_growth_rate: '/parameters/parameters-v1/biological/growth-rate.md',
