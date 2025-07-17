@@ -1,6 +1,7 @@
 'use client';
 
-import type { Formula } from '../../../../types/parameters';
+// React import removed - not needed in React 18+
+import type { Formula } from '@/types/parameters';
 import { Card } from '@messai/ui';
 import { Calculator, Info } from '../../../ui/icons';
 import { Alert, AlertDescription } from '../../../ui/alert';

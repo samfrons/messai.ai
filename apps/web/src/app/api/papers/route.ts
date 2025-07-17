@@ -303,3 +303,92 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    const {
+      title,
+      abstract,
+      authors,
+      journal,
+      year,
+      doi,
+      pmid,
+      arxivId,
+      url,
+      pdfUrl,
+      uploadedById,
+    } = body;
+
+    if (!title || !abstract || !authors || !year) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Missing required fields: title, abstract, authors, year',
+            code: 'VALIDATION_ERROR',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    const paper = await prisma.researchPaper.create({
+      data: {
+        title,
+        abstract,
+        authors: JSON.stringify(authors), // authors is a string field in deployment schema
+        journal,
+        publicationDate: new Date(`${year}-01-01`), // Convert year to date
+        doi,
+        pubmedId: pmid, // Field renamed in deployment schema
+        arxivId,
+        externalUrl: url || pdfUrl, // Use externalUrl field
+        keywords: '[]', // Required field in deployment schema
+        source: 'user', // Required field in deployment schema
+        uploadedBy: uploadedById,
+      },
+      include: {
+        user: {
+          select: { id: true, name: true, email: true },
+        },
+      },
+    });
+
+    return NextResponse.json(
+      {
+        data: paper,
+        error: null,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Papers creation error:', error);
+
+    if (error instanceof Error && error.message.includes('Unique constraint')) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Paper with this DOI/PMID already exists',
+            code: 'DUPLICATE_ERROR',
+          },
+        },
+        { status: 409 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        data: null,
+        error: {
+          message: 'Failed to create paper',
+          code: 'CREATION_ERROR',
+        },
+      },
+      { status: 500 }
+    );
+  }
+}

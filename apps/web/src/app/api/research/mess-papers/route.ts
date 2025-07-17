@@ -267,7 +267,7 @@ async function processMESSPapers() {
         },
       });
 
-      // Tags are now stored in the keywords field as JSON
+      // Tags are now stored in the keywords field as JSON (updated during creation)
 
       addedPapers.push({
         ...paper,

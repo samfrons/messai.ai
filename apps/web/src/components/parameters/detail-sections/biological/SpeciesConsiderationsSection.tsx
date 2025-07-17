@@ -1,6 +1,7 @@
 'use client';
 
-import type { SpeciesConsideration } from '../../../../types/parameters';
+// React import removed - not needed for JSX in React 18+
+import type { SpeciesConsideration } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Bug, Dna } from '../../../ui/icons';
 import { Separator } from '../../../ui/separator';

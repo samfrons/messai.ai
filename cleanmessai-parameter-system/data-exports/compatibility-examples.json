@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "exportDate": "2025-07-17T10:00:00.000Z",
+    "version": "1.0.0",
+    "totalAnalyses": 6,
+    "description": "Sample compatibility analysis results for various material combinations"
+  },
+  "compatibilityAnalyses": [
+    {
+      "id": "comp_001",
+      "combination": {
+        "anode": "Carbon Felt",
+        "cathode": "Platinum",
+        "organism": "Geobacter sulfurreducens",
+        "membrane": "Nafion"
+      },
+      "operatingConditions": {
+        "temperature": 30,
+        "pH": 7.0,
+        "substrate": "Acetate"
+      },
+      "result": {
+        "score": 87,
+        "confidence": 0.92,
+        "factors": {
+          "biocompatibility": 85.5,
+          "conductivity": 95.0,
+          "stability": 87.5,
+          "cost": 40.0,
+          "sustainability": 60.0
+        },
+        "notes": [
+          "Excellent biocompatibility between materials and organism",
+          "High conductivity and catalytic activity",
+          "Long-term stability expected",
+          "High surface area promotes biofilm formation"
+        ],
+        "warnings": ["High material costs may limit commercial viability"],
+        "recommendations": [
+          "Consider cost-effective alternatives or hybrid approaches"
+        ],
+        "references": [
+          {
+            "paperId": "paper_123",
+            "title": "Enhanced power generation using Geobacter sulfurreducens on carbon felt anodes",
+            "powerOutput": 245.6,
+            "efficiency": 68.2
+          },
+          {
+            "paperId": "paper_456",
+            "title": "Platinum cathode optimization for microbial fuel cells",
+            "powerOutput": 312.1,
+            "efficiency": 71.5
+          }
+        ]
+      },
+      "timestamp": "2025-07-17T09:15:00.000Z"
+    },
+    {
+      "id": "comp_002",
+      "combination": {
+        "anode": "Carbon Cloth",
+        "cathode": "Activated Carbon",
+        "organism": "Mixed Culture",
+        "membrane": "CMI-7000"
+      },
+      "operatingConditions": {
+        "temperature": 35,
+        "pH": 7.2,
+        "substrate": "Wastewater"
+      },
+      "result": {
+        "score": 72,
+        "confidence": 0.85,
+        "factors": {
+          "biocompatibility": 71.25,
+          "conductivity": 82.5,
+          "stability": 76.5,
+          "cost": 72.5,
+          "sustainability": 77.5
+        },
+        "notes": [
+          "Good biocompatibility with mixed culture",
+          "Moderate conductivity and catalytic activity",
+          "Cost-effective material combination"
+        ],
+        "warnings": [],
+        "recommendations": [
+          "Consider surface treatments to improve biofilm adhesion",
+          "Monitor pH stability over time"
+        ],
+        "references": [
+          {
+            "paperId": "paper_789",
+            "title": "Mixed culture microbial fuel cells for wastewater treatment",
+            "powerOutput": 128.3,
+            "efficiency": 45.7
+          }
+        ]
+      },
+      "timestamp": "2025-07-17T09:30:00.000Z"
+    },
+    {
+      "id": "comp_003",
+      "combination": {
+        "anode": "Graphene Oxide",
+        "cathode": "MXene",
+        "organism": "Shewanella oneidensis",
+        "membrane": "None (Membrane-less)"
+      },
+      "operatingConditions": {
+        "temperature": 25,
+        "pH": 6.8,
+        "substrate": "Lactate"
+      },
+      "result": {
+        "score": 78,
+        "confidence": 0.88,
+        "factors": {
+          "biocompatibility": 63.75,
+          "conductivity": 91.5,
+          "stability": 77.5,
+          "cost": 27.5,
+          "sustainability": 67.5
+        },
+        "notes": [
+          "Very high conductivity and catalytic activity",
+          "Excellent surface area for biofilm formation",
+          "Novel material combination with high potential"
+        ],
+        "warnings": [
+          "Very high material costs may limit commercial viability",
+          "Limited long-term stability data available"
+        ],
+        "recommendations": [
+          "Consider cost-effective alternatives or hybrid approaches",
+          "Conduct long-term stability testing"
+        ],
+        "references": [
+          {
+            "paperId": "paper_321",
+            "title": "Graphene oxide anodes for enhanced microbial fuel cell performance",
+            "powerOutput": 415.2,
+            "efficiency": 58.9
+          }
+        ]
+      },
+      "timestamp": "2025-07-17T09:45:00.000Z"
+    },
+    {
+      "id": "comp_004",
+      "combination": {
+        "anode": "Stainless Steel",
+        "cathode": "Nickel Mesh",
+        "organism": "Pseudomonas aeruginosa",
+        "membrane": "AMI-7001"
+      },
+      "operatingConditions": {
+        "temperature": 37,
+        "pH": 7.5,
+        "substrate": "Glucose"
+      },
+      "result": {
+        "score": 58,
+        "confidence": 0.78,
+        "factors": {
+          "biocompatibility": 52.5,
+          "conductivity": 70.0,
+          "stability": 90.0,
+          "cost": 75.0,
+          "sustainability": 82.5
+        },
+        "notes": [
+          "High stability and durability",
+          "Cost-effective material combination",
+          "Good sustainability profile"
+        ],
+        "warnings": [
+          "Low biocompatibility may limit performance",
+          "Poor biofilm adhesion on stainless steel"
+        ],
+        "recommendations": [
+          "Consider surface modification or alternative materials",
+          "Add biofilm adhesion promoters",
+          "Monitor biofilm formation carefully"
+        ],
+        "references": []
+      },
+      "timestamp": "2025-07-17T10:00:00.000Z"
+    },
+    {
+      "id": "comp_005",
+      "combination": {
+        "anode": "Carbon Brush",
+        "cathode": "Platinum",
+        "organism": "Clostridium acetobutylicum",
+        "membrane": "Cellulose Acetate"
+      },
+      "operatingConditions": {
+        "temperature": 32,
+        "pH": 6.5,
+        "substrate": "Butyrate"
+      },
+      "result": {
+        "score": 81,
+        "confidence": 0.89,
+        "factors": {
+          "biocompatibility": 76.5,
+          "conductivity": 92.5,
+          "stability": 85.0,
+          "cost": 45.0,
+          "sustainability": 65.0
+        },
+        "notes": [
+          "Good biocompatibility with Clostridium species",
+          "High conductivity and catalytic activity",
+          "Carbon brush provides excellent surface area"
+        ],
+        "warnings": [
+          "pH outside optimal range (6.5-8.5) for most organisms",
+          "High material costs may limit commercial viability"
+        ],
+        "recommendations": [
+          "Consider pH buffering to maintain optimal conditions",
+          "Monitor organism health at lower pH"
+        ],
+        "references": [
+          {
+            "paperId": "paper_654",
+            "title": "Clostridium-based microbial fuel cells for biobutanol production",
+            "powerOutput": 189.7,
+            "efficiency": 52.3
+          }
+        ]
+      },
+      "timestamp": "2025-07-17T10:15:00.000Z"
+    },
+    {
+      "id": "comp_006",
+      "combination": {
+        "anode": "MXene",
+        "cathode": "Carbon Cloth",
+        "organism": "Mixed Culture",
+        "membrane": "Nafion"
+      },
+      "operatingConditions": {
+        "temperature": 28,
+        "pH": 7.1,
+        "substrate": "Propionate"
+      },
+      "result": {
+        "score": 75,
+        "confidence": 0.86,
+        "factors": {
+          "biocompatibility": 71.25,
+          "conductivity": 87.5,
+          "stability": 75.0,
+          "cost": 47.5,
+          "sustainability": 70.0
+        },
+        "notes": [
+          "Good biocompatibility with mixed culture",
+          "High conductivity from MXene anode",
+          "Balanced performance across factors"
+        ],
+        "warnings": [
+          "High material costs may limit commercial viability",
+          "Limited long-term stability data for MXene"
+        ],
+        "recommendations": [
+          "Consider cost-effective alternatives or hybrid approaches",
+          "Conduct extended stability testing",
+          "Monitor MXene degradation over time"
+        ],
+        "references": [
+          {
+            "paperId": "paper_987",
+            "title": "MXene-based electrodes for next-generation microbial fuel cells",
+            "powerOutput": 298.4,
+            "efficiency": 61.8
+          }
+        ]
+      },
+      "timestamp": "2025-07-17T10:30:00.000Z"
+    }
+  ],
+  "statistics": {
+    "averageScore": 75.17,
+    "averageConfidence": 0.863,
+    "bestCombination": {
+      "id": "comp_001",
+      "score": 87,
+      "materials": "Carbon Felt + Platinum + Geobacter sulfurreducens"
+    },
+    "worstCombination": {
+      "id": "comp_004",
+      "score": 58,
+      "materials": "Stainless Steel + Nickel Mesh + Pseudomonas aeruginosa"
+    },
+    "factorAverages": {
+      "biocompatibility": 68.5,
+      "conductivity": 86.4,
+      "stability": 81.7,
+      "cost": 51.2,
+      "sustainability": 70.4
+    },
+    "commonWarnings": [
+      "High material costs may limit commercial viability",
+      "Low biocompatibility may limit performance",
+      "Limited long-term stability data available"
+    ],
+    "commonRecommendations": [
+      "Consider cost-effective alternatives or hybrid approaches",
+      "Conduct long-term stability testing",
+      "Monitor biofilm formation carefully"
+    ]
+  }
+}

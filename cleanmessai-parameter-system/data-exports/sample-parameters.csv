@@ -1,0 +1,26 @@
+ID,Name,Description,Unit,Type,Category,Subcategory,Min,Max,Typical,Default,Options,Tags
+biofilm_conductivity,Biofilm Conductivity,Electrical conductivity of biofilm layer,S/m,number,biological,biofilm-parameters,0.001,1,0.01,0.01,,biofilm;conductivity;electrical
+biofilm_coverage,Biofilm Coverage,Percentage of electrode surface covered by biofilm,%,number,biological,biofilm-parameters,0,100,70,70,,biofilm;coverage;electrode
+biofilm_thickness,Biofilm Thickness,Average thickness of biofilm layer,μm,number,biological,biofilm-parameters,1,1000,50,50,,biofilm;thickness;morphology
+microorganism_species,Microorganism Species,Primary microorganism species used in the system,taxonomic,select,biological,microbial-community,,,,"Mixed Culture","Geobacter sulfurreducens;Shewanella oneidensis;Mixed Culture;Pseudomonas aeruginosa;Clostridium acetobutylicum",microorganism;species;taxonomy
+cell_density,Cell Density,Number of viable cells per unit volume,cells/mL,number,biological,microbial-community,1000000,1000000000,100000000,100000000,,cells;density;viable
+power_density,Power Density,Power output per unit electrode area,mW/cm²,number,electrical,power-output,0.1,5000,100,100,,power;density;performance
+current_density,Current Density,Current per unit electrode area,mA/cm²,number,electrical,current-characteristics,0.1,50000,500,500,,current;density;electrode
+open_circuit_voltage,Open Circuit Voltage,Voltage when no current is flowing,V,number,electrical,voltage-characteristics,0.1,1.2,0.7,0.7,,voltage;open-circuit;potential
+internal_resistance,Internal Resistance,Total internal resistance of the system,Ω,number,electrical,impedance,0.001,1000,10,10,,resistance;internal;impedance
+coulombic_efficiency,Coulombic Efficiency,Ratio of electrons harvested to electrons available,%,number,electrical,efficiency,1,100,60,60,,efficiency;coulombic;electrons
+operating_temperature,Operating Temperature,Cell/reactor operating temperature,°C,number,environmental,temperature-control,4,80,30,30,,temperature;operating;thermal
+ph_level,pH Level,Solution pH level,pH,number,environmental,chemical-conditions,1,14,7,7,,pH;acidity;chemical
+dissolved_oxygen,Dissolved Oxygen,Concentration of dissolved oxygen in solution,mg/L,number,environmental,chemical-conditions,0,20,2,2,,oxygen;dissolved;concentration
+ionic_strength,Ionic Strength,Measure of ion concentration in solution,M,number,environmental,chemical-conditions,0.001,5,0.1,0.1,,ionic;strength;concentration
+humidity,Humidity,Relative humidity of environment,%,number,environmental,atmospheric-conditions,0,100,50,50,,humidity;moisture;atmospheric
+anode_material,Anode Material,Primary anode material composition,categorical,select,materials,electrode-materials,,,,"Carbon Felt","Carbon Felt;Carbon Cloth;Graphene Oxide;Stainless Steel;MXene;Carbon Brush;Titanium",anode;material;electrode
+cathode_material,Cathode Material,Primary cathode material composition,categorical,select,materials,electrode-materials,,,,Platinum,"Platinum;Carbon Cloth;Activated Carbon;MXene;Stainless Steel;Nickel Mesh",cathode;material;electrode
+membrane_type,Membrane Type,Type of membrane separator used,categorical,select,materials,membrane-materials,,,,Nafion,"Nafion;CMI-7000;AMI-7001;Cellulose Acetate;None (Membrane-less)",membrane;separator;material
+electrode_area,Electrode Area,Total surface area of electrode,cm²,number,materials,electrode-properties,0.1,10000,25,25,,electrode;area;surface
+electrode_spacing,Electrode Spacing,Distance between anode and cathode,cm,number,materials,electrode-properties,0.1,100,2,2,,electrode;spacing;distance
+substrate_type,Substrate Type,Primary substrate for microbial metabolism,categorical,select,biological,substrate-parameters,,,,Acetate,"Acetate;Glucose;Wastewater;Lactate;Butyrate;Propionate",substrate;metabolism;organic
+substrate_concentration,Substrate Concentration,Concentration of primary substrate,g/L,number,biological,substrate-parameters,0.01,100,1,1,,substrate;concentration;organic
+flow_rate,Flow Rate,Volumetric flow rate of solution,mL/min,number,environmental,hydraulic-conditions,0.1,1000,10,10,,flow;rate;hydraulic
+system_configuration,System Configuration,Basic system architecture type,categorical,select,materials,system-design,,,,"Dual Chamber","Single Chamber;Dual Chamber;Stacked;Tubular;Flat Plate",system;configuration;architecture
+reactor_volume,Reactor Volume,Total volume of reactor chamber,mL,number,materials,system-design,1,100000,100,100,,reactor;volume;chamber

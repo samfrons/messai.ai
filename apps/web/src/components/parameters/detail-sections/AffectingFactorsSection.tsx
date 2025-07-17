@@ -1,6 +1,7 @@
 'use client';
 
-import type { AffectingFactors, Factor } from '../../../types/parameters';
+// React import removed - not needed for JSX in React 18+
+import type { AffectingFactors, Factor } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { Zap, Settings } from '../../ui/icons';
 import { Separator } from '../../ui/separator';

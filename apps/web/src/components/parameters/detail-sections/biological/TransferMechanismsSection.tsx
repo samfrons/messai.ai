@@ -1,6 +1,7 @@
 'use client';
 
-import type { TransferMechanism } from '../../../../types/parameters';
+// React import removed - not needed for JSX in React 18+
+import type { TransferMechanism } from '@/types/parameters';
 import { Card, Badge } from '@messai/ui';
 import { GitBranch, Zap } from '../../../ui/icons';
 import { Progress } from '../../../ui/progress';
