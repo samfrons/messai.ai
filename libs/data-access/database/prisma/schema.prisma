@@ -225,6 +225,18 @@ model ResearchPaper {
   @@index([modelType])
   @@index([validationStatus])
   @@index([lastValidated])
+  
+  // Composite indexes for search performance
+  @@index([systemType, publicationDate])
+  @@index([isPublic, systemType])
+  @@index([journal, publicationDate])
+  @@index([source, createdAt])
+  @@index([aiConfidence, systemType])
+  @@index([powerOutput, efficiency])
+  @@index([publicationDate, aiConfidence])
+  @@index([inSilicoAvailable, systemType])
+  @@index([validationStatus, modelType])
+  @@fulltext([title, abstract])
 }
 
 model ExperimentPaper {

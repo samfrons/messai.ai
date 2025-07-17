@@ -31,8 +31,7 @@
     "src/**/*.js",
     "src/**/*.jsx",
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "../../dist/apps/web/.next/types/**/*.ts"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "out-tsc",
