@@ -125,20 +125,6 @@ export async function GET(request: NextRequest) {
           source: true,
           isPublic: true,
           createdAt: true,
-
-          // In Silico Model Integration fields
-          inSilicoAvailable: true,
-          modelType: true,
-          modelParameters: true,
-          performanceTargets: true,
-          systemGeometry: true,
-          materialSpecs: true,
-          operatingSpecs: true,
-          methodology: true,
-          recreationDifficulty: true,
-          parameterCompleteness: true,
-          validationStatus: true,
-          modelAccuracy: true,
         },
       }),
       prisma.researchPaper.count({ where }),
@@ -228,19 +214,7 @@ export async function GET(request: NextRequest) {
         processingDate: paper.createdAt.toISOString(),
         hasFullText: !!paper.externalUrl,
 
-        // In Silico Model Integration
-        inSilicoAvailable: paper.inSilicoAvailable || false,
-        modelType: paper.modelType,
-        modelParameters: parseJsonField(paper.modelParameters),
-        performanceTargets: parseJsonField(paper.performanceTargets),
-        systemGeometry: parseJsonField(paper.systemGeometry),
-        materialSpecs: parseJsonField(paper.materialSpecs),
-        operatingSpecs: parseJsonField(paper.operatingSpecs),
-        methodology: parseJsonField(paper.methodology) || [],
-        recreationDifficulty: paper.recreationDifficulty,
-        parameterCompleteness: paper.parameterCompleteness,
-        validationStatus: paper.validationStatus,
-        modelAccuracy: paper.modelAccuracy,
+        // Note: In Silico Model Integration fields removed as they don't exist in current schema
       };
     });
 
