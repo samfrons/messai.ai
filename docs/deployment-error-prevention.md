@@ -83,15 +83,25 @@ Objects missing required properties defined in interfaces.
 ### Local Testing
 
 ```bash
-# 1. Run TypeScript type checking
-pnpm run type-check
+# 1. Run TypeScript type checking (CRITICAL - prevents deployment failures)
+cd apps/web && pnpm run type-check
 
 # 2. Test local build (without database)
-pnpm run build
+cd apps/web && pnpm run build
 
 # 3. Test production build with environment
 DATABASE_URL="postgresql://fake" pnpm run build
 ```
+
+### MANDATORY Steps Before Every Push
+
+**⚠️ ALWAYS complete these steps to prevent deployment failures:**
+
+1. **Type Check**: `cd apps/web && pnpm run type-check`
+2. **Build Test**: `cd apps/web && pnpm run build`
+3. **Fix Any Errors**: Address TypeScript issues immediately
+4. **Test Locally**: Verify application starts on localhost:3000
+5. **Commit & Push**: Only after all checks pass
 
 ### Code Review Checklist
 

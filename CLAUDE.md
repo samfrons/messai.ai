@@ -368,3 +368,157 @@ loss:
 3. **CHECK** what environment you're in
 4. **SWITCH** to local: `cp .env.local.example .env.local`
 5. **VERIFY** with `pnpm db:test` (should show ~1,000 papers)
+
+## 🚨 Critical: TypeScript Deployment Best Practices 🚨
+
+### Pre-Deployment Checklist
+
+**ALWAYS run these commands before pushing to prevent deployment failures:**
+
+```bash
+# 1. Type check the web app specifically
+cd apps/web && pnpm run type-check
+
+# 2. Test production build locally
+cd apps/web && pnpm run build
+
+# 3. If database errors occur, test with minimal env
+DATABASE_URL="postgresql://fake" pnpm run build
+```
+
+### TypeScript Strict Mode Requirements
+
+**Dynamic Property Access** - Always use proper typing:
+
+```typescript
+// ❌ WILL CAUSE DEPLOYMENT FAILURE
+const colors = { red: '#ff0000', blue: '#0000ff' };
+const color = colors[userInput]; // Type error!
+
+// ✅ CORRECT - Use Record type
+const colors: Record<string, string> = { red: '#ff0000', blue: '#0000ff' };
+const color = colors[userInput] || '#000000'; // Safe with fallback
+```
+
+**Environment Variables** - Use bracket notation:
+
+```typescript
+// ❌ WILL CAUSE DEPLOYMENT FAILURE
+const dbUrl = process.env.DATABASE_URL; // Could be undefined
+
+// ✅ CORRECT - Use bracket notation
+const dbUrl = process.env['DATABASE_URL'];
+if (!dbUrl) throw new Error('DATABASE_URL required');
+```
+
+### Emergency Deployment Fix Process
+
+If deployment fails with TypeScript errors:
+
+1. **Check Vercel logs** for specific error
+2. **Run type-check locally**: `cd apps/web && pnpm run type-check`
+3. **Fix the specific error** (usually dynamic property access)
+4. **Test build locally**: `pnpm run build`
+5. **Commit and redeploy**
+
+### Common Fix Patterns
+
+**Fix 1: Dynamic Object Access**
+
+```typescript
+// Add Record type and fallback
+const materials: Record<string, string> = {
+  /* ... */
+};
+const material = materials[key] || 'default-value';
+```
+
+**Fix 2: Missing Properties**
+
+```typescript
+// Add missing properties to useMemo return
+return {
+  existingProp: value,
+  newProp: newValue, // Don't forget to add this!
+};
+```
+
+**Fix 3: React Three Fiber State**
+
+```typescript
+// Use ref for state outside useFrame
+const timeRef = useRef(0);
+useFrame((state) => {
+  timeRef.current = state.clock.elapsedTime;
+});
+// Use timeRef.current instead of state.clock.elapsedTime
+```
+
+## Paper-Specific 3D Models Implementation
+
+### Scientific Accuracy Standards
+
+When working with paper-specific 3D models, **scientific accuracy is
+non-negotiable**:
+
+- **Dimensional Accuracy**: ±5% tolerance on all measurements from source papers
+- **Material Properties**: Use actual research-based material specifications
+- **Performance**: Maintain >30fps with realistic nanowire densities
+- **Validation**: All models must be scientifically reviewable by domain experts
+
+### Implementation Architecture
+
+Paper-specific models follow established patterns:
+
+1. **Component Structure**: Create components in both `/lab/components/models/`
+   and `/lab-io/components/models/`
+2. **MESSViewer3D Integration**: Add model type to switch statement in both
+   applications
+3. **Parameter Mapping**: Use `paperParameterMapper.ts` for conversion from
+   paper specs to 3D parameters
+4. **Performance Optimization**: Implement LOD systems and geometry limits (400
+   nanowires max)
+
+### Model Type Mapping
+
+```typescript
+const paperModelTypes = {
+  'nanowire-mfc': 'nanowire-mfc', // Nanowire arrays (implemented)
+  'flow-mfc': 'benchtop', // Flow-based systems
+  'traditional-mfc': 'stacked', // Multi-chamber systems
+  'algae-mfc': 'microfluidic', // Algae-based systems
+};
+```
+
+### Scene Unit Conversion Standards
+
+```typescript
+const sceneUnits = {
+  // Microfluidic chips: 1mm = 0.1 scene units
+  mm: (value: number) => value * 0.1,
+  μm: (value: number) => value * 0.0001,
+  nm: (value: number) => value * 0.0000001,
+};
+```
+
+### Nanowire MFC Reference Implementation
+
+The `NanowireMFCModel` serves as the reference implementation:
+
+- **Nanowire density**: 850 per mm² (limited to 400 rendered for performance)
+- **Dimensions**: 50nm diameter, 2.5μm length nanowires
+- **Substrate**: 1.5mm thick nickel foam with 85% porosity visualization
+- **Microfluidic chip**: 25mm × 12mm × 2mm with realistic materials
+
+### Material Properties
+
+```typescript
+const scientificMaterials = {
+  'nickel-silicide': { color: '#C0C0C0', metalness: 0.95, roughness: 0.02 },
+  'nickel-foam': { color: '#A0A0A0', metalness: 0.8, roughness: 0.7 },
+  pdms: { color: '#E0F6FF', transparency: 0.8, roughness: 0.1 },
+};
+```
+
+**Reference**: See `PAPER_SPECIFIC_3D_MODELS.md` for comprehensive
+implementation guidelines.
