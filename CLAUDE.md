@@ -34,11 +34,14 @@
 
 ### Database Architecture
 
-MESSAI uses a PostgreSQL database containing **3,721 research papers** with
-comprehensive MES-specific data. The database is accessible through:
+MESSAI uses **PostgreSQL exclusively** for both local development and
+production, containing **3,721 research papers** with comprehensive MES-specific
+data.
 
-- **Production**: PostgreSQL via Prisma Data Platform
-- **Development**: Same PostgreSQL instance (forced via `FORCE_POSTGRES=true`)
+**Environment Setup:**
+
+- **Local Development**: Docker PostgreSQL container (`localhost:5432`)
+- **Production**: Hosted PostgreSQL service (configured in Vercel environment)
 - **Model**: `ResearchPaper` (NOT `Paper` - this is critical!)
 
 ### Database Connection
@@ -55,23 +58,27 @@ const count = await prisma.researchPaper.count(); // Should return 3,721
 
 ### Environment Setup
 
-**Local Development (Recommended)**:
+**Local Development**:
 
 ```bash
-# Setup local PostgreSQL with Docker
+# 1. Setup local PostgreSQL with Docker
 pnpm db:setup:local
 
+# 2. Copy environment template
+cp .env.local.example .env.local
+
 # This automatically:
-# 1. Copies .env.development.local to .env.local
-# 2. Starts Docker PostgreSQL container
-# 3. Pushes schema to local database
+# - Starts Docker PostgreSQL container on localhost:5432
+# - Database: messai_dev, User: postgres, Password: postgres
+# - Pushes schema to local database
 ```
 
 **Production Environment**:
 
-- Uses remote Prisma PostgreSQL with 3,721+ research papers
-- Configured via .env.production.local
+- Uses hosted PostgreSQL service (Supabase, Neon, Railway, etc.)
+- Configured in Vercel environment variables
 - Automatic connection pooling and optimization
+- Contains 3,721+ research papers
 
 ### Database Management Commands
 

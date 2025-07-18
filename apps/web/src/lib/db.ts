@@ -6,37 +6,37 @@ const globalForPrisma = globalThis as unknown as {
 
 function createPrismaClient() {
   const isProduction = process.env.NODE_ENV === 'production';
-  // const isDevelopment = process.env.NODE_ENV === 'development'; // TODO: Use for dual database approach
 
-  // Determine which URL to use based on environment
-  let connectionUrl: string;
+  // Get database URL from environment
+  const databaseUrl = process.env['DATABASE_URL'];
 
-  if (
-    process.env['DATABASE_URL']?.includes('postgres') &&
-    (isProduction || process.env['FORCE_POSTGRES'] === 'true')
-  ) {
-    // Production PostgreSQL or forced PostgreSQL
-    connectionUrl = process.env['DATABASE_URL'];
-  } else if (process.env['DATABASE_URL']?.startsWith('file:')) {
-    // Explicit SQLite URL
-    connectionUrl = process.env['DATABASE_URL'];
-  } else {
-    // Default to PostgreSQL for development
-    connectionUrl = process.env['DATABASE_URL'] || 'file:./prisma/dev.db';
+  if (!databaseUrl) {
+    throw new Error('DATABASE_URL environment variable is required');
   }
 
-  // For PostgreSQL connections, add connection pooling params
-  let finalUrl = connectionUrl;
+  // Add connection pooling params for PostgreSQL
+  let finalUrl = databaseUrl;
 
-  if (connectionUrl.includes('postgres')) {
+  if (databaseUrl.includes('postgres')) {
     try {
-      const url = new URL(connectionUrl.replace('postgresql://', 'postgres://'));
-      url.searchParams.set('connection_limit', '5'); // Reduce connection limit
-      url.searchParams.set('pool_timeout', '10'); // Shorter timeout
+      const url = new URL(databaseUrl.replace('postgresql://', 'postgres://'));
+
+      // Optimize connection settings based on environment
+      if (isProduction) {
+        // Production: Conservative settings for stability
+        url.searchParams.set('connection_limit', '5');
+        url.searchParams.set('pool_timeout', '10');
+      } else {
+        // Development: More connections for faster development
+        url.searchParams.set('connection_limit', '10');
+        url.searchParams.set('pool_timeout', '20');
+      }
+
       finalUrl = url.toString().replace('postgres://', 'postgresql://');
     } catch (e) {
-      // If URL parsing fails, use the original connection string
-      finalUrl = connectionUrl;
+      console.warn('Failed to parse DATABASE_URL for connection pooling:', e);
+      // Continue with original URL if parsing fails
+      finalUrl = databaseUrl;
     }
   }
 
