@@ -33,7 +33,6 @@ integrity.
 ### Direct Measurement
 
 1. **Rotational Rheometry**:
-
    - Cone-and-plate or parallel plate geometry
    - Measure torque vs angular velocity
    - Calculate viscosity: η = τ/(γ̇)
@@ -56,13 +55,11 @@ integrity.
 ### Primary Factors
 
 1. **Solid Content**:
-
    - Low solids (10-30%): 0.1-1 Pa·s
    - Medium solids (30-50%): 1-10 Pa·s
    - High solids (50-70%): 10-100 Pa·s
 
 2. **Particle Size and Shape**:
-
    - Fine particles: Higher viscosity
    - Spherical particles: Lower viscosity
    - High aspect ratio fillers: Significant viscosity increase
@@ -75,7 +72,6 @@ integrity.
 ### Secondary Factors
 
 1. **Polymer Molecular Weight**:
-
    - Higher MW: Higher viscosity
    - Chain entanglement effects
    - Molecular weight distribution
@@ -104,12 +100,10 @@ from poor resolution or printing failures.
 
 1. **Lewis, J.A.** (2006). "Direct ink writing of 3D functional materials".
    _Advanced Functional Materials_, 16(17), 2193-2204.
-
    - Rheological requirements for direct ink writing
 
 2. **Truby, R.L. & Lewis, J.A.** (2016). "Printing soft matter in three
    dimensions". _Nature_, 540(7633), 371-378.
-
    - Viscosity control in 3D printing of functional materials
 
 3. **Sears, N.A., et al.** (2016). "A review of three-dimensional printing in

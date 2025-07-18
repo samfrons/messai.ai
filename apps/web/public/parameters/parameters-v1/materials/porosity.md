@@ -32,14 +32,12 @@ with mechanical stability and adequate pore connectivity.
 ### Direct Measurement
 
 1. **Mercury Intrusion Porosimetry**:
-
    - High-pressure mercury intrusion into pores
    - Provides pore size distribution
    - Accurate for wide pore size range
    - Destructive testing method
 
 2. **Gas Adsorption (BET Method)**:
-
    - Nitrogen adsorption at low temperature
    - Calculate surface area and pore volume
    - Good for micropores and mesopores
@@ -63,14 +61,12 @@ with mechanical stability and adequate pore connectivity.
 ### Primary Factors
 
 1. **Material Type**:
-
    - Carbon cloth: 70-90% porosity
    - Carbon felt: 80-95% porosity
    - Graphite plates: 15-25% porosity
    - Metal foams: 80-95% porosity
 
 2. **Manufacturing Process**:
-
    - Compression reduces porosity
    - Activation increases porosity
    - Sintering affects pore structure
@@ -85,7 +81,6 @@ with mechanical stability and adequate pore connectivity.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Biofilm formation fills pores
    - Precipitation can block pores
    - Gas bubble formation affects accessibility
@@ -119,13 +114,11 @@ while maintaining structural integrity.
 1. **Zhang, X., et al.** (2009). "Separator characteristics for increasing
    performance of microbial fuel cells". _Environmental Science & Technology_,
    43(21), 8456-8461.
-
    - Porosity effects on separator performance
 
 2. **Wei, J., et al.** (2011). "A new graphite felt cathode with Fe2O3/Fe3O4
    catalyst coating for microbial fuel cells". _Electrochimica Acta_, 56(3),
    1336-1341.
-
    - Electrode porosity and performance optimization
 
 3. **Zhang, F., et al.** (2010). "Activated carbon cathodes with excellent

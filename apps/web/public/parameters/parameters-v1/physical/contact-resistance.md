@@ -33,14 +33,12 @@ performance.
 ### Direct Measurement
 
 1. **Four-Point Probe Method**:
-
    - Eliminate lead resistance effects
    - Apply current through outer probes
    - Measure voltage with inner probes
    - Calculate: R = V/I with geometry correction
 
 2. **Electrochemical Impedance Spectroscopy**:
-
    - High-frequency resistance measurement
    - Separate contact from bulk resistance
    - Provides detailed resistance analysis
@@ -64,14 +62,12 @@ performance.
 ### Primary Factors
 
 1. **Interface Materials**:
-
    - Metal-carbon contacts: Variable resistance
    - Carbon-carbon contacts: Generally low resistance
    - Oxidized surfaces: Higher resistance
    - Conductive adhesives: Intermediate resistance
 
 2. **Contact Pressure**:
-
    - Higher pressure reduces resistance
    - Deformation improves contact area
    - Over-compression can damage materials
@@ -86,7 +82,6 @@ performance.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Humidity affects surface films
    - Temperature influences resistance
    - Corrosion increases resistance over time
@@ -121,13 +116,11 @@ Proper contact design is critical for high-performance systems.
 
 1. **Holm, R.** (1967). "Electric Contacts: Theory and Application, 4th
    Edition". Springer-Verlag, Berlin.
-
    - Fundamental contact resistance theory
 
 2. **Timsit, R.S.** (1999). "Electrical contact resistance: Properties of
    stationary interfaces". _IEEE Transactions on Components and Packaging
    Technologies_, 22(1), 85-98.
-
    - Contact resistance measurement and analysis
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

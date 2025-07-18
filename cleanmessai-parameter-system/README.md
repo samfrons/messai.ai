@@ -23,19 +23,16 @@ validating, and comparing bioelectrochemical system parameters. It provides:
 ### Core Components
 
 1. **Parameter Database** (`parameter-database.md`)
-
    - 667 parameters with comprehensive metadata
    - 11 categories: biological, electrical, environmental, materials, etc.
    - 85 subcategories for detailed organization
 
 2. **Compatibility System** (`compatibility-system.md`)
-
    - Multi-factor scoring algorithm
    - Biocompatibility, conductivity, stability, cost, sustainability analysis
    - Research-validated predictions with confidence scoring
 
 3. **Comparison Engine** (`comparison-engine.md`)
-
    - Fuel cell system comparison (2-10 configurations)
    - Performance ranking across multiple metrics
    - Optimization potential analysis

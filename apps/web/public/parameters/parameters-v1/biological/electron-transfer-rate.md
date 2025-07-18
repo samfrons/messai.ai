@@ -32,14 +32,12 @@ transfer rates enable greater current densities and improved power output.
 ### Direct Measurement
 
 1. **Chronoamperometry**:
-
    - Apply fixed potential to working electrode
    - Monitor current response over time
    - Calculate transfer rate from steady-state current
    - Normalize by electrode surface area
 
 2. **Cyclic Voltammetry**:
-
    - Scan potential at controlled rate
    - Measure peak current response
    - Analyze current-potential relationship
@@ -64,13 +62,11 @@ transfer rates enable greater current densities and improved power output.
 ### Primary Factors
 
 1. **Microbial Species**:
-
    - Geobacter species: High transfer rates (10-100 A/m²)
    - Shewanella species: Moderate rates (1-50 A/m²)
    - Mixed cultures: Variable rates depending on composition
 
 2. **Electrode Material**:
-
    - Carbon-based electrodes: Good biocompatibility
    - Modified surfaces: Enhanced transfer rates
    - Conductive polymers: Improved electron transport
@@ -85,7 +81,6 @@ transfer rates enable greater current densities and improved power output.
 ### Secondary Factors
 
 1. **Biofilm Properties**:
-
    - Thickness affects electron transport distance
    - Conductivity influences transfer efficiency
    - Structure affects electron pathways
@@ -117,12 +112,10 @@ viability.
 1. **Torres, C.I., et al.** (2010). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    34(1), 3-17.
-
    - Comprehensive review of electron transfer kinetics
 
 2. **Lovley, D.R.** (2012). "Electromicrobiology". _Annual Review of
    Microbiology_, 66, 391-409.
-
    - Microbial electron transfer mechanisms and rates
 
 3. **Malvankar, N.S. & Lovley, D.R.** (2012). "Microbial nanowires: a new

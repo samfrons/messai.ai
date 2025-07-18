@@ -33,14 +33,12 @@ efficiency.
 ### Direct Measurement
 
 1. **Electromagnetic Flow Meters**:
-
    - Non-intrusive measurement
    - High accuracy for conductive fluids
    - No moving parts
    - Good for continuous monitoring
 
 2. **Ultrasonic Flow Meters**:
-
    - Non-contact measurement
    - Good for various pipe sizes
    - Suitable for clean and dirty fluids
@@ -64,14 +62,12 @@ efficiency.
 ### Primary Factors
 
 1. **System Requirements**:
-
    - Treatment capacity determines minimum flow
    - Hydraulic retention time limits maximum flow
    - Mass transfer needs influence optimal flow
    - Power requirements affect flow rates
 
 2. **Pump Characteristics**:
-
    - Pump capacity limits maximum flow
    - Pump curves determine flow vs pressure
    - Pump efficiency affects operating costs
@@ -86,7 +82,6 @@ efficiency.
 ### Secondary Factors
 
 1. **Process Conditions**:
-
    - Viscosity affects flow characteristics
    - Temperature influences fluid properties
    - Biofilm growth affects flow resistance
@@ -118,12 +113,10 @@ throughput.
 
 1. **Metcalf & Eddy** (2013). "Wastewater Engineering: Treatment and Resource
    Recovery, 5th Edition". McGraw-Hill, New York.
-
    - Flow rate design considerations
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Flow rate effects on MFC performance
 
 3. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber

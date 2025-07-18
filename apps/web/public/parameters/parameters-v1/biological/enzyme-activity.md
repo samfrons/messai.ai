@@ -33,7 +33,6 @@ performance.
 ### Direct Measurement
 
 1. **Spectrophotometric Enzyme Assays**:
-
    - Monitor substrate disappearance or product formation
    - Use specific wavelengths for chromogenic substrates
    - Calculate activity: ΔA/min × factor/protein concentration
@@ -56,13 +55,11 @@ performance.
 ### Primary Factors
 
 1. **Enzyme Type**:
-
    - Dehydrogenases: 10-200 U/mg (electron transfer)
    - Oxidases: 5-100 U/mg (terminal oxidation)
    - Reductases: 1-50 U/mg (electron acceptance)
 
 2. **Growth Conditions**:
-
    - Optimal substrate: Maximum enzyme induction
    - Substrate limitation: Reduced enzyme synthesis
    - Alternative carbon sources affect enzyme profiles
@@ -75,7 +72,6 @@ performance.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Optimal temperature: Peak activity
    - Cold stress: Reduced enzyme synthesis
    - Heat stress: Enzyme denaturation
@@ -103,13 +99,11 @@ enzymes like cytochrome c oxidase directly affect electron transfer efficiency.
 
 1. **Lovley, D.R.** (2006). "Bug juice: harvesting electricity with
    microorganisms". _Nature Reviews Microbiology_, 4(7), 497-508.
-
    - Overview of enzymes involved in microbial electricity generation
 
 2. **Kim, B.H., et al.** (1999). "Electrochemical activity of an
    Fe(III)-reducing bacterium, Shewanella putrefaciens IR-1, in the presence of
    alternative electron acceptors". _Biotechnology Techniques_, 13(7), 475-478.
-
    - Enzyme activity in electroactive bacteria
 
 3. **Heidelberg, J.F., et al.** (2002). "Genome sequence of the dissimilatory

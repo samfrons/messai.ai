@@ -34,14 +34,12 @@ maximum performance of the system.
 ### Direct Measurement
 
 1. **Total Organic Carbon (TOC)**:
-
    - High-temperature combustion method
    - Measures total carbon content
    - Includes biodegradable and non-biodegradable fractions
    - Rapid and automated analysis
 
 2. **Chemical Oxygen Demand (COD)**:
-
    - Measures oxygen equivalent of organic matter
    - Strong correlation with substrate concentration
    - Widely used in wastewater treatment
@@ -65,14 +63,12 @@ maximum performance of the system.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Simple sugars: Readily biodegradable, high activity
    - Complex carbohydrates: Slower degradation rates
    - Proteins: Variable degradation, nitrogen source
    - Lipids: High energy content, slower degradation
 
 2. **Feed Composition**:
-
    - Pure substrates: Controlled concentration
    - Real wastewaters: Variable composition
    - Industrial effluents: High concentrations possible
@@ -87,7 +83,6 @@ maximum performance of the system.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects substrate solubility
    - pH influences substrate stability
    - Ionic strength affects solubility
@@ -120,12 +115,10 @@ considerations.
 
 1. **Monod, J.** (1949). "The growth of bacterial cultures". _Annual Review of
    Microbiology_, 3(1), 371-394.
-
    - Fundamental substrate kinetics relationships
 
 2. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:
    Principles and Applications". McGraw-Hill, New York.
-
    - Substrate utilization in biological systems
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

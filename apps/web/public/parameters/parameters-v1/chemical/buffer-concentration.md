@@ -32,7 +32,6 @@ essential for maintaining stable pH and optimal system performance.
 ### Direct Measurement
 
 1. **Titration Analysis**:
-
    - Acid-base titration to determine buffer capacity
    - Calculate buffer concentration from titration curve
    - Account for multiple buffer systems
@@ -55,14 +54,12 @@ essential for maintaining stable pH and optimal system performance.
 ### Primary Factors
 
 1. **Buffer System Type**:
-
    - Phosphate buffer: 10-50 mM typical
    - Bicarbonate buffer: 20-100 mM typical
    - Biological buffers (HEPES, PIPES): 5-25 mM
    - Organic acid buffers: 10-30 mM
 
 2. **Operating pH Range**:
-
    - pH near buffer pKa: Maximum efficiency
    - pH far from pKa: Reduced buffering capacity
    - Multiple buffers for wide pH range
@@ -75,7 +72,6 @@ essential for maintaining stable pH and optimal system performance.
 ### Secondary Factors
 
 1. **System Volume**:
-
    - Larger volume: Better pH stability with same buffer concentration
    - Small volume: Higher buffer concentration needed
    - Flow rate effects on buffer residence time
@@ -105,13 +101,11 @@ buffering leads to pH excursions that can reduce efficiency by 20-50%.
 
 1. **Good, N.E., et al.** (1966). "Hydrogen ion buffers for biological
    research". _Biochemistry_, 5(2), 467-477.
-
    - Comprehensive treatment of biological buffer systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - pH control in bioelectrochemical systems
 
 3. **Liu, H. & Logan, B.E.** (2004). "Electricity generation using an

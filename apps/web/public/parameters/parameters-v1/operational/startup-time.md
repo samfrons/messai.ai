@@ -33,14 +33,12 @@ efficiency.
 ### Direct Measurement
 
 1. **Performance Monitoring**:
-
    - Track power output vs time
    - Monitor current density development
    - Measure treatment efficiency progression
    - Define startup completion criteria
 
 2. **Biofilm Development Tracking**:
-
    - Monitor biofilm thickness growth
    - Track microbial community establishment
    - Measure electrochemical activity
@@ -64,14 +62,12 @@ efficiency.
 ### Primary Factors
 
 1. **Inoculum Quality**:
-
    - Pre-adapted cultures: Faster startup
    - Mixed communities: Variable startup times
    - Electroactive species concentration
    - Inoculum age and viability
 
 2. **Environmental Conditions**:
-
    - Optimal temperature: Faster startup
    - Proper pH range: Accelerated development
    - Adequate nutrients: Rapid growth
@@ -86,7 +82,6 @@ efficiency.
 ### Secondary Factors
 
 1. **Operational Strategy**:
-
    - Gradual load increase: Stable development
    - Pre-conditioning protocols: Faster startup
    - Feed composition optimization
@@ -117,13 +112,11 @@ requiring optimization.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Startup procedures and performance development
 
 2. **Aelterman, P., et al.** (2006). "Continuous electricity generation at high
    voltages and currents using stacked microbial fuel cells". _Environmental
    Science & Technology_, 40(10), 3388-3394.
-
    - Startup time optimization strategies
 
 3. **Cheng, S., et al.** (2006). "Increased performance of single-chamber

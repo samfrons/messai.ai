@@ -34,14 +34,12 @@ transfer and improved electrochemical performance.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Apply AC perturbation at low frequencies
    - Analyze Warburg impedance component
    - Extract diffusion resistance from equivalent circuit
    - Distinguish from other resistance contributions
 
 2. **Rotating Disk Electrode (RDE)**:
-
    - Measure limiting current vs rotation rate
    - Apply Levich equation for analysis
    - Determine diffusion coefficients
@@ -66,14 +64,12 @@ transfer and improved electrochemical performance.
 ### Primary Factors
 
 1. **Biofilm Properties**:
-
    - Thickness increases diffusion resistance
    - Density affects diffusion pathways
    - EPS composition influences transport
    - Porosity determines available paths
 
 2. **Electrode Structure**:
-
    - Porous electrodes: Complex diffusion paths
    - Surface roughness affects local transport
    - Electrode material influences interaction
@@ -88,7 +84,6 @@ transfer and improved electrochemical performance.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects diffusion coefficients
    - Viscosity influences transport rates
    - pH affects species charge and interactions
@@ -119,12 +114,10 @@ and reduces overall system performance.
 
 1. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Fundamental electrochemical diffusion theory
 
 2. **Newman, J. & Thomas-Alyea, K.E.** (2004). "Electrochemical Systems". John
    Wiley & Sons, Hoboken, NJ.
-
    - Mass transport in electrochemical systems
 
 3. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular

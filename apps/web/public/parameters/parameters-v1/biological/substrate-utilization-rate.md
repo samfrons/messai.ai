@@ -33,7 +33,6 @@ extraction.
 ### Direct Measurement
 
 1. **Chemical Oxygen Demand (COD) Analysis**:
-
    - Monitor influent and effluent COD
    - Calculate removal rate: (COD_in - COD_out)/time
    - Normalize by biofilm biomass
@@ -56,13 +55,11 @@ extraction.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Simple organics (acetate): 0.5-2 g/g·day
    - Complex organics (cellulose): 0.1-0.5 g/g·day
    - Inorganics (sulfur): 0.05-0.3 g/g·day
 
 2. **Microbial Community**:
-
    - Specialized communities: Higher rates (0.5-1.5 g/g·day)
    - Mixed communities: Variable rates (0.1-0.8 g/g·day)
    - Community stability affects consistency
@@ -75,7 +72,6 @@ extraction.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Q₁₀ = 2-3 for utilization rate
    - Optimal range: 25-35°C for mesophiles
    - Cold shock reduces rate by 50-80%
@@ -104,12 +100,10 @@ utilization (0.3-0.8 g/g·day) balances efficiency with stability.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". _Wiley-Interscience_, New
    York.
-
    - Comprehensive treatment of substrate utilization kinetics
 
 2. **Freguia, S., et al.** (2007). "Microbial fuel cells operating on mixed
    fatty acids". _Bioresource Technology_, 98(12), 2132-2137.
-
    - Substrate-specific utilization rates and efficiencies
 
 3. **Pinto, R.P., et al.** (2010). "A two-population bio-electrochemical model

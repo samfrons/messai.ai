@@ -32,7 +32,6 @@ with dimensional accuracy and material integrity.
 ### Direct Measurement
 
 1. **Machine Control System**:
-
    - Direct readout from printer controller
    - Real-time speed monitoring
    - Average speed over print segments
@@ -55,14 +54,12 @@ with dimensional accuracy and material integrity.
 ### Primary Factors
 
 1. **Printing Technology**:
-
    - Fused Deposition Modeling (FDM): 10-150 mm/s
    - Stereolithography (SLA): 5-50 mm/s
    - Direct Ink Writing: 1-20 mm/s
    - Selective Laser Sintering: 50-500 mm/s
 
 2. **Material Properties**:
-
    - Low viscosity: Higher speeds possible
    - High viscosity: Requires slower speeds
    - Fast-curing materials: Enable higher speeds
@@ -75,7 +72,6 @@ with dimensional accuracy and material integrity.
 ### Secondary Factors
 
 1. **Layer Thickness**:
-
    - Thin layers: Require slower speeds
    - Thick layers: Allow faster speeds
    - Heat dissipation considerations
@@ -105,12 +101,10 @@ throughput.
 1. **Gibson, I., et al.** (2015). "Additive Manufacturing Technologies: 3D
    Printing, Rapid Prototyping, and Direct Digital Manufacturing". Springer, New
    York.
-
    - Comprehensive treatment of printing parameters
 
 2. **Lewis, J.A.** (2006). "Direct ink writing of 3D functional materials".
    _Advanced Functional Materials_, 16(17), 2193-2204.
-
    - Speed optimization in direct ink writing
 
 3. **Turner, B.N., et al.** (2014). "A review of melt extrusion additive

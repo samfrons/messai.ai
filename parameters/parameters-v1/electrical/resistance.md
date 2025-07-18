@@ -47,7 +47,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Polarization Curve Method
 
 1. **Variable Load Method**:
-
    - Apply different external resistances
    - Measure current and voltage at each resistance
    - Plot voltage vs. current (V-I curve)
@@ -62,7 +61,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Electrochemical Impedance Spectroscopy (EIS)
 
 1. **AC Impedance**:
-
    - Apply small sinusoidal voltage perturbation
    - Measure current response at different frequencies
    - Plot Nyquist and Bode plots
@@ -77,7 +75,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Direct Measurement Methods
 
 1. **Ohmmeter Method** (for electrode resistance):
-
    - Measure electrode resistance in air
    - Use four-point probe for accurate measurement
    - Account for contact resistance
@@ -94,14 +91,12 @@ Based on validation data from `parameter-ranges.json`:
 ### Primary Factors
 
 1. **Electrode Properties**:
-
    - Material conductivity and surface area
    - Electrode spacing and geometry
    - Contact resistance and connections
    - Surface modifications and treatments
 
 2. **Electrolyte Characteristics**:
-
    - Ionic strength and conductivity
    - pH and temperature effects
    - Dissolved species and concentrations
@@ -116,7 +111,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Secondary Factors
 
 1. **Biofilm Properties**:
-
    - Biofilm thickness and density
    - Microbial species and conductivity
    - Extracellular polymeric substances (EPS)
@@ -171,13 +165,11 @@ From `parameter-ranges.json` electrical category:
 ### Fundamental Literature
 
 1. **Logan, B.E. (2008)**. "Microbial Fuel Cells". Wiley-Interscience.
-
    - Comprehensive treatment of internal resistance in MFCs
 
 2. **Fan, Y., et al. (2008)**. "Quantification of the internal resistance
    distribution of microbial fuel cells". _Environmental Science & Technology_,
    42(21), 8101-8107.
-
    - Detailed analysis of resistance components
 
 3. **Cheng, S., et al. (2006)**. "Increased performance of single-chamber
@@ -190,7 +182,6 @@ From `parameter-ranges.json` electrical category:
 4. **Aelterman, P., et al. (2008)**. "The anode, the cathode, and the circuit.
    How to properly and accurately measure the performance of microbial fuel
    cells". _Environmental Science & Technology_, 42(21), 8101-8107.
-
    - Measurement methodology for internal resistance
 
 5. **Rozendal, R.A., et al. (2006)**. "Towards practical implementation of
@@ -203,7 +194,6 @@ From `parameter-ranges.json` electrical category:
 6. **Ramasamy, R.P., et al. (2008)**. "Impact of initial biofilm growth on the
    anode impedance of microbial fuel cells". _Biotechnology and Bioengineering_,
    101(1), 101-108.
-
    - EIS analysis of biofilm resistance
 
 7. **Dominguez-Benetton, X., et al. (2012)**. "The accurate use of impedance
@@ -255,14 +245,12 @@ From `parameter-ranges.json` electrical category:
 ### Polarization Curve Protocol
 
 1. **Preparation**:
-
    - Allow system to reach steady state
    - Verify stable open circuit voltage
    - Prepare variable resistor bank
    - Calibrate measurement instruments
 
 2. **Data Collection**:
-
    - Start with high resistance (>10 × R_int)
    - Decrease resistance in steps
    - Wait for steady state at each point (10-30 min)
@@ -277,7 +265,6 @@ From `parameter-ranges.json` electrical category:
 ### EIS Protocol
 
 1. **Setup**:
-
    - Use potentiostat with EIS capability
    - Apply small AC perturbation (5-10 mV)
    - Scan frequency range (0.1 Hz - 100 kHz)
@@ -294,14 +281,12 @@ From `parameter-ranges.json` electrical category:
 ### System Design
 
 1. **Electrode Optimization**:
-
    - Use high-conductivity materials
    - Maximize surface area
    - Minimize electrode spacing
    - Improve current collection
 
 2. **Electrolyte Enhancement**:
-
    - Increase ionic strength
    - Optimize pH for conductivity
    - Maintain optimal temperature

@@ -44,39 +44,42 @@ export function useRealTimeUpdates() {
   useEffect(() => {
     if (!status.connected) return;
 
-    const interval = setInterval(() => {
-      const updateTypes = ['parameter', 'model', 'simulation', 'system'] as const;
-      const messages = {
-        parameter: 'Parameter updated in real-time',
-        model: 'Model configuration synchronized',
-        simulation: 'Simulation results updated',
-        system: 'System performance metrics refreshed',
-      };
+    const interval = setInterval(
+      () => {
+        const updateTypes = ['parameter', 'model', 'simulation', 'system'] as const;
+        const messages = {
+          parameter: 'Parameter updated in real-time',
+          model: 'Model configuration synchronized',
+          simulation: 'Simulation results updated',
+          system: 'System performance metrics refreshed',
+        };
 
-      const typeIndex = Math.floor(Math.random() * updateTypes.length);
-      const type = updateTypes[typeIndex];
-      if (!type) return; // Type guard
+        const typeIndex = Math.floor(Math.random() * updateTypes.length);
+        const type = updateTypes[typeIndex];
+        if (!type) return; // Type guard
 
-      const newUpdate: RealTimeUpdate = {
-        id: `update-${Date.now()}`,
-        timestamp: Date.now(),
-        type,
-        message: messages[type],
-        data: {
-          value: Math.random() * 100,
-          confidence: Math.random() * 0.5 + 0.5,
-        },
-      };
+        const newUpdate: RealTimeUpdate = {
+          id: `update-${Date.now()}`,
+          timestamp: Date.now(),
+          type,
+          message: messages[type],
+          data: {
+            value: Math.random() * 100,
+            confidence: Math.random() * 0.5 + 0.5,
+          },
+        };
 
-      setStatus((prev) => ({
-        ...prev,
-        lastUpdate: Date.now(),
-        updates: [...prev.updates.slice(-19), newUpdate], // Keep last 20 updates
-      }));
+        setStatus((prev) => ({
+          ...prev,
+          lastUpdate: Date.now(),
+          updates: [...prev.updates.slice(-19), newUpdate], // Keep last 20 updates
+        }));
 
-      // Notify subscribers
-      subscribers.forEach((callback) => callback(newUpdate));
-    }, 3000 + Math.random() * 2000); // Random interval between 3-5 seconds
+        // Notify subscribers
+        subscribers.forEach((callback) => callback(newUpdate));
+      },
+      3000 + Math.random() * 2000
+    ); // Random interval between 3-5 seconds
 
     return () => clearInterval(interval);
   }, [status.connected, subscribers]);

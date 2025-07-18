@@ -63,14 +63,12 @@ Complete the existing authentication implementation by:
 ### API Endpoints to Implement
 
 1. **POST `/api/auth/forgot-password`**
-
    - Accept email address
    - Generate reset token
    - Send reset email
    - Rate limit requests
 
 2. **POST `/api/auth/reset-password`**
-
    - Validate reset token
    - Update password
    - Invalidate token

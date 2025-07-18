@@ -202,7 +202,6 @@ pnpm security:check
    ```
 
 2. **Create a Pull Request** with:
-
    - Clear description of changes
    - Link to related issues
    - Screenshots for UI changes

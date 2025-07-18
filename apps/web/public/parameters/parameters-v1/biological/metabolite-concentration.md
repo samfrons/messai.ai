@@ -33,14 +33,12 @@ troubleshoot performance issues.
 ### Direct Measurement
 
 1. **High Performance Liquid Chromatography (HPLC)**:
-
    - Separate and quantify organic acids and alcohols
    - High accuracy and specificity
    - Can measure multiple metabolites simultaneously
    - Standard method for most applications
 
 2. **Gas Chromatography (GC)**:
-
    - Analyze volatile metabolites and gases
    - Excellent for short-chain fatty acids
    - High sensitivity and resolution
@@ -64,14 +62,12 @@ troubleshoot performance issues.
 ### Primary Factors
 
 1. **Metabolic Pathway Selection**:
-
    - pH affects which pathways are favored
    - Redox potential determines product distribution
    - Substrate type influences metabolite profile
    - Electron acceptor availability affects pathways
 
 2. **Operating Conditions**:
-
    - Temperature affects metabolic rates and pathways
    - Applied voltage influences electron flow
    - Hydraulic retention time affects conversion extent
@@ -86,7 +82,6 @@ troubleshoot performance issues.
 ### Secondary Factors
 
 1. **Mass Transfer**:
-
    - Biofilm thickness affects metabolite diffusion
    - Mixing intensity influences distribution
    - Reactor design affects concentration gradients
@@ -118,13 +113,11 @@ may indicate incomplete substrate utilization or metabolic stress.
 1. **Angenent, L.T., et al.** (2004). "Production of bioenergy and biochemicals
    from industrial and agricultural wastewater". _Trends in Biotechnology_,
    22(9), 477-485.
-
    - Metabolite production in bioelectrochemical systems
 
 2. **Rabaey, K., et al.** (2011). "Microbial electrosynthesis - revisiting the
    electrical route for microbial production". _Nature Reviews Microbiology_,
    9(12), 883-892.
-
    - Metabolite synthesis using bioelectrochemical systems
 
 3. **Batstone, D.J., et al.** (2002). "The IWA Anaerobic Digestion Model No. 1

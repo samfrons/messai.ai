@@ -33,14 +33,12 @@ utilization and faster treatment.
 ### Direct Measurement
 
 1. **COD Monitoring**:
-
    - Measure COD reduction over time
    - Calculate degradation rate from mass balance
    - Rate = (COD_in - COD_out) × Q / V
    - Most common method for wastewater treatment
 
 2. **BOD Analysis**:
-
    - Monitor BOD consumption over time
    - Calculate biodegradation rate
    - Useful for biodegradable substrates
@@ -64,14 +62,12 @@ utilization and faster treatment.
 ### Primary Factors
 
 1. **Substrate Concentration**:
-
    - Higher concentrations generally increase rates
    - Substrate limitation at low concentrations
    - Inhibition possible at very high concentrations
    - Follows Monod kinetics typically
 
 2. **Microbial Population**:
-
    - Higher biomass concentration increases rates
    - Active biomass fraction affects performance
    - Species diversity influences degradation capability
@@ -86,7 +82,6 @@ utilization and faster treatment.
 ### Secondary Factors
 
 1. **Mass Transfer**:
-
    - Substrate diffusion to biofilm
    - Mixing intensity affects contact
    - Electrode surface area influences access
@@ -117,13 +112,11 @@ reactors and longer residence times, increasing capital and operating costs.
 
 1. **Metcalf & Eddy** (2014). "Wastewater Engineering: Treatment and Resource
    Recovery". McGraw-Hill, New York.
-
    - Substrate degradation kinetics in biological treatment
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Substrate utilization in bioelectrochemical systems
 
 3. **Liu, H., et al.** (2004). "Production of electricity during wastewater

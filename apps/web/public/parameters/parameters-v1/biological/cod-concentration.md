@@ -35,14 +35,12 @@ effectiveness.
 ### Direct Measurement
 
 1. **Standard COD Method (USEPA 410.4)**:
-
    - Dichromate oxidation in sulfuric acid
    - Colorimetric determination at 600 nm
    - High accuracy and reproducibility
    - Standard method for regulatory compliance
 
 2. **High Range COD Method**:
-
    - For samples >1,500 mg/L COD
    - Modified reagent concentrations
    - Extended digestion time
@@ -66,14 +64,12 @@ effectiveness.
 ### Primary Factors
 
 1. **Substrate Composition**:
-
    - Carbohydrates: 1.07 mg COD/mg carbohydrate
    - Proteins: 1.42 mg COD/mg protein
    - Lipids: 2.90 mg COD/mg lipid
    - Mixed substrates: Variable COD content
 
 2. **Wastewater Type**:
-
    - Domestic wastewater: 200-800 mg/L
    - Industrial wastewater: 1,000-50,000 mg/L
    - Food processing: 2,000-20,000 mg/L
@@ -88,7 +84,6 @@ effectiveness.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects oxidation rates
    - pH influences chemical oxidation
    - Presence of inhibitors affects measurement
@@ -122,12 +117,10 @@ transfer limitations.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater". 23rd Edition, American Public Health Association,
    Washington, DC.
-
    - Standard COD measurement procedures
 
 2. **Tchobanoglous, G., et al.** (2003). "Wastewater Engineering: Treatment and
    Reuse". McGraw-Hill, New York.
-
    - COD characteristics in different wastewaters
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

@@ -33,14 +33,12 @@ performance.
 ### Direct Measurement
 
 1. **Ion Chromatography**:
-
    - Measure ion concentrations on both membrane sides
    - Calculate flux ratios for different ions
    - Determine selectivity coefficients
    - High accuracy for multiple ion analysis
 
 2. **Electrochemical Methods**:
-
    - Potential difference measurement across membrane
    - Calculate transport numbers for different ions
    - Use Nernst equation for selectivity calculation
@@ -64,14 +62,12 @@ performance.
 ### Primary Factors
 
 1. **Membrane Properties**:
-
    - Polymer backbone affects selectivity
    - Ion exchange capacity influences performance
    - Pore size determines size exclusion
    - Surface charge affects ion attraction
 
 2. **Solution Composition**:
-
    - Competing ion concentrations
    - Ionic strength affects selectivity
    - pH influences membrane charge
@@ -86,7 +82,6 @@ performance.
 ### Secondary Factors
 
 1. **Membrane Conditioning**:
-
    - Pre-treatment affects selectivity
    - Swelling degree influences performance
    - Aging affects membrane properties
@@ -117,12 +112,10 @@ efficiency.
 
 1. **Strathmann, H.** (2004). "Ion-exchange membrane separation processes".
    Elsevier, Amsterdam.
-
    - Fundamental principles of membrane selectivity
 
 2. **Xu, T.** (2005). "Ion exchange membranes: State of their development and
    perspective". _Journal of Membrane Science_, 263(1-2), 1-29.
-
    - Membrane selectivity mechanisms and applications
 
 3. **Tanaka, Y.** (2015). "Ion Exchange Membranes: Fundamentals and

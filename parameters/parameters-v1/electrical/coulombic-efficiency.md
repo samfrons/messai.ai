@@ -49,7 +49,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Direct Calculation Method
 
 1. **Substrate Consumption**:
-
    - Measure initial and final substrate concentrations
    - Use chemical oxygen demand (COD) or specific substrate assays
    - Calculate theoretical electrons available
@@ -64,7 +63,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Alternative Methods
 
 1. **Batch Reactor Method**:
-
    - Use defined substrate concentration
    - Monitor current until substrate depletion
    - Calculate CE based on total charge transferred
@@ -88,14 +86,12 @@ Based on validation data from `parameter-ranges.json`:
 ### Primary Factors
 
 1. **Microbial Community**:
-
    - Electroactive species dominance
    - Metabolic pathway efficiency
    - Electron transfer mechanisms
    - Community stability and adaptation
 
 2. **Operating Conditions**:
-
    - pH (optimal: 6.5-7.5)
    - Temperature (optimal: 25-35°C)
    - Substrate concentration and type
@@ -110,7 +106,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Secondary Factors
 
 1. **Competing Processes**:
-
    - Aerobic respiration (oxygen presence)
    - Methanogenesis (anaerobic conditions)
    - Fermentation pathways
@@ -165,13 +160,11 @@ From `parameter-ranges.json` electrical category:
 
 1. **Logan, B.E., et al. (2006)**. "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Standard methodology for coulombic efficiency calculation
 
 2. **Rabaey, K., et al. (2003)**. "A microbial fuel cell capable of converting
    glucose to electricity at high rate and efficiency". _Biotechnology Letters_,
    25(18), 1531-1535.
-
    - Early demonstration of high coulombic efficiency
 
 3. **Liu, H., & Logan, B.E. (2004)**. "Electricity generation using an
@@ -185,7 +178,6 @@ From `parameter-ranges.json` electrical category:
 4. **Torres, C.I., et al. (2007)**. "Substrate consumption rates in biofilm
    anodes and suspended cell cultures of Geobacter sulfurreducens". _Applied and
    Environmental Microbiology_, 73(21), 6532-6540.
-
    - Relationship between substrate consumption and electron transfer
 
 5. **Kiely, P.D., et al. (2011)**. "Long-term cathode performance and the
@@ -198,7 +190,6 @@ From `parameter-ranges.json` electrical category:
 6. **Cheng, S., et al. (2006)**. "Increased performance of single-chamber
    microbial fuel cells using an improved cathode structure". _Electrochemistry
    Communications_, 8(3), 489-494.
-
    - Cathode optimization for improved coulombic efficiency
 
 7. **Fan, Y., et al. (2007)**. "Improved coulombic efficiency of microbial fuel
@@ -250,13 +241,11 @@ From `parameter-ranges.json` electrical category:
 ### Frequent Mistakes
 
 1. **Unit Conversion Errors**:
-
    - Mixing mM and M concentrations
    - Incorrect time unit conversions
    - Wrong volume units
 
 2. **Electron Stoichiometry**:
-
    - Incorrect electron count per substrate
    - Ignoring substrate complexity
    - Wrong molecular formulas
@@ -278,14 +267,12 @@ From `parameter-ranges.json` electrical category:
 ### System Design
 
 1. **Minimize Oxygen Intrusion**:
-
    - Use dual-chamber design
    - Optimize cathode configuration
    - Control dissolved oxygen levels
    - Monitor redox potential
 
 2. **Optimize Microbial Community**:
-
    - Select electroactive species
    - Control competitor populations
    - Maintain stable pH and temperature

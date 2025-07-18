@@ -34,14 +34,12 @@ attachment with structural integrity and conductivity.
 ### Direct Measurement
 
 1. **Mercury Intrusion Porosimetry**:
-
    - Measure pore size distribution
    - Calculate total pore volume
    - Determine porosity and pore characteristics
    - High accuracy for wide pore size range
 
 2. **Gas Adsorption Method (BET)**:
-
    - Nitrogen adsorption isotherms
    - Calculate micropore and mesopore volumes
    - Determine specific surface area
@@ -65,14 +63,12 @@ attachment with structural integrity and conductivity.
 ### Primary Factors
 
 1. **Material Type**:
-
    - Carbon felt: High porosity (0.85-0.95)
    - Carbon cloth: Moderate porosity (0.6-0.8)
    - Metal foams: Variable porosity (0.7-0.95)
    - 3D printed: Controlled porosity (0.3-0.8)
 
 2. **Manufacturing Process**:
-
    - Compression reduces porosity
    - Sintering affects pore structure
    - Template removal creates porosity
@@ -87,7 +83,6 @@ attachment with structural integrity and conductivity.
 ### Secondary Factors
 
 1. **Environmental Effects**:
-
    - Swelling reduces effective porosity
    - Biofilm growth fills pores
    - Fouling blocks pore openings
@@ -118,12 +113,10 @@ low porosity (<0.5) limits surface area and mass transfer. Too high porosity
 
 1. **Rouquerol, J., et al.** (2014). "Adsorption by Powders and Porous Solids:
    Principles, Methodology and Applications". Academic Press, Oxford.
-
    - Comprehensive methods for porosity measurement
 
 2. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Electrode porosity effects on bioelectrochemical performance
 
 3. **Wei, J., et al.** (2011). "A new method for measuring biofilm thickness and

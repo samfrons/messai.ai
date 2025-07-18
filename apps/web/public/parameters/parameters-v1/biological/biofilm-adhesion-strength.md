@@ -33,7 +33,6 @@ biofilm detachment and performance loss.
 ### Direct Measurement
 
 1. **Parallel Plate Flow Chamber**:
-
    - Apply controlled shear stress via fluid flow
    - Increase flow rate incrementally
    - Monitor biofilm detachment optically
@@ -56,14 +55,12 @@ biofilm detachment and performance loss.
 ### Primary Factors
 
 1. **Electrode Surface Properties**:
-
    - Hydrophobic surfaces: 10-30 kPa adhesion
    - Hydrophilic surfaces: 5-15 kPa adhesion
    - Rough surfaces: 20-50% higher adhesion
    - Surface chemistry affects initial attachment
 
 2. **EPS Composition**:
-
    - Protein-rich EPS: Stronger adhesion (10-25 kPa)
    - Polysaccharide-rich: Moderate adhesion (5-15 kPa)
    - Adhesive proteins enhance binding
@@ -76,7 +73,6 @@ biofilm detachment and performance loss.
 ### Secondary Factors
 
 1. **Ionic Strength**:
-
    - Higher ionic strength enhances adhesion
    - Divalent cations (Ca²⁺, Mg²⁺) strengthen bonds
 
@@ -103,12 +99,10 @@ kPa) may indicate overgrowth and diffusion limitations.
 
 1. **Cheng, K.C., et al.** (2010). "Adhesion of Geobacter sulfurreducens
    biofilms to gold electrodes". _Langmuir_, 26(14), 11925-11931.
-
    - Quantified electroactive biofilm adhesion mechanisms
 
 2. **Galy, O., et al.** (2012). "Mapping of bacterial biofilm local mechanics by
    magnetic microparticle actuation". _Biophysical Journal_, 103(8), 1793-1801.
-
    - Advanced techniques for adhesion measurement
 
 3. **Ahimou, F., et al.** (2007). "Effect of protein, polysaccharide, and oxygen

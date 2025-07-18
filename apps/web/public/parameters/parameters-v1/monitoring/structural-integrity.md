@@ -33,14 +33,12 @@ consistency, and system longevity.
 ### Direct Measurement
 
 1. **Non-Destructive Testing (NDT)**:
-
    - Ultrasonic testing for crack detection
    - Radiographic examination for internal defects
    - Magnetic particle inspection for surface cracks
    - Penetrant testing for surface discontinuities
 
 2. **Structural Health Monitoring**:
-
    - Strain gauge measurements
    - Vibration analysis and modal testing
    - Acoustic emission monitoring
@@ -64,14 +62,12 @@ consistency, and system longevity.
 ### Primary Factors
 
 1. **Material Properties**:
-
    - Corrosion resistance affects longevity
    - Fatigue strength influences cyclic loading tolerance
    - Thermal expansion affects thermal stress
    - Material compatibility prevents degradation
 
 2. **Operating Conditions**:
-
    - Pressure and temperature cycling
    - Chemical exposure and pH effects
    - Mechanical loading and vibration
@@ -86,7 +82,6 @@ consistency, and system longevity.
 ### Secondary Factors
 
 1. **Maintenance History**:
-
    - Preventive maintenance quality
    - Repair history and methods
    - Component replacement timing
@@ -117,12 +112,10 @@ maintenance and prevents catastrophic failures.
 
 1. **ASM International** (2002). "ASM Handbook, Volume 11: Failure Analysis and
    Prevention". ASM International, Materials Park, OH.
-
    - Failure analysis and structural integrity assessment
 
 2. **Farrar, C.R. & Worden, K.** (2013). "Structural Health Monitoring: A
    Machine Learning Perspective". John Wiley & Sons, Chichester, UK.
-
    - Structural health monitoring techniques
 
 3. **Boyer, H.E.** (1985). "Atlas of Stress-Strain Curves". ASM International,

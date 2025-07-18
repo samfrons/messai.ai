@@ -33,7 +33,6 @@ control and optimization.
 ### Direct Measurement
 
 1. **Signal-to-Noise Ratio Method**:
-
    - Measure background noise (blank samples)
    - Calculate standard deviation of noise
    - Detection limit = 3 × standard deviation
@@ -56,14 +55,12 @@ control and optimization.
 ### Primary Factors
 
 1. **Analytical Method**:
-
    - Spectrophotometry: 1-1000 μg/L typical
    - Chromatography: 0.1-100 μg/L typical
    - Mass spectrometry: 0.001-10 μg/L typical
    - Electrochemical: 0.01-100 μg/L typical
 
 2. **Sample Matrix**:
-
    - Clean matrices: Lower detection limits
    - Complex matrices: Higher detection limits
    - Interference compounds: Elevated limits
@@ -76,7 +73,6 @@ control and optimization.
 ### Secondary Factors
 
 1. **Sample Preparation**:
-
    - Concentration steps: Improved detection limits
    - Cleanup procedures: Reduced interference
    - Sample volume: Larger volumes improve limits
@@ -106,13 +102,11 @@ monitoring and control capabilities.
 1. **EPA Method 1631** (2002). "Mercury in Water by Oxidation, Purge and Trap,
    and Cold Vapor Atomic Fluorescence Spectrometry". U.S. Environmental
    Protection Agency.
-
    - Standard methods for detection limit determination
 
 2. **IUPAC Recommendations** (1995). "Nomenclature in evaluation of analytical
    methods including detection and quantification capabilities". _Pure and
    Applied Chemistry_, 67(10), 1699-1723.
-
    - Definitions and calculations for detection limits
 
 3. **Standard Methods for the Examination of Water and Wastewater** (2017).

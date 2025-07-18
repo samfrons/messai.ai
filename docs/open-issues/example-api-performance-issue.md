@@ -2,18 +2,22 @@
 
 ## Issue Description
 
-Describe the specific performance issue or bug that needs to be addressed. Include symptoms, affected features, and user impact.
+Describe the specific performance issue or bug that needs to be addressed.
+Include symptoms, affected features, and user impact.
 
-Example: "API endpoint `/api/data/process` has intermittent high latency (>5 seconds) under normal load conditions, causing user timeout errors."
+Example: "API endpoint `/api/data/process` has intermittent high latency (>5
+seconds) under normal load conditions, causing user timeout errors."
 
 ## Root Cause
 
 Detailed analysis of what's causing the issue. Include:
+
 - Technical root cause
 - Contributing factors
 - System conditions that trigger the issue
 
-Example: "Database query optimization needed for complex joins. Current query scans entire table without proper indexing."
+Example: "Database query optimization needed for complex joins. Current query
+scans entire table without proper indexing."
 
 ## Impact Assessment
 
@@ -25,13 +29,16 @@ Example: "Database query optimization needed for complex joins. Current query sc
 ## Proposed Solution
 
 ### Technical Approach
+
 Detailed technical solution including:
+
 - Code changes required
 - Architecture modifications
 - Database schema updates
 - Performance improvements expected
 
 ### Implementation Plan
+
 1. **Phase 1**: Initial fixes (timeline)
 2. **Phase 2**: Optimization improvements (timeline)
 3. **Phase 3**: Monitoring and validation (timeline)
@@ -46,6 +53,7 @@ Detailed technical solution including:
 ## Related Files
 
 List all files that need to be modified:
+
 - `src/api/routes/data.py` - Main endpoint logic
 - `src/database/models.py` - Database model updates
 - `src/utils/query_optimizer.py` - Query optimization utilities
@@ -69,6 +77,7 @@ List all files that need to be modified:
 ## Implementation Notes
 
 Track progress and implementation details:
+
 - Date started: [DATE]
 - Key decisions made: [DECISIONS]
 - Challenges encountered: [CHALLENGES]
@@ -76,4 +85,6 @@ Track progress and implementation details:
 
 ---
 
-*This template provides a structured approach to documenting and tracking technical issues. Customize sections based on your project's specific needs and workflow.*
+_This template provides a structured approach to documenting and tracking
+technical issues. Customize sections based on your project's specific needs and
+workflow._

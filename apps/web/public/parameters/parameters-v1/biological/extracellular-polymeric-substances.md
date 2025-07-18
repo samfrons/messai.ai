@@ -33,7 +33,6 @@ nutrient transport.
 ### Direct Measurement
 
 1. **Extraction and Quantification**:
-
    - Extract EPS using cation exchange resin (CER)
    - Quantify polysaccharides using phenol-sulfuric acid method
    - Measure proteins using Bradford or Lowry assay
@@ -56,13 +55,11 @@ nutrient transport.
 ### Primary Factors
 
 1. **Nutrient Availability**:
-
    - Carbon-rich conditions: Higher EPS production
    - Nitrogen limitation: Increased polysaccharide EPS
    - Phosphorus stress: Altered EPS composition
 
 2. **Environmental Stress**:
-
    - Shear stress: Increased EPS production
    - pH stress: Enhanced protective EPS
    - Temperature stress: Modified EPS composition
@@ -75,7 +72,6 @@ nutrient transport.
 ### Secondary Factors
 
 1. **Microbial Species**:
-
    - Some species are high EPS producers
    - Species composition affects EPS properties
    - Pseudomonas and Bacillus: High EPS production
@@ -104,13 +100,11 @@ weak biofilm attachment.
 
 1. **Flemming, H.C. & Wingender, J.** (2010). "The biofilm matrix". _Nature
    Reviews Microbiology_, 8(9), 623-633.
-
    - Comprehensive review of EPS composition and function
 
 2. **Frølund, B., et al.** (1996). "Extraction of extracellular polymers from
    activated sludge using a cation exchange resin". _Water Research_, 30(8),
    1749-1758.
-
    - Standard method for EPS extraction and quantification
 
 3. **Xie, X., et al.** (2011). "Use of low melting agarose to immobilize

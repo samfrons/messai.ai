@@ -33,14 +33,12 @@ complete substrate utilization.
 ### Direct Measurement
 
 1. **Chemical Oxygen Demand (COD)**:
-
    - Standard dichromate method (EPA 410.4)
    - Measures total oxidizable organic matter
    - Widely used for wastewater characterization
    - Good correlation with energy content
 
 2. **Total Organic Carbon (TOC)**:
-
    - High-temperature combustion method
    - Measures carbon content directly
    - Faster than COD measurement
@@ -64,14 +62,12 @@ complete substrate utilization.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Simple organics (glucose, acetate): 500-2,000 mg COD/L
    - Complex organics (starch, cellulose): 1,000-5,000 mg COD/L
    - Wastewater: Variable, typically 200-2,000 mg COD/L
    - Industrial waste: High concentrations, 2,000-20,000 mg COD/L
 
 2. **System Design**:
-
    - Batch systems: Higher initial concentrations
    - Continuous systems: Lower steady-state concentrations
    - Fed-batch systems: Variable concentrations
@@ -86,7 +82,6 @@ complete substrate utilization.
 ### Secondary Factors
 
 1. **Microbial Adaptation**:
-
    - Acclimated cultures tolerate higher concentrations
    - Shock loading can inhibit performance
    - Gradual increase improves tolerance
@@ -121,13 +116,11 @@ high concentrations (>5,000 mg COD/L) may cause inhibition.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Substrate concentration effects on MFC performance
 
 2. **Liu, H., et al.** (2005). "Production of electricity from acetate or
    butyrate using a single-chamber microbial fuel cell". _Environmental Science
    & Technology_, 39(2), 658-662.
-
    - Substrate concentration optimization studies
 
 3. **Oh, S., et al.** (2004). "Proton exchange membrane and electrode surface

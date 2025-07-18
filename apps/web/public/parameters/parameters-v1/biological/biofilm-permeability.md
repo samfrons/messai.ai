@@ -33,14 +33,12 @@ limitations.
 ### Direct Measurement
 
 1. **Tracer Diffusion Studies**:
-
    - Use non-reactive tracers (fluorescein, rhodamine)
    - Monitor tracer penetration through biofilm
    - Calculate diffusion coefficients
    - Determine effective permeability
 
 2. **Microsensor Measurements**:
-
    - Use microelectrodes for concentration profiles
    - Measure oxygen, pH, or substrate gradients
    - Calculate mass transfer rates
@@ -65,14 +63,12 @@ limitations.
 ### Primary Factors
 
 1. **Biofilm Structure**:
-
    - Porosity affects available transport pathways
    - Tortuosity influences diffusion path length
    - EPS content affects matrix density
    - Pore size distribution affects permeability
 
 2. **EPS Composition**:
-
    - Polysaccharides: Create viscous matrix
    - Proteins: Can form dense networks
    - DNA: May block transport pathways
@@ -87,7 +83,6 @@ limitations.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects diffusivity
    - pH influences EPS charge and swelling
    - Ionic strength affects EPS structure
@@ -118,13 +113,11 @@ activity, and reduces overall system efficiency.
 
 1. **Stewart, P.S.** (2003). "Diffusion in biofilms". _Journal of Bacteriology_,
    185(5), 1485-1491.
-
    - Fundamental principles of biofilm diffusion
 
 2. **Beyenal, H. & Lewandowski, Z.** (2002). "Internal and external mass
    transfer in biofilms grown at various flow velocities". _Biotechnology
    Progress_, 18(1), 55-61.
-
    - Mass transfer in biofilms under different conditions
 
 3. **Picioreanu, C., et al.** (2000). "Effect of diffusive and convective

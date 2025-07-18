@@ -33,7 +33,6 @@ better surface characteristics.
 ### Direct Measurement
 
 1. **Optical Profilometry**:
-
    - Non-contact surface measurement
    - Step height analysis across layer boundaries
    - Statistical analysis of layer uniformity
@@ -56,14 +55,12 @@ better surface characteristics.
 ### Primary Factors
 
 1. **Printing Technology**:
-
    - Fused Deposition Modeling (FDM): 100-500 μm
    - Stereolithography (SLA): 25-100 μm
    - Selective Laser Sintering (SLS): 80-200 μm
    - Direct Ink Writing: 50-300 μm
 
 2. **Material Properties**:
-
    - Viscosity affects minimum layer thickness
    - Surface tension influences layer spreading
    - Curing/solidification kinetics
@@ -76,7 +73,6 @@ better surface characteristics.
 ### Secondary Factors
 
 1. **Nozzle/Beam Size**:
-
    - Smaller nozzles enable finer layers
    - Laser spot size limits resolution in laser-based systems
    - Minimum feature size constraints
@@ -106,12 +102,10 @@ affecting performance consistency.
 1. **Gibson, I., et al.** (2015). "Additive Manufacturing Technologies: 3D
    Printing, Rapid Prototyping, and Direct Digital Manufacturing". Springer, New
    York.
-
    - Comprehensive treatment of layer resolution in additive manufacturing
 
 2. **Lewis, J.A.** (2006). "Direct ink writing of 3D functional materials".
    _Advanced Functional Materials_, 16(17), 2193-2204.
-
    - Layer resolution in direct ink writing
 
 3. **MacDonald, E., et al.** (2014). "3D printing for the rapid prototyping of

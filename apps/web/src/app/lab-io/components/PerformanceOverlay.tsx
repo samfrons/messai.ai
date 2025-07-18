@@ -204,8 +204,8 @@ export default function PerformanceOverlay({
               visualizationMode === 'static'
                 ? 'bg-gray-500'
                 : visualizationMode === 'biofilm'
-                ? 'bg-green-500'
-                : 'bg-blue-500'
+                  ? 'bg-green-500'
+                  : 'bg-blue-500'
             }`}
           ></div>
           <span className="text-xs text-gray-400 capitalize">{visualizationMode}</span>

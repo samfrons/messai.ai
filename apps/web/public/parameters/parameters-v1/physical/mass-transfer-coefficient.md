@@ -33,14 +33,12 @@ coefficients indicate more efficient transport processes.
 ### Direct Measurement
 
 1. **Dissolution Method**:
-
    - Use dissolving solid with known properties
    - Measure dissolution rate under known conditions
    - Calculate mass transfer coefficient from rate data
    - Apply appropriate correlations for geometry
 
 2. **Electrochemical Methods**:
-
    - Use limiting current technique
    - Measure current vs concentration relationship
    - Apply electrochemical theory for mass transfer
@@ -66,14 +64,12 @@ coefficients indicate more efficient transport processes.
 ### Primary Factors
 
 1. **Hydrodynamic Conditions**:
-
    - Reynolds number affects transport
    - Flow velocity increases mass transfer
    - Turbulence enhances mixing
    - Flow patterns influence distribution
 
 2. **System Geometry**:
-
    - Electrode shape affects flow patterns
    - Channel dimensions influence transport
    - Surface roughness enhances transfer
@@ -88,7 +84,6 @@ coefficients indicate more efficient transport processes.
 ### Secondary Factors
 
 1. **Biofilm Effects**:
-
    - Biofilm thickness reduces transport
    - Biofilm porosity affects diffusion
    - EPS composition influences resistance
@@ -120,12 +115,10 @@ m/s) reduce transport limitations and improve overall system performance.
 
 1. **Bird, R.B., et al.** (2007). "Transport Phenomena". John Wiley & Sons, New
    York.
-
    - Fundamental mass transfer theory and correlations
 
 2. **Cussler, E.L.** (2009). "Diffusion: Mass Transfer in Fluid Systems".
    Cambridge University Press, Cambridge.
-
    - Mass transfer in various systems and applications
 
 3. **Picioreanu, C., et al.** (2007). "Mathematical modeling of flow and

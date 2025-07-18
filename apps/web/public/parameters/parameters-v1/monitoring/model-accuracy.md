@@ -33,14 +33,12 @@ decision-making and system optimization.
 ### Direct Measurement
 
 1. **Cross-Validation Analysis**:
-
    - Split data into training and validation sets
    - Calculate prediction error on validation data
    - Use k-fold cross-validation for robustness
    - Report mean accuracy and confidence intervals
 
 2. **Mean Absolute Percentage Error (MAPE)**:
-
    - Calculate: MAPE = (1/n) × Σ|((Actual - Predicted)/Actual)| × 100%
    - Compare predicted vs actual values
    - Provides intuitive percentage error
@@ -64,14 +62,12 @@ decision-making and system optimization.
 ### Primary Factors
 
 1. **Model Type and Complexity**:
-
    - Machine learning models: Variable accuracy
    - Physical models: Good for understood phenomena
    - Hybrid models: Often best performance
    - Deep learning: High accuracy with sufficient data
 
 2. **Training Data Quality**:
-
    - Data quantity affects model performance
    - Data diversity improves generalization
    - Measurement accuracy limits model accuracy
@@ -86,7 +82,6 @@ decision-making and system optimization.
 ### Secondary Factors
 
 1. **Model Development Process**:
-
    - Feature selection affects performance
    - Hyperparameter optimization improves accuracy
    - Ensemble methods often improve results
@@ -122,12 +117,10 @@ improvement or different approaches.
 
 1. **James, G., et al.** (2013). "An Introduction to Statistical Learning with
    Applications in R". Springer, New York.
-
    - Model validation and accuracy assessment methods
 
 2. **Hastie, T., et al.** (2009). "The Elements of Statistical Learning, 2nd
    Edition". Springer, New York.
-
    - Advanced machine learning and model evaluation
 
 3. **Logan, B.E., et al.** (2019). "Electroactive microorganisms in

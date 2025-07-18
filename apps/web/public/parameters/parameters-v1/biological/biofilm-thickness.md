@@ -33,14 +33,12 @@ limitations.
 ### Direct Measurement
 
 1. **Confocal Laser Scanning Microscopy (CLSM)**:
-
    - Non-destructive 3D imaging
    - Fluorescent staining for biofilm visualization
    - Measure thickness at multiple points
    - High resolution (~0.1 μm)
 
 2. **Optical Coherence Tomography (OCT)**:
-
    - Real-time, non-invasive measurement
    - Penetrates biofilm without staining
    - Good for thick biofilms (>50 μm)
@@ -64,14 +62,12 @@ limitations.
 ### Primary Factors
 
 1. **Growth Conditions**:
-
    - Substrate concentration affects growth rate
    - Nutrient availability influences thickness
    - Flow velocity affects biofilm shear
    - Temperature influences metabolic rate
 
 2. **Electrode Properties**:
-
    - Surface roughness provides attachment sites
    - Material biocompatibility affects growth
    - Electrode potential influences development
@@ -86,7 +82,6 @@ limitations.
 ### Secondary Factors
 
 1. **Hydrodynamic Conditions**:
-
    - High flow velocity limits thickness
    - Low flow allows thicker biofilm development
    - Turbulence affects biofilm structure
@@ -119,13 +114,11 @@ transport. Very thick biofilms (>200 μm) often show reduced performance.
 
 1. **Picioreanu, C., et al.** (2007). "Mathematical model for microbial fuel
    cell biofilm". _Water Science & Technology_, 55(8), 259-266.
-
    - Biofilm thickness modeling and optimization
 
 2. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    32(3), 518-531.
-
    - Biofilm thickness and electron transfer relationships
 
 3. **Renslow, R.S., et al.** (2013). "Oxygen reduction kinetics on graphite

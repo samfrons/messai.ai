@@ -33,7 +33,6 @@ frequent electrolyte replacement.
 ### Direct Measurement
 
 1. **Accelerated Aging Studies**:
-
    - Store samples at elevated temperature (60°C)
    - Monitor composition changes over time
    - Extrapolate to normal operating conditions
@@ -56,13 +55,11 @@ frequent electrolyte replacement.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Higher temperature: Faster degradation (Q₁₀ = 2-3)
    - Optimal temperature: Extended stability
    - Temperature cycling: Additional stress
 
 2. **pH Conditions**:
-
    - Extreme pH: Faster degradation
    - Neutral pH: Better stability
    - pH fluctuations: Accelerated degradation
@@ -75,7 +72,6 @@ frequent electrolyte replacement.
 ### Secondary Factors
 
 1. **Light Exposure**:
-
    - UV radiation: Photodegradation
    - Visible light: Some sensitized reactions
    - Dark storage: Better stability
@@ -104,12 +100,10 @@ downtime.
 
 1. **Watanabe, A.** (2008). "Formulation and evaluation of electrolyte solutions
    for bioelectrochemical systems". _Journal of Power Sources_, 175(1), 415-425.
-
    - Chemical stability in bioelectrochemical applications
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Long-term stability considerations
 
 3. **ASTM D1193-06** (2018). "Standard Specification for Reagent Water". ASTM

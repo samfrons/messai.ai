@@ -33,14 +33,12 @@ to balance residence time requirements with practical design constraints.
 ### Direct Measurement
 
 1. **Linear Measurement**:
-
    - Use ruler or measuring tape for external height
    - Measure from bottom to top of active volume
    - Account for inlet/outlet locations
    - Simple and direct method
 
 2. **Technical Drawing Verification**:
-
    - Verify dimensions against design specifications
    - Use precision measuring tools for critical dimensions
    - Account for manufacturing tolerances
@@ -64,14 +62,12 @@ to balance residence time requirements with practical design constraints.
 ### Primary Factors
 
 1. **Hydraulic Requirements**:
-
    - Residence time requirements determine volume needs
    - Flow rate affects height selection
    - Mixing requirements influence height-to-diameter ratio
    - Pressure drop limitations affect maximum height
 
 2. **Electrode Configuration**:
-
    - Electrode spacing affects minimum height
    - Number of electrode pairs influences height
    - Current collection requirements affect design
@@ -86,7 +82,6 @@ to balance residence time requirements with practical design constraints.
 ### Secondary Factors
 
 1. **Installation Constraints**:
-
    - Available headroom limits maximum height
    - Foundation requirements affect minimum height
    - Access requirements for maintenance
@@ -117,12 +112,10 @@ mm) may cause poor mixing and non-uniform performance.
 
 1. **Perry, R.H. & Green, D.W.** (2008). "Perry's Chemical Engineers' Handbook".
    McGraw-Hill, New York.
-
    - Reactor design and dimensional considerations
 
 2. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Reactor geometry effects on performance
 
 3. **Levenspiel, O.** (1999). "Chemical Reaction Engineering". John Wiley &

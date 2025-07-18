@@ -38,7 +38,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Direct Measurement
 
 1. **Polarization Curve Method**:
-
    - Measure current and voltage at various external resistances
    - Plot power vs. current density
    - Identify maximum power point
@@ -63,13 +62,11 @@ Based on validation data from `parameter-ranges.json`:
 ### Primary Factors
 
 1. **Electrode Materials**:
-
    - Surface area and porosity
    - Conductivity and catalytic activity
    - Biocompatibility and stability
 
 2. **Microbial Community**:
-
    - Species composition and metabolic activity
    - Biofilm thickness and structure
    - Electron transfer mechanisms
@@ -82,7 +79,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Secondary Factors
 
 1. **Reactor Design**:
-
    - Electrode spacing and configuration
    - Mass transfer characteristics
    - Membrane properties (if present)
@@ -135,24 +131,20 @@ From `parameter-ranges.json` electrical category:
 
 1. **Logan, B.E. (2008)**. "Microbial Fuel Cells". Wiley-Interscience. ISBN:
    978-0470233498
-
    - Comprehensive treatment of power density calculations and optimization
 
 2. **Rabaey, K., & Verstraete, W. (2005)**. "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Early review establishing power density as key performance metric
 
 3. **Logan, B.E., et al. (2006)**. "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Methodology for power density measurement and reporting
 
 4. **Pant, D., et al. (2010)**. "A review of the substrates used in microbial
    fuel cells (MFCs) for sustainable energy production". _Bioresource
    Technology_, 101(6), 1533-1543.
-
    - Substrate effects on power density performance
 
 5. **Wei, J., et al. (2011)**. "Recent progress in electrodes for microbial fuel

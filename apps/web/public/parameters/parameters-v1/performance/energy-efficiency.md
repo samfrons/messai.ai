@@ -32,14 +32,12 @@ efficiency indicates better system performance and economic viability.
 ### Direct Measurement
 
 1. **Energy Balance Calculation**:
-
    - Measure electrical energy output over time period
    - Calculate chemical energy input from substrate consumption
    - Efficiency = (Electrical Energy Out) / (Chemical Energy In) × 100%
    - Account for all energy inputs and outputs
 
 2. **Calorimetric Analysis**:
-
    - Determine heat of combustion for consumed substrate
    - Measure electrical energy generation
    - Calculate efficiency based on energy content
@@ -63,14 +61,12 @@ efficiency indicates better system performance and economic viability.
 ### Primary Factors
 
 1. **Coulombic Efficiency**:
-
    - Fraction of electrons captured as current
    - Higher CE increases energy efficiency
    - Competes with methanogenesis and other processes
    - Typical range: 10-80% for MFCs
 
 2. **Voltage Efficiency**:
-
    - Actual voltage relative to theoretical maximum
    - Affected by overpotentials and resistance losses
    - Higher voltage improves energy efficiency
@@ -85,7 +81,6 @@ efficiency indicates better system performance and economic viability.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Internal resistance affects voltage efficiency
    - Electrode materials influence overpotentials
    - Cell configuration affects mass transfer
@@ -116,13 +111,11 @@ efficiency, voltage efficiency, and substrate utilization.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Energy efficiency calculations and optimization
 
 2. **Rabaey, K., et al.** (2010). "Bioelectrochemical systems: from
    extracellular electron transfer to biotechnological application". IWA
    Publishing, London.
-
    - Energy efficiency in various bioelectrochemical configurations
 
 3. **Rozendal, R.A., et al.** (2008). "Towards practical implementation of

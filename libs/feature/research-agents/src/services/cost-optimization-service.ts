@@ -467,14 +467,17 @@ export class CostOptimizationService {
 
   private startCacheCleanup(): void {
     // Clean up expired cache entries every 10 minutes
-    setInterval(() => {
-      const now = Date.now();
-      for (const [key, value] of this.cache.entries()) {
-        if (now - value.timestamp > this.cacheConfig.ttl) {
-          this.cache.delete(key);
+    setInterval(
+      () => {
+        const now = Date.now();
+        for (const [key, value] of this.cache.entries()) {
+          if (now - value.timestamp > this.cacheConfig.ttl) {
+            this.cache.delete(key);
+          }
         }
-      }
-    }, 10 * 60 * 1000);
+      },
+      10 * 60 * 1000
+    );
   }
 
   /**

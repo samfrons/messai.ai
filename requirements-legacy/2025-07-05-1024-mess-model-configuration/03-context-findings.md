@@ -5,20 +5,17 @@
 ### Core Configuration Files
 
 1. **`/components/MFCConfigPanel.tsx`**
-
    - Add "Custom" option to material dropdowns
    - Add input fields for custom material properties
    - Implement preset save/load functionality
    - Add custom microbe species support
 
 2. **`/components/ParameterForm.tsx`**
-
    - Pass configuration to MESSModel3D for visual updates
    - Add preset management UI (save/load/delete buttons)
    - Update AI prediction integration with enhanced calculations
 
 3. **`/packages/ui/src/3d/MESSModel3D.tsx`**
-
    - Accept configuration props for material visualization
    - Update materials based on electrode/microbe selection
    - Add visual indicators for custom materials
@@ -31,13 +28,11 @@
 ### New Files to Create
 
 1. **`/lib/configuration-presets.ts`**
-
    - Preset management logic (CRUD operations)
    - Validation for custom materials
    - Default preset definitions
 
 2. **`/components/PresetManager.tsx`**
-
    - UI component for managing saved presets
    - Modal or dropdown for preset selection
    - Import/export functionality

@@ -32,14 +32,12 @@ distribution, mixing characteristics, and scale-up considerations.
 ### Direct Measurement
 
 1. **Caliper Measurement**:
-
    - Use precision calipers for external diameter
    - Measure at multiple points for uniformity
    - Account for wall thickness if needed
    - Simple and accurate method
 
 2. **Dimensional Inspection**:
-
    - Use coordinate measuring machine (CMM)
    - High precision measurements
    - Automated measurement capability
@@ -63,14 +61,12 @@ distribution, mixing characteristics, and scale-up considerations.
 ### Primary Factors
 
 1. **Application Requirements**:
-
    - Laboratory scale: 10-50 mm diameter
    - Pilot scale: 50-200 mm diameter
    - Commercial scale: 200-1000 mm diameter
    - Treatment capacity determines required size
 
 2. **Manufacturing Constraints**:
-
    - Available pipe or tube sizes
    - Material limitations affect maximum diameter
    - Fabrication capabilities influence design
@@ -85,7 +81,6 @@ distribution, mixing characteristics, and scale-up considerations.
 ### Secondary Factors
 
 1. **System Integration**:
-
    - Available space constrains diameter
    - Connection requirements affect size
    - Maintenance access needs influence design
@@ -116,12 +111,10 @@ cause poor mixing and non-uniform current distribution.
 
 1. **Perry, R.H. & Green, D.W.** (2008). "Perry's Chemical Engineers' Handbook".
    McGraw-Hill, New York.
-
    - Equipment sizing and dimensional considerations
 
 2. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Reactor design considerations including geometry
 
 3. **Tchobanoglous, G., et al.** (2003). "Wastewater Engineering: Treatment and

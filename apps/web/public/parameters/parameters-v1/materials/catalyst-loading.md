@@ -33,14 +33,12 @@ considerations.
 ### Direct Measurement
 
 1. **Gravimetric Method**:
-
    - Weigh electrode before and after catalyst application
    - Calculate loading: (mass after - mass before) / electrode area
    - Simple and accurate for uniform coatings
    - Requires precise analytical balance
 
 2. **Elemental Analysis**:
-
    - X-ray fluorescence (XRF) spectroscopy
    - Inductively coupled plasma (ICP) analysis
    - Atomic absorption spectroscopy (AAS)
@@ -64,14 +62,12 @@ considerations.
 ### Primary Factors
 
 1. **Catalyst Type**:
-
    - Platinum: High activity, 0.5-2 mg/cm² typical
    - Iron-based: Moderate activity, 2-10 mg/cm² typical
    - Manganese oxide: Lower activity, 5-20 mg/cm² typical
    - Carbon-based: Variable activity, 1-15 mg/cm²
 
 2. **Application Method**:
-
    - Spray coating: Variable thickness
    - Brush coating: Manual control
    - Electrodeposition: Precise control
@@ -86,7 +82,6 @@ considerations.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - pH affects catalyst stability
    - Temperature influences catalyst activity
    - Potential cycling can cause catalyst loss
@@ -120,13 +115,11 @@ performance gain.
 1. **Zhang, F., et al.** (2010). "Activated carbon cathodes with excellent
    anti-biofouling characteristics for microbial fuel cells". _Water Research_,
    44(6), 1513-1519.
-
    - Catalyst loading optimization for cathodes
 
 2. **Cheng, S., et al.** (2006). "Increased performance of single-chamber
    microbial fuel cells using an improved cathode structure". _Electrochemistry
    Communications_, 8(3), 489-494.
-
    - Catalyst loading effects on oxygen reduction
 
 3. **Wei, J., et al.** (2011). "A new graphite felt cathode with Fe2O3/Fe3O4

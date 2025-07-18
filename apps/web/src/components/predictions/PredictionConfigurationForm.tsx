@@ -65,17 +65,15 @@ export default function PredictionConfigurationForm({
       operatingConditions.temperature < VALIDATION_CONSTRAINTS.temperature.min ||
       operatingConditions.temperature > VALIDATION_CONSTRAINTS.temperature.max
     ) {
-      errors[
-        'temperature'
-      ] = `Temperature must be between ${VALIDATION_CONSTRAINTS.temperature.min}-${VALIDATION_CONSTRAINTS.temperature.max}°C`;
+      errors['temperature'] =
+        `Temperature must be between ${VALIDATION_CONSTRAINTS.temperature.min}-${VALIDATION_CONSTRAINTS.temperature.max}°C`;
     } else if (
       selectedMicrobialSpecies &&
       (operatingConditions.temperature < selectedMicrobialSpecies.temperatureRange[0] ||
         operatingConditions.temperature > selectedMicrobialSpecies.temperatureRange[1])
     ) {
-      warnings[
-        'temperature'
-      ] = `Temperature outside optimal range for ${selectedMicrobialSpecies.name} (${selectedMicrobialSpecies.temperatureRange[0]}-${selectedMicrobialSpecies.temperatureRange[1]}°C)`;
+      warnings['temperature'] =
+        `Temperature outside optimal range for ${selectedMicrobialSpecies.name} (${selectedMicrobialSpecies.temperatureRange[0]}-${selectedMicrobialSpecies.temperatureRange[1]}°C)`;
     }
 
     // pH validation
@@ -83,17 +81,15 @@ export default function PredictionConfigurationForm({
       operatingConditions.ph < VALIDATION_CONSTRAINTS.ph.min ||
       operatingConditions.ph > VALIDATION_CONSTRAINTS.ph.max
     ) {
-      errors[
-        'ph'
-      ] = `pH must be between ${VALIDATION_CONSTRAINTS.ph.min}-${VALIDATION_CONSTRAINTS.ph.max}`;
+      errors['ph'] =
+        `pH must be between ${VALIDATION_CONSTRAINTS.ph.min}-${VALIDATION_CONSTRAINTS.ph.max}`;
     } else if (
       selectedMicrobialSpecies &&
       (operatingConditions.ph < selectedMicrobialSpecies.phRange[0] ||
         operatingConditions.ph > selectedMicrobialSpecies.phRange[1])
     ) {
-      warnings[
-        'ph'
-      ] = `pH outside optimal range for ${selectedMicrobialSpecies.name} (${selectedMicrobialSpecies.phRange[0]}-${selectedMicrobialSpecies.phRange[1]})`;
+      warnings['ph'] =
+        `pH outside optimal range for ${selectedMicrobialSpecies.name} (${selectedMicrobialSpecies.phRange[0]}-${selectedMicrobialSpecies.phRange[1]})`;
     }
 
     // Substrate concentration validation
@@ -102,9 +98,8 @@ export default function PredictionConfigurationForm({
         VALIDATION_CONSTRAINTS.substrateConcentration.min ||
       operatingConditions.substrateConcetration > VALIDATION_CONSTRAINTS.substrateConcentration.max
     ) {
-      errors[
-        'substrateConcetration'
-      ] = `Substrate concentration must be between ${VALIDATION_CONSTRAINTS.substrateConcentration.min}-${VALIDATION_CONSTRAINTS.substrateConcentration.max} mg/L`;
+      errors['substrateConcetration'] =
+        `Substrate concentration must be between ${VALIDATION_CONSTRAINTS.substrateConcentration.min}-${VALIDATION_CONSTRAINTS.substrateConcentration.max} mg/L`;
     } else if (
       selectedSubstrateType &&
       selectedSubstrateType.concentration &&
@@ -115,9 +110,8 @@ export default function PredictionConfigurationForm({
         operatingConditions.substrateConcetration < min ||
         operatingConditions.substrateConcetration > max
       ) {
-        warnings[
-          'substrateConcetration'
-        ] = `Concentration outside typical range for ${selectedSubstrateType.name} (${min}-${max} mg/L)`;
+        warnings['substrateConcetration'] =
+          `Concentration outside typical range for ${selectedSubstrateType.name} (${min}-${max} mg/L)`;
       }
     }
 
@@ -126,9 +120,8 @@ export default function PredictionConfigurationForm({
       operatingConditions.flowRate < VALIDATION_CONSTRAINTS.flowRate.min ||
       operatingConditions.flowRate > VALIDATION_CONSTRAINTS.flowRate.max
     ) {
-      errors[
-        'flowRate'
-      ] = `Flow rate must be between ${VALIDATION_CONSTRAINTS.flowRate.min}-${VALIDATION_CONSTRAINTS.flowRate.max} mL/min`;
+      errors['flowRate'] =
+        `Flow rate must be between ${VALIDATION_CONSTRAINTS.flowRate.min}-${VALIDATION_CONSTRAINTS.flowRate.max} mL/min`;
     }
 
     // Electrical load validation
@@ -136,9 +129,8 @@ export default function PredictionConfigurationForm({
       operatingConditions.electricalLoad < VALIDATION_CONSTRAINTS.electricalLoad.min ||
       operatingConditions.electricalLoad > VALIDATION_CONSTRAINTS.electricalLoad.max
     ) {
-      errors[
-        'electricalLoad'
-      ] = `Electrical load must be between ${VALIDATION_CONSTRAINTS.electricalLoad.min}-${VALIDATION_CONSTRAINTS.electricalLoad.max} Ω`;
+      errors['electricalLoad'] =
+        `Electrical load must be between ${VALIDATION_CONSTRAINTS.electricalLoad.min}-${VALIDATION_CONSTRAINTS.electricalLoad.max} Ω`;
     }
 
     // Duration validation
@@ -146,9 +138,8 @@ export default function PredictionConfigurationForm({
       operatingConditions.duration < VALIDATION_CONSTRAINTS.duration.min ||
       operatingConditions.duration > VALIDATION_CONSTRAINTS.duration.max
     ) {
-      errors[
-        'duration'
-      ] = `Duration must be between ${VALIDATION_CONSTRAINTS.duration.min}-${VALIDATION_CONSTRAINTS.duration.max} hours`;
+      errors['duration'] =
+        `Duration must be between ${VALIDATION_CONSTRAINTS.duration.min}-${VALIDATION_CONSTRAINTS.duration.max} hours`;
     }
 
     // Material compatibility warnings
@@ -277,8 +268,8 @@ export default function PredictionConfigurationForm({
                     preset.category === 'research'
                       ? 'primary'
                       : preset.category === 'educational'
-                      ? 'secondary'
-                      : 'info'
+                        ? 'secondary'
+                        : 'info'
                   }
                   className="text-xs"
                 >

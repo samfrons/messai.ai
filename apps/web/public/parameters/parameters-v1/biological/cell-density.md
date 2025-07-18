@@ -32,14 +32,12 @@ density affects mass transfer limitations and system performance optimization.
 ### Direct Measurement
 
 1. **Flow Cytometry**:
-
    - Fluorescent staining for viable cells
    - Rapid, automated cell counting
    - Distinguish live vs dead cells
    - High throughput and accuracy
 
 2. **Microscopy Counting**:
-
    - Direct cell enumeration
    - Hemocytometer or counting chambers
    - Manual counting with staining
@@ -63,13 +61,11 @@ density affects mass transfer limitations and system performance optimization.
 ### Primary Factors
 
 1. **Growth Conditions**:
-
    - Optimal conditions: Higher cell density
    - Limiting nutrients: Reduced density
    - Toxic conditions: Lower viability
 
 2. **Biofilm Development**:
-
    - Mature biofilms: Higher density
    - Young biofilms: Lower density
    - Biofilm thickness affects density distribution
@@ -82,7 +78,6 @@ density affects mass transfer limitations and system performance optimization.
 ### Secondary Factors
 
 1. **Environmental Stress**:
-
    - Temperature extremes reduce density
    - pH stress affects viability
    - Osmotic stress impacts cell integrity
@@ -112,13 +107,11 @@ limitations and reduced per-cell activity.
 1. **Prest, E.I., et al.** (2013). "Monitoring microbiological changes in
    drinking water systems using a fast and reproducible flow cytometric method".
    _Water Research_, 47(19), 7131-7142.
-
    - Flow cytometry methods for microbial quantification
 
 2. **Noble, R.T. & Fuhrman, J.A.** (1998). "Use of SYBR Green I for rapid
    epifluorescence counts of marine viruses and bacteria". _Aquatic Microbial
    Ecology_, 14(2), 113-118.
-
    - Fluorescent staining methods for cell counting
 
 3. **Borole, A.P., et al.** (2011). "Electroactive biofilms: Current status and

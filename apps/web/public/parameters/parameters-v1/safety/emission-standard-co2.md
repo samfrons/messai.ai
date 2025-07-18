@@ -32,14 +32,12 @@ standards is crucial for regulatory approval and environmental sustainability.
 ### Direct Measurement
 
 1. **Continuous Emissions Monitoring**:
-
    - Infrared gas analyzers for CO₂
    - Mass flow measurement of exhaust gases
    - Real-time emission rate calculation
    - Compliance monitoring capability
 
 2. **Periodic Stack Testing**:
-
    - Manual sampling and analysis
    - EPA Method 3A for CO₂ concentration
    - Stack flow measurement
@@ -63,14 +61,12 @@ standards is crucial for regulatory approval and environmental sustainability.
 ### Primary Factors
 
 1. **System Efficiency**:
-
    - Higher efficiency reduces emissions per unit energy
    - Power conversion efficiency affects CO₂/MWh
    - Substrate utilization efficiency influences emissions
    - System optimization reduces carbon intensity
 
 2. **Substrate Source**:
-
    - Biomass substrates: Low net emissions
    - Organic waste: Often carbon negative
    - Fossil-derived organics: Higher emissions
@@ -85,7 +81,6 @@ standards is crucial for regulatory approval and environmental sustainability.
 ### Secondary Factors
 
 1. **Regulatory Framework**:
-
    - Local emission limits and standards
    - Carbon pricing and trading systems
    - Renewable energy credits
@@ -119,12 +114,10 @@ CO₂/MWh) may face regulatory penalties.
 
 1. **EPA** (2020). "Greenhouse Gas Reporting Program". U.S. Environmental
    Protection Agency, Washington, DC.
-
    - CO₂ emission measurement and reporting standards
 
 2. **IPCC** (2019). "2019 Refinement to the 2006 IPCC Guidelines for National
    Greenhouse Gas Inventories". Intergovernmental Panel on Climate Change.
-
    - Emission factors and calculation methodologies
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

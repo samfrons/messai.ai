@@ -33,7 +33,6 @@ processing.
 ### Direct Measurement
 
 1. **Batch Uptake Studies**:
-
    - Add substrate to cell suspension
    - Monitor substrate disappearance over time
    - Calculate initial uptake rate: dS/dt per biomass
@@ -56,13 +55,11 @@ processing.
 ### Primary Factors
 
 1. **Substrate Concentration**:
-
    - Follows Michaelis-Menten kinetics
    - Saturation kinetics: V = Vmax×S/(Km + S)
    - Higher concentration: Higher uptake rate (until saturation)
 
 2. **Transport System Type**:
-
    - Active transport: Higher rates, energy-dependent
    - Facilitated diffusion: Moderate rates
    - Simple diffusion: Low rates, concentration-dependent
@@ -75,7 +72,6 @@ processing.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Q₁₀ = 2-3 for transport processes
    - Optimal temperature: Maximum uptake rate
    - Cold shock: Severely reduced uptake
@@ -103,12 +99,10 @@ handle higher substrate loads and achieve better treatment efficiency.
 
 1. **Harold, F.M.** (1986). "The Vital Force: A Study of Bioenergetics". W.H.
    Freeman, New York.
-
    - Comprehensive treatment of cellular transport mechanisms
 
 2. **Button, D.K.** (1985). "Kinetics of nutrient-limited transport and
    microbial growth". _Microbiological Reviews_, 49(3), 270-297.
-
    - Substrate transport kinetics in microorganisms
 
 3. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber

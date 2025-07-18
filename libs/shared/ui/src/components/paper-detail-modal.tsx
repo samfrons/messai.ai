@@ -189,8 +189,8 @@ export const PaperDetailModal = forwardRef<HTMLDivElement, PaperDetailModalProps
                             paper.validationStatus === 'validated'
                               ? 'text-green-600'
                               : paper.validationStatus === 'pending'
-                              ? 'text-yellow-600'
-                              : 'text-red-600'
+                                ? 'text-yellow-600'
+                                : 'text-red-600'
                           )}
                         >
                           {paper.validationStatus}

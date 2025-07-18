@@ -32,7 +32,6 @@ affects pH buffering capacity and carbonate chemistry in aqueous solutions.
 ### Direct Measurement
 
 1. **Non-Dispersive Infrared (NDIR) Sensors**:
-
    - Specific CO₂ absorption at 4.26 μm
    - High accuracy (±50 ppm)
    - Real-time continuous monitoring
@@ -55,13 +54,11 @@ affects pH buffering capacity and carbonate chemistry in aqueous solutions.
 ### Primary Factors
 
 1. **Ventilation Rate**:
-
    - Higher air exchange: Lower CO₂ levels
    - Poor ventilation: CO₂ accumulation
    - Natural vs mechanical ventilation
 
 2. **Microbial Respiration**:
-
    - Aerobic metabolism produces CO₂
    - System loading affects CO₂ generation
    - Substrate type influences CO₂ production rate
@@ -74,7 +71,6 @@ affects pH buffering capacity and carbonate chemistry in aqueous solutions.
 ### Secondary Factors
 
 1. **Atmospheric Conditions**:
-
    - Outdoor CO₂ baseline (~420 ppm)
    - Seasonal variations
    - Urban vs rural differences
@@ -104,12 +100,10 @@ and pH stability.
 1. **ASHRAE Standard 62.1** (2019). "Ventilation for Acceptable Indoor Air
    Quality". American Society of Heating, Refrigerating and Air-Conditioning
    Engineers.
-
    - Indoor air quality standards including CO₂ levels
 
 2. **Persily, A.K.** (1997). "Evaluating building IAQ and ventilation with
    indoor carbon dioxide". _ASHRAE Transactions_, 103(2), 193-204.
-
    - CO₂ as indicator of ventilation effectiveness
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

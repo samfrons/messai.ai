@@ -32,7 +32,6 @@ recovery metric in integrated bioelectrochemical systems.
 ### Direct Measurement
 
 1. **Gas Volume Measurement**:
-
    - Collect biogas in graduated cylinders or gas bags
    - Measure volume at standard temperature and pressure
    - Normalize by substrate mass or COD consumed
@@ -56,14 +55,12 @@ recovery metric in integrated bioelectrochemical systems.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Carbohydrates: 740 mL biogas/g COD (theoretical)
    - Proteins: 700 mL biogas/g COD (theoretical)
    - Lipids: 1400 mL biogas/g COD (theoretical)
    - Mixed organic waste: Variable yields
 
 2. **Operating Conditions**:
-
    - Temperature: Higher temperature generally increases yield
    - pH: Optimal range 6.8-7.2 for methanogenesis
    - Hydraulic retention time: Longer HRT improves yield
@@ -78,7 +75,6 @@ recovery metric in integrated bioelectrochemical systems.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Reactor configuration affects mass transfer
    - Mixing efficiency influences biogas yield
    - Temperature control affects microbial activity
@@ -114,12 +110,10 @@ and economic viability.
 1. **Angelidaki, I., et al.** (2009). "Defining the biomethane potential (BMP)
    of solid organic wastes and energy crops". _Water Science & Technology_,
    59(5), 927-934.
-
    - Biogas yield measurement standardization
 
 2. **Rozendal, R.A., et al.** (2008). "Hydrogen production with a microbial
    biocathode". _Environmental Science & Technology_, 42(2), 629-634.
-
    - Combined biogas and electricity production
 
 3. **Cusick, R.D., et al.** (2011). "Performance of a pilot-scale continuous

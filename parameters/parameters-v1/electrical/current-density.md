@@ -37,7 +37,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Direct Current Measurement
 
 1. **Amperometric Method**:
-
    - Use ammeter in series with external circuit
    - Measure under steady-state conditions
    - Apply fixed external resistance
@@ -52,7 +51,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Electrochemical Techniques
 
 1. **Cyclic Voltammetry (CV)**:
-
    - Scan potential range at fixed scan rate
    - Identify redox peaks and current response
    - Calculate peak current density
@@ -76,14 +74,12 @@ Based on validation data from `parameter-ranges.json`:
 ### Primary Factors
 
 1. **Microbial Activity**:
-
    - Metabolic rate and substrate utilization
    - Biofilm thickness and density
    - Electron transfer pathway efficiency
    - Species composition and dominance
 
 2. **Electrode Properties**:
-
    - Surface area and porosity
    - Conductivity and electron transfer kinetics
    - Biocompatibility and surface chemistry
@@ -98,7 +94,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Secondary Factors
 
 1. **Mass Transfer**:
-
    - Substrate diffusion to biofilm
    - Product removal from electrode surface
    - Mixing and convection effects
@@ -154,13 +149,11 @@ From `parameter-ranges.json` electrical category:
 
 1. **Logan, B.E., et al. (2006)**. "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Standard methodology for current density measurement
 
 2. **Rabaey, K., et al. (2004)**. "Biofuel cells select for microbial consortia
    that self-mediate electron transfer". _Applied and Environmental
    Microbiology_, 70(9), 5373-5382.
-
    - Relationship between current density and microbial community structure
 
 3. **Bond, D.R., & Lovley, D.R. (2003)**. "Electricity production by Geobacter
@@ -173,7 +166,6 @@ From `parameter-ranges.json` electrical category:
 4. **Nevin, K.P., et al. (2008)**. "Anode biofilm transcriptomics reveals outer
    surface components essential for high density current production in Geobacter
    sulfurreducens fuel cells". _PLoS One_, 3(5), e2313.
-
    - Molecular basis of high current density production
 
 5. **Torres, C.I., et al. (2010)**. "A kinetic perspective on extracellular
@@ -185,7 +177,6 @@ From `parameter-ranges.json` electrical category:
 
 6. **Feng, Y., et al. (2010)**. "A horizontal plug flow and stackable pilot
    microbial fuel cell". _Applied Energy_, 87(11), 3306-3312.
-
    - Scaling effects on current density performance
 
 7. **Xie, X., et al. (2012)**. "Three-dimensional carbon nanotube-textile anode
@@ -204,19 +195,16 @@ From `parameter-ranges.json` electrical category:
 ### Standard Operating Procedure
 
 1. **Preparation**:
-
    - Clean electrode surfaces
    - Calibrate measurement equipment
    - Prepare inoculum and substrate
 
 2. **Inoculation**:
-
    - Add microbial inoculum to reactor
    - Monitor pH and temperature
    - Allow biofilm establishment (7-14 days)
 
 3. **Measurement**:
-
    - Apply external resistance (typically 1000 Ω)
    - Record current every 10 minutes
    - Calculate current density using geometric area

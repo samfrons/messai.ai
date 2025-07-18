@@ -34,14 +34,12 @@ product purity.
 ### Direct Measurement
 
 1. **Permeation Cell Method**:
-
    - Use two-chamber permeation cell
    - Apply pressure or concentration gradient
    - Measure flux of target species
    - Calculate permeability coefficient
 
 2. **Electrochemical Methods**:
-
    - Apply voltage across membrane
    - Measure ion transport rates
    - Calculate ionic permeability
@@ -65,14 +63,12 @@ product purity.
 ### Primary Factors
 
 1. **Membrane Material**:
-
    - Polymer type affects permeability
    - Cross-linking density influences transport
    - Ion exchange capacity affects selectivity
    - Membrane structure determines pathways
 
 2. **Operating Conditions**:
-
    - Temperature affects diffusion rates
    - pH influences membrane charge
    - Ionic strength affects swelling
@@ -87,7 +83,6 @@ product purity.
 ### Secondary Factors
 
 1. **Membrane Preparation**:
-
    - Casting conditions affect structure
    - Cross-linking degree influences permeability
    - Conditioning affects performance
@@ -118,12 +113,10 @@ compromise selectivity and separation efficiency.
 
 1. **Strathmann, H.** (2004). "Ion-exchange membrane separation processes".
    Elsevier, Amsterdam.
-
    - Comprehensive treatment of membrane permeability
 
 2. **Xu, T.** (2005). "Ion exchange membranes: State of their development and
    perspective". _Journal of Membrane Science_, 263(1-2), 1-29.
-
    - Membrane permeability and performance relationships
 
 3. **Tanaka, Y.** (2015). "Ion Exchange Membranes: Fundamentals and

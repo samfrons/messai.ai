@@ -32,7 +32,6 @@ system capacity, startup times, and biofilm development potential.
 ### Direct Measurement
 
 1. **Batch Culture Method**:
-
    - Monitor biomass in exponential phase
    - Plot ln(biomass) vs time
    - Calculate slope: μmax = d(ln(X))/dt
@@ -55,13 +54,11 @@ system capacity, startup times, and biofilm development potential.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Arrhenius relationship: μmax = A×exp(-Ea/RT)
    - Optimal temperature: Maximum growth rate
    - Cardinal temperatures define growth range
 
 2. **Microbial Species**:
-
    - E. coli: 0.5-1.5 1/h (fast-growing)
    - Geobacter: 0.05-0.2 1/h (moderate)
    - Methanogens: 0.01-0.1 1/h (slow-growing)
@@ -74,7 +71,6 @@ system capacity, startup times, and biofilm development potential.
 ### Secondary Factors
 
 1. **pH**:
-
    - Optimal pH range: Maximum growth rate
    - pH stress: Reduced μmax
    - Extreme pH: Growth inhibition
@@ -105,13 +101,11 @@ establishment.
 
 1. **Monod, J.** (1949). "The growth of bacterial cultures". _Annual Reviews in
    Microbiology_, 3, 371-394.
-
    - Fundamental description of maximum growth rate
 
 2. **Bond, D.R. & Lovley, D.R.** (2003). "Electricity production by Geobacter
    sulfurreducens attached to electrodes". _Applied and Environmental
    Microbiology_, 69(3), 1548-1555.
-
    - Growth kinetics of electroactive bacteria
 
 3. **Ratkowsky, D.A., et al.** (1982). "Relationship between temperature and

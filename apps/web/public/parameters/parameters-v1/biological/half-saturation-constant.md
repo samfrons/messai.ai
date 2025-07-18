@@ -33,7 +33,6 @@ substrate concentrations.
 ### Direct Measurement
 
 1. **Batch Growth Studies**:
-
    - Measure growth rate at various substrate concentrations
    - Plot μ vs S and fit to Monod equation: μ = μmax·S/(Ks + S)
    - Determine Ks from curve fitting
@@ -56,13 +55,11 @@ substrate concentrations.
 ### Primary Factors
 
 1. **Microbial Species**:
-
    - Specialized bacteria: Lower Ks (0.1-1 g/L)
    - Generalist bacteria: Higher Ks (5-20 g/L)
    - Mixed communities: Variable Ks (1-15 g/L)
 
 2. **Substrate Type**:
-
    - Simple substrates (glucose, acetate): Lower Ks
    - Complex substrates (cellulose, proteins): Higher Ks
    - Substrate complexity affects enzyme affinity
@@ -75,7 +72,6 @@ substrate concentrations.
 ### Secondary Factors
 
 1. **pH**:
-
    - Optimal pH: Minimum Ks values
    - pH stress: Increased Ks due to reduced enzyme efficiency
 
@@ -104,12 +100,10 @@ concentrations.
 
 1. **Monod, J.** (1949). "The growth of bacterial cultures". _Annual Reviews in
    Microbiology_, 3, 371-394.
-
    - Fundamental description of Monod kinetics
 
 2. **Logan, B.E., et al.** (2006). "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Substrate kinetics in microbial fuel cells
 
 3. **Pirt, S.J.** (1975). "Principles of microbe and cell cultivation".

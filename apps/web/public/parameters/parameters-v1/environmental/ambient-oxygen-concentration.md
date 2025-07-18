@@ -33,14 +33,12 @@ optimal system performance.
 ### Direct Measurement
 
 1. **Galvanic Oxygen Sensor**:
-
    - Electrochemical measurement of oxygen
    - Direct reading in percentage or ppm
    - Good accuracy and response time
    - Requires periodic calibration
 
 2. **Paramagnetic Oxygen Analyzer**:
-
    - Based on paramagnetic properties of oxygen
    - High accuracy and stability
    - Less affected by other gases
@@ -64,14 +62,12 @@ optimal system performance.
 ### Primary Factors
 
 1. **Atmospheric Conditions**:
-
    - Altitude affects atmospheric oxygen content
    - Weather patterns influence local oxygen levels
    - Seasonal variations in atmospheric composition
    - Pollution can affect local oxygen concentration
 
 2. **Ventilation Systems**:
-
    - Fresh air supply rate affects oxygen levels
    - Recirculation can reduce oxygen concentration
    - Filter systems may affect oxygen content
@@ -86,7 +82,6 @@ optimal system performance.
 ### Secondary Factors
 
 1. **System Operation**:
-
    - Oxygen consumption by cathode reactions
    - Microbial oxygen consumption
    - Parasitic oxygen losses
@@ -119,13 +114,11 @@ and reduces power output. Optimal oxygen levels maximize cathode efficiency.
 
 1. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber
    microbial fuel cells". _Journal of Power Sources_, 179(1), 274-279.
-
    - Oxygen effects on cathode performance
 
 2. **Zhang, F., et al.** (2010). "Activated carbon cathodes with excellent
    anti-biofouling characteristics for microbial fuel cells". _Water Research_,
    44(6), 1513-1519.
-
    - Oxygen availability and cathode design
 
 3. **Cheng, S., et al.** (2006). "Increased performance of single-chamber

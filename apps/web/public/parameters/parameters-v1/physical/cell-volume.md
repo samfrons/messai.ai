@@ -32,7 +32,6 @@ with power density and cost considerations.
 ### Direct Measurement
 
 1. **Geometric Calculation**:
-
    - Measure internal dimensions
    - Calculate volume: V = L × W × H (rectangular)
    - V = π × r² × H (cylindrical)
@@ -55,13 +54,11 @@ with power density and cost considerations.
 ### Primary Factors
 
 1. **Application Scale**:
-
    - Laboratory research: 10-500 mL
    - Pilot studies: 500-5000 mL
    - Commercial systems: >5000 mL
 
 2. **System Type**:
-
    - Single chamber: Larger volumes typical
    - Dual chamber: Smaller chambers possible
    - Stacked systems: Multiple small volumes
@@ -74,7 +71,6 @@ with power density and cost considerations.
 ### Secondary Factors
 
 1. **Power Density Targets**:
-
    - Higher power density: Smaller volumes preferred
    - Lower power density: Larger volumes acceptable
    - Volume affects normalization of results
@@ -102,12 +98,10 @@ volume balances treatment capacity with economic viability.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Scaling and volume considerations
 
 2. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber
    microbial fuel cells". _Journal of Power Sources_, 179(1), 274-279.
-
    - Volume effects on system performance
 
 3. **Aelterman, P., et al.** (2006). "Continuous electricity generation at high

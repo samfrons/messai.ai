@@ -110,14 +110,14 @@ export default function PredictionResultsVisualization({
           prediction.confidence.overall >= 85
             ? 'High'
             : prediction.confidence.overall >= 70
-            ? 'Good'
-            : 'Moderate',
+              ? 'Good'
+              : 'Moderate',
         color:
           prediction.confidence.overall >= 85
             ? 'green'
             : prediction.confidence.overall >= 70
-            ? 'blue'
-            : 'yellow',
+              ? 'blue'
+              : 'yellow',
       },
       icon: '🎯',
     },
@@ -167,8 +167,8 @@ export default function PredictionResultsVisualization({
               prediction.confidence.overall >= 85
                 ? 'success'
                 : prediction.confidence.overall >= 70
-                ? 'primary'
-                : 'warning'
+                  ? 'primary'
+                  : 'warning'
             }
             className="text-lg px-3 py-1"
           >
@@ -249,10 +249,10 @@ export default function PredictionResultsVisualization({
                     metric.rating.color === 'green'
                       ? 'success'
                       : metric.rating.color === 'blue'
-                      ? 'primary'
-                      : metric.rating.color === 'yellow'
-                      ? 'warning'
-                      : 'error'
+                        ? 'primary'
+                        : metric.rating.color === 'yellow'
+                          ? 'warning'
+                          : 'error'
                   }
                 >
                   {metric.rating.rating}
@@ -523,8 +523,8 @@ export default function PredictionResultsVisualization({
                           rec.priority === 'high'
                             ? 'error'
                             : rec.priority === 'medium'
-                            ? 'warning'
-                            : 'info'
+                              ? 'warning'
+                              : 'info'
                         }
                       >
                         {rec.priority.toUpperCase()} PRIORITY

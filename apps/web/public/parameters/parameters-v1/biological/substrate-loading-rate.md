@@ -33,7 +33,6 @@ substrate utilization.
 ### Direct Measurement
 
 1. **Mass Balance Calculation**:
-
    - Loading rate = (Flow rate × Substrate concentration) / Reactor volume
    - Requires accurate flow and concentration measurements
    - Calculate: L = Q × C / V
@@ -57,14 +56,12 @@ substrate utilization.
 ### Primary Factors
 
 1. **System Design**:
-
    - Reactor volume determines loading capacity
    - Flow rate affects residence time and loading
    - Mixing efficiency influences utilization
    - Temperature control affects microbial activity
 
 2. **Substrate Characteristics**:
-
    - Biodegradability affects loading tolerance
    - Toxicity limits maximum loading
    - Particle size affects mass transfer
@@ -79,7 +76,6 @@ substrate utilization.
 ### Secondary Factors
 
 1. **Microbial Community**:
-
    - Biomass concentration affects loading capacity
    - Community adaptation improves tolerance
    - Species diversity enhances utilization
@@ -113,13 +109,11 @@ COD/m³/day) can cause system failure.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Loading rate effects on MFC performance
 
 2. **Aelterman, P., et al.** (2006). "Continuous electricity generation at high
    voltages and currents using stacked microbial fuel cells". _Environmental
    Science & Technology_, 40(10), 3388-3394.
-
    - Substrate loading optimization in continuous systems
 
 3. **Oh, S., et al.** (2004). "Proton exchange membrane and electrode surface

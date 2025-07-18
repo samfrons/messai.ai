@@ -35,14 +35,12 @@ ionic effects.
 ### Direct Measurement
 
 1. **Gravimetric Method**:
-
    - Filter sample through 0.45 μm membrane
    - Evaporate filtrate at 180°C until dry
    - Weigh residue after cooling in desiccator
    - Most accurate method for TDS determination
 
 2. **Conductivity Conversion**:
-
    - Measure electrical conductivity
    - Apply conversion factor (typically 0.5-0.8)
    - TDS (mg/L) ≈ Conductivity (μS/cm) × 0.64
@@ -66,14 +64,12 @@ ionic effects.
 ### Primary Factors
 
 1. **Water Source**:
-
    - Fresh water: 50-1,000 mg/L TDS
    - Brackish water: 1,000-10,000 mg/L TDS
    - Seawater: ~35,000 mg/L TDS
    - Industrial wastewater: Highly variable
 
 2. **System Processes**:
-
    - Evaporation concentrates TDS
    - Membrane processes can concentrate or remove TDS
    - Biological processes may alter TDS composition
@@ -88,7 +84,6 @@ ionic effects.
 ### Secondary Factors
 
 1. **Chemical Additions**:
-
    - Nutrient supplements increase TDS
    - Buffer chemicals contribute to TDS
    - Cleaning chemicals temporarily increase TDS
@@ -120,12 +115,10 @@ inhibit microbial activity.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater". 23rd Edition, American Public Health Association,
    Washington, DC.
-
    - Standard methods for TDS measurement and analysis
 
 2. **Tchobanoglous, G., et al.** (2003). "Wastewater Engineering: Treatment and
    Reuse". McGraw-Hill, New York.
-
    - TDS considerations in water and wastewater treatment
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

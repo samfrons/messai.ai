@@ -49,8 +49,8 @@ function createPrismaClient() {
   const logLevels = isProduction
     ? ['error']
     : process.env.DATABASE_LOGGING === 'true'
-    ? ['query', 'info', 'warn', 'error']
-    : ['error', 'warn'];
+      ? ['query', 'info', 'warn', 'error']
+      : ['error', 'warn'];
 
   const client = new PrismaClient({
     datasources: {

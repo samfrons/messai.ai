@@ -34,14 +34,12 @@ contact efficiency.
 ### Direct Measurement
 
 1. **Constant Head Permeameter**:
-
    - Apply constant pressure across sample
    - Measure steady-state flow rate
    - Calculate permeability using Darcy's law
    - Suitable for permeable materials
 
 2. **Falling Head Permeameter**:
-
    - Use falling water level in standpipe
    - Monitor head change over time
    - Calculate permeability from time-head relationship
@@ -67,14 +65,12 @@ contact efficiency.
 ### Primary Factors
 
 1. **Pore Structure**:
-
    - Pore size affects flow resistance
    - Pore connectivity determines flow paths
    - Tortuosity influences effective permeability
    - Pore size distribution affects uniformity
 
 2. **Material Properties**:
-
    - Porosity directly affects permeability
    - Surface roughness influences flow
    - Material composition affects wettability
@@ -89,7 +85,6 @@ contact efficiency.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Temperature affects fluid viscosity
    - Pressure affects material compression
    - Flow rate affects Reynolds number
@@ -120,12 +115,10 @@ causes flow maldistribution and high energy consumption. Too high permeability
 
 1. **Bear, J.** (1972). "Dynamics of Fluids in Porous Media". American Elsevier,
    New York.
-
    - Fundamental principles of flow in porous media
 
 2. **Dullien, F.A.L.** (1992). "Porous Media: Fluid Transport and Pore
    Structure". Academic Press, San Diego.
-
    - Comprehensive treatment of permeability in porous materials
 
 3. **Picioreanu, C., et al.** (2000). "A three-dimensional multi-species biofilm

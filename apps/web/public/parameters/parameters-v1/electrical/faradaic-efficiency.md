@@ -33,7 +33,6 @@ or side reactions.
 ### Direct Measurement
 
 1. **Coulombic Accounting**:
-
    - Measure total charge transferred: Q = ∫I dt
    - Calculate theoretical charge from substrate: Qtheo = n·F·Δsubstrate/MW
    - Faradaic efficiency = (Q/Qtheo) × 100%
@@ -56,13 +55,11 @@ or side reactions.
 ### Primary Factors
 
 1. **Microbial Community**:
-
    - Electroactive bacteria: 70-95% efficiency
    - Mixed communities: 30-70% efficiency
    - Methanogenic communities: 10-40% efficiency
 
 2. **Substrate Type**:
-
    - Simple organics (acetate): 80-95%
    - Complex organics: 40-70%
    - Wastewaters: 20-50%
@@ -75,7 +72,6 @@ or side reactions.
 ### Secondary Factors
 
 1. **pH**:
-
    - Optimal pH (6.5-7.5): Maximum efficiency
    - Acidic conditions favor fermentation
    - Basic conditions reduce proton availability
@@ -108,13 +104,11 @@ performance and high power output sustainability.
 
 1. **Logan, B.E., et al.** (2006). "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Detailed faradaic efficiency calculations and optimization
 
 2. **Liu, H. & Logan, B.E.** (2004). "Electricity generation using an
    air-cathode single chamber microbial fuel cell". _Environmental Science &
    Technology_, 38(14), 4040-4046.
-
    - Efficiency improvements through system design
 
 3. **Rabaey, K., et al.** (2003). "A microbial fuel cell capable of converting

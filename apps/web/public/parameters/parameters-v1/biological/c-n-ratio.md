@@ -32,7 +32,6 @@ nutrient removal, and system stability.
 ### Direct Measurement
 
 1. **Elemental Analysis**:
-
    - Total organic carbon (TOC) analysis
    - Total nitrogen (TN) analysis
    - Calculate mass ratio from measurements
@@ -56,13 +55,11 @@ nutrient removal, and system stability.
 ### Primary Factors
 
 1. **Substrate Composition**:
-
    - Carbohydrates: High C:N ratio (>30:1)
    - Proteins: Low C:N ratio (3:1 - 6:1)
    - Mixed substrates: Intermediate ratios
 
 2. **Wastewater Type**:
-
    - Domestic wastewater: 8:1 - 12:1
    - Agricultural waste: 20:1 - 80:1
    - Industrial wastewater: Highly variable
@@ -75,7 +72,6 @@ nutrient removal, and system stability.
 ### Secondary Factors
 
 1. **Microbial Activity**:
-
    - Growth consumes C and N in specific ratios
    - Metabolic products alter system C:N
    - Cell lysis releases nutrients
@@ -104,12 +100,10 @@ efficiency.
 
 1. **Tchobanoglous, G., et al.** (2003). "Wastewater Engineering: Treatment and
    Reuse". McGraw-Hill, New York.
-
    - Fundamentals of C:N ratio in biological treatment
 
 2. **Metcalf & Eddy, Inc.** (2003). "Wastewater Engineering: Treatment and
    Reuse". McGraw-Hill, New York.
-
    - C:N ratio optimization in biological systems
 
 3. **Henze, M., et al.** (2008). "Biological Wastewater Treatment: Principles,

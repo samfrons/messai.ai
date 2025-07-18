@@ -34,14 +34,12 @@ avoiding overcrowding or substrate competition.
 ### Direct Measurement
 
 1. **Flow Cytometry**:
-
    - Rapid automated cell counting
    - Live/dead discrimination capability
    - High throughput and accuracy
    - Provides cell size distribution
 
 2. **Hemocytometer Counting**:
-
    - Direct microscopic cell counting
    - Manual counting in defined volume
    - Simple and cost-effective
@@ -65,14 +63,12 @@ avoiding overcrowding or substrate competition.
 ### Primary Factors
 
 1. **Inoculum Source**:
-
    - Pure cultures: Defined concentration and species
    - Mixed cultures: Variable concentration and diversity
    - Environmental samples: Unknown concentration
    - Activated sludge: High concentration but variable activity
 
 2. **Target Application**:
-
    - Research studies: Controlled, defined concentrations
    - Wastewater treatment: Adapted mixed cultures
    - Power generation: Electroactive species enrichment
@@ -87,7 +83,6 @@ avoiding overcrowding or substrate competition.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects cell viability
    - pH influences cell survival
    - Oxygen levels affect anaerobic species
@@ -121,13 +116,11 @@ substrate competition and poor biofilm structure. Optimal concentrations (10⁷ 
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Inoculation strategies for bioelectrochemical systems
 
 2. **Rabaey, K., et al.** (2004). "Biofuel cells select for microbial consortia
    that self-mediate electron transfer". _Applied and Environmental
    Microbiology_, 70(9), 5373-5382.
-
    - Inoculum effects on community development
 
 3. **Bond, D.R. & Lovley, D.R.** (2003). "Electricity production by Geobacter

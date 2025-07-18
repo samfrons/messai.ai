@@ -33,7 +33,6 @@ collection and minimal resistive losses.
 ### Direct Measurement
 
 1. **Four-Point Probe Method**:
-
    - Apply current through outer probes
    - Measure voltage across inner probes
    - Calculate: σ = 1/(ρ × geometry factor)
@@ -56,13 +55,11 @@ collection and minimal resistive losses.
 ### Primary Factors
 
 1. **Conductive Filler Content**:
-
    - Low loading (<30 wt%): 10⁻³ - 10⁰ S/m
    - Percolation threshold (40-60 wt%): Rapid increase
    - High loading (>70 wt%): 10³ - 10⁵ S/m
 
 2. **Filler Type**:
-
    - Carbon black: 10¹ - 10³ S/m
    - Graphene: 10² - 10⁴ S/m
    - Silver nanoparticles: 10⁴ - 10⁶ S/m
@@ -76,7 +73,6 @@ collection and minimal resistive losses.
 ### Secondary Factors
 
 1. **Polymer Matrix**:
-
    - Affects filler dispersion and percolation
    - Thermal expansion mismatch
    - Chemical compatibility with fillers
@@ -107,12 +103,10 @@ resistance.
 
 1. **MacDonald, E., et al.** (2014). "3D printing for the rapid prototyping of
    structural electronics". _IEEE Access_, 2, 234-242.
-
    - Comprehensive review of printed electronics conductivity
 
 2. **Hu, L., et al.** (2010). "Stretchable, porous, and conductive energy
    textiles". _Nano Letters_, 10(2), 708-714.
-
    - Conductive materials for flexible electronics
 
 3. **Kamyshny, A. & Magdassi, S.** (2014). "Conductive nanomaterials for printed

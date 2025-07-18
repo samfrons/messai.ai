@@ -33,7 +33,6 @@ and smoother operation.
 ### Direct Measurement
 
 1. **Cyclic Voltammetry**:
-
    - Scan potential at low rates (1-10 mV/s)
    - Measure capacitive current in non-faradaic region
    - Calculate: C = I/(dV/dt)
@@ -56,13 +55,11 @@ and smoother operation.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Smooth metals: 10-50 μF/cm²
    - Carbon materials: 50-200 μF/cm²
    - High surface area carbons: 100-1000 μF/cm²
 
 2. **Surface Area**:
-
    - Capacitance proportional to true surface area
    - Rough/porous electrodes: Higher capacitance
    - Biofilm adds additional capacitance
@@ -75,7 +72,6 @@ and smoother operation.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Higher temperature: Slightly higher capacitance
    - Affects ion mobility and solvation
    - Thermal expansion effects
@@ -105,13 +101,11 @@ and reduces voltage fluctuations during transient conditions.
 
 1. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Fundamental treatment of double layer capacitance
 
 2. **Conway, B.E.** (1999). "Electrochemical Supercapacitors: Scientific
    Fundamentals and Technological Applications". Kluwer Academic/Plenum
    Publishers, New York.
-
    - Comprehensive treatment of capacitance phenomena
 
 3. **Wei, J., et al.** (2011). "A new inserted-electrode microbial fuel cell for

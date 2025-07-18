@@ -33,14 +33,12 @@ surface-liquid-biological interactions.
 ### Direct Measurement
 
 1. **Contact Angle Method**:
-
    - Measure water and diiodomethane contact angles
    - Apply Owens-Wendt equation
    - Calculate polar and dispersive components
    - Most common method for electrode materials
 
 2. **Wilhelmy Plate Method**:
-
    - Immerse plate into test liquid
    - Measure force vs immersion depth
    - Calculate surface energy from force measurements
@@ -64,14 +62,12 @@ surface-liquid-biological interactions.
 ### Primary Factors
 
 1. **Material Composition**:
-
    - Polymer type affects surface energy
    - Metal oxides: High surface energy (100-500 mJ/m²)
    - Hydrocarbons: Low surface energy (20-30 mJ/m²)
    - Functional groups influence polar component
 
 2. **Surface Treatment**:
-
    - Plasma treatment increases surface energy
    - Chemical modification alters energy
    - Cleaning removes contaminants
@@ -86,7 +82,6 @@ surface-liquid-biological interactions.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Humidity affects surface hydration
    - Temperature influences molecular mobility
    - Contamination reduces surface energy
@@ -117,12 +112,10 @@ fouling or non-selective adhesion.
 
 1. **Owens, D.K. & Wendt, R.C.** (1969). "Estimation of the surface free energy
    of polymers". _Journal of Applied Polymer Science_, 13(8), 1741-1747.
-
    - Surface energy calculation methods
 
 2. **van Oss, C.J., et al.** (1988). "Interfacial forces in aqueous media".
    Marcel Dekker, New York.
-
    - Surface energy and interfacial interactions
 
 3. **Busscher, H.J., et al.** (1984). "Measurement of the surface free energy of

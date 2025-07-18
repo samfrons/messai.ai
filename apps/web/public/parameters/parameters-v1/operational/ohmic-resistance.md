@@ -33,14 +33,12 @@ better power generation.
 ### Direct Measurement
 
 1. **DC Resistance Measurement**:
-
    - Apply known current and measure voltage
    - Calculate resistance using Ohm's law (R = V/I)
    - Use low currents to avoid polarization
    - Account for non-linear effects
 
 2. **AC Impedance Spectroscopy**:
-
    - Apply AC voltage at high frequency (>1 kHz)
    - Extract real impedance component
    - Separate ohmic from non-ohmic contributions
@@ -64,14 +62,12 @@ better power generation.
 ### Primary Factors
 
 1. **Solution Resistance**:
-
    - Ionic conductivity affects resistance
    - Electrode spacing affects path length
    - Solution composition influences conductivity
    - Temperature affects ion mobility
 
 2. **Electrode Resistance**:
-
    - Material conductivity affects resistance
    - Electrode thickness influences path length
    - Contact resistance affects total resistance
@@ -86,7 +82,6 @@ better power generation.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Cell geometry affects current paths
    - Connection quality affects resistance
    - Stack configuration influences total resistance
@@ -119,13 +114,11 @@ practical viability.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Ohmic resistance in bioelectrochemical systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Resistance effects on system performance
 
 3. **Fan, Y., et al.** (2007). "Improved Coulombic efficiency and power density

@@ -33,14 +33,12 @@ reducing ionic resistance.
 ### Direct Measurement
 
 1. **Conductivity Meters**:
-
    - Direct reading instruments
    - Temperature compensation capability
    - Various cell constants available
    - Good for routine monitoring
 
 2. **4-Electrode Conductivity Cells**:
-
    - Eliminate polarization effects
    - More accurate for high conductivity
    - Suitable for continuous monitoring
@@ -64,14 +62,12 @@ reducing ionic resistance.
 ### Primary Factors
 
 1. **Ionic Composition**:
-
    - Salt concentration directly affects conductivity
    - Ion type influences conductivity (Na⁺, K⁺, Cl⁻, SO₄²⁻)
    - Multiple ions contribute additively
    - Counterion interactions can reduce conductivity
 
 2. **Temperature**:
-
    - Conductivity increases ~2%/°C
    - Temperature coefficient varies by electrolyte
    - Standard reference temperature is 25°C
@@ -86,7 +82,6 @@ reducing ionic resistance.
 ### Secondary Factors
 
 1. **Organic Content**:
-
    - Dissolved organics generally reduce conductivity
    - Large organic molecules have low mobility
    - Charged organics can contribute to conductivity
@@ -122,12 +117,10 @@ returns and may cause operational problems.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater, 23rd Edition". American Public Health Association,
    Washington, DC.
-
    - Standard conductivity measurement methods
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Conductivity effects on bioelectrochemical systems
 
 3. **Fan, Y., et al.** (2007). "Improved cathode performance of microbial fuel

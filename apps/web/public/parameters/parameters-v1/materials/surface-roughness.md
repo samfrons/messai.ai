@@ -32,14 +32,12 @@ roughness enhances biofilm adhesion while maintaining good electrical contact.
 ### Direct Measurement
 
 1. **Profilometry**:
-
    - Stylus contact measurement across surface
    - Calculate Ra (arithmetic average roughness)
    - High resolution for fine surface features
    - Standard method for roughness quantification
 
 2. **Atomic Force Microscopy (AFM)**:
-
    - Non-contact surface measurement
    - Nanometer-scale resolution
    - 3D surface topography mapping
@@ -63,14 +61,12 @@ roughness enhances biofilm adhesion while maintaining good electrical contact.
 ### Primary Factors
 
 1. **Manufacturing Process**:
-
    - Machining operations create specific patterns
    - Grinding and polishing reduce roughness
    - Etching processes increase roughness
    - 3D printing produces characteristic textures
 
 2. **Material Properties**:
-
    - Grain size affects surface texture
    - Material hardness influences finishing
    - Composite materials show complex roughness
@@ -85,7 +81,6 @@ roughness enhances biofilm adhesion while maintaining good electrical contact.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Biofilm growth smooths surface over time
    - Corrosion can increase roughness
    - Mechanical wear affects surface texture
@@ -121,13 +116,11 @@ biofilm adhesion while maintaining electrical contact. Excessive roughness (>50
 1. **Cheng, S., et al.** (2006). "Increased performance of single-chamber
    microbial fuel cells using an improved cathode structure". _Electrochemistry
    Communications_, 8(3), 489-494.
-
    - Surface roughness effects on electrode performance
 
 2. **Wei, J., et al.** (2011). "A new graphite felt cathode with Fe2O3/Fe3O4
    catalyst coating for microbial fuel cells". _Electrochimica Acta_, 56(3),
    1336-1341.
-
    - Surface modification and roughness optimization
 
 3. **Zhang, X., et al.** (2012). "Enhanced performance of microbial fuel cell

@@ -218,8 +218,8 @@ export default function LabPage() {
                     {mode === 'biofilm'
                       ? 'Biofilm Simulation'
                       : mode === 'flow'
-                      ? 'Flow Patterns'
-                      : 'Static Model'}
+                        ? 'Flow Patterns'
+                        : 'Static Model'}
                   </Button>
                 ))}
               </div>

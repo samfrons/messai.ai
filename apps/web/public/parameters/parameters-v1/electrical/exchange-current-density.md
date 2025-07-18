@@ -33,7 +33,6 @@ facile electron transfer kinetics.
 ### Direct Measurement
 
 1. **Tafel Analysis**:
-
    - Perform linear sweep voltammetry at low scan rates
    - Plot log|i| vs overpotential (η)
    - Extrapolate Tafel lines to η = 0
@@ -56,13 +55,11 @@ facile electron transfer kinetics.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Platinum: 10⁻³ - 10⁻² A/cm²
    - Carbon materials: 10⁻⁶ - 10⁻⁴ A/cm²
    - Modified electrodes: 10⁻⁵ - 10⁻³ A/cm²
 
 2. **Biofilm Presence**:
-
    - Bare electrode: Lower i₀
    - Biofilm-modified: Higher i₀ (catalytic effect)
    - Mature biofilm: 2-10× increase
@@ -75,7 +72,6 @@ facile electron transfer kinetics.
 ### Secondary Factors
 
 1. **pH**:
-
    - Affects surface charge and reaction mechanisms
    - Optimal pH varies by electrode material
    - pH changes alter effective i₀
@@ -106,13 +102,11 @@ cell voltages and power outputs.
 
 1. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Fundamental treatment of exchange current density
 
 2. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    32(3), 518-531.
-
    - Exchange current densities in bioelectrochemical systems
 
 3. **Fricke, K., et al.** (2008). "On the use of cyclic voltammetry for the

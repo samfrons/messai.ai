@@ -32,7 +32,6 @@ durable systems and preventing premature component failure.
 ### Direct Measurement
 
 1. **Weight Loss Method**:
-
    - Expose metal coupons to electrolyte
    - Measure weight loss over time
    - Calculate corrosion rate: CR = 87.6 × W/(D × A × T)
@@ -40,7 +39,6 @@ durable systems and preventing premature component failure.
      (h)
 
 2. **Linear Polarization Resistance**:
-
    - Apply small potential perturbation
    - Measure current response
    - Calculate: CR = B/(Rp × ρ)
@@ -63,14 +61,12 @@ durable systems and preventing premature component failure.
 ### Primary Factors
 
 1. **Electrolyte Composition**:
-
    - Chloride concentration: Increases corrosivity
    - pH: Low pH increases corrosion rate
    - Dissolved oxygen: Promotes cathodic reactions
    - Conductivity: Higher conductivity increases corrosion
 
 2. **Environmental Conditions**:
-
    - Temperature: Higher temperature increases corrosion
    - Flow velocity: Can increase or decrease corrosion
    - Pressure: Generally minimal effect
@@ -85,7 +81,6 @@ durable systems and preventing premature component failure.
 ### Secondary Factors
 
 1. **Biological Activity**:
-
    - Microbiologically influenced corrosion (MIC)
    - pH changes from microbial metabolism
    - Biofilm protective effects
@@ -118,11 +113,9 @@ long-term system operation.
 
 1. **Fontana, M.G. & Greene, N.D.** (1986). "Corrosion Engineering, 3rd
    Edition". McGraw-Hill, New York.
-
    - Comprehensive corrosion theory and measurement
 
 2. **Videla, H.A.** (1996). "Manual of Biocorrosion". CRC Press, Boca Raton, FL.
-
    - Microbiologically influenced corrosion
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

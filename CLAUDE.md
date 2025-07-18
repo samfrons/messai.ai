@@ -17,7 +17,6 @@
 
   MESSAI bridges the gap between complex electrochemical theory and practical
   implementation by providing:
-
   - Unified Platform: Single interface and intelligent database for both
     microbial (MFC, MEC, MDC) and fuel cell (PEM, SOFC, PAFC), and
     electrochemical bioreactor systems

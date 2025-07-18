@@ -33,7 +33,6 @@ ecosystems.
 ### Direct Measurement
 
 1. **16S rRNA Gene Sequencing**:
-
    - Amplify and sequence 16S rRNA genes
    - Identify species based on sequence similarity
    - Calculate relative abundance of dominant species
@@ -56,13 +55,11 @@ ecosystems.
 ### Primary Factors
 
 1. **Selection Pressure**:
-
    - Strong selection: Higher dominance (60-90%)
    - Weak selection: Lower dominance (20-40%)
    - Electrochemical selection favors electroactive species
 
 2. **System Maturity**:
-
    - Young systems: Lower dominance (20-50%)
    - Mature systems: Higher dominance (50-80%)
    - Succession toward specialized communities
@@ -75,7 +72,6 @@ ecosystems.
 ### Secondary Factors
 
 1. **Environmental Stress**:
-
    - Stress conditions: Higher dominance of tolerant species
    - Optimal conditions: More diverse communities
    - pH, temperature, toxicity effects
@@ -105,12 +101,10 @@ inefficient conditions.
 1. **Rabaey, K., et al.** (2004). "Biofuel cells select for microbial consortia
    that self-mediate electron transfer". _Applied and Environmental
    Microbiology_, 70(9), 5373-5382.
-
    - Community selection in bioelectrochemical systems
 
 2. **Logan, B.E., et al.** (2019). "Electroactive microorganisms in
    bioelectrochemical systems". _Nature Reviews Microbiology_, 17(5), 307-319.
-
    - Microbial community dynamics in MESs
 
 3. **Kiely, P.D., et al.** (2011). "Long-term cathode performance and the

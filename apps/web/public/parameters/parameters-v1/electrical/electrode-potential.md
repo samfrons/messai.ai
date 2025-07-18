@@ -33,7 +33,6 @@ performance.
 ### Direct Measurement
 
 1. **Reference Electrode Method**:
-
    - Use standard reference electrode (Ag/AgCl, SCE)
    - Measure potential difference with high-impedance voltmeter
    - Convert to SHE scale: E(SHE) = E(ref) + E°(ref)
@@ -57,14 +56,12 @@ performance.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Standard electrode potentials determine baseline
    - Surface treatments affect kinetics
    - Biofilm formation alters effective potential
    - Catalyst loading affects performance
 
 2. **Electrolyte Composition**:
-
    - pH affects many redox couples
    - Ionic strength affects activity coefficients
    - Specific ions can shift potentials
@@ -79,7 +76,6 @@ performance.
 ### Secondary Factors
 
 1. **System Operating Conditions**:
-
    - Current density affects overpotentials
    - Temperature influences reaction kinetics
    - Flow rate affects mass transport
@@ -113,12 +109,10 @@ voltage while maintaining sustainable current densities.
 
 1. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications, 2nd Edition". John Wiley & Sons, New York.
-
    - Comprehensive electrode potential theory
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Electrode potentials in bioelectrochemical systems
 
 3. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel

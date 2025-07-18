@@ -32,14 +32,12 @@ for uniform biological activity and system performance optimization.
 ### Direct Measurement
 
 1. **Thermocouple Arrays**:
-
    - Multiple thermocouples at known distances
    - Measure temperature at different locations
    - Calculate gradient from temperature difference
    - High spatial resolution possible
 
 2. **Infrared Thermography**:
-
    - Non-contact surface temperature mapping
    - Visualize temperature distribution
    - Calculate gradients from thermal images
@@ -63,14 +61,12 @@ for uniform biological activity and system performance optimization.
 ### Primary Factors
 
 1. **Heat Generation**:
-
    - Biological heat production
    - Electrical resistance heating
    - Chemical reaction heat
    - External heating sources
 
 2. **Heat Transfer**:
-
    - Material thermal conductivity
    - Convective heat transfer
    - Conductive heat paths
@@ -85,7 +81,6 @@ for uniform biological activity and system performance optimization.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Ambient temperature
    - Flow rates affect convection
    - Electrical current affects heating
@@ -116,12 +111,10 @@ system efficiency.
 
 1. **Incropera, F.P., et al.** (2007). "Fundamentals of Heat and Mass Transfer".
    John Wiley & Sons, Hoboken, NJ.
-
    - Heat transfer and temperature gradient analysis
 
 2. **Bejan, A.** (2013). "Convection Heat Transfer". John Wiley & Sons, Hoboken,
    NJ.
-
    - Temperature distribution in systems
 
 3. **Torres, C.I., et al.** (2008). "Kinetic experiments for evaluating the

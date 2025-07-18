@@ -32,14 +32,12 @@ Proper air flow management is essential for optimal system operation.
 ### Direct Measurement
 
 1. **Hot-Wire Anemometry**:
-
    - Heated wire sensor in air stream
    - Measure cooling rate proportional to velocity
    - Calculate flow rate: Q = v × A
    - Good for low to moderate flow rates
 
 2. **Vane Anemometry**:
-
    - Rotating vane in air stream
    - Measure rotational speed
    - Suitable for higher flow rates
@@ -63,14 +61,12 @@ Proper air flow management is essential for optimal system operation.
 ### Primary Factors
 
 1. **System Design**:
-
    - Ventilation system capacity
    - Duct sizing and layout
    - Fan specifications and control
    - Air intake and exhaust locations
 
 2. **Environmental Conditions**:
-
    - Ambient temperature affects air density
    - Humidity influences air properties
    - Atmospheric pressure variations
@@ -85,7 +81,6 @@ Proper air flow management is essential for optimal system operation.
 ### Secondary Factors
 
 1. **System Configuration**:
-
    - Indoor vs outdoor installation
    - Enclosure design affects air flow patterns
    - Equipment layout influences air movement
@@ -116,12 +111,10 @@ Optimal flow balances cooling needs with energy efficiency.
 
 1. **ASHRAE** (2017). "ASHRAE Handbook - Fundamentals". American Society of
    Heating, Refrigerating and Air-Conditioning Engineers, Atlanta, GA.
-
    - Air flow measurement and control principles
 
 2. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber
    microbial fuel cells". _Journal of Power Sources_, 179(1), 274-279.
-
    - Air cathode performance and air flow effects
 
 3. **Zhang, F., et al.** (2011). "Long-term performance of activated carbon air

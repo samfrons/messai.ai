@@ -33,14 +33,12 @@ performance.
 ### Direct Measurement
 
 1. **pH Electrodes**:
-
    - Glass electrode with reference electrode
    - Continuous real-time measurement
    - High accuracy (±0.01 pH units)
    - Requires regular calibration
 
 2. **pH Indicators**:
-
    - Colorimetric measurement
    - Visual or spectrophotometric reading
    - Good for field measurements
@@ -64,14 +62,12 @@ performance.
 ### Primary Factors
 
 1. **Microbial Activity**:
-
    - Fermentation produces organic acids (lowers pH)
    - Protein degradation produces ammonia (raises pH)
    - CO₂ production forms carbonic acid (lowers pH)
    - Denitrification consumes protons (raises pH)
 
 2. **Electrochemical Reactions**:
-
    - Anode reactions often produce protons (lowers pH)
    - Cathode reactions often consume protons (raises pH)
    - pH gradients develop near electrodes
@@ -86,7 +82,6 @@ performance.
 ### Secondary Factors
 
 1. **Substrate Type**:
-
    - Carbohydrates: Acidification during fermentation
    - Proteins: Alkalinization from amino acid degradation
    - Organic acids: Direct pH effects
@@ -121,12 +116,10 @@ system damage.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater, 23rd Edition". American Public Health Association,
    Washington, DC.
-
    - Standard pH measurement methods
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - pH effects on bioelectrochemical systems
 
 3. **Rabaey, K., et al.** (2003). "A microbial fuel cell capable of converting

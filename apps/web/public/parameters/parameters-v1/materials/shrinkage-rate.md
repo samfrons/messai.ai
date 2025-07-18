@@ -33,7 +33,6 @@ accuracy and preventing deformation.
 ### Direct Measurement
 
 1. **Dimensional Comparison**:
-
    - Measure printed part before and after processing
    - Calculate: Shrinkage = (L₀ - Lf)/L₀ × 100%
    - Use calibrated measurement tools
@@ -56,13 +55,11 @@ accuracy and preventing deformation.
 ### Primary Factors
 
 1. **Material Composition**:
-
    - Polymer type affects shrinkage magnitude
    - Filler content reduces shrinkage
    - Solvent content increases shrinkage
 
 2. **Processing Conditions**:
-
    - Print temperature: Higher T increases shrinkage
    - Cooling rate: Faster cooling increases residual stress
    - Curing conditions for photopolymers
@@ -75,7 +72,6 @@ accuracy and preventing deformation.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Humidity affects water-sensitive materials
    - Temperature fluctuations cause expansion/contraction
    - Aging effects over time
@@ -106,12 +102,10 @@ collection.
 
 1. **Kazmer, D.O.** (2016). "Injection Mold Design Engineering". Carl Hanser
    Verlag, Munich.
-
    - Comprehensive treatment of shrinkage in polymer processing
 
 2. **Gibson, I., et al.** (2015). "Additive Manufacturing Technologies".
    Springer, New York.
-
    - Shrinkage effects in 3D printing processes
 
 3. **Bellehumeur, C., et al.** (2004). "Modeling of bond formation between

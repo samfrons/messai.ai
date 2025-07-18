@@ -32,14 +32,12 @@ reduces ohmic losses and enables better system performance.
 ### Direct Measurement
 
 1. **Conductivity Meter**:
-
    - Use standard conductivity electrode
    - Measure at controlled temperature (25°C)
    - Auto-temperature compensation available
    - Regular calibration with KCl standards
 
 2. **Four-Electrode Method**:
-
    - Separate current and voltage measurement
    - Eliminates polarization effects
    - Higher accuracy for research applications
@@ -63,14 +61,12 @@ reduces ohmic losses and enables better system performance.
 ### Primary Factors
 
 1. **Ion Concentration**:
-
    - Higher concentrations increase conductivity
    - Linear relationship at low concentrations
    - Deviation at high concentrations due to ion interactions
    - Different ions contribute differently to conductivity
 
 2. **Temperature**:
-
    - Higher temperature increases conductivity
    - Typical coefficient: 2-3% per °C
    - Affects ion mobility and dissociation
@@ -85,7 +81,6 @@ reduces ohmic losses and enables better system performance.
 ### Secondary Factors
 
 1. **pH**:
-
    - Extreme pH values increase conductivity
    - H⁺ and OH⁻ are highly conductive
    - Affects ion speciation and mobility
@@ -117,12 +112,10 @@ performance.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater". 23rd Edition, American Public Health Association,
    Washington, DC.
-
    - Standard conductivity measurement procedures
 
 2. **Atkins, P. & de Paula, J.** (2014). "Atkins' Physical Chemistry". Oxford
    University Press, Oxford.
-
    - Fundamental principles of electrical conductivity
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

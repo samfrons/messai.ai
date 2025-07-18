@@ -35,7 +35,6 @@ Based on parameter-ranges.json validation data:
 ### Membrane Pretreatment:
 
 1. **Acid treatment**:
-
    - Boil in 3% H₂O₂ for 1 hour (remove organics)
    - Rinse with deionized water
    - Boil in 0.5 M H₂SO₄ for 1 hour
@@ -49,13 +48,11 @@ Based on parameter-ranges.json validation data:
 ### Alternative Membrane Types:
 
 1. **Perfluorinated membranes**:
-
    - Nafion® 117, 115, 112 (different thickness)
    - Aquivion® (short side chain)
    - Flemion® (Japanese alternative)
 
 2. **Partially fluorinated**:
-
    - Ballard BAM® membranes
    - Radiation-grafted membranes
    - Sulfonated PEEK
@@ -68,7 +65,6 @@ Based on parameter-ranges.json validation data:
 ### Modification Techniques:
 
 1. **Composite membranes**:
-
    - Silica nanoparticles incorporation
    - Graphene oxide additives
    - Proton-conducting fillers

@@ -33,7 +33,6 @@ substrate overloading and maintaining optimal system performance.
 ### Direct Measurement
 
 1. **Substrate Inhibition Studies**:
-
    - Test growth at various substrate concentrations
    - Identify concentration causing 50% inhibition
    - Fit data to Haldane model: μ = μmax×S/(Ks + S + S²/Ki)
@@ -56,14 +55,12 @@ substrate overloading and maintaining optimal system performance.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Simple organics (glucose): Ki = 10-50 g/L
    - Fatty acids: Ki = 2-10 g/L
    - Alcohols: Ki = 5-20 g/L
    - Toxic organics: Ki = 0.1-5 g/L
 
 2. **Microbial Species**:
-
    - Adapted organisms: Higher Ki values
    - Sensitive species: Lower Ki values
    - Mixed cultures: Variable inhibition patterns
@@ -76,7 +73,6 @@ substrate overloading and maintaining optimal system performance.
 ### Secondary Factors
 
 1. **Adaptation State**:
-
    - Acclimated cultures: 2-5× higher Ki
    - Unadapted cultures: Lower tolerance
    - Gradual exposure increases Ki
@@ -106,12 +102,10 @@ operation.
 ## References
 
 1. **Haldane, J.B.S.** (1930). "Enzymes". Longmans, Green and Co., London.
-
    - Original description of substrate inhibition kinetics
 
 2. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber
    microbial fuel cells". _Journal of Power Sources_, 179(1), 274-279.
-
    - Substrate inhibition in microbial fuel cells
 
 3. **Andrews, J.F.** (1968). "A mathematical model for the continuous culture of

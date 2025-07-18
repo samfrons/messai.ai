@@ -32,14 +32,12 @@ potential, kinetic losses, and ohmic resistance.
 ### Direct Measurement
 
 1. **Digital Multimeter**:
-
    - Measure voltage directly across cell terminals
    - Use high-impedance voltmeter to avoid loading
    - Record under various load conditions
    - Simple and direct measurement
 
 2. **Data Acquisition System**:
-
    - Continuous voltage monitoring
    - High-resolution measurements
    - Automated data logging
@@ -63,14 +61,12 @@ potential, kinetic losses, and ohmic resistance.
 ### Primary Factors
 
 1. **Thermodynamic Potential**:
-
    - Depends on anode and cathode reactions
    - Affected by substrate and electron acceptor concentrations
    - Temperature influences Nernst potential
    - pH affects many redox potentials
 
 2. **Kinetic Losses**:
-
    - Activation overpotential at both electrodes
    - Concentration overpotential under mass transfer limitations
    - Biofilm resistance affects electron transfer
@@ -85,7 +81,6 @@ potential, kinetic losses, and ohmic resistance.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Load resistance affects operating voltage
    - Flow rate influences concentration gradients
    - Temperature affects all voltage components
@@ -117,13 +112,11 @@ losses or poor electrode performance that require optimization.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Cell voltage considerations in bioelectrochemical systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Voltage performance in microbial fuel cells
 
 3. **Newman, J. & Thomas-Alyea, K.E.** (2004). "Electrochemical Systems". John

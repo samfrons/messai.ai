@@ -304,8 +304,8 @@ class QuickDemo {
           health.systemHealth === 'good'
             ? '✅ Good'
             : health.systemHealth === 'warning'
-            ? '⚠️  Warning'
-            : '❌ Error'
+              ? '⚠️  Warning'
+              : '❌ Error'
         }${colors.reset}`
       );
       console.log(

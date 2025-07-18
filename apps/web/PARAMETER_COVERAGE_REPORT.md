@@ -29,21 +29,17 @@ The system now distinguishes between:
 ### Available Markdown Files (16 total)
 
 1. **Anode Materials (2 files)**
-
    - `carbon_cloth` → carbon-cloth-anode.md
    - `ti3c2tx_mxene`, `nb2ctx_mxene`, `v2ctx_mxene` → mxene-anode.md (shared)
 
 2. **Cathode Materials (2 files)**
-
    - `air_cathode` → air-cathode.md
    - `platinum_cathode` → platinum-cathode.md
 
 3. **Membranes (1 file)**
-
    - `proton_exchange_membrane` → proton-exchange.md
 
 4. **Electrical Parameters (5 files)**
-
    - `power_density` → power-density.md
    - `current_density` → current-density.md
    - `voltage_output` → voltage.md
@@ -86,7 +82,6 @@ categorical variables have been excluded from the parameter system.
 These are commonly used materials that lack documentation:
 
 1. **Anode Materials**
-
    - `carbon_felt` - Very common, missing documentation
    - `graphite_brush` - High performance option
    - `carbon_paper` - Standard material
@@ -94,7 +89,6 @@ These are commonly used materials that lack documentation:
    - `graphene_oxide` - Advanced material
 
 2. **Cathode Materials**
-
    - `copper_cathode` - Common alternative
    - `stainless_steel` - Industrial standard
    - `nickel_foam` - High surface area
@@ -164,13 +158,11 @@ Essential for commercialization:
 ## Recommendations
 
 1. **Immediate Actions:**
-
    - Focus on creating markdown for Tier 1 materials (10-15 files)
    - Document top 5 microorganisms from Tier 2
    - Create templates for consistent markdown structure
 
 2. **Short-term Goals:**
-
    - Achieve 10% markdown coverage (65 parameters)
    - Focus on most-used parameters based on user analytics
    - Create category-specific templates

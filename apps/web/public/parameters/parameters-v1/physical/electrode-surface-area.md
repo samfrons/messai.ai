@@ -33,14 +33,12 @@ areas generally enable higher current output.
 ### Direct Measurement
 
 1. **Geometric Surface Area**:
-
    - Measure physical dimensions of electrode
    - Calculate: Area = Length × Width (flat electrode)
    - Account for both sides if applicable
    - Simple but may underestimate true area
 
 2. **Electrochemical Surface Area (ECSA)**:
-
    - Cyclic voltammetry double-layer capacitance
    - More accurate for porous electrodes
    - Reflects actual electroactive area
@@ -64,14 +62,12 @@ areas generally enable higher current output.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Carbon cloth: High surface area (1000-5000 m²/g)
    - Carbon felt: Very high surface area (>5000 m²/g)
    - Graphite plates: Low surface area (<10 m²/g)
    - Metal foams: High geometric area with porosity
 
 2. **Electrode Geometry**:
-
    - Flat plates: Area = length × width
    - Cylindrical: Area = π × diameter × length
    - Porous structures: Much higher than geometric area
@@ -86,7 +82,6 @@ areas generally enable higher current output.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Biofilm formation changes effective area
    - Fouling reduces accessible area
    - Cleaning restores surface area
@@ -119,13 +114,11 @@ have non-uniform utilization.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Electrode surface area effects on performance
 
 2. **Wei, J., et al.** (2011). "A new graphite felt cathode with Fe2O3/Fe3O4
    catalyst coating for microbial fuel cells". _Electrochimica Acta_, 56(3),
    1336-1341.
-
    - Surface area characterization methods
 
 3. **Zhang, F., et al.** (2010). "Activated carbon cathodes with excellent

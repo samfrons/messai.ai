@@ -34,7 +34,6 @@ structure, directly impacting the system's power output.
 ### Direct Measurement
 
 1. **Four-Point Probe Method**:
-
    - Apply current through outer probes
    - Measure voltage drop across inner probes
    - Calculate conductivity using σ = I·L/(V·A)
@@ -56,13 +55,11 @@ structure, directly impacting the system's power output.
 ### Primary Factors
 
 1. **Biofilm Thickness**:
-
    - Optimal range: 50-200 μm
    - Thicker biofilms may have reduced conductivity due to diffusion limitations
    - Very thin biofilms may lack sufficient conductive pathways
 
 2. **Microbial Species Composition**:
-
    - Geobacter species: 5-30 S/m (highly conductive)
    - Shewanella species: 0.5-5 S/m (moderately conductive)
    - Mixed communities: 0.1-10 S/m (variable)
@@ -75,7 +72,6 @@ structure, directly impacting the system's power output.
 ### Secondary Factors
 
 1. **pH**:
-
    - Optimal pH: 6.5-7.5
    - Extreme pH values reduce protein conductivity
 
@@ -102,12 +98,10 @@ achieve power densities >1 W/m², while those <0.1 S/m rarely exceed 0.1 W/m².
 
 1. **Malvankar, N.S., et al.** (2011). "Tunable metallic-like conductivity in
    microbial nanowire networks". _Nature Nanotechnology_, 6(9), 573-579.
-
    - Demonstrated metallic-like conductivity in Geobacter biofilms
 
 2. **Yates, M.D., et al.** (2016). "Measuring conductivity of living Geobacter
    sulfurreducens biofilms". _Nature Nanotechnology_, 11(11), 910-913.
-
    - Established standard methods for biofilm conductivity measurement
 
 3. **Pirbadian, S., et al.** (2014). "Shewanella oneidensis MR-1 nanowires are

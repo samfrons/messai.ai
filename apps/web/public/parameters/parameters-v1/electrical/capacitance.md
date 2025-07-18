@@ -33,14 +33,12 @@ voltage fluctuations.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Apply AC signal across frequency range
    - Analyze impedance response vs frequency
    - Extract capacitive component from equivalent circuit
    - Most accurate method for complex systems
 
 2. **Cyclic Voltammetry**:
-
    - Scan potential at constant rate
    - Measure capacitive current response
    - Calculate capacitance from current-scan rate relationship
@@ -64,14 +62,12 @@ voltage fluctuations.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Carbon materials: High capacitance (100-2000 μF/cm²)
    - Metal electrodes: Lower capacitance (10-100 μF/cm²)
    - Surface area directly affects total capacitance
    - Porous materials show higher capacitance
 
 2. **Biofilm Properties**:
-
    - Biofilm acts as additional capacitive layer
    - EPS composition affects capacitive behavior
    - Biofilm thickness influences total capacitance
@@ -86,7 +82,6 @@ voltage fluctuations.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Temperature affects ion mobility and capacitance
    - Applied potential affects double-layer structure
    - Current density influences apparent capacitance
@@ -119,12 +114,10 @@ during operation.
 1. **Conway, B.E.** (1999). "Electrochemical Supercapacitors: Scientific
    Fundamentals and Technological Applications". Kluwer Academic/Plenum
    Publishers, New York.
-
    - Comprehensive treatment of electrochemical capacitance
 
 2. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Fundamental electrochemical capacitance theory
 
 3. **Wei, J., et al.** (2011). "A new method for measuring biofilm thickness and

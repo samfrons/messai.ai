@@ -35,8 +35,8 @@ export default function LoadingStates() {
           index === 1
             ? { ...state, status: 'completed' }
             : index === 2
-            ? { ...state, status: 'loading' }
-            : state
+              ? { ...state, status: 'loading' }
+              : state
         )
       );
     }, 1500);
@@ -92,8 +92,8 @@ export default function LoadingStates() {
                     state.status === 'completed'
                       ? 'bg-green-100'
                       : state.status === 'loading'
-                      ? 'bg-blue-100'
-                      : 'bg-gray-100'
+                        ? 'bg-blue-100'
+                        : 'bg-gray-100'
                   }`}
                 >
                   <span className="text-lg">{getStatusIcon(state.status)}</span>

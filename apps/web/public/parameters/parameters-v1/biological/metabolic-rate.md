@@ -33,7 +33,6 @@ and electron transfer.
 ### Direct Measurement
 
 1. **Respirometry**:
-
    - Measure O₂ consumption in closed system
    - Clark-type oxygen electrode
    - Calculate rate: ΔO₂/Δt per mg biomass
@@ -56,13 +55,11 @@ and electron transfer.
 ### Primary Factors
 
 1. **Substrate Concentration**:
-
    - Saturating substrate: Maximum metabolic rate
    - Limiting substrate: Reduced rate (20-50% of max)
    - Substrate type affects rate magnitude
 
 2. **Temperature**:
-
    - Q₁₀ = 2-3 for metabolic rate
    - Optimal temperature: Peak rate
    - Stress temperatures: Reduced efficiency
@@ -75,7 +72,6 @@ and electron transfer.
 ### Secondary Factors
 
 1. **pH**:
-
    - Optimal pH: Maximum metabolic efficiency
    - pH stress: Increased maintenance costs
    - Extreme pH: Metabolic shutdown
@@ -105,13 +101,11 @@ efficient substrate conversion and active electron transfer processes.
    air-cathode single chamber microbial fuel cell in the presence and absence of
    a proton exchange membrane". _Environmental Science & Technology_, 38(14),
    4040-4046.
-
    - Metabolic activity in electrochemical systems
 
 2. **Nevin, K.P. & Lovley, D.R.** (2002). "Mechanisms for accessing insoluble
    Fe(III) oxide during dissimilatory Fe(III) reduction by Geothrix fermentans".
    _Applied and Environmental Microbiology_, 68(5), 2294-2299.
-
    - Metabolic rates in metal-reducing bacteria
 
 3. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:

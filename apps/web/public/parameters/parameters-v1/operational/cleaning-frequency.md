@@ -32,14 +32,12 @@ balances maintenance costs with performance maintenance and system longevity.
 ### Direct Measurement
 
 1. **Performance Monitoring**:
-
    - Track power output degradation
    - Monitor resistance increase over time
    - Measure treatment efficiency decline
    - Define cleaning trigger criteria
 
 2. **Visual Inspection**:
-
    - Assess fouling accumulation
    - Document biofilm overgrowth
    - Monitor membrane condition
@@ -63,14 +61,12 @@ balances maintenance costs with performance maintenance and system longevity.
 ### Primary Factors
 
 1. **Operating Conditions**:
-
    - High organic loading: More frequent cleaning
    - Fouling-prone substrates: Increased cleaning
    - Temperature extremes: Affect fouling rates
    - Flow conditions influence accumulation
 
 2. **System Design**:
-
    - Electrode accessibility affects cleaning ease
    - Flow patterns influence fouling distribution
    - Material selection affects fouling tendency
@@ -85,7 +81,6 @@ balances maintenance costs with performance maintenance and system longevity.
 ### Secondary Factors
 
 1. **Substrate Characteristics**:
-
    - High suspended solids: More cleaning
    - Protein-rich substrates: Increased fouling
    - Oil and grease content: Enhanced fouling
@@ -116,13 +111,11 @@ performance degradation and potential system damage.
 
 1. **Shannon, M.A., et al.** (2008). "Science and technology for water
    purification in the coming decades". _Nature_, 452(7185), 301-310.
-
    - Fouling and cleaning in water treatment systems
 
 2. **Elimelech, M. & Phillip, W.A.** (2011). "The future of seawater
    desalination: energy, technology, and the environment". _Science_, 333(6043),
    712-717.
-
    - Membrane fouling and cleaning strategies
 
 3. **Rabaey, K., et al.** (2010). "Bioelectrochemical systems: from

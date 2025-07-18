@@ -33,14 +33,12 @@ resistance.
 ### Direct Measurement
 
 1. **Polarization Curve Analysis**:
-
    - Vary external load resistance systematically
    - Measure voltage and current at each load
    - Calculate power (P = V × I) for each point
    - Identify maximum from power vs current curve
 
 2. **Load Sweep Method**:
-
    - Use variable resistor or electronic load
    - Continuously vary load from open circuit to short circuit
    - Record voltage and current throughout sweep
@@ -64,14 +62,12 @@ resistance.
 ### Primary Factors
 
 1. **Open Circuit Voltage**:
-
    - Higher OCV enables higher maximum power
    - Thermodynamic and kinetic factors affect OCV
    - Substrate concentration influences voltage
    - Temperature affects electrochemical potentials
 
 2. **Internal Resistance**:
-
    - Lower resistance increases maximum power
    - Biofilm, solution, and electrode resistances contribute
    - Ionic conductivity affects solution resistance
@@ -86,7 +82,6 @@ resistance.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Temperature affects all performance parameters
    - pH influences electrochemical reactions
    - Flow rate affects mass transfer and current
@@ -117,13 +112,11 @@ optimization for practical applications.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Power density measurement and optimization in MFCs
 
 2. **Rabaey, K., et al.** (2010). "Bioelectrochemical systems: from
    extracellular electron transfer to biotechnological application". IWA
    Publishing, London.
-
    - Power density considerations in various bioelectrochemical systems
 
 3. **Fan, Y., et al.** (2007). "Improved Coulombic efficiency and power density

@@ -32,7 +32,6 @@ optimizing substrate utilization in bioelectrochemical systems.
 ### Direct Measurement
 
 1. **Mass Balance Method**:
-
    - Monitor biomass increase and substrate consumption
    - Calculate: Y = ΔX/ΔS
    - Use exponential growth phase data
@@ -55,13 +54,11 @@ optimizing substrate utilization in bioelectrochemical systems.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Glucose: 0.4-0.6 g/g (high yield)
    - Acetate: 0.3-0.5 g/g (moderate yield)
    - Complex organics: 0.1-0.3 g/g (variable yield)
 
 2. **Growth Conditions**:
-
    - Aerobic growth: Higher yields (0.4-0.6 g/g)
    - Anaerobic growth: Lower yields (0.1-0.3 g/g)
    - Optimal conditions maximize yield
@@ -74,7 +71,6 @@ optimizing substrate utilization in bioelectrochemical systems.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Optimal temperature: Maximum yield
    - Stress temperatures: Reduced yield
    - Maintenance energy increases at non-optimal T
@@ -104,12 +100,10 @@ organic loading requirements for desired biomass levels.
 
 1. **Pirt, S.J.** (1975). "Principles of microbe and cell cultivation".
    Blackwell Scientific Publications, Oxford.
-
    - Comprehensive treatment of yield coefficients
 
 2. **Logan, B.E., et al.** (2006). "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Yield coefficients in microbial fuel cells
 
 3. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:

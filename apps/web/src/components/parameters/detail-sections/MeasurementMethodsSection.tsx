@@ -15,12 +15,15 @@ export function MeasurementMethodsSection({ methods }: MeasurementMethodsSection
     return null;
   }
 
-  const groupedMethods = methods.reduce((acc, method) => {
-    const type = method.type || 'General';
-    if (!acc[type]) acc[type] = [];
-    acc[type].push(method);
-    return acc;
-  }, {} as Record<string, MeasurementMethod[]>);
+  const groupedMethods = methods.reduce(
+    (acc, method) => {
+      const type = method.type || 'General';
+      if (!acc[type]) acc[type] = [];
+      acc[type].push(method);
+      return acc;
+    },
+    {} as Record<string, MeasurementMethod[]>
+  );
 
   return (
     <Card>

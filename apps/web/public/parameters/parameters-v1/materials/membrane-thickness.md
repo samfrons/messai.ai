@@ -32,14 +32,12 @@ adequate mechanical properties and selectivity for target ions.
 ### Direct Measurement
 
 1. **Micrometer Measurement**:
-
    - Mechanical thickness gauge
    - Multiple point measurements
    - Simple and direct method
    - Good for uniform membranes
 
 2. **Cross-sectional Microscopy**:
-
    - Scanning electron microscopy (SEM)
    - Optical microscopy of cross-sections
    - High resolution thickness measurement
@@ -63,14 +61,12 @@ adequate mechanical properties and selectivity for target ions.
 ### Primary Factors
 
 1. **Membrane Type**:
-
    - Nafion: 50-200 μm typical
    - Anion exchange membranes: 100-300 μm
    - Ultrafiltration membranes: 100-500 μm
    - Bipolar membranes: 200-400 μm
 
 2. **Manufacturing Process**:
-
    - Solution casting: Variable thickness control
    - Extrusion: Good thickness uniformity
    - Hot pressing: Reduces thickness
@@ -85,7 +81,6 @@ adequate mechanical properties and selectivity for target ions.
 ### Secondary Factors
 
 1. **Chemical Environment**:
-
    - Electrolyte concentration affects swelling
    - pH influences polymer stability
    - Oxidizing conditions may degrade polymer
@@ -119,13 +114,11 @@ adequate durability and separation performance.
 
 1. **Kim, J.R., et al.** (2007). "Power generation using different cation
    exchange membranes in microbial fuel cells". _Fuel_, 86(7-8), 1156-1163.
-
    - Membrane thickness effects on performance
 
 2. **Zhang, X., et al.** (2009). "Separator characteristics for increasing
    performance of microbial fuel cells". _Environmental Science & Technology_,
    43(21), 8456-8461.
-
    - Separator thickness optimization
 
 3. **Rozendal, R.A., et al.** (2006). "Principle and perspectives of hydrogen

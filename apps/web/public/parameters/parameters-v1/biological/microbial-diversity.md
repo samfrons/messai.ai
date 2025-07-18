@@ -33,7 +33,6 @@ utilization capabilities.
 ### Direct Measurement
 
 1. **16S rRNA Gene Sequencing**:
-
    - Extract DNA from biofilm samples
    - Amplify 16S rRNA gene regions
    - Sequence and identify microbial taxa
@@ -57,13 +56,11 @@ utilization capabilities.
 ### Primary Factors
 
 1. **Environmental Conditions**:
-
    - Stable conditions: Lower diversity
    - Variable conditions: Higher diversity
    - Stress conditions: Reduced diversity
 
 2. **Substrate Complexity**:
-
    - Complex substrates: Higher diversity
    - Simple substrates: Lower diversity
    - Multiple carbon sources: Increased diversity
@@ -76,7 +73,6 @@ utilization capabilities.
 ### Secondary Factors
 
 1. **Operating Parameters**:
-
    - pH stability affects diversity
    - Temperature variations impact community structure
    - Hydraulic retention time influences selection
@@ -104,13 +100,11 @@ potentially leading to performance fluctuations.
 ## References
 
 1. **Pielou, E.C.** (1975). "Ecological Diversity". John Wiley & Sons, New York.
-
    - Diversity index calculations and interpretations
 
 2. **Jung, S., et al.** (2013). "Microbial community analysis of a thermophilic
    anaerobic digester fed with Saccharina japonica". _Applied Microbiology and
    Biotechnology_, 97(8), 3679-3686.
-
    - Diversity in bioelectrochemical systems
 
 3. **Yates, M.D., et al.** (2012). "Convergent development of anodic bacterial

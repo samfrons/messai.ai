@@ -33,14 +33,12 @@ conditions.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Apply small AC perturbations over frequency range
    - Measure impedance magnitude and phase angle
    - Generate Nyquist and Bode plots
    - Most comprehensive method
 
 2. **AC Impedance Measurement**:
-
    - Use impedance analyzer or LCR meter
    - Measure at single or multiple frequencies
    - Quick assessment of total impedance
@@ -64,14 +62,12 @@ conditions.
 ### Primary Factors
 
 1. **Solution Resistance**:
-
    - Electrolyte conductivity affects ohmic resistance
    - Distance between electrodes influences resistance
    - Ionic strength determines conductivity
    - Temperature affects ion mobility
 
 2. **Charge Transfer Resistance**:
-
    - Electrode kinetics affect interfacial resistance
    - Biofilm activity influences electron transfer
    - Electrode surface area affects resistance
@@ -86,7 +82,6 @@ conditions.
 ### Secondary Factors
 
 1. **Double Layer Capacitance**:
-
    - Electrode surface area affects capacitance
    - Biofilm structure influences double layer
    - Frequency-dependent impedance behavior
@@ -117,13 +112,11 @@ limitations that reduce system efficiency.
 
 1. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Fundamental electrochemical impedance theory
 
 2. **He, Z. & Mansfeld, F.** (2009). "Exploring the use of electrochemical
    impedance spectroscopy (EIS) in microbial fuel cell studies". _Energy &
    Environmental Science_, 2(2), 215-219.
-
    - EIS applications in bioelectrochemical systems
 
 3. **Dominguez-Benetton, X., et al.** (2012). "The accurate use of impedance

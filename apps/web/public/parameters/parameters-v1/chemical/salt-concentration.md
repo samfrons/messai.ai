@@ -34,14 +34,12 @@ with biological compatibility.
 ### Direct Measurement
 
 1. **Gravimetric Analysis**:
-
    - Evaporate water from known sample volume
    - Weigh residual solids after drying at 105°C
    - Calculate total dissolved solids concentration
    - Simple but includes non-salt components
 
 2. **Conductivity Measurement**:
-
    - Measure electrical conductivity
    - Convert to salt concentration using calibration
    - Rapid and continuous monitoring possible
@@ -65,14 +63,12 @@ with biological compatibility.
 ### Primary Factors
 
 1. **Feed Water Quality**:
-
    - Municipal water: Low salt content (0.1-1 g/L)
    - Seawater: High salt content (35 g/L)
    - Industrial wastewater: Variable content
    - Agricultural runoff: Moderate salt levels
 
 2. **System Operation**:
-
    - Evaporation concentrates salts
    - Blowdown removes accumulated salts
    - Recirculation increases concentration
@@ -87,7 +83,6 @@ with biological compatibility.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects solubility
    - pH influences salt speciation
    - Evaporation rates affect concentration
@@ -119,12 +114,10 @@ reduces microbial activity, and may cause precipitation.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater". 23rd Edition, American Public Health Association,
    Washington, DC.
-
    - Standard methods for salt and dissolved solids measurement
 
 2. **Tchobanoglous, G., et al.** (2003). "Wastewater Engineering: Treatment and
    Reuse". McGraw-Hill, New York.
-
    - Salt effects in biological treatment systems
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

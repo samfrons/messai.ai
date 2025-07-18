@@ -32,7 +32,6 @@ threshold setting balances safety protection with minimizing false alarms.
 ### Direct Measurement
 
 1. **Temperature Sensor Calibration**:
-
    - Use certified reference thermometers
    - Verify sensor accuracy at threshold temperature
    - Document calibration certificates
@@ -56,14 +55,12 @@ threshold setting balances safety protection with minimizing false alarms.
 ### Primary Factors
 
 1. **Operating Temperature Range**:
-
    - Mesophilic systems: 25-40°C (threshold ~45°C)
    - Thermophilic systems: 50-60°C (threshold ~70°C)
    - Ambient systems: Variable (threshold ~40°C)
    - Heated systems: Design-dependent
 
 2. **Equipment Limitations**:
-
    - Pump materials: Temperature limits
    - Membrane stability: Thermal degradation
    - Electronic components: Operating temperature limits
@@ -78,7 +75,6 @@ threshold setting balances safety protection with minimizing false alarms.
 ### Secondary Factors
 
 1. **Safety Requirements**:
-
    - Personnel safety considerations
    - Fire prevention requirements
    - Pressure safety (temperature-pressure relationship)
@@ -110,12 +106,10 @@ normal) cause frequent nuisance alarms.
 
 1. **NFPA 70** (2020). "National Electrical Code". National Fire Protection
    Association, Quincy, MA.
-
    - Electrical equipment temperature protection requirements
 
 2. **ISA-18.2** (2016). "Management of Alarm Systems for the Process
    Industries". International Society of Automation, Research Triangle Park, NC.
-
    - Alarm system design and management standards
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

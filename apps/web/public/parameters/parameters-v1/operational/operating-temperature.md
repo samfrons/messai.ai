@@ -32,14 +32,12 @@ biological activity with energy costs and system stability requirements.
 ### Direct Measurement
 
 1. **Resistance Temperature Detectors (RTDs)**:
-
    - High accuracy and stability
    - Linear response over wide range
    - Good for precise control applications
    - Require current source for measurement
 
 2. **Thermocouples**:
-
    - Wide temperature range capability
    - Fast response time
    - Self-powered (no external voltage)
@@ -63,14 +61,12 @@ biological activity with energy costs and system stability requirements.
 ### Primary Factors
 
 1. **Microbial Requirements**:
-
    - Mesophilic bacteria: 20-45°C optimal
    - Thermophilic bacteria: 45-70°C optimal
    - Psychrophilic bacteria: <20°C optimal
    - Mixed communities: Intermediate optima
 
 2. **Reaction Kinetics**:
-
    - Higher temperature increases reaction rates
    - Arrhenius relationship for temperature dependence
    - Mass transfer coefficients increase with temperature
@@ -85,7 +81,6 @@ biological activity with energy costs and system stability requirements.
 ### Secondary Factors
 
 1. **Economic Considerations**:
-
    - Energy costs for heating/cooling
    - Insulation investment costs
    - Control system complexity
@@ -121,12 +116,10 @@ stability. Temperature control within ±2°C improves performance consistency.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Temperature effects on MFC performance
 
 2. **Madigan, M.T., et al.** (2018). "Brock Biology of Microorganisms, 15th
    Edition". Pearson, Boston, MA.
-
    - Microbial temperature requirements
 
 3. **Aelterman, P., et al.** (2006). "Continuous electricity generation at high

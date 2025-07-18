@@ -32,14 +32,12 @@ integrity.
 ### Direct Measurement
 
 1. **Mercury Intrusion Porosimetry**:
-
    - Force mercury into pores under pressure
    - Calculate pore size from pressure and surface tension
    - Provides pore size distribution
    - Most comprehensive method
 
 2. **Gas Adsorption (BET)**:
-
    - Measure nitrogen adsorption isotherms
    - Calculate pore size from desorption branch
    - Good for micropores and mesopores
@@ -63,14 +61,12 @@ integrity.
 ### Primary Factors
 
 1. **Manufacturing Process**:
-
    - Template removal creates specific pore sizes
    - Sintering temperature affects pore coalescence
    - Pressure and time affect pore formation
    - Chemical etching modifies pore structure
 
 2. **Material Composition**:
-
    - Particle size affects initial pore structure
    - Binder content influences final porosity
    - Additives modify pore formation
@@ -85,7 +81,6 @@ integrity.
 ### Secondary Factors
 
 1. **Operating Environment**:
-
    - Chemical exposure may alter pore structure
    - Mechanical stress can deform pores
    - Biofilm growth may block pores
@@ -117,12 +112,10 @@ surface area and poor biofilm retention.
 1. **Lowell, S., et al.** (2004). "Characterization of Porous Solids and
    Powders: Surface Area, Pore Size and Density". Kluwer Academic Publishers,
    Dordrecht.
-
    - Comprehensive methods for pore characterization
 
 2. **Rouquerol, J., et al.** (2014). "Adsorption by Powders and Porous Solids:
    Principles, Methodology and Applications". Academic Press, Oxford.
-
    - Detailed pore size analysis methods
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

@@ -32,14 +32,12 @@ reduces energy consumption for fluid circulation.
 ### Direct Measurement
 
 1. **Rotational Viscometer**:
-
    - Use spindle rotating in fluid sample
    - Measure torque required for rotation
    - Calculate viscosity from resistance to rotation
    - Suitable for wide viscosity range
 
 2. **Capillary Viscometer**:
-
    - Measure time for fluid to flow through calibrated capillary
    - Calculate kinematic viscosity from flow time
    - Convert to dynamic viscosity using density
@@ -63,14 +61,12 @@ reduces energy consumption for fluid circulation.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Higher temperature reduces viscosity
    - Exponential relationship for most fluids
    - Critical factor for system design
    - Must control temperature during measurement
 
 2. **Dissolved Solids Content**:
-
    - Higher concentrations increase viscosity
    - Polymers and proteins have large effects
    - Suspended solids contribute to apparent viscosity
@@ -85,7 +81,6 @@ reduces energy consumption for fluid circulation.
 ### Secondary Factors
 
 1. **Biofilm Presence**:
-
    - EPS (extracellular polymeric substances) increase viscosity
    - Biofilm fragments affect bulk fluid properties
    - Biopolymer production increases local viscosity
@@ -115,12 +110,10 @@ increases pressure drop, and raises energy consumption for fluid circulation.
 
 1. **Bird, R.B., et al.** (2007). "Transport Phenomena". John Wiley & Sons, New
    York.
-
    - Comprehensive treatment of viscosity and fluid properties
 
 2. **Morrison, F.A.** (2013). "An Introduction to Fluid Mechanics". Cambridge
    University Press, Cambridge.
-
    - Viscosity effects on fluid flow and mass transfer
 
 3. **Tchobanoglous, G., et al.** (2003). "Wastewater Engineering: Treatment and

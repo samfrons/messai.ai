@@ -23,20 +23,17 @@ Create a comprehensive About page that:
 ### 3.1 Page Sections
 
 1. **Hero Section**
-
    - Page title: "About MESSAI"
    - Brief tagline about democratizing electrochemical systems research
    - Smooth scroll indicator
 
 2. **Mission & Vision Section**
-
    - Display MESSAI's vision statement
    - Display MESSAI's mission statement
    - Core values (Innovation, Sustainability, Collaboration, Open Science)
    - Use alternating background (white)
 
 3. **Statistics Section**
-
    - Display key metrics in an engaging format:
      - 3,721+ Research Papers
      - 1,500+ MESS Parameters
@@ -45,7 +42,6 @@ Create a comprehensive About page that:
    - Use alternating background (gray-50)
 
 4. **Team Section**
-
    - Grid layout of team member cards
    - Each card includes:
      - Photo (stored in `/public/images/team/`)
@@ -56,7 +52,6 @@ Create a comprehensive About page that:
    - Use alternating background (white)
 
 5. **Timeline Section**
-
    - Vertical timeline showing MESSAI's journey
    - Key milestones with dates and descriptions
    - Interactive elements with hover effects
@@ -131,14 +126,12 @@ interface Milestone {
 ### 4.3 Component Requirements
 
 1. **Reuse existing UI components:**
-
    - Card from @messai/ui
    - Button from @messai/ui
    - Badge from @messai/ui
    - Layout wrapper
 
 2. **Follow existing patterns:**
-
    - Use `container-grid` and `grid-12` for layouts
    - Apply responsive column spans
    - Maintain consistent padding (py-24)
@@ -160,18 +153,15 @@ interface Milestone {
 ## 5. Implementation Hints
 
 1. **Animation Hook:**
-
    - Create a reusable `useScrollAnimation` hook
    - Based on existing IntersectionObserver pattern
 
 2. **Data Files:**
-
    - Store team data in `/about/data/team.ts`
    - Store milestone data in `/about/data/milestones.ts`
    - Export as TypeScript constants with proper typing
 
 3. **Image Guidelines:**
-
    - Team photos: 400x400px, optimized JPG/WebP
    - Consistent styling (circular or rounded square)
    - Fallback placeholder for missing images

@@ -178,8 +178,8 @@ async function main() {
         result.status === 'completed'
           ? colors.green + '✅ SUCCESS'
           : result.status === 'partial'
-          ? colors.yellow + '⚠️  PARTIAL'
-          : colors.red + '❌ FAILED'
+            ? colors.yellow + '⚠️  PARTIAL'
+            : colors.red + '❌ FAILED'
       }${colors.reset}`
     );
     console.log(`   Total Papers Added: ${colors.bright}${result.totalPapersAdded}${colors.reset}`);

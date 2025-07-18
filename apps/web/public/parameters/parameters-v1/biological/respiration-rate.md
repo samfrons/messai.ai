@@ -33,7 +33,6 @@ system health.
 ### Direct Measurement
 
 1. **Dissolved Oxygen Monitoring**:
-
    - Continuous DO electrode measurement
    - Track oxygen depletion rate in closed system
    - Calculate: (DO_initial - DO_final)/time
@@ -56,13 +55,11 @@ system health.
 ### Primary Factors
 
 1. **Substrate Type and Concentration**:
-
    - Easily degradable organics: High respiration rates
    - Complex substrates: Lower, variable rates
    - Substrate limitation reduces respiration linearly
 
 2. **Microbial Community Structure**:
-
    - Aerobic communities: Higher O₂ consumption
    - Facultative anaerobes: Variable rates
    - Strict anaerobes: No oxygen respiration
@@ -75,7 +72,6 @@ system health.
 ### Secondary Factors
 
 1. **pH**:
-
    - Optimal pH 6.5-7.5 for most microorganisms
    - pH stress increases maintenance respiration
    - Extreme pH severely reduces activity
@@ -105,13 +101,11 @@ system failure.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Comprehensive treatment of microbial respiration in electrochemical systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Respiration patterns in bioelectrochemical systems
 
 3. **Bond, D.R. & Lovley, D.R.** (2003). "Electricity production by Geobacter

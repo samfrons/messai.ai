@@ -32,7 +32,6 @@ production rates indicate more efficient hydrogen generation systems.
 ### Direct Measurement
 
 1. **Gas Chromatography**:
-
    - Collect gas samples from headspace
    - Analyze H₂ content by GC-TCD
    - Calculate production rate from volume and time
@@ -56,13 +55,11 @@ production rates indicate more efficient hydrogen generation systems.
 ### Primary Factors
 
 1. **Applied Voltage**:
-
    - Higher voltage: Increased production rate
    - Optimal voltage: 0.8-1.2 V typically
    - Overvoltage losses: Reduced efficiency
 
 2. **Cathode Material**:
-
    - Platinum: High activity (5-20 L/m²/d)
    - Nickel: Moderate activity (1-5 L/m²/d)
    - Carbon: Low activity (0.1-1 L/m²/d)
@@ -75,7 +72,6 @@ production rates indicate more efficient hydrogen generation systems.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Higher temperature: Faster kinetics
    - Q₁₀ = 2-3 for hydrogen evolution
    - Optimal range: 35-55°C
@@ -106,13 +102,11 @@ for hydrogen production applications.
 1. **Logan, B.E., et al.** (2008). "Electrochemically assisted microbial
    production of hydrogen from acetate". _Environmental Science & Technology_,
    42(10), 3618-3623.
-
    - Hydrogen production rates in microbial electrolysis cells
 
 2. **Call, D. & Logan, B.E.** (2008). "Hydrogen production in a single chamber
    microbial electrolysis cell lacking a membrane". _Environmental Science &
    Technology_, 42(9), 3401-3406.
-
    - System design effects on hydrogen production
 
 3. **Rozendal, R.A., et al.** (2006). "Hydrogen production with a microbial

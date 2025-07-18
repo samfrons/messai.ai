@@ -33,7 +33,6 @@ substrate utilization.
 ### Direct Measurement
 
 1. **Elemental Analysis**:
-
    - Total organic carbon (TOC) analysis
    - Total nitrogen (TN) analysis
    - Calculate ratio: C:N = TOC/TN
@@ -56,14 +55,12 @@ substrate utilization.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Carbohydrates: High C:N ratio (>30:1)
    - Proteins: Low C:N ratio (3:1 - 6:1)
    - Mixed organic waste: Variable ratios (10:1 - 25:1)
    - Synthetic media: Controlled ratios
 
 2. **Substrate Composition**:
-
    - Cellulose content: Increases C:N ratio
    - Protein content: Decreases C:N ratio
    - Lipid content: Increases C:N ratio
@@ -77,7 +74,6 @@ substrate utilization.
 ### Secondary Factors
 
 1. **Analytical Methods**:
-
    - Different methods give different results
    - Bioavailable vs total content
    - Sample preparation effects
@@ -108,14 +104,12 @@ efficiency. Too high ratios (>30:1) lead to nitrogen limitation; too low ratios
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Substrate composition effects on performance
 
 2. **Pham, T.H., et al.** (2006). "A novel electrochemically active and
    Fe(III)-reducing bacterium phylogenetically related to Aeromonas hydrophila,
    isolated from a microbial fuel cell". _FEMS Microbiology Letters_, 223(1),
    129-136.
-
    - Nutrient requirements for electroactive bacteria
 
 3. **Cheng, S., et al.** (2006). "Increased performance of single-chamber

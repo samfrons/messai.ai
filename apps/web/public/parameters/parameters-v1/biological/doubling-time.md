@@ -33,7 +33,6 @@ rapid system establishment.
 ### Direct Measurement
 
 1. **Optical Density (OD) Monitoring**:
-
    - Measure absorbance at 600 nm over time
    - Plot log(OD) vs time during exponential phase
    - Calculate doubling time: td = ln(2)/μ
@@ -56,13 +55,11 @@ rapid system establishment.
 ### Primary Factors
 
 1. **Substrate Concentration**:
-
    - Saturating conditions: Minimum doubling time
    - Limiting conditions: 2-5x longer doubling time
    - Substrate type affects growth rate
 
 2. **Temperature**:
-
    - Mesophiles: Optimal 30-37°C (6-12h doubling)
    - Psychrophiles: Optimal 10-20°C (24-72h doubling)
    - Q₁₀ = 2-3 for doubling time
@@ -75,7 +72,6 @@ rapid system establishment.
 ### Secondary Factors
 
 1. **Dissolved Oxygen**:
-
    - Aerobic growth: Faster doubling (4-8h)
    - Anaerobic growth: Slower doubling (12-24h)
    - Microaerobic: Intermediate rates
@@ -104,13 +100,11 @@ weeks, while those >24 hours may require 4-8 weeks. Fast-growing communities (td
 1. **Liu, H., et al.** (2004). "Production of electricity during wastewater
    treatment using a single chamber microbial fuel cell". _Environmental Science
    & Technology_, 38(7), 2281-2285.
-
    - Characterized microbial growth patterns in MFCs
 
 2. **Bond, D.R. & Lovley, D.R.** (2003). "Electricity production by Geobacter
    sulfurreducens attached to electrodes". _Applied and Environmental
    Microbiology_, 69(3), 1548-1555.
-
    - Growth kinetics of electroactive bacteria
 
 3. **Rabaey, K., et al.** (2003). "A microbial fuel cell capable of converting

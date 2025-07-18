@@ -33,7 +33,6 @@ continuous compliance.
 ### Direct Measurement
 
 1. **Audit Records**:
-
    - Count completed audits per reporting period
    - Track audit types and scope
    - Document findings and corrective actions
@@ -57,14 +56,12 @@ continuous compliance.
 ### Primary Factors
 
 1. **Regulatory Requirements**:
-
    - Local environmental regulations
    - Safety standards (OSHA, etc.)
    - Electrical safety codes
    - Waste management regulations
 
 2. **System Scale and Complexity**:
-
    - Laboratory systems: 1-2 audits/year
    - Pilot systems: 2-4 audits/year
    - Commercial systems: 4-12 audits/year
@@ -79,7 +76,6 @@ continuous compliance.
 ### Secondary Factors
 
 1. **Organizational Policies**:
-
    - Corporate compliance standards
    - Industry best practices
    - Insurance requirements
@@ -113,12 +109,10 @@ year) may indicate systemic problems or inefficient processes.
 
 1. **EPA** (2020). "Environmental Management Systems and Compliance Assurance".
    U.S. Environmental Protection Agency, Washington, DC.
-
    - Compliance audit best practices
 
 2. **OSHA** (2019). "Process Safety Management Guidelines". Occupational Safety
    and Health Administration, Washington, DC.
-
    - Safety audit requirements and procedures
 
 3. **ISO 19011** (2018). "Guidelines for auditing management systems".

@@ -169,13 +169,11 @@ model CustomMaterial {
 ### Component Updates
 
 1. **MFCConfigPanel.tsx**:
-
    - Add custom material UI components
    - Integrate MESS parameters
    - Show compatibility warnings
 
 2. **ParameterForm.tsx**:
-
    - Add preset management toolbar
    - Pass material config to MESSModel3D
    - Update prediction calculations
@@ -275,7 +273,6 @@ const presetSchema = z.object({
 ## Acceptance Criteria
 
 1. **Custom Materials**:
-
    - [ ] Users can create custom electrode materials with name, cost, and
          efficiency
    - [ ] Custom materials appear in dropdown with "(Custom)" suffix
@@ -283,28 +280,24 @@ const presetSchema = z.object({
    - [ ] Custom materials persist across sessions
 
 2. **Preset Management**:
-
    - [ ] Users can save current configuration as named preset
    - [ ] Saved presets appear in dropdown for quick loading
    - [ ] Public presets visible in community library
    - [ ] Preset usage tracked and displayed
 
 3. **3D Visualization**:
-
    - [ ] Different materials show distinct visual appearance
    - [ ] Biofilm visualization reflects microbial configuration
    - [ ] Materials update within 100ms of configuration change
    - [ ] No performance degradation with material switching
 
 4. **AI Predictions**:
-
    - [ ] Power predictions incorporate material efficiency
    - [ ] Custom materials produce reasonable predictions
    - [ ] Confidence indicators show for custom vs known materials
    - [ ] Predictions update in real-time
 
 5. **Compatibility**:
-
    - [ ] Warnings appear for incompatible combinations
    - [ ] Warnings are educational, not blocking
    - [ ] Warning dismissal is remembered per session

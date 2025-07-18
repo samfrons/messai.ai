@@ -33,7 +33,6 @@ performance.
 ### Direct Measurement
 
 1. **Conductivity Measurement**:
-
    - Measure solution conductivity
    - Use empirical correlations: I ≈ 1.6 × 10⁻⁵ × κ
    - κ = conductivity in μS/cm, I in M
@@ -56,13 +55,11 @@ performance.
 ### Primary Factors
 
 1. **Electrolyte Composition**:
-
    - Salt concentration: Direct effect on ionic strength
    - Multivalent ions: Greater contribution (z² effect)
    - Buffer systems: Additional ionic contribution
 
 2. **pH Control**:
-
    - Acid/base additions: Increase ionic strength
    - Buffer capacity: Higher ionic strength needed
    - pH adjustment chemicals contribute
@@ -75,7 +72,6 @@ performance.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Affects ion dissociation
    - Solubility changes with temperature
    - Thermal expansion effects
@@ -106,12 +102,10 @@ microorganisms.
 
 1. **Robinson, R.A. & Stokes, R.H.** (2002). "Electrolyte Solutions". Dover
    Publications, New York.
-
    - Fundamental treatment of ionic strength and activity coefficients
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Ionic strength effects in bioelectrochemical systems
 
 3. **Torres, C.I., et al.** (2008). "Kinetic experiments for evaluating the

@@ -32,7 +32,6 @@ metabolism, electrode reactions, and overall system performance.
 ### Direct Measurement
 
 1. **ORP Electrode**:
-
    - Platinum electrode vs reference (Ag/AgCl)
    - Direct potential measurement
    - Convert to SHE scale: E(SHE) = E(Ag/AgCl) + 197 mV
@@ -55,13 +54,11 @@ metabolism, electrode reactions, and overall system performance.
 ### Primary Factors
 
 1. **Dissolved Oxygen**:
-
    - High O₂: Positive redox potential (+200 to +400 mV)
    - Low O₂: Negative redox potential (-200 to 0 mV)
    - Anaerobic: Highly negative (-300 to -500 mV)
 
 2. **Microbial Activity**:
-
    - Aerobic respiration: Increases redox potential
    - Anaerobic respiration: Decreases redox potential
    - Fermentation: Highly reducing conditions
@@ -74,7 +71,6 @@ metabolism, electrode reactions, and overall system performance.
 ### Secondary Factors
 
 1. **pH**:
-
    - Affects redox potential of many couples
    - pH increase: Generally decreases redox potential
    - Follow Nernst equation: E = E° - (RT/nF)ln([Red]/[Ox])
@@ -105,12 +101,10 @@ and anaerobic processes, maximizing metabolic flexibility and power output.
 
 1. **Stumm, W. & Morgan, J.J.** (1996). "Aquatic Chemistry: Chemical Equilibria
    and Rates in Natural Waters". John Wiley & Sons, New York.
-
    - Comprehensive treatment of redox chemistry
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Redox considerations in bioelectrochemical systems
 
 3. **Lovley, D.R.** (2006). "Bug juice: harvesting electricity with

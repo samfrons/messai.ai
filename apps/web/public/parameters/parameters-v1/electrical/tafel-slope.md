@@ -33,7 +33,6 @@ conditions.
 ### Direct Measurement
 
 1. **Linear Sweep Voltammetry**:
-
    - Slow scan rate (1-5 mV/s) for steady-state conditions
    - Plot overpotential vs log(current density)
    - Calculate slope from linear region
@@ -56,13 +55,11 @@ conditions.
 ### Primary Factors
 
 1. **Electron Transfer Mechanism**:
-
    - Single electron transfer: ~60 mV/decade at 25°C
    - Multi-electron transfer: ~30-40 mV/decade
    - Complex mechanisms: Variable slopes
 
 2. **Temperature**:
-
    - Theoretical: b = 2.3RT/(αnF)
    - Room temperature (25°C): ~59 mV for α = 0.5, n = 1
    - Higher temperature: Larger Tafel slope
@@ -75,7 +72,6 @@ conditions.
 ### Secondary Factors
 
 1. **Electrode Surface**:
-
    - Smooth surfaces: Well-defined slopes
    - Rough surfaces: Distribution of kinetic parameters
    - Surface modification affects apparent slope
@@ -107,12 +103,10 @@ densities and better efficiency.
 1. **Tafel, J.** (1905). "Über die Polarisation bei kathodischer
    Wasserstoffentwicklung". _Zeitschrift für Physikalische Chemie_, 50(1),
    641-712.
-
    - Original description of Tafel relationship
 
 2. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Modern treatment of Tafel kinetics
 
 3. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular

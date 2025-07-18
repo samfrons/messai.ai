@@ -32,7 +32,6 @@ electron transport properties and improved electrochemical performance.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Apply small AC perturbation across biofilm
    - Measure impedance vs frequency
    - Extract biofilm resistance from equivalent circuit
@@ -55,13 +54,11 @@ electron transport properties and improved electrochemical performance.
 ### Primary Factors
 
 1. **Biofilm Conductivity**:
-
    - Conductive biofilms: Lower resistance
    - Insulating biofilms: Higher resistance
    - Protein content affects conductivity
 
 2. **Biofilm Thickness**:
-
    - Thicker biofilms: Higher resistance
    - Optimal thickness: Balance conductivity vs diffusion
    - Resistance proportional to thickness
@@ -74,7 +71,6 @@ electron transport properties and improved electrochemical performance.
 ### Secondary Factors
 
 1. **EPS Composition**:
-
    - Conductive EPS: Lower resistance
    - Insulating EPS: Higher resistance
    - Protein vs polysaccharide ratio affects conductivity
@@ -105,12 +101,10 @@ output.
 
 1. **Malvankar, N.S., et al.** (2011). "Tunable metallic-like conductivity in
    microbial nanowire networks". _Nature Nanotechnology_, 6(9), 573-579.
-
    - Conductive properties of electroactive biofilms
 
 2. **Yates, M.D., et al.** (2016). "Measuring conductivity of living Geobacter
    sulfurreducens biofilms". _Nature Nanotechnology_, 11(11), 910-913.
-
    - Direct measurement of biofilm conductivity
 
 3. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular

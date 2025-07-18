@@ -32,14 +32,12 @@ buffering capacity provides better pH stability and system resilience.
 ### Direct Measurement
 
 1. **Acid-Base Titration**:
-
    - Add known amounts of acid or base
    - Monitor pH changes during titration
    - Calculate buffering capacity from titration curve
    - Standard method for buffering capacity
 
 2. **Van Slyke Method**:
-
    - Add excess acid or base
    - Measure pH change after equilibration
    - Calculate buffering index
@@ -63,14 +61,12 @@ buffering capacity provides better pH stability and system resilience.
 ### Primary Factors
 
 1. **Buffer System Composition**:
-
    - Concentration of buffering species affects capacity
    - pKa values determine effective pH range
    - Multiple buffer systems provide broader range
    - Weak acid/base pairs most effective
 
 2. **Total Alkalinity**:
-
    - Bicarbonate/carbonate system provides buffering
    - Phosphate system contributes to buffering
    - Organic acids may provide additional buffering
@@ -85,7 +81,6 @@ buffering capacity provides better pH stability and system resilience.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Affects dissociation constants (pKa)
    - Influences buffer effectiveness
    - Changes water dissociation constant
@@ -116,12 +111,10 @@ microorganisms and reduce system efficiency.
 
 1. **Stumm, W. & Morgan, J.J.** (1996). "Aquatic Chemistry: Chemical Equilibria
    and Rates in Natural Waters". John Wiley & Sons, New York.
-
    - Buffer systems and pH control in aquatic environments
 
 2. **Snoeyink, V.L. & Jenkins, D.** (1980). "Water Chemistry". John Wiley &
    Sons, New York.
-
    - Fundamentals of buffer chemistry and calculations
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

@@ -33,7 +33,6 @@ operation and long-term stability.
 ### Direct Measurement
 
 1. **Thermocouple Sensors**:
-
    - High accuracy (±0.1°C)
    - Wide temperature range
    - Fast response time
@@ -56,14 +55,12 @@ operation and long-term stability.
 ### Primary Factors
 
 1. **Seasonal Variations**:
-
    - Summer: Higher ambient temperatures
    - Winter: Lower ambient temperatures
    - Spring/Fall: Moderate, variable temperatures
    - Geographic location effects
 
 2. **Daily Cycles**:
-
    - Peak temperatures: Afternoon (2-4 PM)
    - Minimum temperatures: Early morning (4-6 AM)
    - Thermal lag in building structures
@@ -76,7 +73,6 @@ operation and long-term stability.
 ### Secondary Factors
 
 1. **Heat Sources**:
-
    - Equipment heat generation
    - Solar radiation effects
    - Proximity to other heat sources
@@ -107,13 +103,11 @@ heating/cooling costs.
 1. **ASHRAE Standard 55** (2020). "Thermal Environmental Conditions for Human
    Occupancy". American Society of Heating, Refrigerating and Air-Conditioning
    Engineers.
-
    - Environmental temperature standards and measurement
 
 2. **Liu, H. & Logan, B.E.** (2004). "Electricity generation using an
    air-cathode single chamber microbial fuel cell". _Environmental Science &
    Technology_, 38(14), 4040-4046.
-
    - Temperature effects on MFC performance
 
 3. **Pham, T.H., et al.** (2006). "A novel electrochemically active and

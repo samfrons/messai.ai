@@ -33,7 +33,6 @@ and system optimization.
 ### Direct Measurement
 
 1. **Power vs Theoretical Calculation**:
-
    - Measure actual power output: P = V × I
    - Calculate theoretical power from substrate: Ptheo = ΔG × ṅsubstrate
    - Power efficiency = (P/Ptheo) × 100%
@@ -56,13 +55,11 @@ and system optimization.
 ### Primary Factors
 
 1. **System Design**:
-
    - Single chamber: 5-15% efficiency
    - Dual chamber: 10-25% efficiency
    - Optimized systems: 20-40% efficiency
 
 2. **Operating Conditions**:
-
    - Optimal load: Maximum efficiency
    - Light load: Reduced efficiency
    - Overload: Decreased efficiency due to losses
@@ -75,7 +72,6 @@ and system optimization.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Optimal temperature: Maximum efficiency
    - Higher temperature: Better kinetics but lower thermodynamic efficiency
    - Cold conditions: Reduced kinetics and efficiency
@@ -106,13 +102,11 @@ treatment applications.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Comprehensive treatment of energy efficiency in MFCs
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Energy conversion efficiency in bioelectrochemical systems
 
 3. **Pant, D., et al.** (2010). "A review of the substrates used in microbial

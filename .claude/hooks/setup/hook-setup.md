@@ -1,6 +1,8 @@
 ## Description
 
-This command uses specialized agents to verify, configure, and test your Claude Code hooks installation. It ensures everything is properly set up and working correctly.
+This command uses specialized agents to verify, configure, and test your Claude
+Code hooks installation. It ensures everything is properly set up and working
+correctly.
 
 ## Process
 
@@ -90,6 +92,7 @@ All hooks configured and tested successfully!
 ## Troubleshooting
 
 The command provides specific guidance for any issues found:
+
 - Missing files or permissions
 - Configuration problems
 - Test failures with debugging steps

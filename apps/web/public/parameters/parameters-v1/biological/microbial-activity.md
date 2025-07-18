@@ -33,14 +33,12 @@ generation, substrate utilization, and overall system performance.
 ### Direct Measurement
 
 1. **Respirometry**:
-
    - Measure oxygen consumption rate
    - Use dissolved oxygen probes
    - Calculate specific respiration rate
    - Indicates overall metabolic activity
 
 2. **ATP Analysis**:
-
    - Extract and quantify ATP from biomass
    - Use luciferase bioluminescence assay
    - Indicates viable biomass fraction
@@ -64,14 +62,12 @@ generation, substrate utilization, and overall system performance.
 ### Primary Factors
 
 1. **Environmental Conditions**:
-
    - Optimal temperature: Higher activity
    - Proper pH range: Maximum enzyme activity
    - Adequate nutrients: Support metabolism
    - Absence of toxins: Prevent inhibition
 
 2. **Substrate Availability**:
-
    - Sufficient substrate: High activity
    - Limiting conditions: Reduced activity
    - Substrate type affects activity level
@@ -86,7 +82,6 @@ generation, substrate utilization, and overall system performance.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Mass transfer affects substrate access
    - Mixing influences nutrient distribution
    - Electrode potential affects activity
@@ -118,12 +113,10 @@ performance, and potential system problems requiring intervention.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater". 23rd Edition, American Public Health Association,
    Washington, DC.
-
    - Standard methods for microbial activity measurement
 
 2. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:
    Principles and Applications". McGraw-Hill, New York.
-
    - Microbial activity in environmental systems
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

@@ -170,24 +170,20 @@ CREATE TABLE UserNotification (
 #### 2.1 Critical Files Requiring Changes
 
 1. **`/app/layout.tsx`**
-
    - Replace hardcoded user section with UserMenu component
    - Import and integrate session-aware navigation
 
 2. **`/components/UserMenu.tsx`**
-
    - Remove all LCARS classes (`bg-lcars-*`, `rounded-lcars`, etc.)
    - Implement with standard Tailwind classes
    - Maintain existing functionality and structure
 
 3. **Authentication Pages** (`/app/auth/*`)
-
    - Remove LCARS theming from all auth pages
    - Implement clean, modern design with standard Tailwind
    - Ensure forms remain accessible and functional
 
 4. **Settings Pages** (`/app/settings/*`)
-
    - Convert from LCARS to standard styling
    - Maintain existing functionality
    - Ensure responsive design

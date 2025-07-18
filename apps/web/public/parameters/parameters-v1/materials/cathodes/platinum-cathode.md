@@ -35,14 +35,12 @@ Based on parameter-ranges.json validation data:
 ### Supported Platinum Catalysts:
 
 1. **Impregnation Method**:
-
    - Dissolve H₂PtCl₆ in water or ethanol
    - Impregnate carbon support (Vulcan XC-72)
    - Reduce with H₂ at 300-400°C
    - Typical loading: 20-40 wt% Pt
 
 2. **Polyol Reduction**:
-
    - Ethylene glycol as reducing agent
    - Controlled particle size synthesis
    - Uniform dispersion on support
@@ -57,7 +55,6 @@ Based on parameter-ranges.json validation data:
 ### Electrode Fabrication:
 
 1. **Catalyst ink preparation**:
-
    - Mix Pt/C catalyst with Nafion binder
    - Disperse in water/alcohol mixture
    - Sonicate to ensure uniform dispersion

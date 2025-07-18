@@ -33,7 +33,6 @@ removal of metabolic products.
 ### Direct Measurement
 
 1. **Confocal Laser Scanning Microscopy (CLSM)**:
-
    - Stain with fluorescent dextrans of different sizes
    - Track penetration depth and distribution
    - Calculate void fraction from 3D reconstructions
@@ -56,13 +55,11 @@ removal of metabolic products.
 ### Primary Factors
 
 1. **EPS Composition**:
-
    - Polysaccharide-rich: Higher porosity (80-90%)
    - Protein-rich: Lower porosity (60-75%)
    - Mixed EPS: Intermediate (70-85%)
 
 2. **Hydrodynamic Shear**:
-
    - Low shear: Fluffy structure (85-95% porosity)
    - Moderate shear: Optimal structure (75-85%)
    - High shear: Compact structure (50-70%)
@@ -75,7 +72,6 @@ removal of metabolic products.
 ### Secondary Factors
 
 1. **Nutrient Availability**:
-
    - Nutrient-rich: Lower porosity due to growth
    - Nutrient-limited: Higher porosity, less EPS
 
@@ -102,12 +98,10 @@ electron transfer networks, reducing power density by up to 40%.
 
 1. **De Beer, D., et al.** (1994). "Liquid flow in heterogeneous biofilms".
    _Biotechnology and Bioengineering_, 44(5), 636-641.
-
    - Pioneering work on biofilm porosity measurement
 
 2. **Zhang, T.C. & Bishop, P.L.** (1994). "Density, porosity, and pore structure
    of biofilms". _Water Research_, 28(11), 2267-2277.
-
    - Comprehensive analysis of biofilm structural properties
 
 3. **Renslow, R.S., et al.** (2010). "In situ effective diffusion coefficient

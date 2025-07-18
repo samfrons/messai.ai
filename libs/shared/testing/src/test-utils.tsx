@@ -63,7 +63,7 @@ export const createMockNextRouter = (overrides: Partial<NextRouter> = {}): NextR
   ({
     ...mockRouter,
     ...overrides,
-  } as NextRouter);
+  }) as NextRouter;
 
 export const waitForLoadingToFinish = () => new Promise((resolve) => setTimeout(resolve, 0));
 

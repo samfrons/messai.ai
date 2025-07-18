@@ -33,14 +33,12 @@ with stable long-term operation.
 ### Direct Measurement
 
 1. **Optical Density Monitoring**:
-
    - Measure absorbance at 600 nm (OD₆₀₀)
    - Track changes in cell density over time
    - Calculate specific growth rate from exponential phase
    - Simple and rapid method
 
 2. **Cell Counting**:
-
    - Direct microscopic enumeration
    - Flow cytometry for automated counting
    - Plate counting for viable cells
@@ -64,14 +62,12 @@ with stable long-term operation.
 ### Primary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature: Higher temperatures increase rate up to optimum
    - pH: Optimal range varies by species (usually 6.5-8.0)
    - Dissolved oxygen: Affects aerobic vs anaerobic growth
    - Salinity: Osmotic stress affects growth rate
 
 2. **Substrate Availability**:
-
    - Concentration affects growth rate (Monod kinetics)
    - Type of substrate influences growth efficiency
    - C:N:P ratio affects balanced growth
@@ -86,7 +82,6 @@ with stable long-term operation.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Electrode potential affects electroactive organisms
    - Flow conditions influence nutrient delivery
    - Biofilm architecture affects local conditions
@@ -119,12 +114,10 @@ performance.
 
 1. **Monod, J.** (1949). "The growth of bacterial cultures". _Annual Review of
    Microbiology_, 3(1), 371-394.
-
    - Fundamental growth kinetics theory
 
 2. **Pirt, S.J.** (1975). "Principles of Microbe and Cell Cultivation".
    Blackwell Scientific Publications, Oxford.
-
    - Comprehensive treatment of microbial growth
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

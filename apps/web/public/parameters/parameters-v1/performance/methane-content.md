@@ -32,14 +32,12 @@ indicates better biogas quality and energy recovery efficiency.
 ### Direct Measurement
 
 1. **Gas Chromatography (GC)**:
-
    - Thermal conductivity detector (TCD)
    - Flame ionization detector (FID) for hydrocarbons
    - High accuracy and precision
    - Can measure all biogas components
 
 2. **Infrared Gas Analyzer**:
-
    - Non-dispersive infrared (NDIR) technology
    - Real-time continuous monitoring
    - Specific for CH₄ and CO₂
@@ -63,14 +61,12 @@ indicates better biogas quality and energy recovery efficiency.
 ### Primary Factors
 
 1. **Substrate Composition**:
-
    - Carbohydrates: ~50% CH₄, 50% CO₂
    - Proteins: Higher CO₂ due to amino acid decarboxylation
    - Lipids: Higher CH₄ content (~70% CH₄)
    - C:N ratio affects CH₄/CO₂ ratio
 
 2. **Operating Conditions**:
-
    - pH: Optimal 6.8-7.2 for methanogenesis
    - Temperature: Affects metabolic pathways
    - Hydraulic retention time: Longer HRT improves CH₄ content
@@ -85,7 +81,6 @@ indicates better biogas quality and energy recovery efficiency.
 ### Secondary Factors
 
 1. **Process Disturbances**:
-
    - pH fluctuations affect methanogen activity
    - Temperature variations influence metabolism
    - Toxic compounds inhibit methanogens
@@ -119,12 +114,10 @@ system economics.
 1. **Angelidaki, I., et al.** (2009). "Defining the biomethane potential (BMP)
    of solid organic wastes and energy crops". _Water Science & Technology_,
    59(5), 927-934.
-
    - Biogas composition measurement standards
 
 2. **Weiland, P.** (2010). "Biogas production: current state and perspectives".
    _Applied Microbiology and Biotechnology_, 85(4), 849-860.
-
    - Factors affecting biogas composition
 
 3. **Rozendal, R.A., et al.** (2008). "Hydrogen production with a microbial

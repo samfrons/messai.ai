@@ -122,8 +122,8 @@ export class ResearchOrchestrator {
           workflowExecution.failedSteps.size === 0
             ? 'completed'
             : workflowExecution.completedSteps.size > 0
-            ? 'partial'
-            : 'failed',
+              ? 'partial'
+              : 'failed',
         results,
         metadata: {
           startTime: workflowExecution.startTime,

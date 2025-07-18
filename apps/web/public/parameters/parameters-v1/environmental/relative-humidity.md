@@ -33,7 +33,6 @@ and longevity.
 ### Direct Measurement
 
 1. **Capacitive Humidity Sensors**:
-
    - Electronic sensors with polymer films
    - High accuracy (±2% RH)
    - Temperature compensation
@@ -56,13 +55,11 @@ and longevity.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Inversely related to RH at constant moisture
    - Diurnal temperature cycles affect RH
    - Heating reduces RH, cooling increases RH
 
 2. **Air Movement**:
-
    - Ventilation affects humidity levels
    - Stagnant air: Higher local humidity
    - Air exchange with outside environment
@@ -75,7 +72,6 @@ and longevity.
 ### Secondary Factors
 
 1. **Seasonal Variations**:
-
    - Summer: Generally higher humidity
    - Winter: Lower humidity with heating
    - Regional climate patterns
@@ -104,13 +100,11 @@ maintains material integrity and prevents condensation issues.
 
 1. **ASHRAE Handbook - Fundamentals** (2021). "Psychrometrics". American Society
    of Heating, Refrigerating and Air-Conditioning Engineers.
-
    - Comprehensive treatment of humidity measurement and control
 
 2. **Greenspan, L.** (1977). "Humidity fixed points of binary saturated aqueous
    solutions". _Journal of Research of the National Bureau of Standards_,
    81A(1), 89-96.
-
    - Standard reference for humidity calibration
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

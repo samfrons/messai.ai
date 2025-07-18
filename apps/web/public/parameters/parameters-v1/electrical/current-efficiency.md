@@ -32,7 +32,6 @@ efficiency maximizes productive current utilization.
 ### Direct Measurement
 
 1. **Product Analysis**:
-
    - Measure actual product formation
    - Calculate theoretical product from current
    - Efficiency = (Actual product / Theoretical product) × 100%
@@ -56,14 +55,12 @@ efficiency maximizes productive current utilization.
 ### Primary Factors
 
 1. **Electrode Selectivity**:
-
    - Catalyst specificity for target reactions
    - Surface properties affecting reaction pathways
    - Electrode material influences selectivity
    - Operating potential affects reaction selectivity
 
 2. **Competing Reactions**:
-
    - Oxygen evolution at anode (in aerobic systems)
    - Hydrogen evolution at cathode
    - Methanogenesis competing with electricity generation
@@ -78,7 +75,6 @@ efficiency maximizes productive current utilization.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Electrode spacing affects current distribution
    - Flow patterns influence mass transport
    - Separator properties in dual-chamber systems
@@ -110,13 +106,11 @@ utilization of electrical energy and reduced losses to unproductive reactions.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Current efficiency considerations in bioelectrochemical systems
 
 2. **Rabaey, K., et al.** (2003). "A microbial fuel cell capable of converting
    glucose to electricity at high rate and efficiency". _Biotechnology Letters_,
    25(18), 1531-1535.
-
    - Current efficiency optimization
 
 3. **Rozendal, R.A., et al.** (2006). "Principle and perspectives of hydrogen

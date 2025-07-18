@@ -33,7 +33,6 @@ design.
 ### Direct Measurement
 
 1. **Flow Velocity Measurement**:
-
    - Use flow meters or PIV (Particle Image Velocimetry)
    - Measure characteristic velocity
    - Determine characteristic length
@@ -58,14 +57,12 @@ design.
 ### Primary Factors
 
 1. **Flow Velocity**:
-
    - Higher velocity increases Reynolds number
    - Pump speed affects flow velocity
    - Recirculation affects effective velocity
    - Flow distribution affects local values
 
 2. **System Geometry**:
-
    - Characteristic length affects Reynolds number
    - Channel width or diameter important
    - Complex geometries need equivalent diameter
@@ -80,7 +77,6 @@ design.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Higher temperature reduces viscosity
    - Affects fluid density
    - Changes Reynolds number significantly
@@ -112,12 +108,10 @@ good mixing while maintaining reasonable pressure drop. High Reynolds numbers
 ## References
 
 1. **White, F.M.** (2011). "Fluid Mechanics". McGraw-Hill, New York.
-
    - Fundamental fluid mechanics and Reynolds number
 
 2. **Bird, R.B., et al.** (2007). "Transport Phenomena". John Wiley & Sons, New
    York.
-
    - Transport phenomena and dimensionless groups
 
 3. **Picioreanu, C., et al.** (2007). "Mathematical modeling of flow and

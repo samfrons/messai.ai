@@ -33,7 +33,6 @@ dimensional accuracy.
 ### Direct Measurement
 
 1. **Thermocouple Sensors**:
-
    - Direct temperature measurement at nozzle
    - High accuracy (±1°C)
    - Fast response time
@@ -56,14 +55,12 @@ dimensional accuracy.
 ### Primary Factors
 
 1. **Material Type**:
-
    - PLA: 180-220°C
    - ABS: 220-260°C
    - PETG: 220-250°C
    - Conductive filaments: 200-280°C
 
 2. **Print Speed**:
-
    - Faster speeds: Higher temperature needed
    - Slower speeds: Lower temperature sufficient
    - Residence time effects on heating
@@ -76,7 +73,6 @@ dimensional accuracy.
 ### Secondary Factors
 
 1. **Ambient Temperature**:
-
    - Cold environment: Higher nozzle temperature needed
    - Heated chamber: Lower nozzle temperature possible
    - Thermal losses to environment
@@ -106,13 +102,11 @@ high causes degradation and stringing.
 1. **Turner, B.N., et al.** (2014). "A review of melt extrusion additive
    manufacturing processes: I. Process design and modeling". _Rapid Prototyping
    Journal_, 20(3), 192-204.
-
    - Temperature effects in melt extrusion processes
 
 2. **Bellini, A. & Güçeri, S.** (2003). "Mechanical characterization of parts
    fabricated using fused deposition modeling". _Rapid Prototyping Journal_,
    9(4), 252-264.
-
    - Temperature effects on mechanical properties
 
 3. **Li, L., et al.** (2002). "Composite modeling and analysis for fabrication

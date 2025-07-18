@@ -32,14 +32,12 @@ generally enables greater current generation and enhanced biofilm development.
 ### Direct Measurement
 
 1. **BET (Brunauer-Emmett-Teller) Method**:
-
    - Nitrogen adsorption at 77K
    - Standard method for surface area measurement
    - Provides accurate total surface area
    - Good for porous materials
 
 2. **Mercury Intrusion Porosimetry**:
-
    - High-pressure mercury intrusion
    - Provides pore size distribution
    - Can calculate surface area from pore geometry
@@ -63,14 +61,12 @@ generally enables greater current generation and enhanced biofilm development.
 ### Primary Factors
 
 1. **Material Type**:
-
    - Activated carbon: 500-3000 m²/g
    - Carbon cloth: 1-10 m²/g
    - Carbon felt: 100-1000 m²/g
    - Graphite: 1-50 m²/g
 
 2. **Material Processing**:
-
    - Activation increases surface area dramatically
    - Compression reduces surface area
    - Heat treatment affects pore structure
@@ -85,7 +81,6 @@ generally enables greater current generation and enhanced biofilm development.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Biofilm formation can block pores
    - Chemical degradation affects structure
    - Physical wear reduces surface area
@@ -119,13 +114,11 @@ limited accessibility for large molecules or cells. Optimal surface area
 
 1. **Brunauer, S., et al.** (1938). "Adsorption of gases in multimolecular
    layers". _Journal of the American Chemical Society_, 60(2), 309-319.
-
    - Original BET theory
 
 2. **Wei, J., et al.** (2011). "A new graphite felt cathode with Fe2O3/Fe3O4
    catalyst coating for microbial fuel cells". _Electrochimica Acta_, 56(3),
    1336-1341.
-
    - Surface area characterization of electrode materials
 
 3. **Zhang, F., et al.** (2010). "Activated carbon cathodes with excellent

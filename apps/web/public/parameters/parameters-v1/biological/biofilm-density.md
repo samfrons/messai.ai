@@ -33,7 +33,6 @@ more mature, established biofilm with extensive EPS production.
 ### Direct Measurement
 
 1. **Dry Weight Method**:
-
    - Carefully scrape biofilm from known area
    - Dry at 105°C for 24 hours
    - Weigh dried biomass
@@ -56,14 +55,12 @@ more mature, established biofilm with extensive EPS production.
 ### Primary Factors
 
 1. **Microbial Growth Phase**:
-
    - Exponential phase: 10-30 g/L
    - Stationary phase: 30-60 g/L
    - Mature biofilm: 60-100 g/L
    - Density increases with biofilm age
 
 2. **EPS Production**:
-
    - High EPS producers: 60-120 g/L
    - Low EPS producers: 20-50 g/L
    - EPS comprises 50-90% of biofilm dry mass
@@ -76,7 +73,6 @@ more mature, established biofilm with extensive EPS production.
 ### Secondary Factors
 
 1. **Hydrodynamic Conditions**:
-
    - Static conditions: Lower density (30-50 g/L)
    - Moderate flow: Optimal density (40-80 g/L)
    - High shear: Compact biofilm (60-100 g/L)
@@ -105,13 +101,11 @@ coulombic efficiency by 20-40%.
 
 1. **Picioreanu, C., et al.** (2007). "A computational model for biofilm-based
    microbial fuel cells". _Water Research_, 41(13), 2921-2940.
-
    - Modeled impact of biofilm density on MFC performance
 
 2. **Renslow, R.S., et al.** (2013). "Oxygen reduction kinetics on graphite
    cathodes in microbial fuel cells". _Physical Chemistry Chemical Physics_,
    15(44), 19262-19283.
-
    - Characterized density effects on mass transfer
 
 3. **Franks, A.E., et al.** (2009). "Microtoming coupled to microarray analysis

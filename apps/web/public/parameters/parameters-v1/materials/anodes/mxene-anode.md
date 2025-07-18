@@ -36,14 +36,12 @@ Based on parameter-ranges.json validation data:
 ### Synthesis from MAX Phase:
 
 1. **Etching Process**:
-
    - Mix Ti₃AlC₂ MAX phase with HF (48-49%)
    - Reaction time: 18-24 hours at room temperature
    - Wash with DI water until pH > 6
    - Produces multilayer Ti₃C₂Tₓ
 
 2. **Delamination**:
-
    - Sonicate in water or organic solvents
    - DMSO intercalation method
    - Produces single-layer MXene flakes

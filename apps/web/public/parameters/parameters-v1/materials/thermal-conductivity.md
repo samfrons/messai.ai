@@ -33,14 +33,12 @@ operating temperatures.
 ### Direct Measurement
 
 1. **Transient Hot Wire Method**:
-
    - Insert heated wire into material
    - Measure temperature rise vs time
    - Calculate conductivity from thermal response
    - Suitable for homogeneous materials
 
 2. **Steady-State Methods**:
-
    - Apply constant heat flux across sample
    - Measure temperature gradient
    - Calculate conductivity from Fourier's law
@@ -64,14 +62,12 @@ operating temperatures.
 ### Primary Factors
 
 1. **Material Type**:
-
    - Metals: High conductivity (20-400 W/m·K)
    - Carbon materials: Variable (1-2000 W/m·K)
    - Polymers: Low conductivity (0.1-1 W/m·K)
    - Ceramics: Moderate conductivity (1-50 W/m·K)
 
 2. **Temperature**:
-
    - Metals: Decreasing with temperature
    - Non-metals: Often increasing with temperature
    - Phase transitions affect conductivity
@@ -86,7 +82,6 @@ operating temperatures.
 ### Secondary Factors
 
 1. **Moisture Content**:
-
    - Water increases conductivity of porous materials
    - Saturation level affects heat transfer
    - Freezing changes thermal properties
@@ -117,12 +112,10 @@ thermal gradients that affect biological activity.
 
 1. **Incropera, F.P., et al.** (2007). "Fundamentals of Heat and Mass Transfer".
    John Wiley & Sons, Hoboken, NJ.
-
    - Heat transfer fundamentals and thermal conductivity
 
 2. **Tritt, T.M.** (2004). "Thermal conductivity: theory, properties, and
    applications". Kluwer Academic/Plenum Publishers, New York.
-
    - Comprehensive thermal conductivity reference
 
 3. **Hasselman, D.P.H. & Johnson, L.F.** (1987). "Effective thermal conductivity

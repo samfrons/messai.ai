@@ -33,7 +33,6 @@ quality with system resources.
 ### Direct Measurement
 
 1. **Data Acquisition System Configuration**:
-
    - Set sampling frequency in DAQ software
    - Monitor actual vs configured sampling rate
    - Check for sampling rate drift or instability
@@ -57,14 +56,12 @@ quality with system resources.
 ### Primary Factors
 
 1. **Signal Characteristics**:
-
    - Signal bandwidth determines minimum rate
    - Transient events require higher rates
    - Steady-state parameters need lower rates
    - Noise characteristics affect optimal rate
 
 2. **System Dynamics**:
-
    - Fast bioelectrochemical responses: 1-100 Hz
    - Slow biofilm development: 0.001-0.01 Hz
    - Temperature variations: 0.01-1 Hz
@@ -79,7 +76,6 @@ quality with system resources.
 ### Secondary Factors
 
 1. **System Resources**:
-
    - Data storage capacity limits
    - Processing power constraints
    - Network bandwidth limitations
@@ -116,12 +112,10 @@ bandwidth) captures system dynamics efficiently.
 1. **Nyquist, H.** (1928). "Certain topics in telegraph transmission theory".
    _Transactions of the American Institute of Electrical Engineers_, 47(2),
    617-644.
-
    - Fundamental sampling theory
 
 2. **Oppenheim, A.V., et al.** (1999). "Discrete-Time Signal Processing, 2nd
    Edition". Prentice Hall, Upper Saddle River, NJ.
-
    - Digital signal processing and sampling considerations
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

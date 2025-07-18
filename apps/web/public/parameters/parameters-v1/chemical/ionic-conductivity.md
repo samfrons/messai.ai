@@ -33,14 +33,12 @@ optimization.
 ### Direct Measurement
 
 1. **Conductivity Meter**:
-
    - Use calibrated conductivity electrode
    - Measure at standard temperature (25°C)
    - Account for temperature coefficient
    - Regular calibration with standard solutions
 
 2. **Four-Electrode Method**:
-
    - Use separate current and voltage electrodes
    - Eliminate electrode polarization effects
    - More accurate for research applications
@@ -64,14 +62,12 @@ optimization.
 ### Primary Factors
 
 1. **Ion Concentration**:
-
    - Higher concentrations increase conductivity
    - Relationship typically follows Kohlrausch's law
    - Saturation effects at very high concentrations
    - Different ions contribute differently
 
 2. **Ion Type**:
-
    - Small, highly charged ions: Higher conductivity
    - Large, singly charged ions: Lower conductivity
    - Mobility differs significantly between species
@@ -86,7 +82,6 @@ optimization.
 ### Secondary Factors
 
 1. **pH Effects**:
-
    - Extreme pH increases conductivity
    - H⁺ and OH⁻ contribute significantly
    - pH affects ion speciation
@@ -117,12 +112,10 @@ conductivity balances performance with cost and environmental considerations.
 
 1. **Atkins, P. & de Paula, J.** (2014). "Atkins' Physical Chemistry". Oxford
    University Press, Oxford.
-
    - Fundamental electrochemistry and ionic conductivity
 
 2. **Newman, J. & Thomas-Alyea, K.E.** (2004). "Electrochemical Systems". John
    Wiley & Sons, Hoboken, NJ.
-
    - Ionic conductivity in electrochemical systems
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

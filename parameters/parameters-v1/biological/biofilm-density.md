@@ -76,7 +76,6 @@ to the ideal range.
    Reference: Smith et al., "Optimization of Biofilm Density in Microbial
    Electrochemical Systems," Journal of Bioremediation & Biodegradation (2018),
    34(5):769-778, doi:xx.xxxx/jbbd
-
    - Here the DOI is a placeholder and should be replaced with an actual
      reference when available for realistic documentation purposes.
 

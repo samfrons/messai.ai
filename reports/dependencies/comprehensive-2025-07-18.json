@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "timestamp": "2025-07-18T02:25:33.611Z",
+    "projectName": "MESSAI",
+    "nodeVersion": "v22.16.0",
+    "pnpmVersion": "8.15.0"
+  },
+  "summary": {
+    "totalDependencies": 65,
+    "outdatedCount": 0,
+    "securityIssues": 0,
+    "licenseIssues": 0
+  },
+  "detailed": {
+    "outdatedDependencies": {
+      "timestamp": "2025-07-18T02:25:30.631Z",
+      "outdated": {},
+      "totalPackages": 0,
+      "criticalUpdates": []
+    },
+    "securityAudit": {
+      "timestamp": "2025-07-18T02:25:25.712Z",
+      "auditData": {},
+      "summary": "",
+      "vulnerabilities": {
+        "total": 0,
+        "breakdown": "No vulnerabilities found"
+      },
+      "recommendations": []
+    },
+    "licenseCompliance": {
+      "timestamp": "2025-07-18T02:25:18.311Z",
+      "totalPackages": 0,
+      "licenses": {},
+      "potentialIssues": []
+    },
+    "updatePlan": {
+      "timestamp": "2025-07-18T02:25:33.611Z",
+      "priority": {
+        "critical": [],
+        "high": [],
+        "medium": [],
+        "low": []
+      },
+      "summary": {
+        "totalOutdated": 0,
+        "securityVulnerabilities": 0,
+        "recommendedActions": []
+      }
+    }
+  },
+  "recommendations": []
+}

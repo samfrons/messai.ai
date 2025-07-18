@@ -32,14 +32,12 @@ treatment efficiency, power generation, and system stability.
 ### Direct Measurement
 
 1. **COD-Based Calculation**:
-
    - Measure COD concentration in feed
    - Multiply by flow rate and divide by reactor volume
    - Loading Rate = (COD × Q) / V
    - Most common method for wastewater systems
 
 2. **Substrate-Specific Measurement**:
-
    - Measure specific substrate concentration
    - Calculate loading based on substrate mass
    - Useful for defined substrates (glucose, acetate)
@@ -63,14 +61,12 @@ treatment efficiency, power generation, and system stability.
 ### Primary Factors
 
 1. **Feed Characteristics**:
-
    - Substrate concentration determines loading potential
    - Biodegradability affects effective loading
    - Inhibitory compounds reduce loadable amounts
    - Nutrient content affects microbial response
 
 2. **System Design**:
-
    - Reactor volume determines loading capacity
    - Mixing affects substrate distribution
    - Residence time affects processing capability
@@ -85,7 +81,6 @@ treatment efficiency, power generation, and system stability.
 ### Secondary Factors
 
 1. **Operating Conditions**:
-
    - Temperature affects metabolic rates
    - pH influences microbial activity
    - Applied voltage affects electron flow
@@ -116,12 +111,10 @@ system upsets, incomplete treatment, and reduced efficiency.
 
 1. **Metcalf & Eddy** (2014). "Wastewater Engineering: Treatment and Resource
    Recovery". McGraw-Hill, New York.
-
    - Loading rate design principles for biological treatment
 
 2. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Loading rate effects on bioelectrochemical systems
 
 3. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel

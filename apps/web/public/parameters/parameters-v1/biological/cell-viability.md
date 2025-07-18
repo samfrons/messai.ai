@@ -33,7 +33,6 @@ healthier, more active microbial community.
 ### Direct Measurement
 
 1. **Live/Dead Staining**:
-
    - Use SYTO 9 (live) and propidium iodide (dead) dyes
    - Count viable vs total cells by microscopy
    - Calculate viability percentage
@@ -56,13 +55,11 @@ healthier, more active microbial community.
 ### Primary Factors
 
 1. **Environmental Stress**:
-
    - pH extremes: Reduced viability (40-70%)
    - Temperature stress: Lower viability
    - Toxic compounds: Significant viability loss
 
 2. **Nutrient Availability**:
-
    - Sufficient nutrients: High viability (85-95%)
    - Starvation conditions: Reduced viability (50-80%)
    - Balanced nutrition: Optimal viability
@@ -75,7 +72,6 @@ healthier, more active microbial community.
 ### Secondary Factors
 
 1. **Oxygen Exposure**:
-
    - Appropriate O₂ levels: Optimal viability
    - Oxidative stress: Reduced viability
    - Anaerobic stress for aerobes: Lower viability
@@ -104,13 +100,11 @@ intervention, potentially leading to 30-60% reduction in system performance.
 1. **Boulos, L., et al.** (1999). "LIVE/DEAD BacLight: application of a new
    rapid staining method for direct enumeration of viable and total bacteria in
    drinking water". _Applied and Environmental Microbiology_, 65(4), 1623-1629.
-
    - Standard live/dead staining methodology
 
 2. **Phe, M.H., et al.** (2005). "Nucleic acid fluorochromes and flow cytometry
    prove useful in assessing the effect of chlorination on drinking water
    bacteria". _Water Research_, 39(15), 3618-3628.
-
    - Cell viability assessment methods
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

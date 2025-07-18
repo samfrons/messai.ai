@@ -33,7 +33,6 @@ processes and substrate utilization.
 ### Direct Measurement
 
 1. **Respirometry**:
-
    - Measure oxygen consumption in closed system
    - Record O₂ decline over time
    - Calculate specific oxygen uptake rate (SOUR)
@@ -56,13 +55,11 @@ processes and substrate utilization.
 ### Primary Factors
 
 1. **Substrate Concentration**:
-
    - Saturating conditions (>1 g/L): Maximum activity
    - Limiting conditions (<0.1 g/L): Reduced activity (50-80% of max)
    - Substrate type affects metabolic rate
 
 2. **Temperature**:
-
    - Mesophilic optimum (30-35°C): Peak activity
    - Q₁₀ coefficient: 2-3 (activity doubles per 10°C increase)
    - Thermal stress >40°C reduces activity
@@ -75,7 +72,6 @@ processes and substrate utilization.
 ### Secondary Factors
 
 1. **Dissolved Oxygen**:
-
    - Aerobic conditions: Higher total activity
    - Anaerobic conditions: Lower but sustained activity
    - Microaerobic: Optimal for some mixed communities
@@ -103,13 +99,11 @@ current densities >5 A/m², while those <2 mmol O₂/L·h rarely exceed 1 A/m².
 
 1. **Logan, B.E., et al.** (2006). "Electricity generation from cysteine in a
    microbial fuel cell". _Water Research_, 40(14), 2799-2808.
-
    - Demonstrated relationship between metabolic activity and power output
 
 2. **Rabaey, K., et al.** (2004). "Biofuel cells select for microbial consortia
    that self-mediate electron transfer". _Applied and Environmental
    Microbiology_, 70(9), 5373-5382.
-
    - Characterized metabolic activity in electroactive biofilms
 
 3. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber

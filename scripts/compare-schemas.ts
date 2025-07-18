@@ -162,11 +162,14 @@ function formatDifferences(differences: SchemaDifference[]): void {
   console.log(`\n📊 Found ${differences.length} difference(s) between schemas:\n`);
 
   // Group by type
-  const groupedDiffs = differences.reduce((acc, diff) => {
-    if (!acc[diff.type]) acc[diff.type] = [];
-    acc[diff.type].push(diff);
-    return acc;
-  }, {} as { [key: string]: SchemaDifference[] });
+  const groupedDiffs = differences.reduce(
+    (acc, diff) => {
+      if (!acc[diff.type]) acc[diff.type] = [];
+      acc[diff.type].push(diff);
+      return acc;
+    },
+    {} as { [key: string]: SchemaDifference[] }
+  );
 
   // Display by category
   const typeLabels = {

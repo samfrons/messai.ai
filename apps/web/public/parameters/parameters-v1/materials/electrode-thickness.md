@@ -34,14 +34,12 @@ and material costs.
 ### Direct Measurement
 
 1. **Caliper Measurement**:
-
    - Use precision calipers for thickness measurement
    - Measure at multiple points for uniformity
    - Account for surface roughness effects
    - Record average and standard deviation
 
 2. **Micrometer Measurement**:
-
    - Higher precision for thin electrodes
    - Consistent pressure application
    - Multiple measurement points
@@ -65,14 +63,12 @@ and material costs.
 ### Primary Factors
 
 1. **Material Type**:
-
    - Carbon felt: Typically 3-10 mm
    - Carbon cloth: Usually 0.3-0.5 mm
    - Metal electrodes: Often 0.1-2 mm
    - 3D printed: Variable, 1-20 mm
 
 2. **Manufacturing Process**:
-
    - Compression affects final thickness
    - Sintering can reduce thickness
    - Layer-by-layer building controls thickness
@@ -87,7 +83,6 @@ and material costs.
 ### Secondary Factors
 
 1. **Environmental Effects**:
-
    - Water absorption causes swelling
    - Temperature affects thermal expansion
    - Chemical exposure may cause changes
@@ -118,13 +113,11 @@ increases material costs without proportional benefits.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Electrode design considerations including thickness
 
 2. **Wei, J., et al.** (2011). "A new method for measuring biofilm thickness and
    monitoring biofilm growth in microbial fuel cells". _Biosensors and
    Bioelectronics_, 26(11), 4490-4496.
-
    - Electrode thickness effects on biofilm development
 
 3. **Santoro, C., et al.** (2017). "Microbial fuel cells: From fundamentals to

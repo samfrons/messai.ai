@@ -45,7 +45,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Direct Voltage Measurement
 
 1. **Multimeter Method**:
-
    - Connect voltmeter across cell terminals
    - Measure under load and no-load conditions
    - Record voltage at different current densities
@@ -60,7 +59,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Electrochemical Techniques
 
 1. **Three-Electrode Setup**:
-
    - Use reference electrode (Ag/AgCl or SCE)
    - Measure individual electrode potentials
    - Calculate cell voltage: V_cell = V_cathode - V_anode
@@ -84,14 +82,12 @@ Based on validation data from `parameter-ranges.json`:
 ### Primary Factors
 
 1. **Electrode Materials**:
-
    - Standard reduction potentials
    - Catalytic activity and overpotentials
    - Surface area and active sites
    - Stability and degradation
 
 2. **Electrolyte Conditions**:
-
    - pH (affects Nernst potential)
    - Ionic strength and conductivity
    - Temperature (affects thermodynamics)
@@ -106,7 +102,6 @@ Based on validation data from `parameter-ranges.json`:
 ### Secondary Factors
 
 1. **Microbial Activity**:
-
    - Metabolic pathway efficiency
    - Biofilm resistance and thickness
    - Electron transfer mechanisms
@@ -160,13 +155,11 @@ From `parameter-ranges.json` electrical category:
 ### Fundamental Literature
 
 1. **Logan, B.E. (2008)**. "Microbial Fuel Cells". Wiley-Interscience.
-
    - Comprehensive treatment of voltage generation and limitations
 
 2. **Rabaey, K., & Verstraete, W. (2005)**. "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Early review establishing voltage as key performance parameter
 
 3. **Cheng, S., et al. (2006)**. "Increased performance of single-chamber
@@ -179,7 +172,6 @@ From `parameter-ranges.json` electrical category:
 4. **Torres, C.I., et al. (2008)**. "Kinetic experiments for evaluating the
    Nernst-Monod model for anode-respiring bacteria (ARB) in a biofilm anode".
    _Environmental Science & Technology_, 42(17), 6593-6597.
-
    - Kinetic modeling of anode potential and voltage
 
 5. **Marcus, A.K., et al. (2007)**. "Conduction‐based modeling of the biofilm
@@ -191,7 +183,6 @@ From `parameter-ranges.json` electrical category:
 
 6. **Rismani-Yazdi, H., et al. (2008)**. "Cathodic limitations in microbial fuel
    cells: An overview". _Journal of Power Sources_, 180(2), 683-694.
-
    - Cathode contributions to voltage limitations
 
 7. **Clauwaert, P., et al. (2008)**. "Minimizing losses in bio-electrochemical
@@ -213,14 +204,12 @@ From `parameter-ranges.json` electrical category:
 ### Loss Mechanisms
 
 1. **Activation Losses (η_act)**:
-
    - Electrode kinetics limitations
    - Typically 0.1-0.4 V at each electrode
    - Depends on exchange current density
    - Follows Butler-Volmer equation
 
 2. **Concentration Losses (η_conc)**:
-
    - Mass transfer limitations
    - Becomes significant at high current densities
    - Depends on limiting current density
@@ -246,14 +235,12 @@ From `parameter-ranges.json` electrical category:
 ### Standard Operating Procedure
 
 1. **Equipment Setup**:
-
    - Calibrate voltmeter/potentiostat
    - Prepare reference electrode (if used)
    - Verify electrical connections
    - Record ambient conditions
 
 2. **Measurement Sequence**:
-
    - Measure open circuit voltage
    - Apply load and record voltage
    - Perform polarization curve

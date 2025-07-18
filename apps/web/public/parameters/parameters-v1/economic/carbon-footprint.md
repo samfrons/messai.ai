@@ -33,14 +33,12 @@ environmental performance.
 ### Direct Measurement
 
 1. **Life Cycle Assessment (LCA)**:
-
    - Cradle-to-grave emissions analysis
    - Include material production, operation, disposal
    - Use LCA software (SimaPro, GaBi, etc.)
    - Follow ISO 14040/14044 standards
 
 2. **Process-Based Accounting**:
-
    - Direct measurement of operational emissions
    - Material flow analysis
    - Energy consumption tracking
@@ -64,14 +62,12 @@ environmental performance.
 ### Primary Factors
 
 1. **System Efficiency**:
-
    - Higher energy efficiency reduces footprint
    - Power density affects material intensity
    - Substrate utilization efficiency
    - System lifetime affects amortized impacts
 
 2. **Substrate Type**:
-
    - Waste substrates: Often negative footprint
    - Purpose-grown biomass: Higher footprint
    - Organic waste diversion: Avoided landfill emissions
@@ -86,7 +82,6 @@ environmental performance.
 ### Secondary Factors
 
 1. **Material Selection**:
-
    - Electrode materials: Carbon vs precious metals
    - Membrane materials: Polymer production impacts
    - System construction materials
@@ -123,13 +118,11 @@ applications.
 1. **ISO 14067** (2018). "Greenhouse gases — Carbon footprint of products —
    Requirements and guidelines for quantification". International Organization
    for Standardization, Geneva.
-
    - Carbon footprint calculation standards
 
 2. **Foley, J.M., et al.** (2010). "Life cycle assessment of high-rate anaerobic
    treatment, microbial fuel cells, and microbial electrolysis cells".
    _Environmental Science & Technology_, 44(9), 3629-3637.
-
    - LCA of bioelectrochemical systems
 
 3. **GHG Protocol** (2011). "Product Life Cycle Accounting and Reporting

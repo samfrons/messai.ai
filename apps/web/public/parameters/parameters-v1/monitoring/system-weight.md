@@ -33,14 +33,12 @@ health assessment.
 ### Direct Measurement
 
 1. **Load Cells**:
-
    - Electronic weight measurement
    - Continuous monitoring capability
    - High accuracy and precision
    - Digital data logging
 
 2. **Platform Scales**:
-
    - Large system weighing
    - Suitable for heavy installations
    - Good for periodic measurements
@@ -64,14 +62,12 @@ health assessment.
 ### Primary Factors
 
 1. **System Components**:
-
    - Reactor vessel and structure
    - Electrodes and membranes
    - Pumps and control equipment
    - Piping and electrical systems
 
 2. **Operating Fluids**:
-
    - Water content in system
    - Substrate and solution volumes
    - Gas phase content
@@ -86,7 +82,6 @@ health assessment.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Moisture absorption in materials
    - Temperature effects on density
    - Humidity affects water content
@@ -117,13 +112,11 @@ system maturation and long-term performance changes.
 
 1. **Perry, R.H. & Green, D.W.** (2008). "Perry's Chemical Engineers' Handbook".
    McGraw-Hill, New York.
-
    - Equipment sizing and weight estimation
 
 2. **Towler, G. & Sinnott, R.** (2013). "Chemical Engineering Design:
    Principles, Practice and Economics of Plant and Process Design". Elsevier,
    Oxford.
-
    - Process equipment design and weight considerations
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

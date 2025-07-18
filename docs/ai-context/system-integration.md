@@ -1,10 +1,12 @@
 # System Integration Documentation
 
-This document contains cross-component integration patterns and system-wide architectural decisions.
+This document contains cross-component integration patterns and system-wide
+architectural decisions.
 
 ## Purpose
 
 This template serves as a placeholder for documenting:
+
 - Cross-component communication patterns
 - Data flow architectures between services
 - Integration strategies with external systems
@@ -14,8 +16,12 @@ This template serves as a placeholder for documenting:
 
 ## Implementation Note
 
-Replace this template with your actual system integration documentation as your project develops. Focus on patterns that AI agents need to understand when working across component boundaries or implementing features that span multiple services.
+Replace this template with your actual system integration documentation as your
+project develops. Focus on patterns that AI agents need to understand when
+working across component boundaries or implementing features that span multiple
+services.
 
 ---
 
-*Customize this template based on your specific integration patterns and architectural requirements.*
+_Customize this template based on your specific integration patterns and
+architectural requirements._

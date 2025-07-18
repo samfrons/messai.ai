@@ -33,14 +33,12 @@ controlling bioelectrochemical reactions.
 ### Direct Measurement
 
 1. **ORP Electrode**:
-
    - Use platinum or gold electrode vs reference
    - Measure potential difference directly
    - Standard hydrogen electrode (SHE) or Ag/AgCl reference
    - Continuous monitoring capability
 
 2. **Combined pH/ORP Probes**:
-
    - Simultaneous pH and ORP measurement
    - Convenient for routine monitoring
    - Good for process control applications
@@ -64,14 +62,12 @@ controlling bioelectrochemical reactions.
 ### Primary Factors
 
 1. **Dissolved Oxygen**:
-
    - High DO: Positive ORP (oxidizing conditions)
    - Low DO: Negative ORP (reducing conditions)
    - Critical factor in aerobic vs anaerobic systems
    - Affects microbial community structure
 
 2. **Organic Matter Content**:
-
    - High organics: Lower ORP (reducing)
    - Microbial consumption creates reducing conditions
    - Substrate type affects redox potential
@@ -86,7 +82,6 @@ controlling bioelectrochemical reactions.
 ### Secondary Factors
 
 1. **Microbial Activity**:
-
    - Metabolic processes affect redox state
    - Electroactive bacteria influence ORP
    - Biofilm development changes local conditions
@@ -117,12 +112,10 @@ limit some electrochemical reactions.
 
 1. **Stumm, W. & Morgan, J.J.** (2012). "Aquatic Chemistry: Chemical Equilibria
    and Rates in Natural Waters". John Wiley & Sons, New York.
-
    - Comprehensive treatment of redox chemistry in aqueous systems
 
 2. **Lovley, D.R.** (2006). "Bug juice: harvesting electricity with
    microorganisms". _Nature Reviews Microbiology_, 4(7), 497-508.
-
    - Redox processes in bioelectrochemical systems
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

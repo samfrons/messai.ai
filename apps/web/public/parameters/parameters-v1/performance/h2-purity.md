@@ -32,14 +32,12 @@ Higher purity reduces purification costs and improves application compatibility.
 ### Direct Measurement
 
 1. **Gas Chromatography (GC)**:
-
    - Separate H₂ from other gases using thermal conductivity detector
    - High accuracy and precision for composition analysis
    - Can identify and quantify impurities
    - Standard method for gas purity analysis
 
 2. **Mass Spectrometry**:
-
    - Direct molecular identification and quantification
    - High sensitivity for trace impurities
    - Real-time monitoring capability
@@ -63,14 +61,12 @@ Higher purity reduces purification costs and improves application compatibility.
 ### Primary Factors
 
 1. **Operating Conditions**:
-
    - Applied voltage affects gas evolution rates
    - pH influences competing reactions
    - Temperature affects gas solubility and reaction rates
    - Current density affects H₂ evolution efficiency
 
 2. **System Design**:
-
    - Electrode materials affect selectivity
    - Gas separation efficiency affects purity
    - Membrane properties influence gas crossover
@@ -85,7 +81,6 @@ Higher purity reduces purification costs and improves application compatibility.
 ### Secondary Factors
 
 1. **Feed Composition**:
-
    - Bicarbonate content affects CO₂ production
    - Organic acids affect pH and gas production
    - Sulfate presence can produce H₂S impurity
@@ -116,13 +111,11 @@ economic value of the hydrogen product.
 
 1. **Rozendal, R.A., et al.** (2006). "Hydrogen production with a microbial
    biocathode". _Environmental Science & Technology_, 40(17), 5206-5211.
-
    - Hydrogen production and purity in bioelectrochemical systems
 
 2. **Call, D. & Logan, B.E.** (2008). "Hydrogen production in a single chamber
    microbial electrolysis cell lacking a membrane". _Environmental Science &
    Technology_, 42(9), 3401-3406.
-
    - Factors affecting hydrogen purity in MECs
 
 3. **Escapa, A., et al.** (2012). "Microbial electrolysis cells: what we have

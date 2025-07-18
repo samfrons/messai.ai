@@ -33,14 +33,12 @@ densities and power generation.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Apply AC perturbation across cell
    - Measure impedance vs frequency
    - Extract resistive components from Nyquist plot
    - Separate different resistance contributions
 
 2. **Polarization Curve Analysis**:
-
    - Measure voltage vs current relationship
    - Calculate resistance from linear region slope
    - Determine resistance at different operating points
@@ -64,13 +62,11 @@ densities and power generation.
 ### Primary Factors
 
 1. **Electrode Properties**:
-
    - Material conductivity affects resistance
    - Surface area influences current distribution
    - Electrode spacing affects solution resistance
 
 2. **Biofilm Characteristics**:
-
    - Biofilm conductivity varies with species
    - Thickness affects resistance
    - Hydration level influences conductivity
@@ -83,7 +79,6 @@ densities and power generation.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Cell geometry affects current paths
    - Membrane properties contribute resistance
    - Connection resistance affects total resistance
@@ -114,13 +109,11 @@ performance.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Internal resistance in bioelectrochemical systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Resistance effects on MFC performance
 
 3. **Fan, Y., et al.** (2007). "Improved Coulombic efficiency and power density

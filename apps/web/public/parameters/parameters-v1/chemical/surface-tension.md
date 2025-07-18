@@ -32,14 +32,12 @@ gas management and biofilm development.
 ### Direct Measurement
 
 1. **Wilhelmy Plate Method**:
-
    - Vertical plate immersion in liquid
    - Measure force required to pull plate from surface
    - Calculate: σ = F/(L·cos θ)
    - High accuracy for clean systems
 
 2. **Du Noüy Ring Method**:
-
    - Ring lifted through liquid surface
    - Measure maximum force before ring detaches
    - Requires correction factors for ring geometry
@@ -62,14 +60,12 @@ gas management and biofilm development.
 ### Primary Factors
 
 1. **Electrolyte Composition**:
-
    - Salt concentration: Generally increases surface tension
    - pH: Affects ionization and surface activity
    - Dissolved organics: Usually decrease surface tension
    - Protein content: Can increase or decrease tension
 
 2. **Surfactants and Additives**:
-
    - Biosurfactants: Significantly reduce surface tension
    - Synthetic surfactants: Strong surface tension reduction
    - Antifoaming agents: Modify surface properties
@@ -83,7 +79,6 @@ gas management and biofilm development.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature: Higher temperature reduces surface tension
    - Pressure: Minimal effect under normal conditions
    - Atmospheric composition: Affects gas-liquid interface
@@ -112,12 +107,10 @@ tension can cause excessive foaming and poor gas separation.
 
 1. **Adamson, A.W. & Gast, A.P.** (1997). "Physical Chemistry of Surfaces, 6th
    Edition". John Wiley & Sons, New York.
-
    - Comprehensive surface tension theory and measurement
 
 2. **Ron, E.Z. & Rosenberg, E.** (2001). "Natural roles of biosurfactants".
    _Environmental Microbiology_, 3(4), 229-236.
-
    - Biosurfactant effects on surface tension
 
 3. **Zhang, X., et al.** (2012). "Enhanced biogas production from anaerobic

@@ -33,7 +33,6 @@ stagnant zones.
 ### Direct Measurement
 
 1. **Optical Profilometry**:
-
    - Non-contact surface scanning
    - Calculate RMS roughness: Ra = √(1/n Σ|yi|²)
    - Resolution: 0.1-1 μm vertical, 1-10 μm lateral
@@ -56,13 +55,11 @@ stagnant zones.
 ### Primary Factors
 
 1. **Flow Velocity**:
-
    - Low flow (<0.1 cm/s): Smooth biofilms (10-30 μm)
    - Moderate flow (0.1-1 cm/s): Optimal roughness (30-80 μm)
    - High flow (>1 cm/s): Streamlined features (20-50 μm)
 
 2. **Microbial Composition**:
-
    - Filamentous species: High roughness (50-200 μm)
    - Coccoid species: Low roughness (10-40 μm)
    - Mixed communities: Variable (20-100 μm)
@@ -75,7 +72,6 @@ stagnant zones.
 ### Secondary Factors
 
 1. **Electrode Surface Texture**:
-
    - Rough electrodes promote rougher biofilms
    - Initial template effect diminishes over time
 
@@ -104,13 +100,11 @@ roughness (>200 μm) can create dead zones, reducing overall efficiency by
 1. **Picioreanu, C., et al.** (2000). "Effect of diffusive and convective
    substrate transport on biofilm structure formation". _Water Research_, 34(7),
    1991-2005.
-
    - Modeling biofilm roughness development
 
 2. **Manz, W., et al.** (2000). "Investigation of biofilm structure, flow
    patterns and detachment with magnetic resonance imaging". _Water Science and
    Technology_, 41(4-5), 303-308.
-
    - Advanced imaging of biofilm surface features
 
 3. **Heydorn, A., et al.** (2000). "Quantification of biofilm structures by the

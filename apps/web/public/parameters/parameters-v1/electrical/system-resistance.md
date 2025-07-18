@@ -32,14 +32,12 @@ is crucial for optimizing system performance and power generation.
 ### Direct Measurement
 
 1. **AC Impedance Method**:
-
    - Apply small AC perturbation across system
    - Measure impedance vs frequency
    - Extract ohmic resistance from high-frequency intercept
    - Distinguish different resistance components
 
 2. **DC Polarization Method**:
-
    - Apply varying DC current
    - Measure voltage response
    - Calculate resistance from slope: R = ΔV/ΔI
@@ -63,14 +61,12 @@ is crucial for optimizing system performance and power generation.
 ### Primary Factors
 
 1. **Electrolyte Resistance**:
-
    - Ionic conductivity of solution
    - Electrode spacing affects path length
    - Temperature affects ion mobility
    - pH influences ionic species
 
 2. **Electrode Resistance**:
-
    - Material conductivity
    - Contact resistances
    - Biofilm resistance
@@ -85,7 +81,6 @@ is crucial for optimizing system performance and power generation.
 ### Secondary Factors
 
 1. **System Geometry**:
-
    - Electrode spacing and configuration
    - Current collector design
    - Electrolyte flow patterns
@@ -119,13 +114,11 @@ performance.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Resistance analysis in bioelectrochemical systems
 
 2. **Fan, Y., et al.** (2007). "Improved cathode performance of microbial fuel
    cells using selected metal catalysts". _Electrochemistry Communications_,
    9(3), 492-496.
-
    - Resistance reduction through catalyst optimization
 
 3. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular

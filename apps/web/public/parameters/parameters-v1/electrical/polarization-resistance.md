@@ -33,14 +33,12 @@ better system performance.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Measure charge transfer resistance from Nyquist plot
    - Identify polarization resistance from semicircle diameter
    - Separate from solution resistance
    - Most accurate method
 
 2. **Linear Polarization**:
-
    - Apply small potential perturbations (±10 mV)
    - Measure current response in linear region
    - Calculate Rp = ΔE/ΔI
@@ -65,14 +63,12 @@ better system performance.
 ### Primary Factors
 
 1. **Electrode Kinetics**:
-
    - Exchange current density affects polarization
    - Electron transfer efficiency at biofilm-electrode interface
    - Electrode material properties influence kinetics
    - Surface modification can reduce polarization
 
 2. **Biofilm Properties**:
-
    - Biofilm conductivity affects electron transfer
    - Biofilm thickness influences mass transfer
    - Microbial species affect electron transfer mechanisms
@@ -87,7 +83,6 @@ better system performance.
 ### Secondary Factors
 
 1. **Mass Transfer**:
-
    - Substrate diffusion to biofilm affects activity
    - Product removal from electrode surface
    - Mixing intensity influences transport
@@ -118,13 +113,11 @@ materials can minimize polarization losses.
 
 1. **Brett, C.M.A. & Brett, A.M.O.** (1993). "Electrochemistry: Principles,
    Methods, and Applications". Oxford University Press, Oxford.
-
    - Fundamental electrochemical kinetics and polarization
 
 2. **Marsili, E., et al.** (2008). "Shewanella secretes flavins that mediate
    extracellular electron transfer". _Proceedings of the National Academy of
    Sciences_, 105(10), 3968-3973.
-
    - Electron transfer mechanisms affecting polarization
 
 3. **Torres, C.I., et al.** (2010). "A kinetic perspective on extracellular

@@ -34,7 +34,6 @@ failures.
 ### Direct Measurement
 
 1. **Thermocouple Sensors**:
-
    - Embedded in build platform
    - Direct temperature measurement
    - High accuracy (±1°C)
@@ -57,14 +56,12 @@ failures.
 ### Primary Factors
 
 1. **Material Type**:
-
    - PLA: 50-60°C (low warping tendency)
    - ABS: 80-100°C (high warping tendency)
    - PETG: 70-80°C (moderate requirements)
    - Conductive filaments: 60-90°C
 
 2. **Part Geometry**:
-
    - Large flat areas: Higher temperature needed
    - Small parts: Lower temperature sufficient
    - Overhang features: Benefit from higher temperature
@@ -77,7 +74,6 @@ failures.
 ### Secondary Factors
 
 1. **Bed Surface Material**:
-
    - Glass: Good thermal conductivity
    - Aluminum: Excellent thermal conductivity
    - Build surfaces: Affect adhesion requirements
@@ -107,13 +103,11 @@ print.
 1. **Turner, B.N., et al.** (2014). "A review of melt extrusion additive
    manufacturing processes: II. Materials, properties, and performance". _Rapid
    Prototyping Journal_, 20(3), 250-261.
-
    - Material requirements including bed temperature
 
 2. **Bellini, A. & Güçeri, S.** (2003). "Mechanical characterization of parts
    fabricated using fused deposition modeling". _Rapid Prototyping Journal_,
    9(4), 252-264.
-
    - Temperature effects on part quality
 
 3. **Carneiro, O.S., et al.** (2015). "Fused deposition modeling with

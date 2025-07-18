@@ -33,14 +33,12 @@ system performance.
 ### Direct Measurement
 
 1. **Continuous Voltage Monitoring**:
-
    - Record voltage at regular intervals (every minute or second)
    - Calculate mean voltage and standard deviation
    - Determine coefficient of variation (CV = σ/μ × 100%)
    - Monitor over extended periods (hours to days)
 
 2. **Statistical Analysis**:
-
    - Use rolling window analysis for trends
    - Calculate stability metrics over different time scales
    - Identify patterns and periodic variations
@@ -64,14 +62,12 @@ system performance.
 ### Primary Factors
 
 1. **Biofilm Maturity**:
-
    - Mature biofilms: Higher stability
    - Young biofilms: Greater fluctuations
    - Biofilm aging: May affect stability
    - Community succession: Impacts consistency
 
 2. **Operating Conditions**:
-
    - Steady substrate supply: Better stability
    - Consistent temperature: Reduced fluctuations
    - Stable pH: Improved consistency
@@ -86,7 +82,6 @@ system performance.
 ### Secondary Factors
 
 1. **Environmental Factors**:
-
    - Temperature fluctuations affect performance
    - Vibrations can cause variations
    - Electromagnetic interference affects measurements
@@ -117,13 +112,11 @@ require attention to achieve reliable operation.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Voltage stability in bioelectrochemical systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Stability considerations in MFC operation
 
 3. **Wei, J., et al.** (2011). "A new method for measuring biofilm thickness and

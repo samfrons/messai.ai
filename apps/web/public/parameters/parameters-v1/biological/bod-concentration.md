@@ -32,7 +32,6 @@ affecting treatment efficiency and power generation potential.
 ### Direct Measurement
 
 1. **Standard BOD5 Test**:
-
    - Incubate sample at 20°C for 5 days
    - Measure dissolved oxygen before and after
    - Calculate BOD = Initial DO - Final DO
@@ -56,14 +55,12 @@ affecting treatment efficiency and power generation potential.
 ### Primary Factors
 
 1. **Organic Content**:
-
    - Carbohydrates: High BOD (~1.1 g O2/g)
    - Proteins: Moderate BOD (~1.3 g O2/g)
    - Lipids: Very high BOD (~2.9 g O2/g)
    - Synthetic organics: Variable BOD
 
 2. **Substrate Type**:
-
    - Domestic wastewater: 200-600 mg/L
    - Industrial wastewater: 500-10,000 mg/L
    - Food waste: 10,000-50,000 mg/L
@@ -77,7 +74,6 @@ affecting treatment efficiency and power generation potential.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature: Higher temperature increases BOD
    - pH: Optimal range 6.5-8.5 for microbial activity
    - Nutrients: N, P availability affects biodegradation
@@ -107,13 +103,11 @@ process instability.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater, 23rd Edition". American Public Health Association,
    Washington, DC.
-
    - Standard BOD measurement procedures
 
 2. **Pham, T.H., et al.** (2006). "A novel electrochemically active and
    Fe(III)-reducing bacterium phylogenetically related to Aeromonas hydrophila".
    _FEMS Microbiology Letters_, 223(1), 129-136.
-
    - BOD effects on microbial fuel cell performance
 
 3. **Liu, H., et al.** (2005). "Production of electricity from acetate or

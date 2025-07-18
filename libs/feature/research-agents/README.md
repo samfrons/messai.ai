@@ -90,7 +90,6 @@ pnpm nx run feature-research-agents:run-algae-workflow
 ### Dual Sub-Agent System
 
 1. **AlgaePaperProcessor**
-
    - Processes PDF files from mess-papers directory
    - Extracts metadata and algae-specific data
    - Validates paper quality and relevance
@@ -176,12 +175,10 @@ SEMANTIC_SCHOLAR_API_KEY=your_key_here
 ### Common Issues
 
 1. **"mess-papers directory not found"**
-
    - Ensure the directory exists at project root
    - Add PDF files to process
 
 2. **"Ollama not available"**
-
    - System will use mock responses
    - Install Ollama for better results
 

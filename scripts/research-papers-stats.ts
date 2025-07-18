@@ -36,11 +36,14 @@ async function main() {
       where: { year: { gt: 0 } },
     });
 
-    const yearDistribution = papers.reduce((acc, paper) => {
-      const year = paper.year!;
-      acc[year] = (acc[year] || 0) + 1;
-      return acc;
-    }, {} as Record<number, number>);
+    const yearDistribution = papers.reduce(
+      (acc, paper) => {
+        const year = paper.year!;
+        acc[year] = (acc[year] || 0) + 1;
+        return acc;
+      },
+      {} as Record<number, number>
+    );
 
     const sortedYears = Object.entries(yearDistribution)
       .sort(([a], [b]) => Number(b) - Number(a))

@@ -85,7 +85,6 @@ cells/mL, with specific validation criteria including:
    C. reinhardtii can impact system performance in MESS applications, with an
    emphasis on the optimal range identified above and its effectiveness as a
    biocathode or bioanode material.
-
    - Doe et al., "Optimization strategies for microbial electrochemical systems:
      The role of Chlamydomonas reinhardtii," Journal of Bioelectrochemistry
      (2021), which explores the relationship between cell density, light

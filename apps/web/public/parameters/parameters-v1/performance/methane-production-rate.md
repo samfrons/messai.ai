@@ -33,7 +33,6 @@ viability.
 ### Direct Measurement
 
 1. **Continuous Gas Flow Measurement**:
-
    - Real-time gas flow monitoring
    - CH₄-specific measurement or total flow with composition
    - Calculate: Rate = (Flow × CH₄%) / Reactor Volume
@@ -57,14 +56,12 @@ viability.
 ### Primary Factors
 
 1. **Substrate Characteristics**:
-
    - Substrate concentration affects production rate
    - Biodegradability determines maximum rate
    - Inhibitory compounds reduce production
    - Nutrient availability influences microbial activity
 
 2. **Operating Conditions**:
-
    - Temperature: Higher temperature increases rate (up to optimum)
    - pH: Optimal range 6.8-7.2 for methanogens
    - Organic loading rate: Higher loading increases rate to limits
@@ -79,7 +76,6 @@ viability.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Reactor configuration affects mixing and retention
    - Gas-liquid contact time
    - Temperature control efficiency
@@ -114,12 +110,10 @@ rates balance throughput with stability.
 1. **Angelidaki, I., et al.** (2009). "Defining the biomethane potential (BMP)
    of solid organic wastes and energy crops". _Water Science & Technology_,
    59(5), 927-934.
-
    - Methane production rate measurement methods
 
 2. **Batstone, D.J., et al.** (2002). "Anaerobic Digestion Model No. 1 (ADM1)".
    IWA Publishing, London.
-
    - Kinetic modeling of methane production
 
 3. **Rozendal, R.A., et al.** (2008). "Hydrogen production with a microbial

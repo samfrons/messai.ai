@@ -33,7 +33,6 @@ output potential.
 ### Direct Measurement
 
 1. **Confocal Laser Scanning Microscopy (CLSM)**:
-
    - Stain biofilm with fluorescent dyes (e.g., SYTO 9, PI)
    - Capture images at multiple locations
    - Calculate coverage using image analysis software
@@ -56,14 +55,12 @@ output potential.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Carbon materials: 70-90% coverage typical
    - Metal electrodes: 40-70% coverage
    - Modified surfaces: up to 95% coverage
    - Surface roughness enhances initial attachment
 
 2. **Inoculation Method**:
-
    - Pre-colonization: 80-95% coverage
    - Direct inoculation: 60-80% coverage
    - Natural colonization: 40-70% coverage
@@ -76,7 +73,6 @@ output potential.
 ### Secondary Factors
 
 1. **Shear Stress**:
-
    - Low flow: Higher coverage (80-95%)
    - High flow: Reduced coverage (50-70%)
    - Optimal flow maintains coverage while preventing overgrowth
@@ -104,12 +100,10 @@ improvement in power density, particularly in the 40-80% coverage range.
 
 1. **Zhang, T., et al.** (2013). "Improved cathode materials for microbial
    electrosynthesis". _Energy & Environmental Science_, 6(1), 217-224.
-
    - Demonstrated impact of biofilm coverage on system performance
 
 2. **Read, S.T., et al.** (2010). "Initial development and structure of biofilms
    on microbial fuel cell anodes". _BMC Microbiology_, 10(1), 98.
-
    - Characterized biofilm development patterns on electrodes
 
 3. **Babauta, J.T., et al.** (2012). "Electrochemically active biofilms: facts

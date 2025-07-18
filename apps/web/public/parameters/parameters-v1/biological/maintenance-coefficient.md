@@ -33,7 +33,6 @@ greater energy costs for non-growth activities.
 ### Direct Measurement
 
 1. **Continuous Culture Method**:
-
    - Operate chemostat at different dilution rates
    - Measure substrate consumption vs growth yield
    - Plot 1/Y vs 1/μ (Pirt plot)
@@ -56,13 +55,11 @@ greater energy costs for non-growth activities.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Higher temperature: Increased maintenance (Q₁₀ = 2-3)
    - Optimal temperature: Minimum maintenance
    - Stress temperatures: Higher maintenance costs
 
 2. **Environmental Stress**:
-
    - pH stress: 2-5× higher maintenance
    - Osmotic stress: Increased maintenance
    - Toxic compounds: Higher maintenance needs
@@ -75,7 +72,6 @@ greater energy costs for non-growth activities.
 ### Secondary Factors
 
 1. **Substrate Type**:
-
    - Complex substrates: Higher maintenance
    - Preferred substrates: Lower maintenance
    - Energy-rich substrates: Reduced maintenance
@@ -106,12 +102,10 @@ systems (<0.05 1/h).
 
 1. **Pirt, S.J.** (1965). "The maintenance energy of bacteria in growing
    cultures". _Proceedings of the Royal Society B_, 163(991), 224-231.
-
    - Original description of maintenance coefficient concept
 
 2. **Herbert, D.** (1976). "Stoichiometric aspects of microbial growth". _Annual
    Review of Microbiology_, 30, 17-44.
-
    - Comprehensive treatment of microbial energetics
 
 3. **Liu, H. & Logan, B.E.** (2004). "Electricity generation using an

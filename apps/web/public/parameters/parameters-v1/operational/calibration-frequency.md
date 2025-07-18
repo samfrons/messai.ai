@@ -32,7 +32,6 @@ quality with operational efficiency and maintenance costs.
 ### Direct Measurement
 
 1. **Drift Analysis**:
-
    - Monitor sensor readings over time
    - Compare with reference standards
    - Calculate drift rate: Δreading/Δtime
@@ -55,14 +54,12 @@ quality with operational efficiency and maintenance costs.
 ### Primary Factors
 
 1. **Sensor Type**:
-
    - pH sensors: 7-30 days (frequent calibration needed)
    - Conductivity sensors: 30-90 days (moderate drift)
    - Temperature sensors: 90-365 days (stable)
    - Dissolved oxygen: 14-60 days (membrane degradation)
 
 2. **Operating Environment**:
-
    - Harsh conditions: More frequent calibration
    - Stable conditions: Less frequent calibration
    - Fouling potential: Increased frequency needed
@@ -75,7 +72,6 @@ quality with operational efficiency and maintenance costs.
 ### Secondary Factors
 
 1. **Sensor Age**:
-
    - New sensors: Less frequent calibration
    - Aging sensors: More frequent calibration
    - End-of-life: Very frequent or replacement needed
@@ -105,12 +101,10 @@ downtime.
 
 1. **NIST Special Publication 250-20** (2019). "Calibration of pH Meters".
    National Institute of Standards and Technology.
-
    - Standard practices for sensor calibration
 
 2. **ASTM D1293-18** (2018). "Standard Test Methods for pH of Water". ASTM
    International.
-
    - Calibration requirements for water quality measurements
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

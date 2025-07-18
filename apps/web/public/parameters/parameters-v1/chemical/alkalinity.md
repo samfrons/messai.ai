@@ -32,14 +32,12 @@ better pH stability and system resilience to acid production.
 ### Direct Measurement
 
 1. **Acid Titration Method**:
-
    - Titrate sample with standard acid (H₂SO₄ or HCl)
    - Endpoint at pH 4.5 or 4.3
    - Calculate alkalinity from acid volume consumed
    - Standard method (APHA 2320)
 
 2. **Potentiometric Titration**:
-
    - Use pH meter for endpoint detection
    - More accurate than indicator methods
    - Can determine multiple alkalinity endpoints
@@ -63,14 +61,12 @@ better pH stability and system resilience to acid production.
 ### Primary Factors
 
 1. **Carbonate System**:
-
    - CO₂ dissolution increases bicarbonate alkalinity
    - Photosynthesis removes CO₂, reducing alkalinity
    - pH affects carbonate speciation
    - Temperature affects CO₂ solubility
 
 2. **Source Water Characteristics**:
-
    - Groundwater typically high in alkalinity
    - Surface water alkalinity varies seasonally
    - Wastewater alkalinity depends on source
@@ -85,7 +81,6 @@ better pH stability and system resilience to acid production.
 ### Secondary Factors
 
 1. **Chemical Additions**:
-
    - Lime addition increases alkalinity
    - Acid additions reduce alkalinity
    - Buffer additions modify alkalinity
@@ -116,12 +111,10 @@ efficiency.
 
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater". American Public Health Association, Washington, DC.
-
    - Standard methods for alkalinity measurement
 
 2. **Stumm, W. & Morgan, J.J.** (1996). "Aquatic Chemistry: Chemical Equilibria
    and Rates in Natural Waters". John Wiley & Sons, New York.
-
    - Alkalinity and carbonate chemistry fundamentals
 
 3. **McCarty, P.L.** (1964). "Anaerobic waste treatment fundamentals". _Public

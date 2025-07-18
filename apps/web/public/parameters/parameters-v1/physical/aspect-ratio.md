@@ -33,14 +33,12 @@ practical design constraints.
 ### Direct Measurement
 
 1. **Dimensional Analysis**:
-
    - Measure length, width, and height dimensions
    - Calculate relevant ratios (L/W, H/D, L/H)
    - Use rulers, calipers, or measuring tapes
    - Simple and direct method
 
 2. **CAD Analysis**:
-
    - Extract dimensions from design drawings
    - Calculate aspect ratios from 3D models
    - Verify built dimensions against design
@@ -64,14 +62,12 @@ practical design constraints.
 ### Primary Factors
 
 1. **Flow Requirements**:
-
    - Plug flow favors high length-to-diameter ratios
    - Mixing requirements affect height-to-diameter ratios
    - Residence time distribution influences geometry
    - Mass transfer affects optimal proportions
 
 2. **Current Distribution**:
-
    - Electrode spacing affects current uniformity
    - Aspect ratio influences potential gradients
    - Current collection affects design choices
@@ -86,7 +82,6 @@ practical design constraints.
 ### Secondary Factors
 
 1. **Installation Requirements**:
-
    - Available space constrains proportions
    - Access requirements affect geometry
    - Maintenance needs influence design
@@ -117,12 +112,10 @@ reducing overall system efficiency.
 
 1. **Perry, R.H. & Green, D.W.** (2008). "Perry's Chemical Engineers' Handbook".
    McGraw-Hill, New York.
-
    - Reactor design and geometry considerations
 
 2. **Levenspiel, O.** (1999). "Chemical Reaction Engineering". John Wiley &
    Sons, New York.
-
    - Reactor geometry effects on performance
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

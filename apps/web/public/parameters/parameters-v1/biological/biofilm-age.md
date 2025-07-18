@@ -32,7 +32,6 @@ requirements, with distinct phases of development influencing system behavior.
 ### Direct Measurement
 
 1. **Operational Timeline**:
-
    - Record biofilm inoculation date
    - Track time since last disturbance
    - Monitor continuous operation periods
@@ -55,13 +54,11 @@ requirements, with distinct phases of development influencing system behavior.
 ### Primary Factors
 
 1. **Environmental Conditions**:
-
    - Optimal conditions: Faster development
    - Stress conditions: Slower maturation
    - Temperature, pH, nutrients affect development rate
 
 2. **Substrate Availability**:
-
    - Abundant substrate: Rapid growth and development
    - Limited substrate: Slower development
    - Substrate type affects maturation rate
@@ -74,7 +71,6 @@ requirements, with distinct phases of development influencing system behavior.
 ### Secondary Factors
 
 1. **Microbial Species**:
-
    - Fast-growing species: Quick development
    - Slow-growing species: Extended development
    - Mixed communities: Variable development rates
@@ -103,12 +99,10 @@ due to overgrowth or aging effects.
 
 1. **Stoodley, P., et al.** (2002). "Biofilms as complex differentiated
    communities". _Annual Reviews in Microbiology_, 56, 187-209.
-
    - Biofilm development and maturation processes
 
 2. **Logan, B.E., et al.** (2019). "Electroactive microorganisms in
    bioelectrochemical systems". _Nature Reviews Microbiology_, 17(5), 307-319.
-
    - Development of electroactive biofilms
 
 3. **Renslow, R.S., et al.** (2013). "Oxygen reduction kinetics on graphite

@@ -32,14 +32,12 @@ substrate. Optimal HRT balances complete treatment with maximum throughput.
 ### Direct Measurement
 
 1. **Volume and Flow Calculation**:
-
    - HRT = Working Volume / Flow Rate
    - Measure actual working volume
    - Use average flow rate for varying flows
    - Account for recirculation flows
 
 2. **Tracer Studies**:
-
    - Inject inert tracer (salt, dye)
    - Measure tracer concentration vs time
    - Calculate mean residence time
@@ -63,14 +61,12 @@ substrate. Optimal HRT balances complete treatment with maximum throughput.
 ### Primary Factors
 
 1. **System Design**:
-
    - Reactor volume determines capacity
    - Flow rate determines throughput
    - Internal structures affect volume
    - Dead zones reduce effective HRT
 
 2. **Treatment Objectives**:
-
    - COD removal: Longer HRT improves efficiency
    - Power generation: Optimize for power density
    - Nitrification: Requires longer HRT (>10 hours)
@@ -85,7 +81,6 @@ substrate. Optimal HRT balances complete treatment with maximum throughput.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects reaction rates
    - pH influences microbial activity
    - Dissolved oxygen affects metabolism
@@ -118,12 +113,10 @@ efficiency with productivity.
 
 1. **Metcalf & Eddy** (2013). "Wastewater Engineering: Treatment and Resource
    Recovery, 5th Edition". McGraw-Hill, New York.
-
    - HRT design principles
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - HRT effects on MFC performance
 
 3. **Liu, H., et al.** (2005). "Scale-up of membrane-free single-chamber

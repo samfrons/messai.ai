@@ -32,14 +32,12 @@ and efficient systems, essential for commercial applications.
 ### Direct Measurement
 
 1. **Volumetric Energy Density**:
-
    - Calculate total electrical energy output
    - Divide by total system volume
    - Include all system components
    - Express in Wh/m³ or kWh/m³
 
 2. **Gravimetric Energy Density**:
-
    - Calculate total electrical energy output
    - Divide by total system mass
    - Include all system components
@@ -63,14 +61,12 @@ and efficient systems, essential for commercial applications.
 ### Primary Factors
 
 1. **Power Output**:
-
    - Higher power density increases energy density
    - Current density affects total energy
    - Voltage output directly impacts energy
    - Operating efficiency affects available energy
 
 2. **System Design**:
-
    - Compact design increases energy density
    - High surface area electrodes improve density
    - Efficient space utilization important
@@ -85,7 +81,6 @@ and efficient systems, essential for commercial applications.
 ### Secondary Factors
 
 1. **Material Properties**:
-
    - Electrode materials affect volume requirements
    - Membrane thickness impacts system volume
    - Support structures add to total volume
@@ -116,13 +111,11 @@ costs per unit energy delivered.
 
 1. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Energy density considerations in bioelectrochemical systems
 
 2. **Rabaey, K., et al.** (2010). "Bioelectrochemical systems: from
    extracellular electron transfer to biotechnological application". IWA
    Publishing, London.
-
    - Energy density in various bioelectrochemical configurations
 
 3. **Rozendal, R.A., et al.** (2008). "Towards practical implementation of

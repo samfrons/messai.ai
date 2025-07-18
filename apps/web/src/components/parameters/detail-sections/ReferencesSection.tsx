@@ -15,12 +15,15 @@ export function ReferencesSection({ references }: ReferencesSectionProps) {
     return null;
   }
 
-  const groupedRefs = references.reduce((acc, ref) => {
-    const category = ref.category || 'General';
-    if (!acc[category]) acc[category] = [];
-    acc[category].push(ref);
-    return acc;
-  }, {} as Record<string, Reference[]>);
+  const groupedRefs = references.reduce(
+    (acc, ref) => {
+      const category = ref.category || 'General';
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(ref);
+      return acc;
+    },
+    {} as Record<string, Reference[]>
+  );
 
   return (
     <Card>

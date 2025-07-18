@@ -32,14 +32,12 @@ conditions and cathode performance in air-breathing systems.
 ### Direct Measurement
 
 1. **Electrochemical DO Sensors**:
-
    - Polarographic or galvanic sensors
    - Real-time continuous measurement
    - Good accuracy and response time
    - Require regular calibration
 
 2. **Optical DO Sensors**:
-
    - Fluorescence quenching method
    - No oxygen consumption during measurement
    - Long-term stability
@@ -63,14 +61,12 @@ conditions and cathode performance in air-breathing systems.
 ### Primary Factors
 
 1. **System Configuration**:
-
    - Single chamber: DO varies with location
    - Dual chamber: Separate anode/cathode control
    - Air-breathing cathodes: High DO near cathode
    - Submerged systems: Lower DO overall
 
 2. **Biological Activity**:
-
    - Aerobic respiration consumes oxygen
    - Photosynthesis produces oxygen (if light present)
    - Biofilm respiration affects local DO
@@ -85,7 +81,6 @@ conditions and cathode performance in air-breathing systems.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Temperature affects oxygen solubility
    - Pressure influences saturation levels
    - Atmospheric oxygen concentration
@@ -121,12 +116,10 @@ Optimal DO management balances these competing requirements.
 1. **APHA, AWWA, WEF** (2017). "Standard Methods for the Examination of Water
    and Wastewater, 23rd Edition". American Public Health Association,
    Washington, DC.
-
    - Standard DO measurement methods
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - DO effects on bioelectrochemical systems
 
 3. **Zhang, F., et al.** (2010). "Activated carbon cathodes with excellent

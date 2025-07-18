@@ -359,15 +359,15 @@ export default function OptimizationVisualizationComponent({
                   visualization.isRunning
                     ? 'warning'
                     : visualization.isComplete
-                    ? 'success'
-                    : 'error'
+                      ? 'success'
+                      : 'error'
                 }
               >
                 {visualization.isRunning
                   ? 'Running'
                   : visualization.isComplete
-                  ? 'Complete'
-                  : 'Stopped'}
+                    ? 'Complete'
+                    : 'Stopped'}
               </Badge>
               <div className="text-sm text-gray-600">
                 Iteration: {visualization.currentIteration}

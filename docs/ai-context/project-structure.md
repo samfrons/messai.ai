@@ -1,17 +1,24 @@
 # Project Structure Template
 
-This document provides a template for documenting the complete technology stack and file tree structure for your project. **AI agents MUST read this file to understand the project organization before making any changes.**
+This document provides a template for documenting the complete technology stack
+and file tree structure for your project. **AI agents MUST read this file to
+understand the project organization before making any changes.**
 
 ## Technology Stack Template
 
 ### Backend Technologies
+
 Document your backend technology choices:
-- **[Language] [Version]** with **[Package Manager]** - Dependency management and packaging
-- **[Web Framework] [Version]** - Web framework with specific features (async, type hints, etc.)
+
+- **[Language] [Version]** with **[Package Manager]** - Dependency management
+  and packaging
+- **[Web Framework] [Version]** - Web framework with specific features (async,
+  type hints, etc.)
 - **[Server] [Version]** - Application server configuration
 - **[Configuration] [Version]** - Configuration management approach
 
 Example:
+
 ```
 - Python 3.11+ with Poetry - Dependency management and packaging
 - FastAPI 0.115.0+ - Web framework with type hints and async support
@@ -20,20 +27,26 @@ Example:
 ```
 
 ### Integration Services & APIs
+
 Document external services and integrations:
+
 - **[Service Name] [API/SDK Version]** - Purpose and usage pattern
 - **[AI Service] [Version]** - AI/ML service integration details
 - **[Database] [Version]** - Data storage and management
 - **[Monitoring] [Version]** - Observability and logging
 
 ### Real-time Communication
+
 Document real-time features:
+
 - **[WebSocket Library]** - Real-time communication patterns
 - **[HTTP Client]** - Async HTTP communication
 - **[Message Queue]** - Event processing (if applicable)
 
 ### Development & Quality Tools
+
 Document development toolchain:
+
 - **[Formatter] [Version]** - Code formatting
 - **[Linter] [Version]** - Code quality and linting
 - **[Type Checker] [Version]** - Static type checking
@@ -41,14 +54,18 @@ Document development toolchain:
 - **[Task Runner]** - Build automation and task orchestration
 
 ### Frontend Technologies (if applicable)
+
 Document frontend technology stack:
+
 - **[Language] [Version]** - Frontend development language
 - **[Framework] [Version]** - UI framework
 - **[Build Tool] [Version]** - Development and build tooling
 - **[Deployment] [Version]** - Deployment and hosting approach
 
 ### Future Technologies
+
 Document planned technology additions:
+
 - **[Planned Technology]** - Future integration plans
 - **[Platform]** - Target platform expansion
 - **[Service]** - Planned service integrations
@@ -154,7 +171,8 @@ Document planned technology additions:
 └── [CONFIG-FILES]                      # Root-level configuration files
 ```
 
-
 ---
 
-*This template provides a comprehensive foundation for documenting project structure. Adapt it based on your specific technology stack, architecture decisions, and organizational requirements.*
+_This template provides a comprehensive foundation for documenting project
+structure. Adapt it based on your specific technology stack, architecture
+decisions, and organizational requirements._

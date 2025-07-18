@@ -33,7 +33,6 @@ concentrations enhance electron transfer efficiency while minimizing toxicity.
 ### Direct Measurement
 
 1. **High-Performance Liquid Chromatography (HPLC)**:
-
    - UV-Vis detection at compound-specific wavelengths
    - Riboflavin: 280 nm, Methylene blue: 664 nm
    - Quantitative analysis with standard curves
@@ -56,13 +55,11 @@ concentrations enhance electron transfer efficiency while minimizing toxicity.
 ### Primary Factors
 
 1. **Mediator Type**:
-
    - Natural mediators (riboflavin): 0.01-0.1 mM optimal
    - Synthetic mediators (methylene blue): 0.1-1 mM optimal
    - Phenazines: 0.001-0.01 mM effective
 
 2. **Microbial Community**:
-
    - Mediator-producing species reduce external requirements
    - Pseudomonas produces phenazines (0.001-0.01 mM)
    - Shewanella produces riboflavin (0.01-0.1 mM)
@@ -75,7 +72,6 @@ concentrations enhance electron transfer efficiency while minimizing toxicity.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Higher temperatures increase degradation rates
    - Optimal storage: 4°C, operation: 25-35°C
 
@@ -102,13 +98,11 @@ cause toxicity, reducing performance by 20-50%.
 
 1. **Marsili, E., et al.** (2008). "Shewanella secretes flavins that mediate
    extracellular electron transfer". _PNAS_, 105(10), 3968-3973.
-
    - Characterized natural mediator production and concentrations
 
 2. **Rabaey, K., et al.** (2005). "Microbial phenazine production enhances
    electron transfer in biofuel cells". _Environmental Science & Technology_,
    39(9), 3401-3408.
-
    - Demonstrated phenazine-mediated electron transfer
 
 3. **Park, D.H. & Zeikus, J.G.** (2000). "Electricity generation in microbial

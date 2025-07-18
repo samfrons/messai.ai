@@ -35,7 +35,6 @@ Based on parameter-ranges.json validation data:
 ### Gas Diffusion Layer Preparation:
 
 1. **Substrate treatment**:
-
    - Carbon cloth or paper substrate
    - Hydrophobic PTFE coating (5-20 wt%)
    - Sintering at 300-350°C
@@ -50,13 +49,11 @@ Based on parameter-ranges.json validation data:
 ### Alternative Catalyst Systems:
 
 1. **Non-precious metal catalysts**:
-
    - Fe-N-C catalysts from pyrolysis
    - Co-N-C materials
    - Mn-based oxides (MnO₂, Mn₂O₃)
 
 2. **Biocatalysts**:
-
    - Laccase enzyme immobilization
    - Bilirubin oxidase
    - Multicopper oxidases

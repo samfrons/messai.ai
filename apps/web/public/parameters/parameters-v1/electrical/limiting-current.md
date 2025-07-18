@@ -33,7 +33,6 @@ factors.
 ### Direct Measurement
 
 1. **Polarization Curve Analysis**:
-
    - Perform current-voltage sweeps
    - Identify plateau region at high currents
    - Limiting current where dI/dV ≈ 0
@@ -56,14 +55,12 @@ factors.
 ### Primary Factors
 
 1. **Mass Transport**:
-
    - Substrate diffusion limitation
    - Product removal limitations
    - Proton transport constraints
    - Flow rate and mixing effects
 
 2. **Biofilm Properties**:
-
    - Thickness: Thicker biofilms lower limiting current
    - Porosity: Higher porosity increases limiting current
    - Conductivity: Affects internal resistance
@@ -76,7 +73,6 @@ factors.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Higher temperature: Faster diffusion
    - Enhanced mass transport coefficients
    - Reduced viscosity effects
@@ -106,13 +102,11 @@ power output and system capacity for practical applications.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Mass transport limitations in MFCs
 
 2. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    32(3), 518-531.
-
    - Transport limitations in bioelectrochemical systems
 
 3. **Picioreanu, C., et al.** (2007). "A computational model for biofilm-based

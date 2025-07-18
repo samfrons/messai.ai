@@ -33,7 +33,6 @@ improved competition for limited resources.
 ### Direct Measurement
 
 1. **Competitive Uptake Studies**:
-
    - Measure substrate uptake in mixed substrate conditions
    - Calculate relative affinity constants
    - Use Michaelis-Menten kinetics analysis
@@ -56,13 +55,11 @@ improved competition for limited resources.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Preferred substrates: High affinity (10-100 L/g/h)
    - Alternative substrates: Moderate affinity (1-10 L/g/h)
    - Non-preferred substrates: Low affinity (<1 L/g/h)
 
 2. **Enzyme Systems**:
-
    - High-affinity transporters: Greater affinity
    - Constitutive enzymes: Constant affinity
    - Inducible enzymes: Variable affinity
@@ -75,7 +72,6 @@ improved competition for limited resources.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Optimal pH/temperature: Maximum affinity
    - Stress conditions: Reduced affinity
    - Nutrient limitation: May increase affinity
@@ -106,13 +102,11 @@ concentrations.
 
 1. **Button, D.K.** (1985). "Kinetics of nutrient-limited transport and
    microbial growth". _Microbiological Reviews_, 49(3), 270-297.
-
    - Comprehensive treatment of substrate affinity in microorganisms
 
 2. **Kovárová-Kovar, K. & Egli, T.** (1998). "Growth kinetics of suspended
    microbial cells: from single-substrate-controlled growth to mixed-substrate
    kinetics". _Microbiology and Molecular Biology Reviews_, 62(3), 646-666.
-
    - Substrate affinity in mixed substrate systems
 
 3. **Logan, B.E., et al.** (2006). "Electricity generation from cysteine in a

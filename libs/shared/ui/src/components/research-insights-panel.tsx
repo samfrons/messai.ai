@@ -46,13 +46,16 @@ export function ResearchInsightsPanel({
   onInsightSelect,
   className = '',
 }: ResearchInsightsPanelProps) {
-  const groupedInsights = insights.reduce((acc, insight) => {
-    if (!acc[insight.type]) {
-      acc[insight.type] = [];
-    }
-    acc[insight.type]!.push(insight);
-    return acc;
-  }, {} as Record<string, ResearchInsight[]>);
+  const groupedInsights = insights.reduce(
+    (acc, insight) => {
+      if (!acc[insight.type]) {
+        acc[insight.type] = [];
+      }
+      acc[insight.type]!.push(insight);
+      return acc;
+    },
+    {} as Record<string, ResearchInsight[]>
+  );
 
   const formatConfidence = (confidence: number) => {
     return `${(confidence * 100).toFixed(0)}%`;

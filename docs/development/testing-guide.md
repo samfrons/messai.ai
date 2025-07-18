@@ -43,6 +43,7 @@ pnpm test --watch
    ```
 
 3. **Write descriptive tests**:
+
    ```typescript
    describe('Chart Component', () => {
      it('should display power density data correctly', () => {

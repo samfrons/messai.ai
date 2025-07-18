@@ -33,7 +33,6 @@ utilization and economic viability.
 ### Direct Measurement
 
 1. **Mass Balance Method**:
-
    - Monitor substrate input and product output
    - Calculate: Efficiency = (Product formed/Substrate consumed) × 100%
    - Account for all major products and byproducts
@@ -56,13 +55,11 @@ utilization and economic viability.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Simple organics (acetate): 80-95% efficiency
    - Complex organics (cellulose): 40-70% efficiency
    - Wastewater: 30-60% efficiency (variable composition)
 
 2. **System Design**:
-
    - Optimized configurations: Higher efficiency
    - Mass transfer limitations: Reduced efficiency
    - Residence time: Affects completion of conversion
@@ -75,7 +72,6 @@ utilization and economic viability.
 ### Secondary Factors
 
 1. **Microbial Community**:
-
    - Specialized communities: Higher efficiency
    - Mixed communities: Variable efficiency
    - Community stability: Consistent conversion
@@ -105,13 +101,11 @@ optimization through improved conditions or system design.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Conversion efficiency in bioelectrochemical systems
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Efficiency considerations in microbial electrochemical systems
 
 3. **Pant, D., et al.** (2010). "A review of the substrates used in microbial

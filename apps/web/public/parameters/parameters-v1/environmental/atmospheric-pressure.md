@@ -33,7 +33,6 @@ configurations.
 ### Direct Measurement
 
 1. **Digital Barometers**:
-
    - Electronic pressure sensors
    - High accuracy (±0.1 kPa)
    - Temperature compensation
@@ -56,14 +55,12 @@ configurations.
 ### Primary Factors
 
 1. **Altitude**:
-
    - Sea level: ~101.3 kPa standard
    - 1000m elevation: ~89.9 kPa
    - 2000m elevation: ~79.5 kPa
    - 3000m elevation: ~69.7 kPa
 
 2. **Weather Systems**:
-
    - High pressure systems: 102-106 kPa
    - Low pressure systems: 95-100 kPa
    - Storm systems: Can drop below 95 kPa
@@ -76,7 +73,6 @@ configurations.
 ### Secondary Factors
 
 1. **Daily Cycles**:
-
    - Slight diurnal pressure variations (±1-2 kPa)
    - Peak pressure: 10 AM and 10 PM
    - Minimum pressure: 4 AM and 4 PM
@@ -108,12 +104,10 @@ maintain adequate gas transfer.
 1. **NOAA Technical Memorandum ERL ARL-224** (1995). "Atmospheric pressure
    measurement and corrections". National Oceanic and Atmospheric
    Administration.
-
    - Standard methods for atmospheric pressure measurement
 
 2. **Stumm, W. & Morgan, J.J.** (1996). "Aquatic Chemistry: Chemical Equilibria
    and Rates in Natural Waters". John Wiley & Sons, New York.
-
    - Effects of pressure on gas-liquid equilibria
 
 3. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,

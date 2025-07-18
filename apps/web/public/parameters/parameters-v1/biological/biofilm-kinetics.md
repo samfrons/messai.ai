@@ -33,14 +33,12 @@ optimizing operational conditions.
 ### Direct Measurement
 
 1. **Growth Rate Analysis**:
-
    - Monitor biofilm thickness or biomass over time
    - Calculate specific growth rate from exponential phase
    - Use microscopy or biomass measurements
    - μ = ln(X₂/X₁)/(t₂-t₁)
 
 2. **Substrate Consumption Kinetics**:
-
    - Monitor substrate concentration decline over time
    - Calculate substrate utilization rate
    - Use Monod kinetics or other models
@@ -64,14 +62,12 @@ optimizing operational conditions.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Higher temperatures increase kinetic rates
    - Optimal range typically 25-37°C
    - Arrhenius relationship for temperature dependence
    - Extreme temperatures inhibit growth
 
 2. **Substrate Concentration**:
-
    - Monod kinetics describe substrate effects
    - Low concentrations limit growth rate
    - Inhibition may occur at high concentrations
@@ -86,7 +82,6 @@ optimizing operational conditions.
 ### Secondary Factors
 
 1. **Oxygen Availability**:
-
    - Aerobic vs anaerobic conditions affect kinetics
    - Microaerobic conditions may be optimal
    - Oxygen toxicity for strict anaerobes
@@ -118,13 +113,11 @@ unstable performance.
 1. **Picioreanu, C., et al.** (2007). "Mathematical modeling of biofilm
    structure with a hybrid differential-discrete cellular automaton approach".
    _Biotechnology and Bioengineering_, 98(5), 1006-1024.
-
    - Biofilm kinetics modeling in electrochemical systems
 
 2. **Torres, C.I., et al.** (2007). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    31(1), 43-74.
-
    - Electron transfer kinetics in bioelectrochemical systems
 
 3. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:

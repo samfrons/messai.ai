@@ -32,7 +32,6 @@ biofilm stability, long-term system performance, and biomass turnover dynamics.
 ### Direct Measurement
 
 1. **Biomass Balance Method**:
-
    - Monitor total biomass over time in absence of growth
    - Plot ln(biomass) vs time for exponential decay
    - Calculate slope: kd = -d(ln(X))/dt
@@ -55,13 +54,11 @@ biofilm stability, long-term system performance, and biomass turnover dynamics.
 ### Primary Factors
 
 1. **Temperature**:
-
    - Q₁₀ = 2-3 for decay processes
    - Higher temperature: Faster decay
    - Optimal temperature: Minimum decay rate
 
 2. **Substrate Availability**:
-
    - Starvation conditions: Higher decay (0.05-0.2 1/h)
    - Maintenance substrate: Lower decay (0.005-0.02 1/h)
    - Complete starvation: Maximum decay
@@ -74,7 +71,6 @@ biofilm stability, long-term system performance, and biomass turnover dynamics.
 ### Secondary Factors
 
 1. **Toxic Compounds**:
-
    - Heavy metals increase decay rate
    - Organic toxins affect cell viability
    - Concentration-dependent effects
@@ -103,13 +99,11 @@ regeneration.
 
 1. **Pirt, S.J.** (1975). "Principles of microbe and cell cultivation".
    Blackwell Scientific Publications, Oxford.
-
    - Fundamental treatment of microbial decay kinetics
 
 2. **Liu, H. & Logan, B.E.** (2004). "Electricity generation using an
    air-cathode single chamber microbial fuel cell". _Environmental Science &
    Technology_, 38(14), 4040-4046.
-
    - Long-term stability and decay in MFCs
 
 3. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:

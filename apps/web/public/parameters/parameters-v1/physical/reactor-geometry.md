@@ -33,14 +33,12 @@ operational considerations.
 ### Direct Measurement
 
 1. **Dimensional Analysis**:
-
    - Length, width, height measurements
    - Volume calculations from dimensions
    - Aspect ratio determination
    - Surface area to volume ratios
 
 2. **Flow Visualization**:
-
    - Tracer studies for flow patterns
    - Computational fluid dynamics (CFD)
    - Residence time distribution analysis
@@ -64,14 +62,12 @@ operational considerations.
 ### Primary Factors
 
 1. **Application Requirements**:
-
    - Laboratory research: Small, controlled geometries
    - Wastewater treatment: Flow-through designs
    - Power generation: Optimized for current collection
    - Pilot testing: Scalable geometries
 
 2. **Scale Considerations**:
-
    - Laboratory scale: 10 mL - 1 L
    - Pilot scale: 1 L - 1000 L
    - Commercial scale: >1000 L
@@ -86,7 +82,6 @@ operational considerations.
 ### Secondary Factors
 
 1. **Economic Factors**:
-
    - Manufacturing costs
    - Material utilization efficiency
    - Installation requirements
@@ -118,13 +113,11 @@ non-uniform current distribution, and reduced performance.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Reactor design considerations
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Reactor configuration effects
 
 3. **Pant, D., et al.** (2010). "A review of the substrates used in microbial

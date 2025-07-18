@@ -33,7 +33,6 @@ sustainability.
 ### Direct Measurement
 
 1. **Gravimetric Analysis**:
-
    - Collect biofilm samples at regular intervals
    - Dry samples at 105°C to determine total solids
    - Combust at 550°C to determine volatile solids
@@ -57,13 +56,11 @@ sustainability.
 ### Primary Factors
 
 1. **Substrate Type**:
-
    - Easily degradable substrates: Higher yield
    - Complex substrates: Variable yield
    - Toxic substrates: Reduced yield
 
 2. **Environmental Conditions**:
-
    - Optimal temperature: Higher yield
    - Optimal pH: Maximum growth efficiency
    - Nutrient availability affects yield
@@ -76,7 +73,6 @@ sustainability.
 ### Secondary Factors
 
 1. **Electron Acceptor**:
-
    - Different acceptors affect yield
    - Electrode potential influences growth
    - Oxygen availability impacts yield
@@ -107,12 +103,10 @@ may suggest stress conditions or energy diversion to maintenance.
 
 1. **McCarty, P.L.** (1975). "Stoichiometry of biological reactions". _Progress
    in Water Technology_, 7(1), 157-172.
-
    - Fundamental principles of biomass yield calculations
 
 2. **Rittmann, B.E. & McCarty, P.L.** (2001). "Environmental Biotechnology:
    Principles and Applications". McGraw-Hill, New York.
-
    - Biomass yield in biological treatment systems
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

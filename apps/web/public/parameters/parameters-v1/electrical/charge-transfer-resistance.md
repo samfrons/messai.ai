@@ -33,7 +33,6 @@ performance.
 ### Direct Measurement
 
 1. **Electrochemical Impedance Spectroscopy (EIS)**:
-
    - Apply small AC perturbation at equilibrium potential
    - Measure impedance vs frequency
    - Fit to equivalent circuit model
@@ -56,13 +55,11 @@ performance.
 ### Primary Factors
 
 1. **Electrode Material**:
-
    - Platinum: 0.1-1 Ω·cm² (very low resistance)
    - Carbon materials: 1-50 Ω·cm² (moderate resistance)
    - Stainless steel: 10-500 Ω·cm² (high resistance)
 
 2. **Biofilm Presence**:
-
    - Bare electrode: Higher Rct
    - Electroactive biofilm: Lower Rct (catalytic effect)
    - Mature biofilm: 2-10× reduction in Rct
@@ -75,7 +72,6 @@ performance.
 ### Secondary Factors
 
 1. **pH**:
-
    - Affects surface charge and reaction pathways
    - Optimal pH minimizes Rct
    - Extreme pH increases resistance
@@ -105,13 +101,11 @@ losses, improving power output and system efficiency.
 
 1. **Bard, A.J. & Faulkner, L.R.** (2001). "Electrochemical Methods:
    Fundamentals and Applications". John Wiley & Sons, New York.
-
    - Fundamental treatment of charge transfer resistance
 
 2. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    32(3), 518-531.
-
    - Charge transfer in bioelectrochemical systems
 
 3. **Fricke, K., et al.** (2008). "On the use of cyclic voltammetry for the

@@ -32,7 +32,6 @@ with kinetic and transport limitations.
 ### Direct Measurement
 
 1. **Voltmeter Measurement**:
-
    - Measure voltage across external circuit
    - High-impedance measurement to minimize loading
    - Open circuit voltage vs operating voltage
@@ -56,14 +55,12 @@ with kinetic and transport limitations.
 ### Primary Factors
 
 1. **Electrode Potentials**:
-
    - Anode potential: More negative improves cell potential
    - Cathode potential: More positive improves cell potential
    - Electrode materials determine baseline potentials
    - Biofilm effects on electrode kinetics
 
 2. **System Resistance**:
-
    - Internal resistance reduces operating voltage
    - Electrolyte conductivity affects resistance
    - Electrode spacing influences resistance
@@ -78,7 +75,6 @@ with kinetic and transport limitations.
 ### Secondary Factors
 
 1. **System Design**:
-
    - Electrode surface area affects current density
    - Cell geometry influences resistance
    - Membrane properties in dual-chamber systems
@@ -112,13 +108,11 @@ current for maximum power.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Cell potential fundamentals and optimization
 
 2. **Rabaey, K. & Verstraete, W.** (2005). "Microbial fuel cells: novel
    biotechnology for energy generation". _Trends in Biotechnology_, 23(6),
    291-298.
-
    - Cell potential and performance relationships
 
 3. **Rozendal, R.A., et al.** (2008). "Towards practical implementation of

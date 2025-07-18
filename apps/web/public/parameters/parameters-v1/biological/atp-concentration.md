@@ -33,7 +33,6 @@ or declining cell viability.
 ### Direct Measurement
 
 1. **ATP Bioluminescence Assay**:
-
    - Luciferin-luciferase reaction produces light
    - Light intensity proportional to ATP concentration
    - Detection limit: 0.01 μM
@@ -56,13 +55,11 @@ or declining cell viability.
 ### Primary Factors
 
 1. **Substrate Availability**:
-
    - Abundant substrate: 10-30 μM ATP
    - Limited substrate: 1-5 μM ATP
    - Substrate type affects ATP yield
 
 2. **Electron Acceptor Availability**:
-
    - Aerobic conditions: Higher ATP (15-30 μM)
    - Anaerobic conditions: Lower ATP (2-10 μM)
    - Electrode as acceptor: Intermediate (5-15 μM)
@@ -75,7 +72,6 @@ or declining cell viability.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Optimal temperature: Higher ATP levels
    - Stress temperatures: Reduced ATP synthesis
 
@@ -103,13 +99,11 @@ sustained high performance.
 1. **Chapman, A.G., et al.** (1971). "Adenine nucleotide concentrations and
    turnover rates in Escherichia coli". _Journal of Biological Chemistry_,
    246(15), 4926-4932.
-
    - Fundamental characterization of cellular ATP levels
 
 2. **Torres, C.I., et al.** (2008). "A kinetic perspective on extracellular
    electron transfer by anode-respiring bacteria". _FEMS Microbiology Reviews_,
    32(3), 518-531.
-
    - ATP dynamics in electroactive bacteria
 
 3. **Bretschger, O., et al.** (2007). "Current production and metal oxide

@@ -33,7 +33,6 @@ system performance.
 ### Direct Measurement
 
 1. **Polarization Curves**:
-
    - Measure cell voltage vs current density
    - Compare to theoretical cell potential
    - Calculate: η = Etheoretical - Emeasured
@@ -56,13 +55,11 @@ system performance.
 ### Primary Factors
 
 1. **Current Density**:
-
    - Tafel relationship: η = a + b×log(i)
    - Higher current requires higher overpotential
    - Exponential increase at limiting currents
 
 2. **Electrode Material**:
-
    - Platinum: Low overpotential (50-150 mV)
    - Carbon: Moderate overpotential (200-400 mV)
    - Stainless steel: High overpotential (400-800 mV)
@@ -75,7 +72,6 @@ system performance.
 ### Secondary Factors
 
 1. **Temperature**:
-
    - Higher temperature: Lower activation overpotential
    - Arrhenius relationship for kinetic processes
    - Improved mass transfer at higher T
@@ -106,12 +102,10 @@ superior performance and efficiency.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Comprehensive treatment of overpotential in MFCs
 
 2. **Fan, Y., et al.** (2007). "Improved cathode materials for microbial fuel
    cells". _Environmental Science & Technology_, 41(8), 2900-2906.
-
    - Cathode overpotential reduction strategies
 
 3. **Torres, C.I., et al.** (2008). "Kinetic experiments for evaluating the

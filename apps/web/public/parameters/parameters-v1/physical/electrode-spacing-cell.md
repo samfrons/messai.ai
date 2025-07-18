@@ -32,7 +32,6 @@ adequate volume for microbial growth and substrate processing.
 ### Direct Measurement
 
 1. **Caliper Measurement**:
-
    - Use precision calipers or rulers
    - Measure shortest distance between electrodes
    - Account for electrode thickness
@@ -55,13 +54,11 @@ adequate volume for microbial growth and substrate processing.
 ### Primary Factors
 
 1. **System Type**:
-
    - Single chamber MFC: 10-50 mm typical
    - Dual chamber MFC: 5-20 mm typical
    - Microbial electrolysis cell: 5-15 mm typical
 
 2. **Design Requirements**:
-
    - Low resistance: Smaller spacing preferred
    - Biofilm space: Minimum spacing needed
    - Maintenance access: Larger spacing helpful
@@ -74,7 +71,6 @@ adequate volume for microbial growth and substrate processing.
 ### Secondary Factors
 
 1. **Fabrication Constraints**:
-
    - Manufacturing tolerances
    - Assembly requirements
    - Material properties
@@ -104,12 +100,10 @@ by halving internal resistance.
 
 1. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Design considerations including electrode spacing
 
 2. **Fan, Y., et al.** (2007). "Improved cathode materials for microbial fuel
    cells". _Environmental Science & Technology_, 41(8), 2900-2906.
-
    - Effects of electrode spacing on performance
 
 3. **Liu, H. & Logan, B.E.** (2004). "Electricity generation using an

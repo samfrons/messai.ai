@@ -32,14 +32,12 @@ components under operating conditions.
 ### Direct Measurement
 
 1. **Tensile Testing**:
-
    - Apply uniaxial tension until failure
    - Measure maximum stress at break
    - Follow ASTM D638 or ISO 527 standards
    - Most common strength measurement
 
 2. **Compression Testing**:
-
    - Apply compressive load until failure
    - Measure maximum compressive stress
    - Important for porous materials
@@ -63,14 +61,12 @@ components under operating conditions.
 ### Primary Factors
 
 1. **Material Composition**:
-
    - Carbon content affects strength
    - Polymer matrix provides cohesion
    - Fiber reinforcement increases strength
    - Binder content influences integrity
 
 2. **Porosity and Structure**:
-
    - Higher porosity generally reduces strength
    - Pore size distribution affects properties
    - Fiber orientation influences directional strength
@@ -85,7 +81,6 @@ components under operating conditions.
 ### Secondary Factors
 
 1. **Environmental Conditions**:
-
    - Moisture content affects polymer properties
    - Temperature influences material behavior
    - Chemical exposure may degrade materials
@@ -116,12 +111,10 @@ Excessive strength may not be cost-effective.
 
 1. **Callister, W.D. & Rethwisch, D.G.** (2014). "Materials Science and
    Engineering: An Introduction". John Wiley & Sons, Hoboken, NJ.
-
    - Fundamental mechanical properties of materials
 
 2. **Gibson, L.J. & Ashby, M.F.** (1997). "Cellular Solids: Structure and
    Properties". Cambridge University Press, Cambridge.
-
    - Mechanical properties of porous materials
 
 3. **Zhang, X., et al.** (2012). "Separator-free microbial fuel cells with

@@ -32,14 +32,12 @@ optimal system performance and treatment efficiency.
 ### Direct Measurement
 
 1. **Volumetric Measurement**:
-
    - Use graduated cylinders or volumetric flasks
    - Direct reading of liquid level
    - Accurate for laboratory scale
    - Simple and reliable method
 
 2. **Level Measurement**:
-
    - Use level sensors (ultrasonic, pressure, capacitive)
    - Calculate volume from level and tank geometry
    - Suitable for continuous monitoring
@@ -63,14 +61,12 @@ optimal system performance and treatment efficiency.
 ### Primary Factors
 
 1. **System Design**:
-
    - Reactor geometry determines volume capacity
    - Internal structures reduce available volume
    - Electrode assembly affects liquid space
    - Membrane configuration influences volume distribution
 
 2. **Operating Conditions**:
-
    - Flow rate affects residence time
    - Evaporation reduces liquid volume
    - Temperature affects liquid density
@@ -85,7 +81,6 @@ optimal system performance and treatment efficiency.
 ### Secondary Factors
 
 1. **Physical Constraints**:
-
    - Available space limits maximum volume
    - Structural support affects design
    - Access requirements influence configuration
@@ -116,12 +111,10 @@ capital costs and may cause poor mixing or dead zones.
 
 1. **Perry, R.H. & Green, D.W.** (2008). "Perry's Chemical Engineers' Handbook".
    McGraw-Hill, New York.
-
    - Reactor design and volume considerations
 
 2. **Levenspiel, O.** (1999). "Chemical Reaction Engineering". John Wiley &
    Sons, New York.
-
    - Reactor sizing and residence time calculations
 
 3. **Logan, B.E.** (2008). "Microbial Fuel Cells". John Wiley & Sons, Hoboken,

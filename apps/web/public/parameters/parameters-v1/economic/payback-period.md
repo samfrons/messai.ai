@@ -33,14 +33,12 @@ indicate better investment opportunities.
 ### Direct Measurement
 
 1. **Simple Payback Calculation**:
-
    - Payback = Initial Investment / Annual Net Cash Flow
    - Use undiscounted cash flows
    - Simple but ignores time value of money
    - Good for initial screening
 
 2. **Discounted Payback**:
-
    - Account for time value of money
    - Use discount rate (WACC or required return)
    - More accurate but more complex
@@ -64,14 +62,12 @@ indicate better investment opportunities.
 ### Primary Factors
 
 1. **Capital Investment**:
-
    - System cost per kW or per m³/day capacity
    - Installation and commissioning costs
    - Permitting and regulatory costs
    - Financing costs and terms
 
 2. **Revenue Streams**:
-
    - Electricity sales or savings
    - Waste treatment fees
    - Carbon credit revenues
@@ -86,7 +82,6 @@ indicate better investment opportunities.
 ### Secondary Factors
 
 1. **Market Conditions**:
-
    - Energy prices and price volatility
    - Waste disposal costs
    - Carbon credit prices
@@ -121,12 +116,10 @@ returns with reasonable technology maturity.
 
 1. **Ross, S.A., et al.** (2019). "Corporate Finance, 12th Edition". McGraw-Hill
    Education, New York.
-
    - Capital budgeting and payback analysis
 
 2. **Logan, B.E.** (2008). "Microbial fuel cells". John Wiley & Sons, Hoboken,
    NJ.
-
    - Economic considerations for bioelectrochemical systems
 
 3. **NREL** (2020). "Cost and Performance Database for Energy Storage

@@ -34,19 +34,16 @@ Based on parameter-ranges.json validation data:
 ### Pre-treatment Options:
 
 1. **Ammonia Treatment**:
-
    - Heat in NH₃ atmosphere at 700°C for 1 hour
    - Introduces nitrogen-containing functional groups
    - Improves biocompatibility
 
 2. **Acid Treatment**:
-
    - Soak in 1M HNO₃ at 80°C for 2 hours
    - Creates carboxyl and hydroxyl groups
    - Increases hydrophilicity
 
 3. **Heat Treatment**:
-
    - Thermal treatment at 450°C in air
    - Removes surface impurities
    - Creates oxygen-containing functional groups

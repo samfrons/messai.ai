@@ -28,8 +28,8 @@ export default function ParameterDetailHeader({ parameter }: ParameterDetailHead
                   parameter.electrodeType === 'anode'
                     ? 'bg-red-100 text-red-700 border-red-200'
                     : parameter.electrodeType === 'cathode'
-                    ? 'bg-blue-100 text-blue-700 border-blue-200'
-                    : ''
+                      ? 'bg-blue-100 text-blue-700 border-blue-200'
+                      : ''
                 }
               >
                 {parameter.electrodeType}

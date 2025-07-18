@@ -33,14 +33,12 @@ electrochemical activity.
 ### Direct Measurement
 
 1. **Flow Cytometry**:
-
    - Fluorescent staining for live/dead differentiation
    - Rapid counting of large sample volumes
    - Provides size and viability information
    - High throughput and accuracy
 
 2. **Hemocytometer Counting**:
-
    - Direct microscopic cell counting
    - Manual counting in defined volume
    - Simple but time-consuming
@@ -64,14 +62,12 @@ electrochemical activity.
 ### Primary Factors
 
 1. **Growth Conditions**:
-
    - Substrate concentration drives cell growth
    - Nutrient availability limits population
    - Temperature affects growth rate
    - pH influences cell viability
 
 2. **System Age**:
-
    - Startup phase: Low concentrations
    - Growth phase: Exponential increase
    - Steady state: Stable concentrations
@@ -86,7 +82,6 @@ electrochemical activity.
 ### Secondary Factors
 
 1. **Environmental Stress**:
-
    - Toxic compounds reduce viability
    - Osmotic stress affects cell integrity
    - Oxygen exposure can kill anaerobic bacteria
@@ -120,12 +115,10 @@ with system stability and avoid substrate limitation.
 
 1. **Logan, B.E., et al.** (2019). "Electroactive microorganisms in
    bioelectrochemical systems". _Nature Reviews Microbiology_, 17(5), 307-319.
-
    - Bacterial populations in electrochemical systems
 
 2. **Torres, C.I., et al.** (2009). "Selecting anode-respiring bacteria based on
    anode potential". _Environmental Science & Technology_, 43(24), 9519-9524.
-
    - Bacterial concentration and electrochemical performance
 
 3. **Rabaey, K., et al.** (2004). "Biofuel cells select for microbial consortia
