@@ -71,18 +71,18 @@ export default function ResearchPage() {
     fullTextAvailable: paper.fullTextAvailable,
 
     // In Silico Model Integration
-    inSilicoAvailable: paper.inSilicoAvailable,
-    modelType: paper.modelType,
-    modelParameters: paper.modelParameters,
-    performanceTargets: paper.performanceTargets,
-    systemGeometry: paper.systemGeometry,
-    materialSpecs: paper.materialSpecs,
-    operatingSpecs: paper.operatingSpecs,
-    methodology: paper.methodology,
-    recreationDifficulty: paper.recreationDifficulty,
-    parameterCompleteness: paper.parameterCompleteness,
-    validationStatus: paper.validationStatus,
-    modelAccuracy: paper.modelAccuracy,
+    inSilicoAvailable: paper.inSilicoAvailable ?? false,
+    modelType: paper.modelType ?? '',
+    modelParameters: paper.modelParameters ?? '',
+    performanceTargets: paper.performanceTargets ?? '',
+    systemGeometry: paper.systemGeometry ?? '',
+    materialSpecs: paper.materialSpecs ?? '',
+    operatingSpecs: paper.operatingSpecs ?? '',
+    methodology: paper.methodology ?? [],
+    recreationDifficulty: paper.recreationDifficulty ?? 'medium',
+    parameterCompleteness: paper.parameterCompleteness ?? 0,
+    validationStatus: paper.validationStatus ?? 'pending',
+    modelAccuracy: paper.modelAccuracy ?? 0,
   });
 
   const handleSearch = () => {

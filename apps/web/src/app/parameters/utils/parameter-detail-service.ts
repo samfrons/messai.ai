@@ -301,7 +301,7 @@ const MARKDOWN_MAPPINGS: Record<string, string> = {
   capacitance: '/parameters/parameters-v1/electrical/capacitance.md',
   cell_voltage: '/parameters/parameters-v1/electrical/cell-voltage.md',
   maximum_power_density: '/parameters/parameters-v1/electrical/maximum-power-density.md',
-  conductivity: '/parameters/parameters-v1/chemical/conductivity.md',
+  // conductivity: already defined as electrolyte-conductivity on line 270
   viscosity: '/parameters/parameters-v1/chemical/viscosity.md',
   total_dissolved_solids: '/parameters/parameters-v1/chemical/total-dissolved-solids.md',
   cell_diameter: '/parameters/parameters-v1/physical/cell-diameter.md',

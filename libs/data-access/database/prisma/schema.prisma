@@ -236,7 +236,7 @@ model ResearchPaper {
   @@index([publicationDate, aiConfidence])
   @@index([inSilicoAvailable, systemType])
   @@index([validationStatus, modelType])
-  @@fulltext([title, abstract])
+  // @@fulltext([title, abstract]) // Not supported in PostgreSQL
 }
 
 model ExperimentPaper {
