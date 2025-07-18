@@ -70,19 +70,19 @@ export default function ResearchPage() {
     qualityScore: paper.qualityScore,
     fullTextAvailable: paper.fullTextAvailable,
 
-    // In Silico Model Integration
-    inSilicoAvailable: paper.inSilicoAvailable,
-    modelType: paper.modelType,
-    modelParameters: paper.modelParameters,
-    performanceTargets: paper.performanceTargets,
-    systemGeometry: paper.systemGeometry,
-    materialSpecs: paper.materialSpecs,
-    operatingSpecs: paper.operatingSpecs,
-    methodology: paper.methodology,
-    recreationDifficulty: paper.recreationDifficulty,
-    parameterCompleteness: paper.parameterCompleteness,
-    validationStatus: paper.validationStatus,
-    modelAccuracy: paper.modelAccuracy,
+    // In Silico Model Integration (with fallbacks for missing fields)
+    inSilicoAvailable: (paper as any).inSilicoAvailable ?? false,
+    modelType: (paper as any).modelType ?? '',
+    modelParameters: (paper as any).modelParameters ?? '',
+    performanceTargets: (paper as any).performanceTargets ?? '',
+    systemGeometry: (paper as any).systemGeometry ?? '',
+    materialSpecs: (paper as any).materialSpecs ?? '',
+    operatingSpecs: (paper as any).operatingSpecs ?? '',
+    methodology: (paper as any).methodology ?? [],
+    recreationDifficulty: (paper as any).recreationDifficulty ?? 'medium',
+    parameterCompleteness: (paper as any).parameterCompleteness ?? 0,
+    validationStatus: (paper as any).validationStatus ?? 'pending',
+    modelAccuracy: (paper as any).modelAccuracy ?? 0,
   });
 
   const handleSearch = () => {
