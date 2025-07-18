@@ -68,6 +68,11 @@ temp
 dev.db
 /generated/prisma
 
+# Database backups (contain sensitive data)
+backups/
+*.sql
+*.json
+
 # Environment files with secrets
 .env.production
 .env.staging
