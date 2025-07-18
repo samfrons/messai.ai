@@ -167,19 +167,7 @@ export async function GET(request: NextRequest) {
           .trim();
       };
 
-      // Parse JSON fields safely
-      const parseJsonField = (field: any) => {
-        if (!field) return undefined;
-        if (typeof field === 'object') return field;
-        if (typeof field === 'string') {
-          try {
-            return JSON.parse(field);
-          } catch {
-            return undefined;
-          }
-        }
-        return undefined;
-      };
+      // JSON parsing function removed since fields were eliminated
 
       return {
         id: paper.id,
