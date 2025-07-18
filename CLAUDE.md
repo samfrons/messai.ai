@@ -21,7 +21,7 @@
   - Unified Platform: Single interface and intelligent database for both
     microbial (MFC, MEC, MDC) and fuel cell (PEM, SOFC, PAFC), and
     electrochemical bioreactor systems
-  - AI Intelligence: Machine learning models trained on 3,721+ research papers
+  - AI Intelligence: Machine learning models trained on 4,087+ research papers
     for accurate predictions
   - 3D Visualization: Interactive, real-time system modeling and visualization
   - Knowledge Base: Comprehensive research library with AI-enhanced insights
@@ -59,7 +59,7 @@ environment:
 - **Host**: Managed PostgreSQL service (Supabase/Neon/Railway)
 - **Database Name**: Configured in Vercel environment
 - **Credentials**: **NEVER hardcode** - use environment variables ONLY
-- **Data**: Contains **3,721+ research papers** (LIVE DATA - DO NOT MODIFY)
+- **Data**: Contains **4,087+ research papers** (LIVE DATA - DO NOT MODIFY)
 - **Connection**: Via `DATABASE_URL` environment variable ONLY
 - **Safe for**: **READ-ONLY operations ONLY**
 - **Access**: Through deployed API endpoints only
@@ -80,7 +80,7 @@ import { prisma } from '../../../lib/db';
 // Test connection - count will vary by environment:
 const count = await prisma.researchPaper.count();
 // Local: Returns ~1000
-// Production: Returns 3,721+
+// Production: Returns 4,087+
 ```
 
 #### Environment Verification
@@ -128,7 +128,7 @@ pnpm db:test
 
 - Hosted PostgreSQL service (configured in Vercel)
 - Environment variables set in Vercel dashboard
-- Contains 3,721+ LIVE research papers
+- Contains 4,087+ LIVE research papers
 - Automatic connection pooling
 - **Access via deployed API only** - no direct database access
 
@@ -338,7 +338,7 @@ loss:
    ```bash
    pnpm db:test
    # Local: ~1,000 papers
-   # Production: 3,721+ papers
+   # Production: 4,087+ papers
    ```
 
 3. **Use read-only operations in production**:
