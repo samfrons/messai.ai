@@ -69,7 +69,7 @@ cp .env.local.example .env.local
 
 # This automatically:
 # - Starts Docker PostgreSQL container on localhost:5432
-# - Database: messai_dev, User: postgres, Password: postgres
+# - Database: messai_dev, User: messai, Password: messai_dev_password
 # - Pushes schema to local database
 ```
 
