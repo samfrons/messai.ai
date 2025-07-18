@@ -45,8 +45,14 @@ export default class GlobalErrorBoundary extends Component<Props, State> {
   }
 
   reportError = (error: Error, errorInfo: any) => {
-    // In production, report to monitoring service
-    // This is a placeholder - replace with actual monitoring service
+    // Use our error tracking service
+    import('../lib/error-tracking')
+      .then(({ logErrorToService }) => {
+        logErrorToService(error, errorInfo);
+      })
+      .catch(console.error);
+
+    // Also report to API endpoint as fallback
     try {
       fetch('/api/error-report', {
         method: 'POST',

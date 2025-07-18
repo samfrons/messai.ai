@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import {
   Card,
   Button,
@@ -10,7 +10,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@messai/ui';
-import MESSViewer3D from './components/MESSViewer3D';
 import ParameterControl from './components/ParameterControl';
 import '../lab/components/slider-styles.css';
 import LoadingStates from './components/LoadingStates';
@@ -19,6 +18,9 @@ import RealTimeUpdates from './components/RealTimeUpdates';
 import ExperimentsModule from './components/ExperimentsModule';
 import ModelVersioning from './components/ModelVersioning';
 import ToolsIntegrationPanel from './components/ToolsIntegrationPanel';
+
+// Lazy load the heavy 3D component
+const MESSViewer3D = lazy(() => import('./components/MESSViewer3D'));
 
 // Helper function for class names
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -325,12 +327,23 @@ export default function LabIOPage() {
         <div className="col-span-12 lg:col-span-6">
           <Card shadow={false} padding="none" className="h-full min-h-[600px]">
             <div className="relative w-full h-full">
-              <MESSViewer3D
-                className="w-full h-full"
-                selectedModel={selectedModel}
-                viewScale={viewScale}
-                visualizationMode={visualizationMode}
-              />
+              <Suspense
+                fallback={
+                  <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+                      <p className="text-gray-600">Loading 3D viewer...</p>
+                    </div>
+                  </div>
+                }
+              >
+                <MESSViewer3D
+                  className="w-full h-full"
+                  selectedModel={selectedModel}
+                  viewScale={viewScale}
+                  visualizationMode={visualizationMode}
+                />
+              </Suspense>
               {/* Experiments Module Overlay */}
               <ExperimentsModule />
             </div>

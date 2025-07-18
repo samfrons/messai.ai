@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import { Card, Badge } from '@messai/ui';
 import type {
   PredictionConfiguration,
@@ -9,10 +9,28 @@ import type {
   OptimizationResult,
 } from '../../types/predictions';
 import { predictionEngine } from '../../lib/prediction-engine';
-import PredictionConfigurationForm from '../../components/predictions/PredictionConfigurationForm';
-import PredictionResultsVisualization from '../../components/predictions/PredictionResultsVisualization';
-import OptimizationVisualization from '../../components/predictions/OptimizationVisualization';
-import PredictionHistory from '../../components/predictions/PredictionHistory';
+
+// Lazy load prediction components
+const PredictionConfigurationForm = lazy(
+  () => import('../../components/predictions/PredictionConfigurationForm')
+);
+const PredictionResultsVisualization = lazy(
+  () => import('../../components/predictions/PredictionResultsVisualization')
+);
+const OptimizationVisualization = lazy(
+  () => import('../../components/predictions/OptimizationVisualization')
+);
+const PredictionHistory = lazy(() => import('../../components/predictions/PredictionHistory'));
+
+// Loading component for Suspense fallback
+const LoadingComponent = () => (
+  <div className="flex items-center justify-center p-8">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+      <p className="text-gray-600">Loading component...</p>
+    </div>
+  </div>
+);
 
 export default function PredictionsPage() {
   const [activeTab, setActiveTab] = useState<'configure' | 'results' | 'optimize' | 'history'>(
@@ -250,38 +268,46 @@ export default function PredictionsPage() {
           </div>
 
           {/* Configuration Form */}
-          <PredictionConfigurationForm
-            onGenerate={handleGeneratePrediction}
-            isLoading={isLoading}
-            predictionState={predictionState || undefined}
-          />
+          <Suspense fallback={<LoadingComponent />}>
+            <PredictionConfigurationForm
+              onGenerate={handleGeneratePrediction}
+              isLoading={isLoading}
+              predictionState={predictionState || undefined}
+            />
+          </Suspense>
         </div>
       )}
 
       {activeTab === 'results' && currentPrediction && (
-        <PredictionResultsVisualization
-          prediction={currentPrediction}
-          onSave={handleSavePrediction}
-          onExport={handleExportPrediction}
-        />
+        <Suspense fallback={<LoadingComponent />}>
+          <PredictionResultsVisualization
+            prediction={currentPrediction}
+            onSave={handleSavePrediction}
+            onExport={handleExportPrediction}
+          />
+        </Suspense>
       )}
 
       {activeTab === 'optimize' && currentConfiguration && (
-        <OptimizationVisualization
-          baseConfiguration={currentConfiguration}
-          onOptimizationComplete={handleOptimizationComplete}
-        />
+        <Suspense fallback={<LoadingComponent />}>
+          <OptimizationVisualization
+            baseConfiguration={currentConfiguration}
+            onOptimizationComplete={handleOptimizationComplete}
+          />
+        </Suspense>
       )}
 
       {activeTab === 'history' && (
-        <PredictionHistory
-          predictions={predictionHistory}
-          onDeletePrediction={handleDeletePrediction}
-          onComparePredictions={(predictionIds) => {
-            console.log('Comparing predictions:', predictionIds);
-            // Additional comparison logic could go here
-          }}
-        />
+        <Suspense fallback={<LoadingComponent />}>
+          <PredictionHistory
+            predictions={predictionHistory}
+            onDeletePrediction={handleDeletePrediction}
+            onComparePredictions={(predictionIds) => {
+              console.log('Comparing predictions:', predictionIds);
+              // Additional comparison logic could go here
+            }}
+          />
+        </Suspense>
       )}
 
       {/* Quick Stats Footer */}

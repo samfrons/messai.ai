@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import {
   Card,
   Button,
@@ -10,9 +10,11 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@messai/ui';
-import MESSViewer3D from './components/MESSViewer3D';
 import ParameterControl from './components/ParameterControl';
 import './components/slider-styles.css';
+
+// Lazy load the heavy 3D component
+const MESSViewer3D = lazy(() => import('./components/MESSViewer3D'));
 
 // Helper function for class names
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -268,13 +270,24 @@ export default function LabPage() {
         {/* Center Column - 3D Viewer */}
         <div className="col-span-12 lg:col-span-6">
           <Card shadow={false} padding="none" className="h-full">
-            <MESSViewer3D
-              className="h-full min-h-[600px]"
-              selectedModel={selectedModel}
-              viewScale={viewScale}
-              visualizationMode={visualizationMode}
-              parameters={parameters}
-            />
+            <Suspense
+              fallback={
+                <div className="h-full min-h-[600px] flex items-center justify-center bg-gray-50">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading 3D viewer...</p>
+                  </div>
+                </div>
+              }
+            >
+              <MESSViewer3D
+                className="h-full min-h-[600px]"
+                selectedModel={selectedModel}
+                viewScale={viewScale}
+                visualizationMode={visualizationMode}
+                parameters={parameters}
+              />
+            </Suspense>
           </Card>
         </div>
 

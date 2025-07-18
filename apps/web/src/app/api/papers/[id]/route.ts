@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@messai/database';
+import { withCache, invalidateCache } from '../../../../lib/cache';
+import { idSchema, updatePaperSchema, validateRequest } from '../../../../lib/validation';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -9,15 +11,33 @@ export async function GET(_request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
 
-    const paper = await prisma.researchPaper.findUnique({
-      where: { id },
-      include: {
-        user: {
-          select: { id: true, name: true, email: true },
+    // Validate ID format
+    try {
+      idSchema.parse(id);
+    } catch (error) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Invalid paper ID format',
+            code: 'INVALID_ID',
+          },
         },
-        experiments: true,
-      },
-    });
+        { status: 400 }
+      );
+    }
+
+    const paper = await withCache('paperDetails', id, () =>
+      prisma.researchPaper.findUnique({
+        where: { id },
+        include: {
+          user: {
+            select: { id: true, name: true, email: true },
+          },
+          experiments: true,
+        },
+      })
+    );
 
     if (!paper) {
       return NextResponse.json(
@@ -54,7 +74,42 @@ export async function GET(_request: NextRequest, { params }: Props) {
 export async function PUT(request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
+
+    // Validate ID format
+    try {
+      idSchema.parse(id);
+    } catch (error) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Invalid paper ID format',
+            code: 'INVALID_ID',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
     const body = await request.json();
+
+    // Validate request body
+    let validatedData;
+    try {
+      validatedData = validateRequest(updatePaperSchema, body);
+    } catch (error: any) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Invalid request data',
+            code: 'VALIDATION_ERROR',
+            details: error.details || error.message,
+          },
+        },
+        { status: 400 }
+      );
+    }
 
     const {
       title,
@@ -74,7 +129,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
       materials,
       qualityScore,
       verified,
-    } = body;
+    } = validatedData;
 
     const paper = await prisma.researchPaper.update({
       where: { id },
@@ -105,6 +160,10 @@ export async function PUT(request: NextRequest, { params }: Props) {
         experiments: true,
       },
     });
+
+    // Invalidate cache for this paper and paper list
+    invalidateCache('paperDetails', id);
+    invalidateCache('papers');
 
     return NextResponse.json({
       data: paper,
@@ -143,9 +202,30 @@ export async function DELETE(_request: NextRequest, { params }: Props) {
   try {
     const { id } = await params;
 
+    // Validate ID format
+    try {
+      idSchema.parse(id);
+    } catch (error) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Invalid paper ID format',
+            code: 'INVALID_ID',
+          },
+        },
+        { status: 400 }
+      );
+    }
+
     await prisma.researchPaper.delete({
       where: { id },
     });
+
+    // Invalidate cache after deletion
+    invalidateCache('paperDetails', id);
+    invalidateCache('papers');
+    invalidateCache('stats');
 
     return NextResponse.json({
       data: { message: 'Paper deleted successfully' },

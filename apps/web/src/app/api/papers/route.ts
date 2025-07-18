@@ -4,26 +4,38 @@ import {
   checkProductionWrite,
   createProductionSafetyResponse,
 } from '../../../lib/production-safety';
+import { withCache, generateCacheKey, invalidateCache } from '../../../lib/cache';
+import {
+  paginationSchema,
+  searchSchema,
+  paperFiltersSchema,
+  createPaperSchema,
+  extractQueryParams,
+  sanitizeString,
+} from '../../../lib/validation';
 
 export async function GET(request: NextRequest) {
   try {
     const startTime = Date.now();
     const { searchParams } = new URL(request.url);
 
-    // Parse query parameters
-    const searchParam = searchParams.get('search') || '';
-    const search = searchParam.slice(0, 200); // Limit search length
-    const sort = searchParams.get('sort') || 'relevance';
-    const page = Math.max(0, parseInt(searchParams.get('page') || '0', 10) || 0);
-    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '40', 10) || 40));
+    // Validate and parse query parameters
+    const paginationParams = extractQueryParams(searchParams, paginationSchema);
+    const searchQueryParams = extractQueryParams(searchParams, searchSchema);
+    const filterParams = extractQueryParams(searchParams, paperFiltersSchema);
 
-    // Parse filters
-    const yearStart = searchParams.get('yearStart');
-    const yearEnd = searchParams.get('yearEnd');
-    const minCitations = searchParams.get('minCitations');
-    const minQualityScore = searchParams.get('minQualityScore');
-    const hasMetrics = searchParams.get('hasMetrics') === 'true';
-    const verified = searchParams.get('verified') === 'true';
+    const { page, limit } = paginationParams;
+    const { search: rawSearch, sort } = searchQueryParams;
+    const search = rawSearch ? sanitizeString(rawSearch) : '';
+    const {
+      yearStart,
+      yearEnd,
+      minCitations,
+      minQualityScore,
+      hasMetrics,
+      verified,
+      includeStats,
+    } = filterParams;
 
     // Build where clause
     const where: any = {};
@@ -105,37 +117,53 @@ export async function GET(request: NextRequest) {
         break;
     }
 
-    // Execute queries in parallel with optimized selection
+    // Generate cache key for this query
+    const cacheKey = generateCacheKey({
+      search,
+      sort,
+      page,
+      limit,
+      yearStart,
+      yearEnd,
+      minCitations,
+      minQualityScore,
+      hasMetrics,
+      verified,
+    });
+
+    // Execute queries in parallel with optimized selection and caching
     const [papers, totalCount] = await Promise.all([
-      prisma.researchPaper.findMany({
-        where,
-        orderBy,
-        skip: page * limit,
-        take: limit,
-        select: {
-          id: true,
-          title: true,
-          authors: true,
-          abstract: true,
-          publicationDate: true,
-          journal: true,
-          doi: true,
-          externalUrl: true,
-          systemType: true,
-          powerOutput: true,
-          efficiency: true,
-          aiSummary: true,
-          aiKeyFindings: true,
-          aiConfidence: true,
-          source: true,
-          isPublic: true,
-          createdAt: true,
-          // In Silico Model Integration fields
-          inSilicoAvailable: true,
-          modelType: true,
-        },
-      }),
-      prisma.researchPaper.count({ where }),
+      withCache('papers', `list:${cacheKey}`, () =>
+        prisma.researchPaper.findMany({
+          where,
+          orderBy,
+          skip: page * limit,
+          take: limit,
+          select: {
+            id: true,
+            title: true,
+            authors: true,
+            abstract: true,
+            publicationDate: true,
+            journal: true,
+            doi: true,
+            externalUrl: true,
+            systemType: true,
+            powerOutput: true,
+            efficiency: true,
+            aiSummary: true,
+            aiKeyFindings: true,
+            aiConfidence: true,
+            source: true,
+            isPublic: true,
+            createdAt: true,
+            // In Silico Model Integration fields
+            inSilicoAvailable: true,
+            modelType: true,
+          },
+        })
+      ),
+      withCache('papers', `count:${cacheKey}`, () => prisma.researchPaper.count({ where })),
     ]);
 
     // Transform papers to match frontend expectations
@@ -218,20 +246,23 @@ export async function GET(request: NextRequest) {
     });
 
     // Calculate statistics - only when needed (not for every request)
-    const includeStats = searchParams.get('includeStats') === 'true';
     let stats = null;
 
     if (includeStats) {
       const [systemTypes, yearRange] = await Promise.all([
-        prisma.researchPaper.groupBy({
-          by: ['systemType'],
-          where: { systemType: { not: null } },
-          _count: true,
-        }),
-        prisma.researchPaper.aggregate({
-          _min: { publicationDate: true },
-          _max: { publicationDate: true },
-        }),
+        withCache('stats', 'system-types', () =>
+          prisma.researchPaper.groupBy({
+            by: ['systemType'],
+            where: { systemType: { not: null } },
+            _count: true,
+          })
+        ),
+        withCache('stats', 'year-range', () =>
+          prisma.researchPaper.aggregate({
+            _min: { publicationDate: true },
+            _max: { publicationDate: true },
+          })
+        ),
       ]);
 
       stats = {
@@ -302,6 +333,24 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
+    // Validate request body
+    let validatedData;
+    try {
+      validatedData = createPaperSchema.parse(body);
+    } catch (error: any) {
+      return NextResponse.json(
+        {
+          data: null,
+          error: {
+            message: 'Invalid request data',
+            code: 'VALIDATION_ERROR',
+            details: error.errors || error.message,
+          },
+        },
+        { status: 400 }
+      );
+    }
+
     const {
       title,
       abstract,
@@ -314,20 +363,7 @@ export async function POST(request: NextRequest) {
       url,
       pdfUrl,
       uploadedById,
-    } = body;
-
-    if (!title || !abstract || !authors || !year) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Missing required fields: title, abstract, authors, year',
-            code: 'VALIDATION_ERROR',
-          },
-        },
-        { status: 400 }
-      );
-    }
+    } = validatedData;
 
     const paper = await prisma.researchPaper.create({
       data: {
@@ -350,6 +386,10 @@ export async function POST(request: NextRequest) {
         },
       },
     });
+
+    // Invalidate cache after creating new paper
+    invalidateCache('papers');
+    invalidateCache('stats');
 
     return NextResponse.json(
       {
