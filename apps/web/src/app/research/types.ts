@@ -127,8 +127,7 @@ export interface ResearchPaper {
   /** Paper abstract */
   abstract: string;
 
-  /** Key methodologies used */
-  methodology?: string[];
+  // methodology is defined later in the interface
 
   /** Performance metrics extracted by AI */
   performanceMetrics: PerformanceMetrics;
