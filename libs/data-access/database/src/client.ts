@@ -68,6 +68,42 @@ function createPrismaClient() {
     log: logLevels as any,
   });
 
+  // Add middleware for query performance monitoring
+  if (!isProduction) {
+    client.$use(async (params, next) => {
+      const before = Date.now();
+
+      try {
+        const result = await next(params);
+        const duration = Date.now() - before;
+
+        // Log slow queries
+        if (duration > 100) {
+          console.warn(`Slow Query (${duration}ms): ${params.model}.${params.action}`);
+        }
+
+        return result;
+      } catch (error) {
+        const duration = Date.now() - before;
+        console.error(`Query Error (${duration}ms): ${params.model}.${params.action}`, error);
+        throw error;
+      }
+    });
+  }
+
+  // Add query event logging for detailed monitoring
+  if (process.env['DATABASE_QUERY_LOGGING'] === 'true') {
+    client.$on('query' as never, (e: any) => {
+      if (e.duration > 500) {
+        console.warn(`Very Slow Query (${e.duration}ms):`, {
+          query: e.query,
+          params: e.params,
+          target: e.target,
+        });
+      }
+    });
+  }
+
   return client;
 }
 
@@ -105,6 +141,61 @@ if (typeof process !== 'undefined') {
     await prisma.$disconnect();
     process.exit(0);
   });
+}
+
+// Graceful shutdown helper
+export async function disconnectPrisma() {
+  if (_prisma) {
+    await _prisma.$disconnect();
+    _prisma = undefined;
+    if (globalForPrisma.prisma === _prisma) {
+      globalForPrisma.prisma = undefined;
+    }
+  }
+}
+
+// Connection health check
+export async function checkDatabaseConnection(): Promise<{
+  connected: boolean;
+  latency?: number;
+  error?: any;
+}> {
+  const start = Date.now();
+
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    const latency = Date.now() - start;
+
+    return {
+      connected: true,
+      latency,
+    };
+  } catch (error) {
+    return {
+      connected: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
+// Execute raw SQL with monitoring
+export async function executeRawQuery<T = unknown>(query: string, params?: any[]): Promise<T> {
+  const start = Date.now();
+
+  try {
+    const result = await prisma.$queryRawUnsafe<T>(query, ...(params || []));
+    const duration = Date.now() - start;
+
+    if (duration > 100) {
+      console.warn(`Slow Raw Query (${duration}ms):`, query.substring(0, 100));
+    }
+
+    return result;
+  } catch (error) {
+    const duration = Date.now() - start;
+    console.error(`Raw Query Error (${duration}ms):`, query.substring(0, 100), error);
+    throw error;
+  }
 }
 
 export default prisma;
