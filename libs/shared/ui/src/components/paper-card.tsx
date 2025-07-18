@@ -25,6 +25,10 @@ export interface PaperData {
   aiEnhanced: boolean;
   qualityScore: number;
   fullTextAvailable: boolean;
+  doi?: string;
+  pmid?: string;
+  url?: string;
+  pdfUrl?: string;
 
   // In Silico Model Integration (optional fields)
   inSilicoAvailable?: boolean;

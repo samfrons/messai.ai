@@ -228,7 +228,7 @@ async function processMESSPapers() {
       });
 
       if (existingPaper) {
-        console.log(`Paper already exists: ${paper.title}`);
+        // Paper already exists, skip
         continue;
       }
 
@@ -274,9 +274,9 @@ async function processMESSPapers() {
         paperId: createdPaper.id,
       });
 
-      console.log(`Added paper: ${paper.title}`);
+      // Successfully added paper
     } catch (error) {
-      console.error(`Error adding paper ${paper.title}:`, error);
+      // Error adding paper - log to monitoring service in production
     }
   }
 

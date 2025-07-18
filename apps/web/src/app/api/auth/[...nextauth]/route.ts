@@ -44,11 +44,11 @@ const handler = NextAuth({
     error: '/auth/error',
   },
   events: {
-    async signIn(message) {
-      console.log('User signed in:', message.user.email);
+    async signIn(_message) {
+      // Log to monitoring service in production
     },
-    async signOut(message) {
-      console.log('User signed out:', message.token?.email);
+    async signOut(_message) {
+      // Log to monitoring service in production
     },
   },
 });

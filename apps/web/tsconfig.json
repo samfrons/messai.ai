@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "preserve",
     "noEmit": true,
+    "rootDir": "../..",
     "emitDeclarationOnly": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -26,6 +27,7 @@
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [
+    "../../libs/data-access/database/src/**/*.ts",
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/**/*.js",

@@ -24,10 +24,10 @@ function SignInContent() {
           router.push(callbackUrl);
         }
       } else if (result?.error) {
-        console.error('Sign in error:', result.error);
+        // Handle sign in error - log to monitoring service in production
       }
     } catch (error) {
-      console.error('Sign in failed:', error);
+      // Handle sign in failure - log to monitoring service in production
     } finally {
       setIsLoading(false);
     }
