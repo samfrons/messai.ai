@@ -3,8 +3,6 @@
   "compilerOptions": {
     "jsx": "preserve",
     "noEmit": true,
-    "rootDir": "../..",
-    "emitDeclarationOnly": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -22,9 +20,7 @@
       "@/*": ["./src/*"],
       "@messai/database": ["../../libs/data-access/database/src/index.ts"]
     },
-    "types": ["jest", "node"],
-    "outDir": "dist",
-    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+    "types": ["jest", "node"]
   },
   "include": [
     "../../libs/data-access/database/src/**/*.ts",

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@messai/database';
 import { normalizeAuthorsForDB, normalizeAuthors } from '../../../../lib/author-utils';
+import {
+  checkProductionWrite,
+  createProductionSafetyResponse,
+} from '../../../../lib/production-safety';
 
 // Mock implementation of MESS papers processing
 // In real implementation, this would use the actual processor
@@ -10,6 +14,15 @@ export async function POST(request: NextRequest) {
     const { action } = body;
 
     if (action === 'process') {
+      // CRITICAL: Prevent writes to production database
+      try {
+        checkProductionWrite('process MESS papers');
+      } catch (error) {
+        return NextResponse.json(createProductionSafetyResponse('process MESS papers'), {
+          status: 403,
+        });
+      }
+
       // Process MESS papers
       const result = await processMESSPapers();
       return NextResponse.json({

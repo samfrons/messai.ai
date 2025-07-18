@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@messai/database';
+import {
+  checkProductionWrite,
+  createProductionSafetyResponse,
+} from '../../../lib/production-safety';
 
 export async function GET(request: NextRequest) {
   try {
@@ -274,6 +278,15 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    // CRITICAL: Prevent writes to production database
+    try {
+      checkProductionWrite('create research paper');
+    } catch (error) {
+      return NextResponse.json(createProductionSafetyResponse('create research paper'), {
+        status: 403,
+      });
+    }
+
     const body = await request.json();
 
     const {

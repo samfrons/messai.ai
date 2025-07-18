@@ -21,7 +21,9 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "recharts": "^3.1.0",
-    "three": "^0.178.0"
+    "three": "^0.178.0",
+    "next-auth": "^4.24.11",
+    "@auth/prisma-adapter": "^2.10.0"
   },
   "devDependencies": {
     "prisma": "^6.11.1"
