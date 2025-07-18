@@ -53,13 +53,14 @@ export default function NanowireMFCModel({
   const flowRef = useRef<THREE.Mesh>(null);
   const biofilmRef = useRef<THREE.Mesh>(null);
 
-  // Calculate dynamic dimensions based on parameters
+  // Calculate proper dimensions for microfluidic chip
   const dimensions = useMemo(() => {
-    const baseLength = 4;
-    const baseWidth = 1.5;
-    const baseHeight = 0.1;
+    // Base dimensions for a 25mm x 12mm x 2mm microfluidic chip
+    const baseLength = 2.5; // 25mm → 2.5 scene units
+    const baseWidth = 1.2; // 12mm → 1.2 scene units
+    const baseHeight = 0.2; // 2mm → 0.2 scene units
 
-    // Scale dimensions based on parameters (convert mm to base units)
+    // Scale based on parameters
     const lengthScale = parameters.chamberLength ? parameters.chamberLength / 25 : 1;
     const widthScale = parameters.chamberWidth ? parameters.chamberWidth / 12 : 1;
     const heightScale = parameters.chamberHeight ? parameters.chamberHeight / 2 : 1;
@@ -68,17 +69,10 @@ export default function NanowireMFCModel({
       length: baseLength * lengthScale,
       width: baseWidth * widthScale,
       height: baseHeight * heightScale,
-      electrodeSpacing: parameters.electrodeSpacing ? parameters.electrodeSpacing / 10 : 1.5,
-      membraneThickness: parameters.membraneThickness ? parameters.membraneThickness / 0.5 : 1,
-
-      // Substrate dimensions
-      substrateThickness: parameters.substrateThickness ? parameters.substrateThickness / 1.5 : 1,
-
-      // Flow channel dimensions (convert μm to scene units)
-      flowChannelWidth: parameters.flowChannelWidth ? parameters.flowChannelWidth / 500 : 1,
-      flowChannelHeight: parameters.flowChannelHeight ? parameters.flowChannelHeight / 200 : 1,
-      mainChannelWidth: parameters.mainChannelWidth ? parameters.mainChannelWidth / 12 : 1,
-      mainChannelHeight: parameters.mainChannelHeight ? parameters.mainChannelHeight / 2 : 1,
+      substrateThickness: 0.15, // 1.5mm substrate
+      electrodeSpacing: baseLength * 0.6, // electrodes apart
+      flowChannelHeight: parameters.flowChannelHeight || 0.02, // 200μm default
+      flowChannelWidth: parameters.flowChannelWidth || 0.05, // 500μm default
     };
   }, [parameters]);
 
@@ -112,20 +106,22 @@ export default function NanowireMFCModel({
 
   // Material colors based on selections
   const materialColors = useMemo(() => {
-    const nanowireMaterialColors = {
+    const nanowireMaterialColors: Record<string, string> = {
       'nickel-silicide': '#C0C0C0',
       nickel: '#D4D4D4',
       carbon: '#424242',
     };
 
-    const substrateMaterialColors = {
+    const substrateMaterialColors: Record<string, string> = {
       'nickel-foam': '#D4D4D4',
       glass: '#F0F0F0',
       silicon: '#2F4F4F',
     };
 
-    const anodeColor = nanowireMaterialColors[parameters.nanowireMaterial || 'nickel-silicide'];
-    const substrateColor = substrateMaterialColors[parameters.substrateMaterial || 'nickel-foam'];
+    const anodeColor =
+      nanowireMaterialColors[parameters.nanowireMaterial || 'nickel-silicide'] || '#C0C0C0';
+    const substrateColor =
+      substrateMaterialColors[parameters.substrateMaterial || 'nickel-foam'] || '#D4D4D4';
 
     const cathodeColor =
       {

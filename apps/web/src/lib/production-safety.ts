@@ -7,13 +7,13 @@
 
 export function isProductionEnvironment(): boolean {
   const isProduction = process.env.NODE_ENV === 'production';
-  const databaseUrl = process.env.DATABASE_URL;
+  const databaseUrl = process.env['DATABASE_URL'];
 
   return (
     isProduction ||
-    databaseUrl?.includes('supabase') ||
-    databaseUrl?.includes('neon') ||
-    databaseUrl?.includes('railway')
+    (databaseUrl?.includes('supabase') ?? false) ||
+    (databaseUrl?.includes('neon') ?? false) ||
+    (databaseUrl?.includes('railway') ?? false)
   );
 }
 
