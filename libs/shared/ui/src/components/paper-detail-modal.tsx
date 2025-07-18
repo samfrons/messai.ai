@@ -248,9 +248,23 @@ export const PaperDetailModal = forwardRef<HTMLDivElement, PaperDetailModalProps
                       variant="primary"
                       className="w-full bg-blue-600 hover:bg-blue-700"
                       onClick={() => {
-                        // TODO: Implement navigation to lab with paper parameters
-                        const labUrl = `/lab?paper=${paper.id}&model=${paper.modelType}`;
-                        window.open(labUrl, '_blank');
+                        // Map paper model type to lab model type
+                        const getLabModelType = (modelType: string | undefined) => {
+                          switch (modelType) {
+                            case 'nanowire-mfc':
+                              return 'microfluidic';
+                            case 'flow-mfc':
+                              return 'benchtop';
+                            case 'traditional-mfc':
+                              return 'stacked';
+                            default:
+                              return 'microfluidic';
+                          }
+                        };
+
+                        const labModelType = getLabModelType(paper.modelType);
+                        const labUrl = `/lab?model=${labModelType}`;
+                        window.location.href = labUrl;
                       }}
                     >
                       <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">

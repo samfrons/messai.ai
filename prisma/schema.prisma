@@ -1,5 +1,5 @@
 // Consolidated Prisma schema for PostgreSQL
-// Single source of truth for all database models
+// Combines features from both root and library schemas
 
 generator client {
   provider = "prisma-client-js"
@@ -38,24 +38,34 @@ model Session {
 }
 
 model User {
-  id                 String              @id @default(cuid())
-  email              String              @unique
-  emailVerified      DateTime?
-  password           String?
-  name               String?
-  image              String?
-  role               String              @default("USER")
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  accounts           Account[]
-  sessions           Session[]
-  researchPapers     ResearchPaper[]
-  auditLogs          AuditLog[]
-  experiments        Experiment[]
-  experimentPapers   ExperimentPaper[]
-  knowledgeNodes     KnowledgeNode[]
-  knowledgeEdges     KnowledgeEdge[]
-  researchClusters   ResearchCluster[]
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  name          String?
+  image         String?
+  role          String    @default("USER")
+  isActive      Boolean   @default(true)
+  lastLoginAt   DateTime?
+  institution   String?
+  researchArea  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  accounts         Account[]
+  sessions         Session[]
+  researchPapers   ResearchPaper[]
+  auditLogs        AuditLog[]
+  experiments      Experiment[]
+  experimentPapers ExperimentPaper[]
+  knowledgeNodes   KnowledgeNode[]
+  knowledgeEdges   KnowledgeEdge[]
+  researchClusters ResearchCluster[]
+
+  @@index([email])
+  @@index([role])
+  @@index([isActive])
 }
 
 model VerificationToken {
@@ -67,15 +77,15 @@ model VerificationToken {
 }
 
 model AuditLog {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   userId    String?
   action    String
   resource  String
   details   String?
   ipAddress String?
   userAgent String?
-  createdAt DateTime  @default(now())
-  user      User?     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
 
   @@index([userId, createdAt])
   @@index([action, createdAt])
@@ -88,6 +98,7 @@ model MFCDesign {
   name        String
   description String?      @default("")
   type        String
+  cost        String?
   volume      String?      @default("")
   powerOutput String
   materials   String
@@ -121,154 +132,204 @@ model Measurement {
   voltage      Float
   current      Float
   power        Float
-  timestamp    DateTime   @default(now())
+  temperature  Float?
+  ph           Float?
+  substrate    Float?
+  notes        String?
   metadata     String?
-  experiment   Experiment @relation(fields: [experimentId], references: [id])
+  timestamp    DateTime   @default(now())
+  experiment   Experiment @relation(fields: [experimentId], references: [id], onDelete: Cascade)
 
   @@index([experimentId, timestamp])
 }
 
 model ResearchPaper {
-  id                String      @id @default(cuid())
-  
+  id String @id @default(cuid())
+
   // Core fields
-  title             String
-  abstract          String?     @default("") @db.Text
-  authors           String      // JSON array
-  publicationDate   DateTime?
-  journal           String?
-  volume            String?
-  issue             String?
-  pages             String?
-  keywords          String      // JSON array
-  externalUrl       String
-  
+  title           String
+  abstract        String?   @default("") @db.Text
+  authors         String // JSON array
+  publicationDate DateTime?
+  journal         String?
+  volume          String?
+  issue           String?
+  pages           String?
+  keywords        String // JSON array
+  externalUrl     String
+
   // Identifiers
-  doi               String?     @unique
-  pubmedId          String?     @unique
-  arxivId           String?     @unique
-  
+  doi      String? @unique
+  pubmedId String? @unique
+  arxivId  String? @unique
+  ieeeId   String? @unique
+
   // MES-specific fields
-  organismTypes     String?     // JSON array of organism IDs
-  anodeMaterials    String?     // JSON array
-  cathodeMaterials  String?     // JSON array
-  powerOutput       Float?      // mW/m²
-  efficiency        Float?      // percentage
-  systemType        String?     // MFC, MEC, MDC, MES
-  
+  organismTypes    String? // JSON array of organism IDs
+  anodeMaterials   String? // JSON array
+  cathodeMaterials String? // JSON array
+  powerOutput      Float? // mW/m²
+  efficiency       Float? // percentage
+  systemType       String? // MFC, MEC, MDC, MES, BES
+
   // Metadata
-  source            String      // 'user', 'pubmed', 'crossref', 'ieee'
-  uploadedBy        String?
-  isPublic          Boolean     @default(true)
-  
+  source     String // 'user', 'pubmed', 'crossref', 'ieee'
+  uploadedBy String?
+  isPublic   Boolean @default(true)
+
   // AI-generated fields
-  aiSummary         String?     // Concise AI-generated summary
-  aiKeyFindings     String?     // Key findings in JSON format
-  aiMethodology     String?     // Summarized methodology
-  aiImplications    String?     // Research implications and applications
-  aiDataExtraction  String?     // Structured extracted data in JSON
-  aiInsights        String?     // AI-generated insights and analysis
-  aiProcessingDate  DateTime?   // When AI processing occurred
-  aiModelVersion    String?     // Which AI model/version was used
-  aiConfidence      Float?      // Confidence score for AI extraction (0-1)
-  
+  aiSummary        String? // Concise AI-generated summary
+  aiKeyFindings    String? // Key findings in JSON format
+  aiMethodology    String? // Summarized methodology
+  aiImplications   String? // Research implications and applications
+  aiDataExtraction String? // Structured extracted data in JSON
+  aiInsights       String? // AI-generated insights and analysis
+  aiProcessingDate DateTime? // When AI processing occurred
+  aiModelVersion   String? // Which AI model/version was used
+  aiConfidence     Float? // Confidence score for AI extraction (0-1)
+
   // Comprehensive parameter extraction fields
-  experimentalConditions  String?     // JSON: temperature, pH, duration, substrate type/conc
-  reactorConfiguration   String?      // JSON: volume, design, dimensions, flow rates
-  electrodeSpecifications String?     // JSON: surface area, modifications, spacing, connections
-  biologicalParameters   String?      // JSON: inoculum source, biofilm age, microbial diversity
-  performanceMetrics     String?      // JSON: extended metrics beyond basic power/efficiency
-  operationalParameters  String?      // JSON: HRT, OLR, external resistance, feeding mode
-  electrochemicalData    String?      // JSON: impedance, voltammetry, polarization curves
-  
+  experimentalConditions  String? // JSON: temperature, pH, duration, substrate type/conc
+  reactorConfiguration    String? // JSON: volume, design, dimensions, flow rates
+  electrodeSpecifications String? // JSON: surface area, modifications, spacing, connections
+  biologicalParameters    String? // JSON: inoculum source, biofilm age, microbial diversity
+  performanceMetrics      String? // JSON: extended metrics beyond basic power/efficiency
+  operationalParameters   String? // JSON: HRT, OLR, external resistance, feeding mode
+  electrochemicalData     String? // JSON: impedance, voltammetry, polarization curves
+  timeSeriesData          String? // JSON: performance over time, degradation rates
+  economicMetrics         String? // JSON: cost analysis, scale-up projections
+
+  // Enhanced categorization fields for advanced filtering
+  microbialCommunity      String? // JSON: {dominant: [], consortium: [], pureculture: boolean}
+  microbialClassification String? // JSON: {phylum: [], class: [], genus: [], species: []}
+  systemConfiguration     String? // JSON: {type: MFC/MEC/MDC/MES/BES, subtype, scale, architecture}
+  performanceBenchmarks   String? // JSON: {powerDensity: {max, operating, normalized}, comparativeRank}
+
+  // In Silico Model Integration (additive fields)
+  inSilicoAvailable  Boolean? @default(false) // Whether 3D model is available
+  modelType          String? // 'nanowire-mfc', 'flow-mfc', 'traditional-mfc', etc.
+  modelParameters    String? // JSON: extracted parameters for 3D modeling
+  performanceTargets String? // JSON: target metrics for validation
+  systemGeometry     String? // JSON: geometric specifications for 3D model
+  materialSpecs      String? // JSON: material properties for modeling
+  operatingSpecs     String? // JSON: operating conditions for simulation
+  methodology        String? // JSON: experimental steps and procedures
+
   // Quality and reproducibility metrics
-  dataCompleteness       Float?       // 0-1 score for parameter completeness
-  reproducibilityScore   Float?       // 0-1 score based on methodology detail
-  recreationDifficulty   String?      // 'easy', 'medium', 'hard' - complexity rating
-  parameterCompleteness  Float?       // 0-1 score for parameter completeness
-  validationStatus       String?      // 'validated', 'pending', 'failed'
-  modelAccuracy          Float?       // 0-1 score for model prediction accuracy
-  lastValidated          DateTime?    // When model was last validated
-  
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-  
+  dataCompleteness      Float? // 0-1 score for parameter completeness
+  reproducibilityScore  Float? // 0-1 score based on methodology detail
+  recreationDifficulty  String? // 'easy', 'medium', 'hard' - complexity rating
+  parameterCompleteness Float? // 0-1 score for parameter completeness
+  validationStatus      String? // 'validated', 'pending', 'failed'
+  modelAccuracy         Float? // 0-1 score for model prediction accuracy
+  lastValidated         DateTime? // When model was last validated
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   // Relations
-  user              User?             @relation(fields: [uploadedBy], references: [id])
-  experiments       ExperimentPaper[]
+  user        User?             @relation(fields: [uploadedBy], references: [id])
+  experiments ExperimentPaper[]
 
   @@index([doi])
   @@index([pubmedId])
   @@index([arxivId])
+  @@index([ieeeId])
   @@index([publicationDate])
   @@index([systemType])
   @@index([uploadedBy])
   @@index([aiProcessingDate])
   @@index([source])
   @@index([isPublic])
+  @@index([powerOutput])
+  @@index([createdAt])
+  @@index([microbialCommunity])
+  @@index([systemConfiguration])
+  @@index([inSilicoAvailable])
+  @@index([modelType])
+  @@index([validationStatus])
+  @@index([lastValidated])
+  // Composite indexes for search performance
+  @@index([systemType, publicationDate])
+  @@index([isPublic, systemType])
+  @@index([journal, publicationDate])
+  @@index([source, createdAt])
+  @@index([aiConfidence, systemType])
+  @@index([powerOutput, efficiency])
+  @@index([publicationDate, aiConfidence])
+  @@index([inSilicoAvailable, systemType])
+  @@index([validationStatus, modelType])
 }
 
 model ExperimentPaper {
-  id            String         @id @default(cuid())
-  experimentId  String
-  paperId       String
-  relationship  String         // 'method_source', 'comparison', 'validation'
-  notes         String?
-  createdAt     DateTime       @default(now())
-  experiment    Experiment     @relation(fields: [experimentId], references: [id])
-  paper         ResearchPaper  @relation(fields: [paperId], references: [id])
-  user          User           @relation(fields: [userId], references: [id])
-  userId        String
+  id           String        @id @default(cuid())
+  experimentId String
+  paperId      String
+  relationship String? // 'method_source', 'comparison', 'validation', 'inspiration', 'methodology'
+  notes        String?
+  citationType String? // Legacy field for compatibility
+  createdAt    DateTime      @default(now())
+  experiment   Experiment    @relation(fields: [experimentId], references: [id], onDelete: Cascade)
+  paper        ResearchPaper @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id])
+  userId       String
 
   @@unique([experimentId, paperId])
   @@index([experimentId])
   @@index([paperId])
 }
 
+// Knowledge Graph Models
+
 model KnowledgeNode {
-  id              String          @id @default(cuid())
-  label           String
-  nodeType        String          // 'concept', 'method', 'material', 'organism', 'metric', 'parameter'
-  description     String?         @db.Text
-  properties      String?         // JSON with node-specific properties
-  confidence      Float?          // Confidence score for inferred nodes (0-1)
-  
+  id          String  @id @default(cuid())
+  label       String
+  nodeType    String // 'concept', 'method', 'material', 'organism', 'metric', 'parameter', 'paper', 'author', 'topic', 'institution'
+  description String? @db.Text
+  properties  String? // JSON with node-specific properties
+  confidence  Float? // Confidence score for inferred nodes (0-1)
+  embedding   Float[] // Vector embedding for semantic similarity
+  importance  Float? // Node importance score (0-1)
+
   // Source tracking
-  sourceType      String          // 'paper', 'manual', 'inferred'
-  sourceId        String?         // Paper ID if extracted from paper
-  extractedFrom   String?         // Section/context from paper
-  
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  uploadedBy      String?
-  user            User?           @relation(fields: [uploadedBy], references: [id])
-  
+  sourceType    String // 'paper', 'manual', 'inferred'
+  sourceId      String? // Paper ID if extracted from paper
+  entityId      String? // Reference to actual entity (e.g., paperId, authorId)
+  extractedFrom String? // Section/context from paper
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  uploadedBy String?
+  user       User?    @relation(fields: [uploadedBy], references: [id])
+
   // Graph relations
-  outgoingEdges   KnowledgeEdge[] @relation("SourceNode")
-  incomingEdges   KnowledgeEdge[] @relation("TargetNode")
-  
+  outgoingEdges KnowledgeEdge[] @relation("SourceNode")
+  incomingEdges KnowledgeEdge[] @relation("TargetNode")
+
+  @@unique([nodeType, entityId])
   @@index([label])
   @@index([nodeType])
   @@index([sourceId])
   @@index([confidence])
+  @@index([importance])
 }
 
 model KnowledgeEdge {
-  id             String         @id @default(cuid())
-  sourceId       String
-  targetId       String
-  edgeType       String         // 'requires', 'improves', 'inhibits', 'correlates', 'part_of'
-  weight         Float          @default(1.0)  // Edge strength/importance (0-1)
-  properties     String?        // JSON with edge-specific properties
-  confidence     Float?         // Confidence score for inferred edges (0-1)
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  
-  source         KnowledgeNode  @relation("SourceNode", fields: [sourceId], references: [id], onDelete: Cascade)
-  target         KnowledgeNode  @relation("TargetNode", fields: [targetId], references: [id], onDelete: Cascade)
-  uploadedBy     String?
-  user           User?          @relation(fields: [uploadedBy], references: [id])
-  
+  id         String   @id @default(cuid())
+  sourceId   String
+  targetId   String
+  edgeType   String // 'requires', 'improves', 'inhibits', 'correlates', 'part_of', 'cites', 'cited_by', 'co_author', 'similar_topic', 'uses_method', 'same_institution'
+  weight     Float    @default(1.0) // Edge strength/importance (0-1)
+  properties String? // JSON with edge-specific properties
+  confidence Float? // Confidence score for inferred edges (0-1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  source     KnowledgeNode @relation("SourceNode", fields: [sourceId], references: [id], onDelete: Cascade)
+  target     KnowledgeNode @relation("TargetNode", fields: [targetId], references: [id], onDelete: Cascade)
+  uploadedBy String?
+  user       User?         @relation(fields: [uploadedBy], references: [id])
+
   @@unique([sourceId, targetId, edgeType])
   @@index([sourceId])
   @@index([targetId])
@@ -277,29 +338,57 @@ model KnowledgeEdge {
 }
 
 model ResearchCluster {
-  id             String         @id @default(cuid())
-  topic          String         // Main research topic/theme
-  summary        String         @db.Text  // AI-generated cluster summary
-  nodeIds        String         // JSON array of node IDs in cluster
-  paperIds       String         // JSON array of paper IDs in cluster
-  
+  id           String  @id @default(cuid())
+  name         String? // Name for library schema compatibility
+  topic        String // Main research topic/theme
+  description  String? // Description for library schema compatibility
+  summary      String  @db.Text // AI-generated cluster summary
+  centerNodeId String? // Most important node in cluster
+  nodeIds      String // JSON array of node IDs in cluster
+  memberNodes  String? // Legacy field for compatibility
+  paperIds     String // JSON array of paper IDs in cluster
+  keywords     String? // JSON array of cluster keywords
+
   // Cluster metrics
-  size           Int            // Number of nodes/papers
-  density        Float          // Graph density metric
-  importance     Float          // Calculated importance score
-  growthRate     Float?         // Growth rate over time
-  
+  size          Int // Number of nodes/papers
+  density       Float // Graph density metric
+  importance    Float // Calculated importance score
+  avgImportance Float? // Average importance of nodes in cluster
+  coherence     Float? // Cluster coherence score (0-1)
+  growthRate    Float? // Growth rate over time
+
   // Trend analysis
-  trendScore     Float?         // How "hot" this topic is
-  emergingTerms  String?        // JSON array of new terms
-  timeRange      String?        // Time period covered
-  keyPapers      String         // JSON array of influential paper IDs
-  predictions    String?        // JSON with trend predictions
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  uploadedBy     String?
-  user           User?          @relation(fields: [uploadedBy], references: [id])
-  
+  trendScore    Float? // How "hot" this topic is
+  emergingTerms String? // JSON array of new terms
+  timeRange     String? // Time period covered
+  keyPapers     String // JSON array of influential paper IDs
+  predictions   String? // JSON with trend predictions
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  uploadedBy String?
+  user       User?    @relation(fields: [uploadedBy], references: [id])
+
+  @@index([topic])
+  @@index([trendScore])
+  @@index([timeRange])
+  @@index([avgImportance])
+  @@index([coherence])
+}
+
+model ResearchTrend {
+  id          String   @id @default(cuid())
+  topic       String
+  timeRange   String // e.g., "2020-2024"
+  trendScore  Float // Trend strength (0-1)
+  growthRate  Float? // Percentage growth rate
+  paperCount  Int // Number of papers in this trend
+  keyAuthors  String // JSON array of influential author IDs
+  keyPapers   String // JSON array of influential paper IDs
+  predictions String? // JSON with trend predictions
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   @@index([topic])
   @@index([trendScore])
   @@index([timeRange])

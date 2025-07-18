@@ -69,6 +69,11 @@ export default function ResearchPage() {
     aiEnhanced: paper.aiEnhanced,
     qualityScore: paper.qualityScore,
     fullTextAvailable: paper.fullTextAvailable,
+    // URL fields - CRITICAL for Access Full Text button
+    doi: (paper as any).doi,
+    pmid: (paper as any).pmid,
+    url: (paper as any).url,
+    pdfUrl: (paper as any).pdfUrl,
 
     // In Silico Model Integration (with fallbacks for missing fields)
     inSilicoAvailable: (paper as any).inSilicoAvailable ?? false,
@@ -104,15 +109,82 @@ export default function ResearchPage() {
   };
 
   const handleExportCitation = (paper: PaperData, format: 'bibtex' | 'ris' | 'apa') => {
-    // Mock export functionality
-    console.log(`Exporting ${paper.title} in ${format} format`);
-    // In a real implementation, this would generate and download the citation
+    let citation = '';
+    const year = paper.year || new Date().getFullYear();
+    const authors = paper.authors.map((a) => a.name).join(', ');
+
+    switch (format) {
+      case 'bibtex':
+        citation = `@article{${paper.id},
+  title={${paper.title}},
+  author={${authors}},
+  journal={${paper.journal.name}},
+  year={${year}},
+  doi={${paper.doi || ''}}
+}`;
+        break;
+      case 'ris':
+        citation = `TY  - JOUR
+TI  - ${paper.title}
+AU  - ${paper.authors.map((a) => a.name).join('\nAU  - ')}
+JO  - ${paper.journal.name}
+PY  - ${year}
+DO  - ${paper.doi || ''}
+ER  -`;
+        break;
+      case 'apa':
+        citation = `${authors} (${year}). ${paper.title}. ${paper.journal.name}${
+          paper.doi ? `. https://doi.org/${paper.doi}` : ''
+        }`;
+        break;
+    }
+
+    // Download the citation
+    const blob = new Blob([citation], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${paper.id}-citation.${format === 'apa' ? 'txt' : format}`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   };
 
   const handleAccessFullText = (paper: PaperData) => {
-    // Mock full text access
-    console.log(`Accessing full text for ${paper.title}`);
-    // In a real implementation, this would open the PDF or redirect to publisher
+    let urlToOpen: string | null = null;
+
+    if (paper.pdfUrl) {
+      urlToOpen = paper.pdfUrl;
+    } else if (paper.url) {
+      urlToOpen = paper.url;
+    } else if (paper.doi) {
+      urlToOpen = `https://doi.org/${paper.doi}`;
+    } else if (paper.pmid) {
+      urlToOpen = `https://pubmed.ncbi.nlm.nih.gov/${paper.pmid}/`;
+    }
+
+    if (urlToOpen) {
+      try {
+        const newWindow = window.open(urlToOpen, '_blank', 'noopener,noreferrer');
+        if (!newWindow) {
+          // Fallback: create a link and click it (handles popup blockers)
+          const link = document.createElement('a');
+          link.href = urlToOpen;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      } catch (error) {
+        console.error('Error opening URL:', error);
+        // Final fallback: navigate current window
+        window.location.href = urlToOpen;
+      }
+    } else {
+      alert('No URL available for this paper');
+    }
   };
 
   // Quick action handlers

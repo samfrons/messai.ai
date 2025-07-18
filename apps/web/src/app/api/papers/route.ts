@@ -7,10 +7,11 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
 
     // Parse query parameters
-    const search = searchParams.get('search') || '';
+    const searchParam = searchParams.get('search') || '';
+    const search = searchParam.slice(0, 200); // Limit search length
     const sort = searchParams.get('sort') || 'relevance';
-    const page = parseInt(searchParams.get('page') || '0', 10);
-    const limit = parseInt(searchParams.get('limit') || '40', 10);
+    const page = Math.max(0, parseInt(searchParams.get('page') || '0', 10) || 0);
+    const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '40', 10) || 40));
 
     // Parse filters
     const yearStart = searchParams.get('yearStart');
@@ -125,6 +126,9 @@ export async function GET(request: NextRequest) {
           source: true,
           isPublic: true,
           createdAt: true,
+          // In Silico Model Integration fields
+          inSilicoAvailable: true,
+          modelType: true,
         },
       }),
       prisma.researchPaper.count({ where }),
@@ -200,9 +204,11 @@ export async function GET(request: NextRequest) {
         aiEnhanced: !!paper.aiSummary,
         source: paper.source || 'database',
         processingDate: paper.createdAt.toISOString(),
-        hasFullText: !!paper.externalUrl,
+        fullTextAvailable: !!paper.externalUrl,
 
-        // Note: In Silico Model Integration fields removed as they don't exist in current schema
+        // In Silico Model Integration fields
+        inSilicoAvailable: paper.inSilicoAvailable || false,
+        modelType: paper.modelType || '',
       };
     });
 

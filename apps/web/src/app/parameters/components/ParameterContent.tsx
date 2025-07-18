@@ -14,7 +14,7 @@ export default function ParameterContent({ content }: ParameterContentProps) {
       // Italic text
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       // Code blocks
-      .replace(/`(.+?)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
+      .replace(/`(.+?)`/g, '<code className="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
       // Line breaks
       .replace(/\n/g, '<br />');
 
@@ -27,7 +27,7 @@ export default function ParameterContent({ content }: ParameterContentProps) {
       const line = lines[i];
       if (line && line.trim().startsWith('- ')) {
         if (!inList) {
-          listHtml += '<ul class="list-disc list-inside space-y-1 my-2">';
+          listHtml += '<ul className="list-disc list-inside space-y-1 my-2">';
           inList = true;
         }
         listHtml += `<li>${line ? line.substring(2) : ''}</li>`;

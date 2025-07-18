@@ -115,7 +115,7 @@ The `/api/papers` endpoint returns:
       aiEnhanced: boolean; // !!aiSummary
       source: string;
       processingDate: string; // createdAt ISO
-      hasFullText: boolean; // !!externalUrl
+      fullTextAvailable: boolean; // !!externalUrl
     }>,
     pagination: {
       page: number;

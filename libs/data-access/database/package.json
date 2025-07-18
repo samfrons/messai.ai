@@ -15,9 +15,9 @@
   },
   "scripts": {
     "build": "tsup",
-    "generate": "prisma generate",
-    "push": "prisma db push",
-    "studio": "prisma studio",
+    "generate": "prisma generate --schema=../../../prisma/schema.prisma",
+    "push": "prisma db push --schema=../../../prisma/schema.prisma",
+    "studio": "prisma studio --schema=../../../prisma/schema.prisma",
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
