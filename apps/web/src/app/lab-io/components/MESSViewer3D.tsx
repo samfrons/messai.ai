@@ -9,6 +9,7 @@ import MicrofluidicCell from './models/MicrofluidicCell';
 import StackedFuelCell from './models/StackedFuelCell';
 import BenchtopReactor from './models/BenchtopReactor';
 import AlgaeFuelCell from './models/AlgaeFuelCell';
+import NanowireMFCModel from './models/NanowireMFCModel';
 import PerformanceOverlay from './PerformanceOverlay';
 import ErrorBoundary from './ErrorBoundary';
 import Enhanced3DControls from './Enhanced3DControls';
@@ -43,6 +44,15 @@ function MESSModel({
       case 'microfluidic':
         return (
           <MicrofluidicCell
+            scale={scale}
+            showAnimation={showAnimation}
+            visualizationMode={visualizationMode}
+          />
+        );
+
+      case 'nanowire-mfc':
+        return (
+          <NanowireMFCModel
             scale={scale}
             showAnimation={showAnimation}
             visualizationMode={visualizationMode}

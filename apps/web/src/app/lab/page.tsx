@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   Button,
@@ -54,6 +54,17 @@ interface ModelParameters {
   ambientTemperature: number;
   oxygenAvailability: number;
   mixingSpeed: number;
+
+  // Nanowire-specific parameters
+  nanowireCount?: number;
+  nanowireDiameter?: number;
+  nanowireLength?: number;
+  nanowireSpacing?: number;
+  nanowireDensity?: number;
+  nanowireOrientation?: string;
+  nanowireMaterial?: string;
+  substrateType?: string;
+  substrateThickness?: number;
 }
 
 const initialParameters: ModelParameters = {
@@ -91,6 +102,17 @@ const initialParameters: ModelParameters = {
   ambientTemperature: 22,
   oxygenAvailability: 21,
   mixingSpeed: 100,
+
+  // Nanowire-specific parameters
+  nanowireCount: 21250,
+  nanowireDiameter: 50,
+  nanowireLength: 2.5,
+  nanowireSpacing: 34.1,
+  nanowireDensity: 850,
+  nanowireOrientation: 'vertical',
+  nanowireMaterial: 'nickel-silicide',
+  substrateType: 'foam',
+  substrateThickness: 1.5,
 };
 
 export default function LabPage() {
@@ -100,6 +122,16 @@ export default function LabPage() {
     'static'
   );
   const [parameters, setParameters] = useState<ModelParameters>(initialParameters);
+
+  // Handle URL parameters on component mount
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const modelFromUrl = urlParams.get('model');
+
+    if (modelFromUrl && models.find((m) => m.id === modelFromUrl)) {
+      setSelectedModel(modelFromUrl);
+    }
+  }, []);
 
   const updateParameter = (key: keyof ModelParameters, value: string | number) => {
     setParameters((prev) => ({ ...prev, [key]: value }));
@@ -112,6 +144,13 @@ export default function LabPage() {
       status: 'Available',
       statusType: 'default',
       description: 'Microscope slide chip with magnetic electrodes',
+    },
+    {
+      id: 'nanowire-mfc',
+      name: 'Nanowire Microbial Fuel Cell',
+      status: 'Available',
+      statusType: 'default',
+      description: 'Nickel silicide nanowire array on foam substrate',
     },
     {
       id: 'stacked',

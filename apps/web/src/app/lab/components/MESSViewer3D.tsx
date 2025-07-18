@@ -8,6 +8,7 @@ import { Badge } from '@messai/ui';
 import MicrofluidicCell from './models/MicrofluidicCell';
 import StackedFuelCell from './models/StackedFuelCell';
 import BenchtopReactor from './models/BenchtopReactor';
+import NanowireMFCModel from './models/NanowireMFCModel';
 import PerformanceOverlay from './PerformanceOverlay';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -59,6 +60,16 @@ function MESSModel({
       case 'microfluidic':
         return (
           <MicrofluidicCell
+            scale={scale}
+            showAnimation={showAnimation}
+            visualizationMode={visualizationMode}
+            parameters={parameters}
+          />
+        );
+
+      case 'nanowire-mfc':
+        return (
+          <NanowireMFCModel
             scale={scale}
             showAnimation={showAnimation}
             visualizationMode={visualizationMode}
@@ -151,6 +162,7 @@ function Scene({
     // Base scale adjustments for different models to fit properly
     const modelBaseScale = {
       microfluidic: 1.2,
+      'nanowire-mfc': 1.0,
       stacked: 0.9,
       benchtop: 0.8,
       industrial: 0.7,

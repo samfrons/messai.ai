@@ -252,7 +252,7 @@ export const PaperDetailModal = forwardRef<HTMLDivElement, PaperDetailModalProps
                         const getLabModelType = (modelType: string | undefined) => {
                           switch (modelType) {
                             case 'nanowire-mfc':
-                              return 'microfluidic';
+                              return 'nanowire-mfc';
                             case 'flow-mfc':
                               return 'benchtop';
                             case 'traditional-mfc':
