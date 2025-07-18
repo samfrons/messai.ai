@@ -8,8 +8,8 @@
     "lint": "next lint",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "postinstall": "if [ \"$VERCEL\" = \"1\" ] || [ \"$NODE_ENV\" = \"production\" ]; then prisma generate --schema=../../prisma/schema.production.prisma; else prisma generate --schema=../../prisma/schema.prisma; fi",
-    "prebuild": "if [ \"$VERCEL\" = \"1\" ] || [ \"$NODE_ENV\" = \"production\" ]; then prisma generate --schema=../../prisma/schema.production.prisma; else prisma generate --schema=../../prisma/schema.prisma; fi"
+    "postinstall": "prisma generate --schema=../../prisma/schema.prisma",
+    "prebuild": "prisma generate --schema=../../prisma/schema.prisma"
   },
   "dependencies": {
     "@messai/ui": "workspace:*",
