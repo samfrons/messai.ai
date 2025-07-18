@@ -27,8 +27,6 @@
   - Collaborative Tools: Experiment tracking, sharing, and team collaboration
     features
 
-[... rest of existing content remains unchanged ...]
-
 ## 7. Research Library Database Integration (CRITICAL FOR AI AGENTS)
 
 ### Database Architecture
@@ -200,3 +198,7 @@ are loaded:
 - **ALWAYS** verify API nomenclature matches database fields
 - **ALWAYS** clean JATS XML from abstracts before display
 - **ALWAYS** check environment variables are loaded properly
+
+## Development Deployment Memories
+
+- remember we use local docker then production prisma

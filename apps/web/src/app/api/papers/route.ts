@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '../../../lib/db';
+import { prisma, transformSearchResults } from '@messai/database';
+import type { DatabaseSearchResults } from '@messai/database';
 
 export async function GET(request: NextRequest) {
   try {
@@ -28,13 +29,13 @@ export async function GET(request: NextRequest) {
       where.OR = [
         { title: { contains: search, mode: 'insensitive' } },
         { abstract: { contains: search, mode: 'insensitive' } },
-        { authors: { contains: search, mode: 'insensitive' } }, // Fix: authors is a string, not array
+        { authors: { contains: search, mode: 'insensitive' } },
         { journal: { contains: search, mode: 'insensitive' } },
         { systemType: { contains: search, mode: 'insensitive' } },
       ];
     }
 
-    // Year range filter - extract year from publicationDate
+    // Year range filter
     if (yearStart || yearEnd) {
       const dateFilters: any = {};
       if (yearStart) {
@@ -53,7 +54,7 @@ export async function GET(request: NextRequest) {
 
     // Quality score filter (use aiConfidence as proxy)
     if (minQualityScore) {
-      where.aiConfidence = { gte: parseFloat(minQualityScore) / 100 }; // Convert to 0-1 scale
+      where.aiConfidence = { gte: parseFloat(minQualityScore) / 100 };
     }
 
     // Performance metrics filter
@@ -78,7 +79,7 @@ export async function GET(request: NextRequest) {
         break;
       case 'citations':
       case 'citations-desc':
-        orderBy = { powerOutput: 'desc' }; // Use powerOutput as proxy for importance
+        orderBy = { powerOutput: 'desc' };
         break;
       case 'citations-asc':
         orderBy = { powerOutput: 'asc' };
@@ -95,7 +96,6 @@ export async function GET(request: NextRequest) {
         break;
       case 'relevance':
       default:
-        // For relevance, we'll use a combination of AI confidence and creation date
         orderBy = [{ aiConfidence: 'desc' }, { createdAt: 'desc' }];
         break;
     }
@@ -107,148 +107,25 @@ export async function GET(request: NextRequest) {
         orderBy,
         skip: page * limit,
         take: limit,
-        select: {
-          id: true,
-          title: true,
-          authors: true,
-          abstract: true,
-          publicationDate: true,
-          journal: true,
-          doi: true,
-          externalUrl: true,
-          systemType: true,
-          powerOutput: true,
-          efficiency: true,
-          aiSummary: true,
-          aiKeyFindings: true,
-          aiConfidence: true,
-          source: true,
-          isPublic: true,
-          createdAt: true,
-        },
       }),
       prisma.researchPaper.count({ where }),
     ]);
 
-    // Transform papers to match frontend expectations
-    const transformedPapers = papers.map((paper) => {
-      // Parse authors - handle both string array and JSON string
-      let authorsList: string[] = [];
-      if (Array.isArray(paper.authors)) {
-        authorsList = paper.authors;
-      } else if (typeof paper.authors === 'string') {
-        try {
-          authorsList = JSON.parse(paper.authors);
-        } catch {
-          authorsList = [paper.authors];
-        }
-      }
-
-      // Parse key findings
-      let keyFindings: string[] = [];
-      if (paper.aiKeyFindings) {
-        try {
-          keyFindings = JSON.parse(paper.aiKeyFindings as string);
-        } catch {
-          keyFindings = [];
-        }
-      }
-
-      // Extract year from publicationDate
-      const year = paper.publicationDate ? new Date(paper.publicationDate).getFullYear() : null;
-
-      // Clean abstract text by removing JATS XML tags
-      const cleanAbstract = (text: string) => {
-        if (!text) return '';
-        return text
-          .replace(/<jats:[^>]*>/g, '') // Remove opening JATS tags
-          .replace(/<\/jats:[^>]*>/g, '') // Remove closing JATS tags
-          .replace(/<[^>]*>/g, '') // Remove any remaining HTML/XML tags
-          .trim();
-      };
-
-      // JSON parsing function removed since fields were eliminated
-
-      return {
-        id: paper.id,
-        title: paper.title,
-        authors: authorsList.map((name) => ({ name, affiliation: '' })),
-        abstract: cleanAbstract(paper.abstract || ''),
-        year: year || 0,
-        journal: {
-          name: paper.journal || '',
-          impactFactor: 0,
-        },
-        doi: paper.doi || '',
-        url: paper.externalUrl || '',
-        pdfUrl: paper.externalUrl || '', // Use externalUrl as PDF URL fallback
-        citation: {
-          citationCount: paper.powerOutput || 0, // Use powerOutput as proxy for citations
-          hIndex: 0,
-          scholarProfile: '',
-        },
-        qualityScore: (paper.aiConfidence || 0) * 100, // Convert 0-1 to 0-100 scale
-        aiConfidenceScore: (paper.aiConfidence || 0) * 100,
-        verified: paper.isPublic,
-        researchFocus: paper.systemType ? [paper.systemType] : [],
-        performanceMetrics: {
-          maxPowerDensity: paper.powerOutput,
-          coulombicEfficiency: paper.efficiency,
-          currentDensity: null, // Not available in this schema
-        },
-        keyFindings: keyFindings,
-        aiEnhanced: !!paper.aiSummary,
-        source: paper.source || 'database',
-        processingDate: paper.createdAt.toISOString(),
-        hasFullText: !!paper.externalUrl,
-
-        // Note: In Silico Model Integration fields removed as they don't exist in current schema
-      };
-    });
-
-    // Calculate statistics
-    const stats = {
-      totalPapers: totalCount,
-      systemTypes: await prisma.researchPaper.groupBy({
-        by: ['systemType'],
-        where: { systemType: { not: null } },
-        _count: true,
-      }),
-      yearRange: await prisma.researchPaper.aggregate({
-        _min: { publicationDate: true },
-        _max: { publicationDate: true },
-      }),
+    // Create database search results
+    const dbResults: DatabaseSearchResults = {
+      papers,
+      totalCount,
+      page,
+      pageSize: limit,
+      totalPages: Math.ceil(totalCount / limit),
+      searchTime: Date.now() - startTime,
     };
 
-    const searchTime = Date.now() - startTime;
+    // Transform to API format
+    const apiResults = transformSearchResults(dbResults, search);
 
     return NextResponse.json({
-      data: {
-        papers: transformedPapers,
-        pagination: {
-          page,
-          limit,
-          total: totalCount,
-          pages: Math.ceil(totalCount / limit),
-        },
-        stats: {
-          totalResults: totalCount,
-          systemTypes: stats.systemTypes.map((st) => ({
-            type: st.systemType,
-            count: st._count,
-          })),
-          yearRange: {
-            min: stats.yearRange._min.publicationDate
-              ? new Date(stats.yearRange._min.publicationDate).getFullYear()
-              : 2000,
-            max: stats.yearRange._max.publicationDate
-              ? new Date(stats.yearRange._max.publicationDate).getFullYear()
-              : new Date().getFullYear(),
-          },
-        },
-        searchTime,
-        suggestions: search ? [] : undefined, // Add empty suggestions array when search is provided
-      },
+      data: apiResults,
       error: null,
     });
   } catch (error) {
@@ -275,21 +152,20 @@ export async function POST(request: NextRequest) {
       abstract,
       authors,
       journal,
-      year,
       doi,
-      pmid,
-      arxivId,
-      url,
-      pdfUrl,
-      uploadedById,
+      externalUrl,
+      systemType,
+      powerOutput,
+      efficiency,
     } = body;
 
-    if (!title || !abstract || !authors || !year) {
+    // Validate required fields
+    if (!title || !authors || !externalUrl) {
       return NextResponse.json(
         {
           data: null,
           error: {
-            message: 'Missing required fields: title, abstract, authors, year',
+            message: 'Missing required fields: title, authors, externalUrl',
             code: 'VALIDATION_ERROR',
           },
         },
@@ -297,57 +173,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Create new research paper
     const paper = await prisma.researchPaper.create({
       data: {
         title,
-        abstract,
-        authors: JSON.stringify(authors), // authors is a string field in deployment schema
-        journal,
-        publicationDate: new Date(`${year}-01-01`), // Convert year to date
-        doi,
-        pubmedId: pmid, // Field renamed in deployment schema
-        arxivId,
-        externalUrl: url || pdfUrl, // Use externalUrl field
-        keywords: '[]', // Required field in deployment schema
-        source: 'user', // Required field in deployment schema
-        uploadedBy: uploadedById,
-      },
-      include: {
-        user: {
-          select: { id: true, name: true, email: true },
-        },
+        abstract: abstract || '',
+        authors: JSON.stringify(Array.isArray(authors) ? authors : [authors]),
+        journal: journal || '',
+        doi: doi || null,
+        externalUrl,
+        systemType: systemType || null,
+        powerOutput: powerOutput || null,
+        efficiency: efficiency || null,
+        keywords: JSON.stringify([]),
+        source: 'user',
+        isPublic: true,
       },
     });
 
-    return NextResponse.json(
-      {
-        data: paper,
-        error: null,
-      },
-      { status: 201 }
-    );
+    return NextResponse.json({
+      data: { id: paper.id, message: 'Paper created successfully' },
+      error: null,
+    });
   } catch (error) {
-    console.error('Papers creation error:', error);
-
-    if (error instanceof Error && error.message.includes('Unique constraint')) {
-      return NextResponse.json(
-        {
-          data: null,
-          error: {
-            message: 'Paper with this DOI/PMID already exists',
-            code: 'DUPLICATE_ERROR',
-          },
-        },
-        { status: 409 }
-      );
-    }
-
+    console.error('Create paper error:', error);
     return NextResponse.json(
       {
         data: null,
         error: {
-          message: 'Failed to create paper',
-          code: 'CREATION_ERROR',
+          message: error instanceof Error ? error.message : 'Failed to create paper',
+          code: 'CREATE_ERROR',
         },
       },
       { status: 500 }

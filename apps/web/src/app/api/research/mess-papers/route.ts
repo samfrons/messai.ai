@@ -328,7 +328,7 @@ async function listMESSPapers() {
     orderBy: [{ aiConfidence: 'desc' }, { publicationDate: 'desc' }],
   });
 
-  return papers.map((paper) => ({
+  return papers.map((paper: any) => ({
     id: paper.id,
     title: paper.title,
     authors: normalizeAuthors(JSON.parse(paper.authors)),

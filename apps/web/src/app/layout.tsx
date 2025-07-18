@@ -1,4 +1,4 @@
-import './global.css';
+import './global.scss';
 import { Layout } from '@messai/ui';
 import { AuthProvider } from '../lib/auth';
 

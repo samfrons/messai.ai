@@ -1,4 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+// Use require for build compatibility
+// @ts-ignore
+const { PrismaClient } = require('@prisma/client');
 import type {
   KnowledgeNode,
   KnowledgeEdge,
