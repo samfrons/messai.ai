@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button, Badge, Card } from '@messai/ui';
 
 interface Enhanced3DControlsProps {
@@ -19,6 +19,7 @@ export default function Enhanced3DControls({
   const [activeView, setActiveView] = useState('perspective');
   const [isAnimating, setIsAnimating] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const presetViews = [
     { id: 'perspective', label: 'Perspective', icon: '📐' },
@@ -28,13 +29,27 @@ export default function Enhanced3DControls({
     { id: 'isometric', label: 'Isometric', icon: '🔧' },
   ];
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleViewChange = (viewId: string) => {
     setActiveView(viewId);
     setIsAnimating(true);
     onViewChange?.(viewId);
 
+    // Clear existing timeout
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+
     // Reset animation state
-    setTimeout(() => setIsAnimating(false), 1000);
+    animationTimeoutRef.current = setTimeout(() => setIsAnimating(false), 1000);
   };
 
   const handleScreenshot = () => {

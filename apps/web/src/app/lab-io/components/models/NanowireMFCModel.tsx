@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -215,6 +215,27 @@ export default function NanowireMFCModel({
       biofilmRef.current.scale.setScalar(biofilmScale * pulseScale);
     }
   });
+
+  // Cleanup Three.js objects on unmount
+  useEffect(() => {
+    return () => {
+      // Cleanup refs and their associated Three.js objects
+      if (groupRef.current) {
+        groupRef.current.traverse((child) => {
+          if ('geometry' in child && child.geometry) {
+            (child.geometry as any).dispose();
+          }
+          if ('material' in child && child.material) {
+            if (Array.isArray(child.material)) {
+              child.material.forEach((material: any) => material.dispose());
+            } else {
+              (child.material as any).dispose();
+            }
+          }
+        });
+      }
+    };
+  }, []);
 
   // Render nanowires based on LOD level
   const renderNanowires = () => {

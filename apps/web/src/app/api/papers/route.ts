@@ -105,7 +105,7 @@ export async function GET(request: NextRequest) {
         break;
     }
 
-    // Execute queries in parallel
+    // Execute queries in parallel with optimized selection
     const [papers, totalCount] = await Promise.all([
       prisma.researchPaper.findMany({
         where,
@@ -140,29 +140,30 @@ export async function GET(request: NextRequest) {
 
     // Transform papers to match frontend expectations
     const transformedPapers = papers.map((paper) => {
-      // Parse authors - handle both string array and JSON string
-      let authorsList: string[] = [];
-      if (Array.isArray(paper.authors)) {
-        authorsList = paper.authors;
-      } else if (typeof paper.authors === 'string') {
-        try {
-          authorsList = JSON.parse(paper.authors);
-        } catch {
-          authorsList = [paper.authors];
+      // Optimized parsing with memoization
+      const parseAuthors = (authors: any): string[] => {
+        if (Array.isArray(authors)) return authors;
+        if (typeof authors === 'string') {
+          try {
+            return JSON.parse(authors);
+          } catch {
+            return [authors];
+          }
         }
-      }
+        return [];
+      };
 
-      // Parse key findings
-      let keyFindings: string[] = [];
-      if (paper.aiKeyFindings) {
+      const parseKeyFindings = (findings: any): string[] => {
+        if (!findings) return [];
         try {
-          keyFindings = JSON.parse(paper.aiKeyFindings as string);
+          return JSON.parse(findings as string);
         } catch {
-          keyFindings = [];
+          return [];
         }
-      }
+      };
 
-      // Extract year from publicationDate
+      const authorsList = parseAuthors(paper.authors);
+      const keyFindings = parseKeyFindings(paper.aiKeyFindings);
       const year = paper.publicationDate ? new Date(paper.publicationDate).getFullYear() : null;
 
       // Clean abstract text by removing JATS XML tags
@@ -216,19 +217,29 @@ export async function GET(request: NextRequest) {
       };
     });
 
-    // Calculate statistics
-    const stats = {
-      totalPapers: totalCount,
-      systemTypes: await prisma.researchPaper.groupBy({
-        by: ['systemType'],
-        where: { systemType: { not: null } },
-        _count: true,
-      }),
-      yearRange: await prisma.researchPaper.aggregate({
-        _min: { publicationDate: true },
-        _max: { publicationDate: true },
-      }),
-    };
+    // Calculate statistics - only when needed (not for every request)
+    const includeStats = searchParams.get('includeStats') === 'true';
+    let stats = null;
+
+    if (includeStats) {
+      const [systemTypes, yearRange] = await Promise.all([
+        prisma.researchPaper.groupBy({
+          by: ['systemType'],
+          where: { systemType: { not: null } },
+          _count: true,
+        }),
+        prisma.researchPaper.aggregate({
+          _min: { publicationDate: true },
+          _max: { publicationDate: true },
+        }),
+      ]);
+
+      stats = {
+        totalPapers: totalCount,
+        systemTypes,
+        yearRange,
+      };
+    }
 
     const searchTime = Date.now() - startTime;
 
@@ -241,21 +252,23 @@ export async function GET(request: NextRequest) {
           total: totalCount,
           pages: Math.ceil(totalCount / limit),
         },
-        stats: {
-          totalResults: totalCount,
-          systemTypes: stats.systemTypes.map((st) => ({
-            type: st.systemType,
-            count: st._count,
-          })),
-          yearRange: {
-            min: stats.yearRange._min.publicationDate
-              ? new Date(stats.yearRange._min.publicationDate).getFullYear()
-              : 2000,
-            max: stats.yearRange._max.publicationDate
-              ? new Date(stats.yearRange._max.publicationDate).getFullYear()
-              : new Date().getFullYear(),
-          },
-        },
+        stats: stats
+          ? {
+              totalResults: totalCount,
+              systemTypes: stats.systemTypes.map((st) => ({
+                type: st.systemType,
+                count: st._count,
+              })),
+              yearRange: {
+                min: stats.yearRange._min.publicationDate
+                  ? new Date(stats.yearRange._min.publicationDate).getFullYear()
+                  : 2000,
+                max: stats.yearRange._max.publicationDate
+                  ? new Date(stats.yearRange._max.publicationDate).getFullYear()
+                  : new Date().getFullYear(),
+              },
+            }
+          : { totalResults: totalCount },
         searchTime,
         suggestions: search ? [] : undefined, // Add empty suggestions array when search is provided
       },

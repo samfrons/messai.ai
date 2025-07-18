@@ -8,11 +8,18 @@ function createPrismaClient() {
   const isProduction = process.env['NODE_ENV'] === 'production';
   const isLocalDevelopment = process.env['DATABASE_URL']?.includes('localhost');
 
-  // Get database URL from environment
+  // Get database URL from environment with validation
   const databaseUrl = process.env['DATABASE_URL'];
 
   if (!databaseUrl) {
     throw new Error('DATABASE_URL environment variable is required');
+  }
+
+  // Validate DATABASE_URL format
+  try {
+    new URL(databaseUrl);
+  } catch {
+    throw new Error('DATABASE_URL must be a valid URL');
   }
 
   // Determine if we should use Prisma Accelerate (production remote databases only)
@@ -64,7 +71,20 @@ function createPrismaClient() {
   return client;
 }
 
-export const prisma = globalForPrisma.prisma ?? createPrismaClient();
+// Lazy initialization to prevent build-time errors
+let _prisma: PrismaClient | undefined;
+
+export const prisma = new Proxy({} as PrismaClient, {
+  get(_, prop) {
+    if (!_prisma) {
+      _prisma = globalForPrisma.prisma ?? createPrismaClient();
+      if (process.env['NODE_ENV'] !== 'production') {
+        globalForPrisma.prisma = _prisma;
+      }
+    }
+    return (_prisma as any)[prop];
+  },
+});
 
 if (process.env['NODE_ENV'] !== 'production') {
   globalForPrisma.prisma = prisma;

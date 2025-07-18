@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -120,39 +120,72 @@ export default function NanowireMFCModel({
     };
   }, [parameters]);
 
-  // Render realistic nanowire array
-  const renderNanowireArray = () => {
-    // Create a dense array of nanowires
-    const nanowires = [];
-    const gridSize = Math.ceil(Math.sqrt(nanowireParams.count));
-    const spacing = 0.08; // Tighter spacing for realistic density
+  // Optimized nanowire array using instancedMesh
+  const nanowireInstancedMesh = useMemo(() => {
+    const count = Math.min(nanowireParams.count, 400);
+    const gridSize = Math.ceil(Math.sqrt(count));
+    const spacing = 0.08;
 
-    for (let i = 0; i < Math.min(nanowireParams.count, 400); i++) {
+    const geometry = new THREE.CylinderGeometry(
+      nanowireParams.diameter,
+      nanowireParams.diameter,
+      nanowireParams.length,
+      8, // Reduce segments for better performance
+      1
+    );
+
+    const material = new THREE.MeshStandardMaterial({
+      color: materialColors.anodeColor,
+      metalness: 0.95,
+      roughness: 0.02,
+      emissive: materialColors.anodeColor,
+      emissiveIntensity: 0.1,
+    });
+
+    const instancedMesh = new THREE.InstancedMesh(geometry, material, count);
+    const dummy = new THREE.Object3D();
+
+    // Position each instance
+    for (let i = 0; i < count; i++) {
       const row = Math.floor(i / gridSize);
       const col = i % gridSize;
 
-      // Position nanowires in a grid pattern
       const x = (col - gridSize / 2) * spacing + (Math.random() - 0.5) * spacing * 0.1;
       const z = (row - gridSize / 2) * spacing + (Math.random() - 0.5) * spacing * 0.1;
-      const y = -0.05; // Position on substrate surface
+      const y = -0.05;
 
-      nanowires.push(
-        <mesh key={i} position={[x, y, z]}>
-          <cylinderGeometry
-            args={[nanowireParams.diameter, nanowireParams.diameter, nanowireParams.length]}
-          />
-          <meshStandardMaterial
-            color={materialColors.anodeColor}
-            metalness={0.95}
-            roughness={0.02}
-            emissive={materialColors.anodeColor}
-            emissiveIntensity={0.1}
-          />
-        </mesh>
-      );
+      dummy.position.set(x, y, z);
+      dummy.updateMatrix();
+      instancedMesh.setMatrixAt(i, dummy.matrix);
     }
 
-    return nanowires;
+    instancedMesh.instanceMatrix.needsUpdate = true;
+    return instancedMesh;
+  }, [
+    nanowireParams.count,
+    nanowireParams.diameter,
+    nanowireParams.length,
+    materialColors.anodeColor,
+  ]);
+
+  // Cleanup Three.js objects on unmount
+  useEffect(() => {
+    return () => {
+      if (nanowireInstancedMesh) {
+        nanowireInstancedMesh.geometry.dispose();
+        if (nanowireInstancedMesh.material) {
+          if (Array.isArray(nanowireInstancedMesh.material)) {
+            nanowireInstancedMesh.material.forEach((material) => material.dispose());
+          } else {
+            nanowireInstancedMesh.material.dispose();
+          }
+        }
+      }
+    };
+  }, [nanowireInstancedMesh]);
+
+  const renderNanowireArray = () => {
+    return <primitive object={nanowireInstancedMesh} />;
   };
 
   // Render foam substrate with porous structure

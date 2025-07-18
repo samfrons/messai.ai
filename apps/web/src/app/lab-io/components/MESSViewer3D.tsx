@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useState, useRef } from 'react';
+import React, { Suspense, useState, useRef, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Grid } from '@react-three/drei';
 import * as THREE from 'three';
@@ -195,51 +195,19 @@ function Scene({
       <pointLight position={[0, 10, 0]} intensity={0.5} />
       <pointLight position={[5, 5, 5]} intensity={0.3} />
 
-      {/* Grid helper for reference - enhanced perspective */}
+      {/* Optimized single grid helper for reference */}
       <Grid
-        args={[100, 100]}
+        args={[50, 50]}
         cellSize={1}
-        cellThickness={1.2}
+        cellThickness={0.8}
         cellColor="#4a5568"
         sectionSize={10}
-        sectionThickness={2.5}
+        sectionThickness={1.5}
         sectionColor="#1e3a8a"
-        fadeDistance={50}
-        fadeStrength={0.5}
+        fadeDistance={30}
+        fadeStrength={0.7}
         infiniteGrid
         position={[0, -0.01, 0]}
-      />
-
-      {/* Additional grid for Y-axis perspective */}
-      <Grid
-        args={[100, 100]}
-        cellSize={1}
-        cellThickness={0.8}
-        cellColor="#5a6578"
-        sectionSize={10}
-        sectionThickness={1.8}
-        sectionColor="#1e40af"
-        fadeDistance={40}
-        fadeStrength={0.4}
-        infiniteGrid
-        position={[0, 0, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
-      />
-
-      {/* Side grid for Z-axis perspective */}
-      <Grid
-        args={[100, 100]}
-        cellSize={1}
-        cellThickness={0.8}
-        cellColor="#5a6578"
-        sectionSize={10}
-        sectionThickness={1.8}
-        sectionColor="#1e40af"
-        fadeDistance={40}
-        fadeStrength={0.4}
-        infiniteGrid
-        position={[0, 0, 0]}
-        rotation={[0, 0, Math.PI / 2]}
       />
 
       {/* MESS Model */}
@@ -276,6 +244,20 @@ export default function MESSViewer3D({
   const [error, setError] = useState<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
+  const webglRef = useRef<HTMLCanvasElement>(null);
+
+  // Cleanup WebGL resources on unmount
+  useEffect(() => {
+    return () => {
+      // Force cleanup of WebGL resources
+      if (webglRef.current) {
+        const gl = webglRef.current.getContext('webgl') || webglRef.current.getContext('webgl2');
+        if (gl) {
+          gl.getExtension('WEBGL_lose_context')?.loseContext();
+        }
+      }
+    };
+  }, []);
 
   // Enhanced controls handlers
   const handleViewChange = (view: string) => {

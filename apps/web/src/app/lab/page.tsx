@@ -11,7 +11,8 @@ import {
   AccordionContent,
 } from '@messai/ui';
 import MESSViewer3D from './components/MESSViewer3D';
-import ParameterControl, { sliderStyles } from './components/ParameterControl';
+import ParameterControl from './components/ParameterControl';
+import './components/slider-styles.css';
 
 // Helper function for class names
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -177,8 +178,6 @@ export default function LabPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: sliderStyles }} />
-
       {/* Page Header */}
       <div className="grid-12 mb-8">
         <div className="col-span-12">

@@ -1,5 +1,7 @@
 import { Card } from '@messai/ui';
 import type { ParameterSection } from '../../../types/parameters';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
 interface ParameterContentProps {
   content: ParameterSection[];
@@ -7,44 +9,41 @@ interface ParameterContentProps {
 
 export default function ParameterContent({ content }: ParameterContentProps) {
   const renderMarkdown = (text: string) => {
-    // Simple markdown rendering - in production, use a proper markdown parser
-    let html = text
-      // Bold text
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      // Italic text
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      // Code blocks
-      .replace(/`(.+?)`/g, '<code className="bg-gray-100 px-1 py-0.5 rounded text-sm">$1</code>')
-      // Line breaks
-      .replace(/\n/g, '<br />');
+    // Use proper markdown parser and sanitize output
+    try {
+      const html = marked(text, {
+        breaks: true,
+        gfm: true,
+      });
 
-    // Lists
-    const lines = html.split('<br />');
-    let inList = false;
-    let listHtml = '';
+      // Sanitize HTML to prevent XSS
+      const sanitizedHtml = DOMPurify.sanitize(html as string, {
+        ALLOWED_TAGS: [
+          'strong',
+          'em',
+          'p',
+          'br',
+          'ul',
+          'ol',
+          'li',
+          'code',
+          'pre',
+          'h1',
+          'h2',
+          'h3',
+          'h4',
+          'h5',
+          'h6',
+        ],
+        ALLOWED_ATTR: ['class'],
+      });
 
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      if (line && line.trim().startsWith('- ')) {
-        if (!inList) {
-          listHtml += '<ul className="list-disc list-inside space-y-1 my-2">';
-          inList = true;
-        }
-        listHtml += `<li>${line ? line.substring(2) : ''}</li>`;
-      } else {
-        if (inList) {
-          listHtml += '</ul>';
-          inList = false;
-        }
-        listHtml += line + (i < lines.length - 1 ? '<br />' : '');
-      }
+      return sanitizedHtml;
+    } catch (error) {
+      // Fallback to plain text if parsing fails
+      console.error('Markdown parsing failed:', error);
+      return text;
     }
-
-    if (inList) {
-      listHtml += '</ul>';
-    }
-
-    return listHtml;
   };
 
   // Group sections by parent

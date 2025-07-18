@@ -11,7 +11,8 @@ import {
   AccordionContent,
 } from '@messai/ui';
 import MESSViewer3D from './components/MESSViewer3D';
-import ParameterControl, { sliderStyles } from './components/ParameterControl';
+import ParameterControl from './components/ParameterControl';
+import '../lab/components/slider-styles.css';
 import LoadingStates from './components/LoadingStates';
 import EnhancedNavigation from './components/EnhancedNavigation';
 import RealTimeUpdates from './components/RealTimeUpdates';
@@ -184,8 +185,6 @@ export default function LabIOPage() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: sliderStyles }} />
-
       {/* Enhanced Navigation */}
       <EnhancedNavigation />
 

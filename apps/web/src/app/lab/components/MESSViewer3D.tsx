@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Grid } from '@react-three/drei';
 import * as THREE from 'three';
@@ -197,51 +197,19 @@ function Scene({
       <directionalLight position={[-10, 10, -5]} intensity={0.5} />
       <pointLight position={[0, 10, 0]} intensity={0.3} />
 
-      {/* Grid helper for reference - enhanced perspective */}
+      {/* Optimized single grid helper for reference */}
       <Grid
-        args={[100, 100]}
+        args={[50, 50]}
         cellSize={1}
-        cellThickness={1.2}
+        cellThickness={0.8}
         cellColor="#4a5568"
         sectionSize={10}
-        sectionThickness={2.5}
+        sectionThickness={1.5}
         sectionColor="#1e3a8a"
-        fadeDistance={50}
-        fadeStrength={0.5}
+        fadeDistance={30}
+        fadeStrength={0.7}
         infiniteGrid
         position={[0, -0.01, 0]}
-      />
-
-      {/* Additional grid for Y-axis perspective */}
-      <Grid
-        args={[100, 100]}
-        cellSize={1}
-        cellThickness={0.8}
-        cellColor="#5a6578"
-        sectionSize={10}
-        sectionThickness={1.8}
-        sectionColor="#1e40af"
-        fadeDistance={40}
-        fadeStrength={0.4}
-        infiniteGrid
-        position={[0, 0, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
-      />
-
-      {/* Side grid for Z-axis perspective */}
-      <Grid
-        args={[100, 100]}
-        cellSize={1}
-        cellThickness={0.8}
-        cellColor="#5a6578"
-        sectionSize={10}
-        sectionThickness={1.8}
-        sectionColor="#1e40af"
-        fadeDistance={40}
-        fadeStrength={0.4}
-        infiniteGrid
-        position={[0, 0, 0]}
-        rotation={[0, 0, Math.PI / 2]}
       />
 
       {/* MESS Model */}
@@ -278,6 +246,20 @@ export default function MESSViewer3D({
 }: MESSViewer3DProps) {
   const [isWebGLSupported, setIsWebGLSupported] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Cleanup WebGL resources on unmount
+  useEffect(() => {
+    return () => {
+      // Force cleanup of WebGL resources
+      if (canvasRef.current) {
+        const gl = canvasRef.current.getContext('webgl') || canvasRef.current.getContext('webgl2');
+        if (gl) {
+          gl.getExtension('WEBGL_lose_context')?.loseContext();
+        }
+      }
+    };
+  }, []);
 
   // Check WebGL support
   React.useEffect(() => {

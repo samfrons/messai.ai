@@ -229,68 +229,73 @@ async function processMESSPapers() {
     },
   ];
 
-  // Add papers to database
+  // Optimized: Check all papers at once, then batch insert
+  const existingPapers = await prisma.researchPaper.findMany({
+    where: {
+      OR: mockPapers.map((paper) => ({
+        OR: [{ title: paper.title }, ...(paper.doi ? [{ doi: paper.doi }] : [])],
+      })),
+    },
+    select: { title: true, doi: true },
+  });
+
+  const existingTitles = new Set(existingPapers.map((p) => p.title));
+  const existingDois = new Set(existingPapers.map((p) => p.doi).filter(Boolean));
+
+  const newPapers = mockPapers.filter(
+    (paper) => !existingTitles.has(paper.title) && (!paper.doi || !existingDois.has(paper.doi))
+  );
+
   const addedPapers = [];
-  for (const paper of mockPapers) {
-    try {
-      // Check if paper already exists
-      const existingPaper = await prisma.researchPaper.findFirst({
-        where: {
-          OR: [{ title: paper.title }, ...(paper.doi ? [{ doi: paper.doi }] : [])],
-        },
-      });
 
-      if (existingPaper) {
-        // Paper already exists, skip
-        continue;
+  // Process papers in batches to avoid overwhelming the database
+  const batchSize = 5;
+  for (let i = 0; i < newPapers.length; i += batchSize) {
+    const batch = newPapers.slice(i, i + batchSize);
+
+    const batchPromises = batch.map(async (paper) => {
+      try {
+        const createdPaper = await prisma.researchPaper.create({
+          data: {
+            title: paper.title,
+            authors: JSON.stringify(normalizeAuthorsForDB(paper.authors)),
+            abstract: paper.abstract,
+            publicationDate: paper.year ? new Date(paper.year, 0, 1) : null,
+            journal: paper.journal,
+            doi: paper.doi || null,
+            externalUrl: '', // Required field
+            source: 'user', // Required field
+            keywords: JSON.stringify(['mess-papers', 'algae', 'fuel-cell', 'bioreactor']),
+
+            // AI-extracted data
+            aiSummary: paper.abstract?.substring(0, 500),
+            aiKeyFindings: JSON.stringify([
+              `Power density: ${paper.powerDensity || 'N/A'} mW/m²`,
+              `Algae species: ${paper.algaeSpecies?.join(', ') || 'N/A'}`,
+              `System type: ${paper.fuelCellType || 'N/A'}`,
+            ]),
+            performanceMetrics: JSON.stringify({
+              powerDensity: paper.powerDensity || null,
+              algaeSpecies: paper.algaeSpecies || [],
+              fuelCellType: paper.fuelCellType || null,
+            }),
+
+            // Metadata
+            aiConfidence: (paper.qualityScore || 75) / 100,
+            isPublic: true,
+            uploadedBy: null,
+          },
+        });
+
+        return { ...paper, paperId: createdPaper.id };
+      } catch (error) {
+        console.error('Error adding paper:', paper.title, error);
+        return null;
       }
+    });
 
-      // Create paper record
-      const createdPaper = await prisma.researchPaper.create({
-        data: {
-          title: paper.title,
-          authors: JSON.stringify(normalizeAuthorsForDB(paper.authors)), // ResearchPaper.authors is JSON string
-          abstract: paper.abstract,
-          publicationDate: paper.year ? new Date(paper.year, 0, 1) : null,
-          journal: paper.journal,
-          doi: paper.doi || null,
-          externalUrl: '', // Required field
-          source: 'user', // Required field
-          keywords: JSON.stringify(['mess-papers', 'algae', 'fuel-cell', 'bioreactor']), // Required field
-
-          // AI-extracted data
-          aiSummary: paper.abstract?.substring(0, 500),
-          aiKeyFindings: JSON.stringify([
-            `Power density: ${paper.powerDensity || 'N/A'} mW/m²`,
-            `Algae species: ${paper.algaeSpecies?.join(', ') || 'N/A'}`,
-            `System type: ${paper.fuelCellType || 'N/A'}`,
-          ]),
-          performanceMetrics: JSON.stringify({
-            powerDensity: paper.powerDensity || null,
-            algaeSpecies: paper.algaeSpecies || [],
-            fuelCellType: paper.fuelCellType || null,
-          }),
-
-          // Metadata
-          aiConfidence: (paper.qualityScore || 75) / 100, // Convert to 0-1 scale
-          isPublic: true,
-
-          // Source tracking
-          uploadedBy: null, // System-added
-        },
-      });
-
-      // Tags are now stored in the keywords field as JSON (updated during creation)
-
-      addedPapers.push({
-        ...paper,
-        paperId: createdPaper.id,
-      });
-
-      // Successfully added paper
-    } catch (error) {
-      // Error adding paper - log to monitoring service in production
-    }
+    const batchResults = await Promise.all(batchPromises);
+    addedPapers.push(...batchResults.filter(Boolean));
   }
 
   return {
@@ -298,10 +303,10 @@ async function processMESSPapers() {
     processedPapers: addedPapers.length,
     failedPapers: mockPapers.length - addedPapers.length,
     papers: addedPapers,
-    processingTime: addedPapers.reduce((sum, p) => sum + p.processingTime, 0),
+    processingTime: addedPapers.reduce((sum, p) => sum + (p?.processingTime || 0), 0),
     averageProcessingTime:
       addedPapers.length > 0
-        ? addedPapers.reduce((sum, p) => sum + p.processingTime, 0) / addedPapers.length
+        ? addedPapers.reduce((sum, p) => sum + (p?.processingTime || 0), 0) / addedPapers.length
         : 0,
     successRate: (addedPapers.length / mockPapers.length) * 100,
   };
@@ -361,41 +366,41 @@ async function listMESSPapers() {
 }
 
 async function getProcessingStats() {
-  const totalPapers = await prisma.researchPaper.count();
-  const messPapers = await prisma.researchPaper.count({
-    where: {
-      keywords: {
-        contains: 'mess-papers',
+  // Execute all queries in parallel for better performance
+  const [totalPapers, messPapers, algaePapers, fuelCellPapers, averageQuality] = await Promise.all([
+    prisma.researchPaper.count(),
+    prisma.researchPaper.count({
+      where: {
+        keywords: {
+          contains: 'mess-papers',
+        },
       },
-    },
-  });
-
-  const algaePapers = await prisma.researchPaper.count({
-    where: {
-      keywords: {
-        contains: 'algae',
+    }),
+    prisma.researchPaper.count({
+      where: {
+        keywords: {
+          contains: 'algae',
+        },
       },
-    },
-  });
-
-  const fuelCellPapers = await prisma.researchPaper.count({
-    where: {
-      keywords: {
-        contains: 'fuel-cell',
+    }),
+    prisma.researchPaper.count({
+      where: {
+        keywords: {
+          contains: 'fuel-cell',
+        },
       },
-    },
-  });
-
-  const averageQuality = await prisma.researchPaper.aggregate({
-    where: {
-      keywords: {
-        contains: 'mess-papers',
+    }),
+    prisma.researchPaper.aggregate({
+      where: {
+        keywords: {
+          contains: 'mess-papers',
+        },
       },
-    },
-    _avg: {
-      aiConfidence: true,
-    },
-  });
+      _avg: {
+        aiConfidence: true,
+      },
+    }),
+  ]);
 
   return {
     totalPapers,

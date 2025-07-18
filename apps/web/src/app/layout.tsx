@@ -1,7 +1,7 @@
 import './global.css';
 import { Layout } from '@messai/ui';
 import { AuthProvider } from '../lib/auth';
-import { ErrorBoundary } from '../components/error-boundary';
+import GlobalErrorBoundary from '../components/GlobalErrorBoundary';
 
 export const metadata = {
   title: 'MESSAI.AI - Microbial Electrochemical Systems AI Platform',
@@ -24,9 +24,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <AuthProvider>
-          <ErrorBoundary>
+          <GlobalErrorBoundary>
             <Layout navigation={navigation}>{children}</Layout>
-          </ErrorBoundary>
+          </GlobalErrorBoundary>
         </AuthProvider>
       </body>
     </html>
