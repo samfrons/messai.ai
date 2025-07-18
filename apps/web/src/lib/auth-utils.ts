@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth';
-import { prisma } from './db';
+import { prisma } from '@messai/database';
 
 export async function getCurrentUser() {
   const session = await getServerSession();

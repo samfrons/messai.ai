@@ -5,18 +5,18 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createPrismaClient() {
-  const isProduction = process.env.NODE_ENV === 'production';
-  const isLocalDevelopment = process.env.DATABASE_URL?.includes('localhost');
+  const isProduction = process.env['NODE_ENV'] === 'production';
+  const isLocalDevelopment = process.env['DATABASE_URL']?.includes('localhost');
 
   // Get database URL from environment
-  const databaseUrl = process.env.DATABASE_URL;
+  const databaseUrl = process.env['DATABASE_URL'];
 
   if (!databaseUrl) {
     throw new Error('DATABASE_URL environment variable is required');
   }
 
   // Determine if we should use Prisma Accelerate (production remote databases only)
-  const accelerateUrl = process.env.PRISMA_ACCELERATE_URL;
+  const accelerateUrl = process.env['PRISMA_ACCELERATE_URL'];
   const useAccelerate = !!(accelerateUrl && isProduction && !isLocalDevelopment);
 
   // Use Accelerate URL if available and appropriate, otherwise use direct URL
@@ -48,7 +48,7 @@ function createPrismaClient() {
   // Configure logging based on environment
   const logLevels = isProduction
     ? ['error']
-    : process.env.DATABASE_LOGGING === 'true'
+    : process.env['DATABASE_LOGGING'] === 'true'
     ? ['query', 'info', 'warn', 'error']
     : ['error', 'warn'];
 
@@ -66,7 +66,7 @@ function createPrismaClient() {
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient();
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env['NODE_ENV'] !== 'production') {
   globalForPrisma.prisma = prisma;
 }
 

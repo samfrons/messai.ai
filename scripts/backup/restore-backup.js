@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 
 const BACKUP_DIR = path.join(__dirname, '../../backups');
 
@@ -102,6 +102,23 @@ function restoreDatabase(backupPath) {
     const databaseUrl = process.env.DATABASE_URL;
     if (!databaseUrl) {
       reject(new Error('DATABASE_URL environment variable not found'));
+      return;
+    }
+
+    // Safety check - prevent production restore
+    const isProduction =
+      process.env.NODE_ENV === 'production' ||
+      databaseUrl.includes('supabase') ||
+      databaseUrl.includes('neon') ||
+      databaseUrl.includes('railway');
+
+    if (isProduction) {
+      console.error('\n🚨 ERROR: Cannot restore to PRODUCTION database!');
+      console.error(
+        '🔒 Production database operations must be done through proper CI/CD pipeline.'
+      );
+      console.error('💡 To restore locally, ensure DATABASE_URL points to localhost:5432');
+      reject(new Error('Attempted to restore production database - operation blocked for safety'));
       return;
     }
 

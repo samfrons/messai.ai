@@ -32,74 +32,145 @@
 
 ## 7. Research Library Database Integration (CRITICAL FOR AI AGENTS)
 
+### ⚠️ CRITICAL: Environment-Specific Database Configuration ⚠️
+
+**ALWAYS verify which environment you're working with before running ANY
+database commands.**
+
 ### Database Architecture
 
-MESSAI uses **PostgreSQL exclusively** for both local development and
-production, containing **3,721 research papers** with comprehensive MES-specific
-data.
+MESSAI uses **PostgreSQL exclusively** but with DIFFERENT data in each
+environment:
 
-**Environment Setup:**
+#### 🏠 LOCAL DEVELOPMENT DATABASE
 
-- **Local Development**: Docker PostgreSQL container (`localhost:5432`)
-- **Production**: Hosted PostgreSQL service (configured in Vercel environment)
-- **Model**: `ResearchPaper` (NOT `Paper` - this is critical!)
+- **Container**: Docker PostgreSQL (`localhost:5432`)
+- **Database Name**: `messai_dev`
+- **Credentials**: User: `messai`, Password: `messai_dev_password`
+- **Data**: Contains **1000 research papers** (subset for development)
+- **Connection**:
+  `postgresql://messai:messai_dev_password@localhost:5432/messai_dev`
+- **Safe for**: ALL operations - migrations, seeds, experiments, destructive
+  commands
+- **Setup**: Run `pnpm db:setup:local` then `pnpm db:restore`
+
+#### 🌐 PRODUCTION DATABASE
+
+- **Host**: Managed PostgreSQL service (Supabase/Neon/Railway)
+- **Database Name**: Configured in Vercel environment
+- **Credentials**: **NEVER hardcode** - use environment variables ONLY
+- **Data**: Contains **3,721+ research papers** (LIVE DATA - DO NOT MODIFY)
+- **Connection**: Via `DATABASE_URL` environment variable ONLY
+- **Safe for**: **READ-ONLY operations ONLY**
+- **Access**: Through deployed API endpoints only
+
+**Model**: Always use `ResearchPaper` (NOT `Paper` - this is critical!)
 
 ### Database Connection
 
+#### Import Path Guidelines
+
 ```typescript
-// Always use the configured client
+// For library code (libs/* directories):
 import { prisma } from '@messai/database';
-// OR for API routes
+
+// For API routes (apps/web/src/app/api/*):
 import { prisma } from '../../../lib/db';
 
-// Test connection
-const count = await prisma.researchPaper.count(); // Should return 3,721
+// Test connection - count will vary by environment:
+const count = await prisma.researchPaper.count();
+// Local: Returns ~1000
+// Production: Returns 3,721+
+```
+
+#### Environment Verification
+
+```typescript
+// ALWAYS verify environment before operations
+const isProduction = process.env.NODE_ENV === 'production';
+const databaseUrl = process.env.DATABASE_URL;
+
+if (
+  isProduction ||
+  databaseUrl?.includes('supabase') ||
+  databaseUrl?.includes('neon')
+) {
+  console.warn('⚠️ PRODUCTION DATABASE - READ ONLY!');
+  // Only perform read operations
+}
 ```
 
 ### Environment Setup
 
-**Local Development**:
+#### 🏠 Local Development Setup
 
 ```bash
 # 1. Setup local PostgreSQL with Docker
 pnpm db:setup:local
-
-# 2. Copy environment template
-cp .env.local.example .env.local
-
-# This automatically:
+# This command:
+# - Copies .env.development.local to .env.local (WARNING: overwrites existing)
 # - Starts Docker PostgreSQL container on localhost:5432
-# - Database: messai_dev, User: messai, Password: messai_dev_password
-# - Pushes schema to local database
+# - Creates database: messai_dev
+# - Pushes Prisma schema
+
+# 2. Restore research papers data (1000 papers)
+pnpm db:restore
+# This populates your local database with development data
+
+# 3. Verify connection
+pnpm db:test
+# Should show: "Total ResearchPapers in database: 1,000"
 ```
 
-**Production Environment**:
+#### 🌐 Production Environment
 
-- Uses hosted PostgreSQL service (Supabase, Neon, Railway, etc.)
-- Configured in Vercel environment variables
-- Automatic connection pooling and optimization
-- Contains 3,721+ research papers
+**⚠️ NEVER run setup commands against production!**
+
+- Hosted PostgreSQL service (configured in Vercel)
+- Environment variables set in Vercel dashboard
+- Contains 3,721+ LIVE research papers
+- Automatic connection pooling
+- **Access via deployed API only** - no direct database access
 
 ### Database Management Commands
 
-**Local Development**:
+#### 🏠 LOCAL-ONLY Commands (NEVER use on production)
 
 ```bash
-# Start/stop local PostgreSQL
-pnpm db:local:start
-pnpm db:local:stop
-pnpm db:local:restart
+# Container management
+pnpm db:local:start     # Start Docker PostgreSQL
+pnpm db:local:stop      # Stop Docker PostgreSQL
+pnpm db:local:reset     # Reset database (DESTROYS ALL DATA)
 
-# Database operations
-pnpm db:push          # Push schema changes
-pnpm db:generate      # Generate Prisma client
-pnpm db:studio        # Open Prisma Studio
+# Schema modifications (LOCAL ONLY)
+pnpm db:push            # Push schema changes
+pnpm db:migrate         # Run migrations
+pnpm db:seed            # Seed test data
+pnpm db:restore         # Restore from backup
 
-# Backup and restore
-pnpm db:backup        # Create backup
-pnpm db:restore       # Restore from backup
-pnpm db:backup:verify # Verify backup integrity
+# Development tools
+pnpm db:studio          # Open Prisma Studio (visual editor)
+pnpm db:local:shell     # PostgreSQL shell access
 ```
+
+#### ✅ Safe for Both Environments
+
+```bash
+# Read-only operations
+pnpm db:generate        # Generate Prisma client
+pnpm db:test           # Test connection (read-only)
+pnpm db:backup         # Create backup (read-only)
+pnpm db:backup:verify  # Verify backup (read-only)
+```
+
+#### 🚫 NEVER Run on Production
+
+- `db:push` - Modifies schema
+- `db:migrate` - Runs migrations
+- `db:seed` - Adds test data
+- `db:restore` - Overwrites data
+- `db:local:reset` - Destroys database
+- Any command with `local` in the name
 
 ### Critical Field Mappings (API vs Database)
 
@@ -158,19 +229,65 @@ const cleanAbstract = (text: string) => {
 
 ### Environment Configuration
 
-**Required Environment Variables:**
+#### 📋 Environment Variable Setup
 
-- `DATABASE_URL`: PostgreSQL connection string
-- `DIRECT_URL`: Direct PostgreSQL connection (same as DATABASE_URL)
-- `FORCE_POSTGRES=true`: Forces PostgreSQL in development
-- `NODE_ENV`: development/production
-
-**Testing Commands:**
+**Local Development (.env.local)**:
 
 ```bash
-pnpm db:test          # Test database connection
-pnpm db:generate      # Generate Prisma client
-curl localhost:3000/api/db-test  # Test API connection
+# CRITICAL: The db:setup:local command OVERWRITES .env.local!
+# Back up any custom settings before running it.
+
+DATABASE_URL=postgresql://messai:messai_dev_password@localhost:5432/messai_dev
+DIRECT_URL=postgresql://messai:messai_dev_password@localhost:5432/messai_dev
+FORCE_POSTGRES=true
+NODE_ENV=development
+```
+
+**Production (Vercel Environment Variables)**:
+
+```bash
+# Set in Vercel Dashboard - NEVER commit to code
+DATABASE_URL=<your-production-database-url>
+DIRECT_URL=<your-production-database-url>
+NODE_ENV=production
+```
+
+#### 🔧 Environment Loading for Scripts
+
+**Next.js API Routes**: Automatically loads `.env.local`
+
+**Node.js Scripts**: Must explicitly load environment:
+
+```javascript
+// ✅ Correct - loads .env.local
+require('dotenv').config({ path: '.env.local' });
+
+// ❌ Wrong - might load wrong file
+require('dotenv').config();
+```
+
+**CLI Commands**: Use dotenv prefix:
+
+```bash
+# ✅ Correct - ensures .env.local is loaded
+dotenv -e .env.local -- prisma studio
+
+# ❌ Wrong - might use wrong environment
+prisma studio
+```
+
+#### 🧪 Testing Your Environment
+
+```bash
+# 1. Check which environment you're in
+pnpm db:test
+
+# 2. Verify environment variables
+node -e "console.log('NODE_ENV:', process.env.NODE_ENV)"
+node -e "console.log('DB Host:', process.env.DATABASE_URL?.split('@')[1]?.split('/')[0])"
+
+# 3. Test API connection
+curl localhost:3000/api/db-test
 ```
 
 ### Common Issues & Solutions
@@ -201,3 +318,53 @@ are loaded:
 - **ALWAYS** verify API nomenclature matches database fields
 - **ALWAYS** clean JATS XML from abstracts before display
 - **ALWAYS** check environment variables are loaded properly
+
+### 🚨 Production Database Safety Guidelines 🚨
+
+**CRITICAL**: Production contains LIVE data. Follow these rules to prevent data
+loss:
+
+#### Before ANY Database Operation
+
+1. **Check your environment**:
+
+   ```bash
+   echo $NODE_ENV
+   echo $DATABASE_URL | grep -E "(localhost|supabase|neon)"
+   ```
+
+2. **Verify paper count**:
+
+   ```bash
+   pnpm db:test
+   # Local: ~1,000 papers
+   # Production: 3,721+ papers
+   ```
+
+3. **Use read-only operations in production**:
+
+   ```typescript
+   // ✅ SAFE for production
+   const papers = await prisma.researchPaper.findMany({ take: 10 });
+   const count = await prisma.researchPaper.count();
+
+   // ❌ NEVER in production
+   await prisma.researchPaper.create(...);
+   await prisma.researchPaper.update(...);
+   await prisma.researchPaper.delete(...);
+   ```
+
+#### Production Access Rules
+
+- **API Routes**: Use deployed endpoints only (`https://messai.ai/api/*`)
+- **Direct Database**: NEVER connect directly to production database
+- **Migrations**: Only through CI/CD pipeline with reviews
+- **Backups**: Automated daily - never manual restore to production
+
+#### If You Accidentally Connect to Production
+
+1. **STOP** all operations immediately
+2. **DO NOT** run any commands
+3. **CHECK** what environment you're in
+4. **SWITCH** to local: `cp .env.local.example .env.local`
+5. **VERIFY** with `pnpm db:test` (should show ~1,000 papers)

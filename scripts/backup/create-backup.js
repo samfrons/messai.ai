@@ -3,7 +3,7 @@
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 
 // Configuration
 const BACKUP_DIR = path.join(__dirname, '../../backups');

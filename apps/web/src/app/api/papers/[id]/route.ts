@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '../../../../lib/db';
+import { prisma } from '@messai/database';
 
 interface Props {
   params: Promise<{ id: string }>;

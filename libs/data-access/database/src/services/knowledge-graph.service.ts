@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import type {
-  KnowledgeNode,
-  KnowledgeEdge,
+  // KnowledgeEdge,
   NodeType,
   EdgeType,
   ResearchCluster,

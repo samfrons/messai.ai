@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { PrismaClient } = require('@prisma/client');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 
 async function testConnection() {
   console.log('🔍 Testing database connection...\n');
@@ -9,7 +9,21 @@ async function testConnection() {
   console.log('DATABASE_URL:', process.env.DATABASE_URL ? 'Set' : 'NOT SET');
   console.log('FORCE_POSTGRES:', process.env.FORCE_POSTGRES);
   console.log('NODE_ENV:', process.env.NODE_ENV);
-  console.log();
+
+  // Safety check for production
+  const databaseUrl = process.env.DATABASE_URL || '';
+  const isProduction =
+    process.env.NODE_ENV === 'production' ||
+    databaseUrl.includes('supabase') ||
+    databaseUrl.includes('neon') ||
+    databaseUrl.includes('railway');
+
+  if (isProduction) {
+    console.log('\n⚠️  WARNING: Connected to PRODUCTION database!');
+    console.log('🔒 This script will perform READ-ONLY operations only.\n');
+  } else {
+    console.log('\n✅ Connected to LOCAL development database.\n');
+  }
 
   if (!process.env.DATABASE_URL) {
     console.error('❌ DATABASE_URL is not set in environment variables');

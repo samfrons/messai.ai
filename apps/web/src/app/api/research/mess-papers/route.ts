@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '../../../../lib/db';
+import { prisma } from '@messai/database';
 import { normalizeAuthorsForDB, normalizeAuthors } from '../../../../lib/author-utils';
 
 // Mock implementation of MESS papers processing
