@@ -17,6 +17,8 @@ verify field names before API development.
 | `journal`         | `journal.name`                           | string  | Direct                     |
 | `doi`             | `doi`                                    | string  | Direct                     |
 | `externalUrl`     | `url`, `pdfUrl`                          | string  | **Same value both fields** |
+| `doi`             | `doi`                                    | string  | Direct                     |
+| `pmid`            | `pmid`                                   | string  | Direct                     |
 | `systemType`      | `researchFocus[0]`                       | string  | **Array wrapper**          |
 | `powerOutput`     | `citation.citationCount`                 | number  | **Proxy mapping**          |
 | `efficiency`      | `performanceMetrics.coulombicEfficiency` | number  | Direct                     |
@@ -27,7 +29,7 @@ verify field names before API development.
 | `aiKeyFindings`   | `keyFindings`                            | array   | **Parse JSON**             |
 | `source`          | `source`                                 | string  | Direct                     |
 | `createdAt`       | `processingDate`                         | string  | **ISO string**             |
-| `externalUrl`     | `hasFullText`                            | boolean | **Existence check**        |
+| `externalUrl`     | `fullTextAvailable`                      | boolean | **Existence check**        |
 
 ### Transformations Required
 
@@ -124,7 +126,7 @@ if (paper.aiKeyFindings) {
         aiEnhanced: boolean, // !!aiSummary
         source: string,
         processingDate: string, // createdAt ISO
-        hasFullText: boolean // !!externalUrl
+        fullTextAvailable: boolean // !!externalUrl
       }
     ],
     pagination: {
