@@ -1,5 +1,5 @@
-// Production Prisma schema for PostgreSQL
-// This file is used for Vercel deployments
+// Consolidated Prisma schema for PostgreSQL
+// Single source of truth for all database models
 
 generator client {
   provider = "prisma-client-js"

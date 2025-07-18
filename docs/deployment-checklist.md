@@ -7,8 +7,8 @@
 - [ ] Ensure `prisma/schema.prisma` does NOT have custom output path
 - [ ] All Prisma imports use `@prisma/client` (not custom paths)
 - [ ] No reference to `schema.production.prisma` in package.json scripts
-- [ ] Verify postinstall/prebuild scripts use:
-      `prisma generate --schema=../../prisma/schema.prisma`
+- [ ] Verify postinstall/prebuild scripts use: `prisma generate` (default schema
+      location)
 
 ### 2. API Routes
 

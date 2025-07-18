@@ -66,8 +66,8 @@ critical issues across:
 **TypeScript Config**: `/tsconfig.json` - Remove problematic path **UI
 Exports**: `/libs/shared/ui/src/index.ts` - Export ActiveFilterTags **API
 Security**: `/apps/web/src/app/api/db-test/route.ts` - Remove env exposure
-**Database Schema**: `/libs/data-access/database/prisma/schema.prisma` - Add
-indexes **API Routes**: `/apps/web/src/app/api/papers/route.ts` - Add validation
+**Database Schema**: `/prisma/schema.prisma` - Add indexes **API Routes**:
+`/apps/web/src/app/api/papers/route.ts` - Add validation
 
 ## Testing Checklist
 
