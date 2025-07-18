@@ -86,9 +86,9 @@ model AuditLog {
 model MFCDesign {
   id          String       @id @default(cuid())
   name        String
-  description String
+  description String?      @default("")
   type        String
-  volume      String
+  volume      String?      @default("")
   powerOutput String
   materials   String
   createdAt   DateTime     @default(now())
@@ -133,7 +133,7 @@ model ResearchPaper {
   
   // Core fields
   title             String
-  abstract          String      @db.Text
+  abstract          String?     @default("") @db.Text
   authors           String      // JSON array
   publicationDate   DateTime?
   journal           String?
