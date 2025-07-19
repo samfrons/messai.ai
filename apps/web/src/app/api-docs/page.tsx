@@ -3,6 +3,9 @@
 import dynamic from 'next/dynamic';
 import 'swagger-ui-react/swagger-ui.css';
 
+// Force dynamic rendering to prevent build-time errors
+export const dynamic = 'force-dynamic';
+
 const SwaggerUI = dynamic(() => import('swagger-ui-react'), { ssr: false });
 
 export default function ApiDocsPage() {
@@ -37,14 +40,14 @@ export default function ApiDocsPage() {
             displayOperationId={false}
             displayRequestDuration={true}
             deepLinking={true}
-            presets={[
-              // @ts-ignore
-              SwaggerUI.presets.apis,
-            ]}
-            plugins={[
-              // @ts-ignore
-              SwaggerUI.plugins.DownloadUrl,
-            ]}
+            presets={
+              typeof SwaggerUI !== 'undefined' && SwaggerUI.presets ? [SwaggerUI.presets.apis] : []
+            }
+            plugins={
+              typeof SwaggerUI !== 'undefined' && SwaggerUI.plugins
+                ? [SwaggerUI.plugins.DownloadUrl]
+                : []
+            }
           />
         </div>
       </div>
