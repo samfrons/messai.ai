@@ -1,12 +1,6 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import 'swagger-ui-react/swagger-ui.css';
-
-// Force dynamic rendering to prevent build-time errors
-export const dynamic = 'force-dynamic';
-
-const SwaggerUI = dynamic(() => import('swagger-ui-react'), { ssr: false });
+import { SwaggerUIWrapper } from '../../components/api-docs/SwaggerUIWrapper';
 
 export default function ApiDocsPage() {
   return (
@@ -28,27 +22,7 @@ export default function ApiDocsPage() {
           </div>
         </div>
         <div className="swagger-ui-wrapper">
-          <SwaggerUI
-            url="/api/openapi.json"
-            docExpansion="list"
-            defaultModelsExpandDepth={1}
-            defaultModelExpandDepth={1}
-            filter={true}
-            showExtensions={true}
-            showCommonExtensions={true}
-            tryItOutEnabled={true}
-            displayOperationId={false}
-            displayRequestDuration={true}
-            deepLinking={true}
-            presets={
-              typeof SwaggerUI !== 'undefined' && SwaggerUI.presets ? [SwaggerUI.presets.apis] : []
-            }
-            plugins={
-              typeof SwaggerUI !== 'undefined' && SwaggerUI.plugins
-                ? [SwaggerUI.plugins.DownloadUrl]
-                : []
-            }
-          />
+          <SwaggerUIWrapper />
         </div>
       </div>
       <style jsx global>{`
