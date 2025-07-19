@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { checkDatabaseConnection, prisma } from '@messai/database';
-import { QueryMonitor } from '../../../lib/db-optimization';
+
+// Force dynamic rendering to prevent build-time execution
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export async function GET(request: NextRequest) {
   try {
+    // Lazy import to prevent build-time initialization
+    const { checkDatabaseConnection, prisma } = await import('@messai/database');
+    const { QueryMonitor } = await import('../../../lib/db-optimization');
+
     // Check if monitoring is enabled
     const apiKey = request.headers.get('x-api-key');
     if (apiKey !== process.env['MONITORING_API_KEY']) {
@@ -58,6 +64,9 @@ export async function GET(request: NextRequest) {
 
 async function getTableStatistics() {
   try {
+    // Lazy import prisma here too
+    const { prisma } = await import('@messai/database');
+
     const [papers, experiments, users] = await Promise.all([
       prisma.researchPaper.count(),
       prisma.experiment.count(),
@@ -93,6 +102,9 @@ async function getTableStatistics() {
 
 async function getDatabasePoolStats() {
   try {
+    // Lazy import prisma here too
+    const { prisma } = await import('@messai/database');
+
     // Get active connections (PostgreSQL specific)
     const activeConnections = await prisma.$queryRaw<any[]>`
       SELECT 

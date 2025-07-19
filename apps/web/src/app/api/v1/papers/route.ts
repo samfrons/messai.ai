@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '../../../../lib/db';
 import { z } from 'zod';
-import { PapersQuerySchema } from '../../../../lib/openapi/schemas';
+
+// Force dynamic rendering to prevent build-time execution
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export async function GET(request: NextRequest) {
   try {
+    // Lazy import to prevent build-time initialization
+    const { prisma } = await import('../../../../lib/db');
+    const { PapersQuerySchema } = await import('../../../../lib/openapi/schemas');
+
     const { searchParams } = new URL(request.url);
 
     // Parse and validate query parameters
