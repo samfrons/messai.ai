@@ -1,4 +1,4 @@
-import { cache } from 'react';
+import React, { cache } from 'react';
 import { headers } from 'next/headers';
 import { unstable_cache } from 'next/cache';
 
@@ -159,11 +159,13 @@ export function withPartialPrerendering<T extends Record<string, any>>(
 
     if (isDynamic) {
       // This will be rendered on-demand
-      return <Component {...props} />;
+      // TEMPORARY FIX: return <Component {...props} />;
+      return Component(props);
     }
 
     // This will be statically rendered
-    return <Component {...props} />;
+    // TEMPORARY FIX: return <Component {...props} />;
+    return Component(props);
   };
 }
 
@@ -183,16 +185,19 @@ export function withProgressiveHydration<T extends Record<string, any>>(
     // Use React 18's selective hydration
     if (typeof window === 'undefined') {
       // Server-side: render normally
-      return <Component {...props} />;
+      // TEMPORARY FIX: return <Component {...props} />;
+      return Component(props);
     }
 
     // Client-side: hydrate based on priority
     if (priority === 'high') {
-      return <Component {...props} />;
+      // TEMPORARY FIX: return <Component {...props} />;
+      return Component(props);
     }
 
     // Low priority: defer hydration
-    return <div suppressHydrationWarning>{fallback || <Component {...props} />}</div>;
+    // TEMPORARY FIX: return <div suppressHydrationWarning>{fallback || <Component {...props} />}</div>;
+    return fallback || Component(props);
   };
 }
 

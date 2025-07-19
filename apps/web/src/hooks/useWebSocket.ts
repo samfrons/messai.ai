@@ -204,7 +204,8 @@ export function WebSocketProvider({
 } & UseWebSocketOptions) {
   const webSocket = useWebSocket({ ...options, token });
 
-  return <WebSocketContext.Provider value={webSocket}>{children}</WebSocketContext.Provider>;
+  // TEMPORARY FIX: return <WebSocketContext.Provider value={webSocket}>{children}</WebSocketContext.Provider>;
+  return React.createElement(WebSocketContext.Provider, { value: webSocket }, children);
 }
 
 export function useWebSocketContext() {

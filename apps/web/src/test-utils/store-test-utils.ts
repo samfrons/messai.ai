@@ -1,3 +1,4 @@
+import React from 'react';
 import { act, renderHook } from '@testing-library/react';
 import type { StoreApi } from 'zustand';
 
@@ -74,7 +75,8 @@ export const updateStore = <T>(
 export const createStoreWrapper = (stores: Record<string, StoreApi<any>>) => {
   return ({ children }: { children: React.ReactNode }) => {
     // If your stores need any providers, add them here
-    return <>{children}</>;
+    // TEMPORARY FIX: return <>{children}</>;
+    return children;
   };
 };
 

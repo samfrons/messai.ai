@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   try {
     // Check if monitoring is enabled
     const apiKey = request.headers.get('x-api-key');
-    if (apiKey !== process.env.MONITORING_API_KEY) {
+    if (apiKey !== process.env['MONITORING_API_KEY']) {
       return NextResponse.json(
         {
           data: null,

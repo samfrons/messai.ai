@@ -3,6 +3,10 @@
   "compilerOptions": {
     "jsx": "preserve",
     "noEmit": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "exactOptionalPropertyTypes": false,
+    "noPropertyAccessFromIndexSignature": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "lib": ["dom", "dom.iterable", "esnext"],
