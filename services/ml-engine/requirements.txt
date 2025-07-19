@@ -1,0 +1,49 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# ML frameworks
+numpy==1.24.3
+pandas==2.0.3
+scikit-learn==1.3.0
+xgboost==2.0.0
+torch==2.1.0
+tensorflow==2.14.0
+
+# OPEM - Open Source PEM Fuel Cell Simulation Tool
+opem==1.4
+
+# Database
+asyncpg==0.29.0
+sqlalchemy==2.0.23
+prisma==0.11.0
+
+# Data processing
+scipy==1.11.4
+statsmodels==0.14.0
+
+# API utilities
+httpx==0.25.1
+redis==5.0.1
+celery==5.3.4
+
+# Monitoring & logging
+prometheus-client==0.19.0
+structlog==23.2.0
+
+# Materials data
+mp-api==0.37.5
+pymatgen==2023.12.18
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+
+# Development
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.0
+ipython==8.17.2
