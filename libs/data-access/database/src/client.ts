@@ -122,9 +122,7 @@ export const prisma = new Proxy({} as PrismaClient, {
   },
 });
 
-if (process.env['NODE_ENV'] !== 'production') {
-  globalForPrisma.prisma = prisma;
-}
+// Note: globalForPrisma.prisma is set inside the proxy getter
 
 // Handle cleanup on process termination
 if (typeof process !== 'undefined') {

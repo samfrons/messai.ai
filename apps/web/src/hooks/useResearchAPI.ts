@@ -179,12 +179,15 @@ export const useResearchAPI = () => {
     try {
       setSearchState((prev) => ({ ...prev, isLoading: true, error: '' }));
 
+      // Get current state values
+      const currentState = searchStateRef.current || searchState;
+
       const results = await fetchPapers(
-        searchState.query,
-        searchState.filters,
-        searchState.sortBy,
-        searchState.page,
-        searchState.pageSize
+        currentState.query,
+        currentState.filters,
+        currentState.sortBy,
+        currentState.page,
+        currentState.pageSize
       );
 
       setSearchState((prev) => ({
@@ -200,14 +203,7 @@ export const useResearchAPI = () => {
         error: error instanceof Error ? error.message : 'Search failed',
       }));
     }
-  }, [
-    searchState.query,
-    searchState.filters,
-    searchState.sortBy,
-    searchState.page,
-    searchState.pageSize,
-    fetchPapers,
-  ]);
+  }, [fetchPapers]); // Only depend on fetchPapers
 
   /**
    * Debounced search execution
@@ -336,13 +332,26 @@ export const useResearchAPI = () => {
     [searchState.savedSearches]
   );
 
+  // Keep state ref updated
+  const searchStateRef = useRef(searchState);
+  useEffect(() => {
+    searchStateRef.current = searchState;
+  }, [searchState]);
+
   // Execute initial search on mount
   useEffect(() => {
     executeSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Run once on mount
 
   // Execute search when dependencies change (debounced)
   useEffect(() => {
+    // Skip if this is just a page change (handled separately)
+    const prevPage = searchStateRef.current?.page || 0;
+    if (searchState.page !== prevPage) {
+      return;
+    }
+
     debouncedExecuteSearch();
 
     // Cleanup debounce timer
@@ -355,13 +364,17 @@ export const useResearchAPI = () => {
     searchState.query,
     searchState.filters,
     searchState.sortBy,
-    searchState.page,
     searchState.pageSize,
+    debouncedExecuteSearch,
   ]);
 
   // Execute immediate search for page changes (no debounce)
   useEffect(() => {
-    executeSearch();
+    if (searchState.page > 0) {
+      // Skip initial page 0 to avoid double search
+      executeSearch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchState.page]);
 
   // Cleanup timers on unmount
