@@ -76,3 +76,6 @@ backups/
 # Environment files with secrets
 .env.production
 .env.staging
+
+# ML desktop docs
+docs/ML-desktop/
