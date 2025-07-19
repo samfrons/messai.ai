@@ -86,28 +86,28 @@ def test_prediction():
         print(f"Error: {response.text}")
 
 def test_mfc_prediction():
-    """Test MFC prediction (currently using OPEM as placeholder)"""
-    print("\n\nTesting MFC prediction...")
+    """Test MFC prediction with our new empirical model"""
+    print("\n\nTesting MFC prediction with empirical model...")
     
     test_request = {
         "system_type": "MFC",
         "configuration": {
             "reactor_volume": 500.0,
-            "electrode_spacing": 5.0,
+            "electrode_spacing": 2.0,  # Optimal spacing
             "num_chambers": 2,
             "flow_mode": "batch"
         },
         "conditions": {
-            "temperature": 303.15,  # 30°C
-            "ph": 7.5,
+            "temperature": 303.15,  # 30°C - optimal for microbes
+            "ph": 7.0,  # Neutral pH - optimal
             "flow_rate": 0.0,  # Batch mode
-            "substrate_concentration": 10.0,
+            "substrate_concentration": 10.0,  # High substrate
             "external_resistance": 1000.0,
             "pressure": 1.0
         },
         "materials": {
-            "anode_material": "Carbon cloth",
-            "cathode_material": "Carbon cloth with Pt",
+            "anode_material": "carbon_cloth",  # Standard material
+            "cathode_material": "platinum",  # High performance cathode
             "membrane_type": "PEM",
             "anode_surface_area": 100.0,
             "cathode_surface_area": 100.0,
@@ -125,8 +125,23 @@ def test_mfc_prediction():
     print(f"MFC Prediction response: {response.status_code}")
     if response.ok:
         result = response.json()
-        print(f"Power Output: {result['power_output']['value']:.2f} {result['power_output']['unit']}")
-        print(f"Model Used: {result['model_type']}")
+        print(f"\nResults:")
+        print(f"  Power Output: {result['power_output']['value']:.2f} {result['power_output']['unit']}")
+        print(f"  Efficiency: {result['efficiency']['value']:.1f}%")
+        print(f"  Voltage: {result.get('voltage', {}).get('value', 'N/A')} V")
+        print(f"  Current Density: {result.get('current_density', {}).get('value', 'N/A')} mA/cm²")
+        print(f"  Model Used: {result['model_type']}")
+        print(f"  Confidence: {result['confidence_score']:.2f}")
+        
+        # Show optimizations
+        if result.get('optimizations'):
+            print(f"\nOptimization Recommendations:")
+            for opt in result['optimizations']:
+                print(f"  - {opt['parameter']}: {opt['current_value']} → {opt['recommended_value']}")
+                print(f"    Expected improvement: {opt['expected_improvement']:.1f}%")
+                print(f"    Rationale: {opt['rationale']}")
+    else:
+        print(f"Error: {response.text}")
 
 def test_materials():
     """Test materials API endpoints"""

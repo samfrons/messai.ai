@@ -8,7 +8,14 @@ import type {
   PredictionState,
   OptimizationResult,
 } from '../../types/predictions';
-import { predictionEngine } from '../../lib/prediction-engine';
+// Import prediction engine based on environment
+const useMLService = process.env.NEXT_PUBLIC_USE_ML_SERVICE === 'true';
+import { predictionEngine as simulationEngine } from '../../lib/prediction-engine';
+import { MessAIMLPredictionEngine } from '../../lib/prediction-engine-ml';
+
+// Use ML engine if enabled, otherwise use simulation
+const mlEngine = useMLService ? new MessAIMLPredictionEngine() : null;
+const predictionEngine = mlEngine || simulationEngine;
 
 // Lazy load prediction components
 const PredictionConfigurationForm = lazy(

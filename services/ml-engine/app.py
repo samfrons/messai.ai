@@ -11,7 +11,14 @@ from prometheus_client import make_asgi_app
 
 from api.predict import router as predict_router
 from api.health import router as health_router
-from api.materials import router as materials_router
+
+# Optional materials router (requires mp-api)
+try:
+    from api.materials import router as materials_router
+    MATERIALS_AVAILABLE = True
+except ImportError:
+    materials_router = None
+    MATERIALS_AVAILABLE = False
 from utils.logging import setup_logging
 from utils.config import settings
 
@@ -65,7 +72,13 @@ app.mount("/metrics", metrics_app)
 # Include routers
 app.include_router(health_router, prefix="/health", tags=["health"])
 app.include_router(predict_router, prefix="/api/ml", tags=["predictions"])
-app.include_router(materials_router, prefix="/api/materials", tags=["materials"])
+
+# Include materials router if available
+if MATERIALS_AVAILABLE:
+    app.include_router(materials_router, prefix="/api/materials", tags=["materials"])
+    logger.info("Materials API enabled")
+else:
+    logger.info("Materials API disabled (mp-api not installed)")
 
 @app.get("/")
 async def root():

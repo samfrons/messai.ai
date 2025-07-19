@@ -5,8 +5,21 @@ Health check endpoints for ML service
 from fastapi import APIRouter, Depends
 from typing import Dict, Any
 import psutil
-import torch
-import tensorflow as tf
+
+# Optional ML frameworks
+try:
+    import torch
+    TORCH_AVAILABLE = True
+except ImportError:
+    torch = None
+    TORCH_AVAILABLE = False
+
+try:
+    import tensorflow as tf
+    TF_AVAILABLE = True
+except ImportError:
+    tf = None
+    TF_AVAILABLE = False
 
 router = APIRouter()
 
@@ -36,8 +49,27 @@ async def detailed_status() -> Dict[str, Any]:
     memory = psutil.virtual_memory()
     
     # Check GPU availability
-    cuda_available = torch.cuda.is_available()
-    gpu_count = torch.cuda.device_count() if cuda_available else 0
+    cuda_available = torch.cuda.is_available() if TORCH_AVAILABLE else False
+    gpu_count = torch.cuda.device_count() if TORCH_AVAILABLE and cuda_available else 0
+    
+    # Build ML frameworks info
+    ml_frameworks = {
+        "opem_available": True,  # We know OPEM is installed
+        "numpy_available": True,  # We know numpy is installed
+        "scipy_available": True,  # We know scipy is installed
+    }
+    
+    if TORCH_AVAILABLE:
+        ml_frameworks["torch_version"] = torch.__version__
+        ml_frameworks["cuda_available"] = cuda_available
+        ml_frameworks["gpu_count"] = gpu_count
+    else:
+        ml_frameworks["torch_available"] = False
+        
+    if TF_AVAILABLE:
+        ml_frameworks["tensorflow_version"] = tf.__version__
+    else:
+        ml_frameworks["tensorflow_available"] = False
     
     return {
         "status": "operational",
@@ -46,10 +78,5 @@ async def detailed_status() -> Dict[str, Any]:
             "memory_usage_percent": memory.percent,
             "memory_available_gb": memory.available / (1024**3)
         },
-        "ml_frameworks": {
-            "torch_version": torch.__version__,
-            "tensorflow_version": tf.__version__,
-            "cuda_available": cuda_available,
-            "gpu_count": gpu_count
-        }
+        "ml_frameworks": ml_frameworks
     }

@@ -2,12 +2,13 @@
 Model Manager - Handles model initialization and routing
 """
 
-from typing import Dict, Optional, List
+from typing import Dict, Optional, List, Any
 import structlog
 import asyncio
 
 from models.base import BasePredictor
 from models.opem_wrapper import OPEMPredictor
+from models.mfc_predictor import MFCPredictor
 from api.schemas import SystemType
 
 logger = structlog.get_logger()
@@ -23,12 +24,12 @@ class ModelManager:
             SystemType.SOFC: ['opem_amphlett'],
             SystemType.PAFC: ['opem_amphlett'],
             
-            # MES systems will use custom ML models (placeholder for now)
-            SystemType.MFC: ['opem_amphlett'],  # Temporary - will be replaced with MFC models
-            SystemType.MEC: ['opem_amphlett'],  # Temporary
-            SystemType.MDC: ['opem_amphlett'],  # Temporary
-            SystemType.MES: ['opem_amphlett'],  # Temporary
-            SystemType.BES: ['opem_amphlett'],  # Temporary
+            # MES systems use MFC predictor
+            SystemType.MFC: ['mfc_empirical'],
+            SystemType.MEC: ['mfc_empirical'],  # MEC uses similar principles
+            SystemType.MDC: ['mfc_empirical'],  # MDC also similar
+            SystemType.MES: ['mfc_empirical'],
+            SystemType.BES: ['mfc_empirical'],
         }
         
     async def initialize(self):
@@ -41,8 +42,11 @@ class ModelManager:
             self.models['opem_larminie'] = OPEMPredictor('larminie')
             self.models['opem_chamberline'] = OPEMPredictor('chamberline')
             
+            # Initialize MFC predictor
+            self.models['mfc_empirical'] = MFCPredictor()
+            
             # TODO: Initialize other models as they're implemented
-            # self.models['mfc_lstm'] = MFCLSTMPredictor()
+            # self.models['mfc_lstm'] = MFCLSTMPredictor()  # From JLab
             # self.models['mes_ensemble'] = MESEnsemblePredictor()
             
             logger.info(f"Initialized {len(self.models)} models successfully")

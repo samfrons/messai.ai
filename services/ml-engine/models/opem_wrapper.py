@@ -5,8 +5,8 @@ Integrates validated fuel cell models for MESSAI predictions
 
 from typing import Dict, Any, List, Optional
 import numpy as np
-from opem.Static import Amphlett, Larminie, Chamberline_Kim
-from opem.Dynamic import Padulles, Padulles_Hauer, Padulles_Amphlett
+from opem.Static import Amphlett, Larminie_Dicks, Chamberline_Kim
+from opem.Dynamic import Padulles1, Padulles2, Padulles_Amphlett
 import structlog
 import asyncio
 
@@ -17,7 +17,11 @@ from api.schemas import (
     PredictionMetric,
     OptimizationRecommendation
 )
-from data.materials_service import MaterialsService
+try:
+    from data.materials_service import MaterialsService
+except ImportError:
+    MaterialsService = None
+    
 from utils.config import settings
 
 logger = structlog.get_logger()
@@ -28,13 +32,13 @@ class OPEMPredictor(BasePredictor):
     # Available OPEM models
     STATIC_MODELS = {
         'amphlett': Amphlett,
-        'larminie': Larminie,
+        'larminie': Larminie_Dicks,
         'chamberline': Chamberline_Kim,
     }
     
     DYNAMIC_MODELS = {
-        'padulles': Padulles,
-        'padulles_hauer': Padulles_Hauer,
+        'padulles1': Padulles1,
+        'padulles2': Padulles2,
         'padulles_amphlett': Padulles_Amphlett,
     }
     
@@ -49,11 +53,14 @@ class OPEMPredictor(BasePredictor):
         # Initialize materials service if API key is available
         if materials_service:
             self.materials_service = materials_service
-        elif settings.MATERIALS_PROJECT_API_KEY:
+        elif MaterialsService and hasattr(settings, 'MATERIALS_PROJECT_API_KEY') and settings.MATERIALS_PROJECT_API_KEY:
             self.materials_service = MaterialsService(settings.MATERIALS_PROJECT_API_KEY)
         else:
             self.materials_service = None
-            logger.warning("Materials Project API key not configured")
+            if not MaterialsService:
+                logger.info("Materials Project API not available (optional)")
+            else:
+                logger.info("Materials Project API key not configured (optional)")
         
         # Select appropriate model
         if model_type in self.STATIC_MODELS:
