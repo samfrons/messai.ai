@@ -60,8 +60,6 @@ export const queryOptimizations = {
     substrateType: true,
     performanceMetrics: true,
     operationalParameters: true,
-    inSilicoAvailable: true,
-    modelType: true,
     user: {
       select: {
         id: true,

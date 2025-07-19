@@ -76,8 +76,8 @@ export default function ResearchPage() {
     pdfUrl: (paper as any).pdfUrl,
 
     // In Silico Model Integration (with fallbacks for missing fields)
-    inSilicoAvailable: (paper as any).inSilicoAvailable ?? false,
-    modelType: (paper as any).modelType ?? '',
+    inSilicoAvailable: false,
+    modelType: '',
     modelParameters: (paper as any).modelParameters ?? '',
     performanceTargets: (paper as any).performanceTargets ?? '',
     systemGeometry: (paper as any).systemGeometry ?? '',

@@ -162,9 +162,6 @@ export async function GET(request: NextRequest) {
             source: true,
             isPublic: true,
             createdAt: true,
-            // In Silico Model Integration fields
-            inSilicoAvailable: true,
-            modelType: true,
           },
         })
       ),
@@ -243,10 +240,6 @@ export async function GET(request: NextRequest) {
         source: paper.source || 'database',
         processingDate: paper.createdAt.toISOString(),
         fullTextAvailable: !!paper.externalUrl,
-
-        // In Silico Model Integration fields
-        inSilicoAvailable: paper.inSilicoAvailable || false,
-        modelType: paper.modelType || '',
       };
     });
 

@@ -84,8 +84,6 @@ const getCachedPapers = createCachedFunction(
           isPublic: true,
           createdAt: true,
           aiKeyFindings: true,
-          inSilicoAvailable: true,
-          modelType: true,
         },
       }),
       prisma.researchPaper.count({ where }),
@@ -127,8 +125,8 @@ const getCachedPapers = createCachedFunction(
       source: 'database',
       processingDate: paper.createdAt.toISOString(),
       fullTextAvailable: !!paper.externalUrl,
-      inSilicoAvailable: paper.inSilicoAvailable || false,
-      modelType: paper.modelType || '',
+      inSilicoAvailable: false,
+      modelType: '',
     }));
 
     return {
