@@ -369,21 +369,57 @@ loss:
 4. **SWITCH** to local: `cp .env.local.example .env.local`
 5. **VERIFY** with `pnpm db:test` (should show ~1,000 papers)
 
-## 🚨 Critical: TypeScript Deployment Best Practices 🚨
+## 🚨 Critical: Deployment Error Prevention Guide 🚨
+
+### ⚠️ MUST READ: Common Deployment Failures and Solutions ⚠️
+
+**See `docs/DEPLOYMENT_TROUBLESHOOTING.md` for comprehensive guide**
+
+#### Quick Reference - Prevent These Errors:
+
+1. **Maximum Call Stack Size Exceeded**
+
+   - **NEVER** use `import { prisma } from '@messai/database'` in web app
+   - **ALWAYS** use `import { prisma } from '@/lib/db'` or `'../../../lib/db'`
+   - The @messai/database module has a Proxy bug causing infinite recursion
+
+2. **Build-Time Database/Redis Errors**
+
+   - **ALWAYS** add these to EVERY API route:
+
+   ```typescript
+   export const dynamic = 'force-dynamic';
+   export const runtime = 'nodejs';
+   ```
+
+   - **ALWAYS** use lazy imports in API routes:
+
+   ```typescript
+   const { prisma } = await import('../../../lib/db');
+   ```
+
+3. **React Hook Infinite Loops**
+
+   - **NEVER** put state values in useCallback dependencies
+   - **USE** useRef to track current state without causing re-renders
+
+4. **Schema Mismatch Errors**
+   - **CHECK** if fields exist in production before querying them
+   - **PROVIDE** defaults for optional fields that may not exist
 
 ### Pre-Deployment Checklist
 
-**ALWAYS run these commands before pushing to prevent deployment failures:**
+**ALWAYS run these commands before pushing:**
 
 ```bash
-# 1. Type check the web app specifically
-cd apps/web && pnpm run type-check
-
-# 2. Test production build locally
+# 1. Test build locally
 cd apps/web && pnpm run build
 
-# 3. If database errors occur, test with minimal env
+# 2. Test with minimal env
 DATABASE_URL="postgresql://fake" pnpm run build
+
+# 3. Verify all API routes have dynamic exports
+grep -r "export const dynamic" src/app/api/
 ```
 
 ### TypeScript Strict Mode Requirements
