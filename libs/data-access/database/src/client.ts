@@ -107,22 +107,12 @@ function createPrismaClient() {
   return client;
 }
 
-// Lazy initialization to prevent build-time errors
-let _prisma: PrismaClient | undefined;
+// Create and cache the client
+export const prisma = globalForPrisma.prisma ?? createPrismaClient();
 
-export const prisma = new Proxy({} as PrismaClient, {
-  get(_, prop) {
-    if (!_prisma) {
-      _prisma = globalForPrisma.prisma ?? createPrismaClient();
-      if (process.env['NODE_ENV'] !== 'production') {
-        globalForPrisma.prisma = _prisma;
-      }
-    }
-    return (_prisma as any)[prop];
-  },
-});
-
-// Note: globalForPrisma.prisma is set inside the proxy getter
+if (process.env['NODE_ENV'] !== 'production') {
+  globalForPrisma.prisma = prisma;
+}
 
 // Handle cleanup on process termination
 if (typeof process !== 'undefined') {
@@ -143,12 +133,9 @@ if (typeof process !== 'undefined') {
 
 // Graceful shutdown helper
 export async function disconnectPrisma() {
-  if (_prisma) {
-    await _prisma.$disconnect();
-    _prisma = undefined;
-    if (globalForPrisma.prisma === _prisma) {
-      globalForPrisma.prisma = undefined;
-    }
+  if (prisma) {
+    await prisma.$disconnect();
+    globalForPrisma.prisma = undefined;
   }
 }
 

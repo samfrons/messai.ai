@@ -19,8 +19,8 @@ import {
 
 export async function GET(request: NextRequest) {
   try {
-    // Lazy import to prevent build-time initialization
-    const { prisma } = await import('@messai/database');
+    // Import from local db file instead
+    const { prisma } = await import('../../../lib/db');
     const startTime = Date.now();
     const { searchParams } = new URL(request.url);
 
@@ -320,6 +320,9 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Import from local db file
+    const { prisma } = await import('../../../lib/db');
+
     // CRITICAL: Prevent writes to production database
     try {
       checkProductionWrite('create research paper');
